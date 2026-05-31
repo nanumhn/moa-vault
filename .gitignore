@@ -1,0 +1,14 @@
+# Obsidian personal state — don't share these across machines
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+.obsidian/cache/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# scratch
+*.tmp
+.scratch/
