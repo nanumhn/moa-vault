@@ -1,0 +1,33 @@
+{
+  "run": "run_20260530_032730",
+  "team": "drama_planning",
+  "team_name": "드라마 기획 회의 (가족 드라마 12부작)",
+  "topic": "가족 드라마 1분 단편 12부작 기획",
+  "artifacts": [
+    {
+      "agent_id": "siwoo",
+      "agent_name": "강시우",
+      "filename": "production_pipeline.md"
+    },
+    {
+      "agent_id": "seorim",
+      "agent_name": "윤서림",
+      "filename": "series_bible.md"
+    },
+    {
+      "agent_id": "seorim",
+      "agent_name": "윤서림",
+      "filename": "synopsis_12.md"
+    },
+    {
+      "agent_id": "haneul",
+      "agent_name": "민하늘",
+      "filename": "character_sheet.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "concept_direction.md"
+    }
+  ]
+}
