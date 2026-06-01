@@ -1,0 +1,28 @@
+{
+  "run": "run_20260602_030445",
+  "team": "pixel_office_redesign",
+  "team_name": "픽셀 오피스 재설계 회의",
+  "topic": "moa-studio 픽셀 오피스 재설계 — 강유빈 신규 채용 후 첫 회의",
+  "artifacts": [
+    {
+      "agent_id": "yubin",
+      "agent_name": "강유빈",
+      "filename": "pixel_office_design.md"
+    },
+    {
+      "agent_id": "siwoo",
+      "agent_name": "강시우",
+      "filename": "directing_notes.md"
+    },
+    {
+      "agent_id": "haneul",
+      "agent_name": "민하늘",
+      "filename": "visual_consistency.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "concept_direction.md"
+    }
+  ]
+}
