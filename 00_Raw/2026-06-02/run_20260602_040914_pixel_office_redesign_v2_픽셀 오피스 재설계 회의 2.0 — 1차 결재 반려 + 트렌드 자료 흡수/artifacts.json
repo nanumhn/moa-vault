@@ -1,0 +1,28 @@
+{
+  "run": "run_20260602_040914",
+  "team": "pixel_office_redesign_v2",
+  "team_name": "픽셀 오피스 재설계 회의 2.0 — 자율 OS 자기개선 검증",
+  "topic": "픽셀 오피스 재설계 회의 2.0 — 1차 결재 반려 + 트렌드 자료 흡수 후 디벨롭",
+  "artifacts": [
+    {
+      "agent_id": "yubin",
+      "agent_name": "강유빈",
+      "filename": "pixel_office_design_v2.md"
+    },
+    {
+      "agent_id": "siwoo",
+      "agent_name": "강시우",
+      "filename": "directing_notes_v2.md"
+    },
+    {
+      "agent_id": "haneul",
+      "agent_name": "민하늘",
+      "filename": "visual_consistency_v2.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "concept_direction_v2.md"
+    }
+  ]
+}
