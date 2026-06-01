@@ -1,0 +1,28 @@
+{
+  "run": "run_20260602_033641",
+  "team": "saju_planning",
+  "team_name": "사주 프로젝트3 — 페이즈1 기획 회의",
+  "topic": "글로벌 동양 사주 서비스 — 페이즈1 기획 (월 1000만원 매출 핵심 라인)",
+  "artifacts": [
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "service_definition.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "marketing_strategy.md"
+    },
+    {
+      "agent_id": "jinwoo",
+      "agent_name": "박진우",
+      "filename": "revenue_and_payment.md"
+    },
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "ops_plan.md"
+    }
+  ]
+}
