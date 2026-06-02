@@ -1,21 +1,68 @@
-Here's a thinking process that leads to the desired output:
+# 사주 앱 디자인 명세
 
-1.  **Analyze the Request & Context:**
-    *   **Persona:** 강유빈 (Yu-bin Kang), Pixel Art Designer, Visual Expert.
-    *   **Goal:** Create a detailed UI/UX Design Specification (`ui_design_spec.md`) for the "Saju App" based on the previous conversation's mood and requirements.
-    *   **Constraints:** Must strictly follow the provided Markdown format. No extra text, no internal thoughts, just the structured output.
-    *   **Key Input/Mood:** Dreamy, atmospheric, emotional connection ("몽환적 공감"), linked to "Cafe Mood Play," and requires visualizing abstract concepts (Saju keywords).
+## 디자인 시스템 핵심 3가지
 
-2.  **Structure the Output (Following the Template):** I need to address each section of the requested Markdown structure systematically.
+### 🎨 색감 팔레트 (Color Palette)
+전반적인 무드는 '몽환적 공감(Dreamy Empathy)'을 지향하며, 깊은 밤하늘과 신비로운 빛의 조합을 사용합니다.
 
-    *   *Self-Correction/Refinement:* The tone must be highly professional, detailed, and visually descriptive, using hex codes and motion principles as a designer would.
+*   **Primary:** `#4B0082` (인디고/딥퍼플): 핵심 배경색 및 신뢰감을 주는 주 색상.
+*   **Secondary:** `#A357E9` (마젠타 퍼플): 액션 버튼, 강조 요소 등 사용자의 시선이 머물러야 하는 지점에 활용.
+*   **Accent 1:** `#B0C4DE` (스틸 블루): 부드러운 빛의 흐름, 배경 그래픽에 사용되는 은은한 하이라이트 색상.
+*   **Accent 2:** `#FFD700` (골드): 핵심 키워드나 중요한 발견 지점(Aha Moment)을 강조하는 포인트 컬러.
+*   **Neutral:** `#E6E6FA` (라벤더 화이트): 본문 텍스트 및 카드 배경의 주 색상.
 
-3.  **Drafting Content Section by Section:**
+### ✒️ 타이포그래피 원칙 (Typography Principle)
+글로벌 사용자를 고려하여 가독성과 모던함을 최우선으로 합니다. 제목은 신비롭고, 본문은 직관적이어야 합니다.
 
-    *   **# 사주 앱 디자인 명세:** (Title)
-    *   **## 디자인 시스템 핵심 3가지:**
-        *   *Color:* Needs to be moody but readable. Navy/Deep Blue (Night), Soft Gold/Amber (Warmth/Insight), Cream/Off-White (Paper/Clarity). Need 5 hex codes.
-        *   *Typography:* Modern, slightly ethereal yet structured. Pairing a serif for titles (emotion) and a clean sans-serif for body text (readability).
-        *   *Motion:* Slow, deliberate, atmospheric. Use fades, soft blurs, and gentle parallax shifts (like looking through mist).
+*   **헤딩/제목:** `Poppins` 또는 유사한 기하학적 산세리프체 (굵게) – 시각적인 임팩트를 주며 현대적인 느낌을 부여.
+*   **본문/카드 텍스트:** `Inter` 또는 유사한 고가독성 산세리프체 (Regular Weight) – 장문의 리포트나 핵심 메시지가 편안하게 읽히도록 구성.
 
-    *   **## 첫 1초 인상 — 랜딩 히어로 명세:**
+### ✨ 모션 원칙 (Motion Principle)
+사용자에게 '발견'의 경험을 제공하는 것이 핵심입니다. 모든 전환(Transition)은 빠르지만 부드러워야 합니다.
+
+*   **에너지 흐름:** 배경이나 로딩 애니메이션에 미세한 입자 효과(Particle Effect) 또는 유체 역학적 움직임(Fluid Animation)을 적용하여 '무언가 작동하고 있다'는 느낌 부여.
+*   **카드 전환:** 단순 페이드 인/아웃 대신, 마치 무드가 쌓이거나 펼쳐지듯 레이어드(Layered Reveal) 방식으로 진행. (예: 뒤에서 빛이 비치며 키워드를 드러내는 방식).
+
+## 첫 1초 인상 — 랜딩 히어로 명세 (Landing Hero Spec)
+
+**[비주얼 묘사]**
+깊은 밤하늘을 배경으로, 중앙에 사용자 개인의 '감성 좌표'를 상징하는 투명한 구(Sphere)가 떠 있습니다. 이 구체는 수많은 미세하고 빛나는 입자들로 이루어져 있으며, 사용자가 앱 실행과 동시에 이 입자들이 부드럽게 회전하며 안정화되는 모습을 보여줍니다. 화면 가장자리에는 은은하게 흐르는 네뷸라(Nebula) 패턴이 배경의 깊이를 더합니다. (픽셀 아트 디테일: 빛나는 입자들은 무작위가 아닌, 일정한 리듬을 가진 것처럼 보이도록 설계).
+
+**[핵심 카피]**
+*   **English:** Where the Cosmos meets your Inner Self.
+*   **Korean:** 우주와 당신의 감성이 만나는 순간.
+
+## '발견 과정 시각화' — 페이즈1 차별점の 화면화 (Discovery Process Visualization)
+
+사용자가 자신의 사주 정보를 입력하고 진단 리포트에 접근하기까지는 최소 3단계의 시각적 프로세스를 거쳐야 합니다. 이 과정 전체가 하나의 몰입형 애니메이션으로 작동해야 합니다.
+
+### 1️⃣ 단계: 데이터 수집 및 공감 (Input & Connection)
+*   **화면 요소:** 사용자가 생년월일, 성별 등 기본 정보를 입력하는 UI가 나타남.
+*   **모션/UX:** 정보 입력과 동시에 배경의 입자들이 빨려 들어가는 듯한 애니메이션을 보여줍니다. 이는 '데이터를 수집하여 분석한다'는 무의식적 과정에 시각적 몰입감을 부여합니다.
+
+### 2️⃣ 단계: 발견 및 변환 (Processing & Transformation)
+*   **화면 요소:** 로딩 스피너 대신, 중앙의 구체(Sphere)가 격렬하게 회전하며 빛을 방출하는 '변환기' 화면이 나타납니다.
+*   **모션/UX:** 이 단계에서 사주 데이터는 거대한 기호나 차트 형태로 시각화된 후, 마치 필터링되거나 압축되는 듯한 효과를 줍니다. 수많은 복잡한 정보가 작은 빛의 점들로 분해되고 재조합되어, 사용자의 '감성 키워드'라는 단 하나의 고밀도 데이터 패킷으로 응집됩니다. (이 과정에 BGM과 사운드가 최고조에 달해야 함).
+
+### 3️⃣ 단계: 결과 공개 (Revelation & Card Reveal)
+*   **화면 요소:** 중앙의 구체가 안정화되며, 가장 핵심적인 '오늘의 감성 무드 카드'가 빛을 내며 전면에 등장합니다.
+*   **모션/UX:** 카드가 마치 안개 속에서 천천히 떠오르듯(Dissolve Up) 부드럽게 나타나야 합니다. 이 순간에 골드 액센트 컬러를 사용하여 가장 중요한 키워드를 강조하며, 사용자가 '아하! 이것이 나였구나'라는 감성적 전율을 느끼도록 유도합니다.
+
+## SNS 공유 키워드 카드 템플릿 (Shareable Keyword Card Template)
+
+앱의 궁극적인 마케팅 목표는 사용자 경험을 소셜 미디어로 확장하는 것입니다. 모든 '발견 키워드 카드'는 아래 규격에 맞춰 자동 생성 가능한 형태로 설계되어야 합니다.
+
+| 플랫폼 | 비율 (Ratio) | 픽셀 크기 (권장) | 디자인 특징 |
+| :--- | :--- | :--- | :--- |
+| **Instagram Story** | 9:16 (Vertical) | 1080 x 1920 px | 배경에 네뷸라 또는 유체 패턴을 강하게 적용하여 시각적 밀도 높이기. 가장 깊은 무드를 표현할 때 사용. |
+| **X (Twitter)** | 16:9 (Landscape) | 1200 x 675 px | 깔끔하고 명료한 레이아웃에 집중. 키워드와 핵심 문구(Copy)를 중앙에 배치하여 가독성 극대화. |
+| **Instagram Feed** | 1:1 (Square) | 1080 x 1080 px | 카드 자체의 디자인을 가장 잘 보여줄 수 있는 정적인 구도로 구성. 로고 및 브랜드 컬러 노출 공간 확보 필수. |
+
+**자동 생성 파이프라인 권고:**
+클라이언트 측(Canvas API)에서 동적으로 이미지를 렌더링하는 방식을 기본으로 하고, 최종 공유용 이미지의 경우 AWS S3 또는 전용 OG Image Server를 통해 정적 파일로 변환하여 배포할 수 있도록 아키텍처를 설계해야 합니다.
+
+## 다국어 타이포 대비 (Multi-language Typography Contrast)
+
+영어권 사용자가 1순위 시장이므로, 영문과 한글의 시각적 위계질서가 명확해야 합니다.
+
+*   **영문(English):**
