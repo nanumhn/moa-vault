@@ -1,0 +1,28 @@
+{
+  "run": "run_20260602_084550",
+  "team": "saju_app_dev",
+  "team_name": "사주 프로젝트3 — 페이즈2 앱 개발 회의",
+  "topic": "주말 새벽 카페 무드 플리, 6곡 컨셉",
+  "artifacts": [
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "frontend_spec.md"
+    },
+    {
+      "agent_id": "jinwoo",
+      "agent_name": "박진우",
+      "filename": "paypal_integration_spec.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "qa_test_plan.md"
+    },
+    {
+      "agent_id": "yubin",
+      "agent_name": "강유빈",
+      "filename": "ui_design_spec.md"
+    }
+  ]
+}
