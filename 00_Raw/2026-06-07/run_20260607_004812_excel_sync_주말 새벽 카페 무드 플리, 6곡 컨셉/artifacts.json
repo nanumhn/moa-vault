@@ -1,0 +1,28 @@
+{
+  "run": "run_20260607_004812",
+  "team": "excel_sync",
+  "team_name": "엑셀 파일 동기화 옵션 검토 회의",
+  "topic": "주말 새벽 카페 무드 플리, 6곡 컨셉",
+  "artifacts": [
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "excel_sync_options_compare.md"
+    },
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "client_sync_spec.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "conflict_handling.md"
+    },
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "data_modeling.md"
+    }
+  ]
+}
