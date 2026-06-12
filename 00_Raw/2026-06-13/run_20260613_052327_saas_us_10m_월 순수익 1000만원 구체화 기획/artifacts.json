@@ -1,0 +1,33 @@
+{
+  "run": "run_20260613_052327",
+  "team": "saas_us_10m",
+  "team_name": "미국향 SaaS 월 1000만원 매출 라인 회의",
+  "topic": "월 순수익 1000만원 구체화 기획",
+  "artifacts": [
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "concept_positioning.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "us_marketing_plan.md"
+    },
+    {
+      "agent_id": "jinwoo",
+      "agent_name": "박진우",
+      "filename": "revenue_payment_us.md"
+    },
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "tech_spec_and_resources.md"
+    },
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "kpi_simulation_and_risk.md"
+    }
+  ]
+}
