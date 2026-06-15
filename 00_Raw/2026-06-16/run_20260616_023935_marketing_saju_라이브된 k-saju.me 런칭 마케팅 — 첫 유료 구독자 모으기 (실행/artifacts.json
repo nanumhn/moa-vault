@@ -1,0 +1,28 @@
+{
+  "run": "run_20260616_023935",
+  "team": "marketing_saju",
+  "team_name": "사주 서비스 글로벌 마케팅 회의",
+  "topic": "라이브된 k-saju.me 런칭 마케팅 — 첫 유료 구독자 모으기 (실행 액션 중심)",
+  "artifacts": [
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "channel_acquisition_plan.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "conversion_funnel.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "creative_messaging.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "marketing_metrics.md"
+    }
+  ]
+}

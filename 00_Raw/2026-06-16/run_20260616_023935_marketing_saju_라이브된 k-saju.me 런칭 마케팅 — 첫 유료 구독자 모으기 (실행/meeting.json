@@ -1,0 +1,71 @@
+{
+  "team": "marketing_saju",
+  "topic": "라이브된 k-saju.me 런칭 마케팅 — 첫 유료 구독자 모으기 (실행 액션 중심)",
+  "transcript": [
+    {
+      "speaker": "모아(CEO)",
+      "agent_id": "moa",
+      "text": "[모아 CEO] 도현 본부장, 의제 '라이브된 k-saju.me 런칭 마케팅 — 첫 유료 구독자 모으기 (실행 액션 중심)' 진행 부탁드립니다."
+    },
+    {
+      "speaker": "정도현",
+      "agent_id": "dohyun",
+      "text": "자, 지금까지 나온 내용을 보면 회의 의제는 '라이브된 k-saju.me 런칭 마케팅 — 첫 유료 구독자 모으기'에 집중할 것입니다. 우리는 어떻게 이 웹서비스를 효과적으로 홍보하고 첫 유료 사용자를 확보할지 실행 가능한 계획을 세우려 합니다.\n\n참석자 소개를 드리겠습니다: 모아 스튜디오의 CEO 박나래, 마케팅 전략 담당 한지오, 제품 관리와 고객 서비스 담당 이서아, 그리고 기술 개발과 유지보수 담당 박지원입니다.\n\n박나래, 발언해 주실 수 있습니까? 우리는 유입과 채널 전략에 대해 먼저 논의하겠습니다."
+    },
+    {
+      "speaker": "박나래",
+      "agent_id": "narae",
+      "text": "유입 채널 중 1순위로 TikTok, YouTube Shorts, Reddit을 선정했습니다. 왜냐하면 이 채널들은 동영상과 텍스트를 동시에 활용할 수 있어 사주의 개념을 효과적으로 전달할 수 있고, 특히 Hook 효과가 빠른 영상 플랫폼으로 유명하기 때문입니다.\n\nTikTok: 8초 안에 관객의 관심을 잡는 동영상 콘텐츠를 매일 배포합니다.\nYouTube Shorts: 사주 해석의 재미와 정확성을 보여주는 짧고 생동감 넘치는 영상으로 매일 배포합니다.\nReddit: r/astrology 및 관련 서브레딧에 맞춤형 포스팅을 주 2회 진행하여 커뮤니티 참여도를 높입니다.\n\n이렇게 하면 초기 유료 사용자가 늘어날 것으로 기대됩니다."
+    },
+    {
+      "speaker": "한지오",
+      "agent_id": "jio",
+      "text": "Google OAuth 사용한 로그인 채널 활용해 코드 복잡성 줄이고 UX 향상시킬게. 무료 체험 후 유료로 전환할 때는 결제 버튼 색상을 초록으로 바꿔 이완감과 신뢰감 주는 게 좋겠고, $4.99 가격을 띠어주면 유저가 가성비 있는 것 같아 결제 의지를 높일 수 있어요. TikTok 콘텐츠는 8초 안에 관객 관심 잡는 걸로 뚝딱하면 좋겠네요.Reddit 활동도 꾸준히 하면서 커뮤니티 참여도 높여야 해."
+    },
+    {
+      "speaker": "이서아",
+      "agent_id": "seoa",
+      "text": "우리 플리 컨셉은 동양사주의 신비감과 개인화를 살린 'Unlock Your Destiny with Eastern Wisdom'이라는 태그라인으로, 서구 astrology 대비 독특한 가치를 강조할 수 있어요.\n\n훅 카피 1: \"Discover the Secrets of Your Future - Eastern Astrology Revealed\"\n훅 카피 2: \"Tailored to You: Unlock Your Personal Destiny with K-Saju\"\n훅 카피 3: \"Step into the Mystique of Eastern Wisdom - Your Path Unveiled\"\n\n이런 메시지를 통해 동양사주의 신비함과 개인화를 강조할 수 있어요. 서구 astrology와는 다른, 더 깊고 감성적인 경험을 제공하게 될 거에요.\n\n마케팅 채널에서 이 메시지로 유입을 끌어들여야 해. TikTok 동영상은 첫 8초에서 'Unlock Your Destiny'를 강조하고, YouTube Shorts는 사주 해석의 재미와 정확성을 보여주는 짧고 생동감 넘치는 영상으로 시작하게 할게요. Reddit에서는 주로 'Step into the Mystique of Eastern Wisdom - Your Path Unveiled'라는 훅을 사용해 커뮤니티 참여도를 높일 거야.\n\n이렇게 하면 첫 유료 구독자를 효과적으로 모으는 데 도움이 될 거에요."
+    },
+    {
+      "speaker": "박지원",
+      "agent_id": "jiwon",
+      "text": "재현 가능한가요? 유입 수와 전환율, CAC(LTV)를 통해 마케팅 성패를 측정할 계획입니다. GA와 픽셀을 활용하여 TikTok에서 하루 1,000명의 유입을 목표로 하고, 이 중 5%가 최종적으로 유료 구독자가 되도록 할 거에요. YouTube Shorts에서는 하루 800명의 유입을 기대하며, Reddit에서는 하루 300명씩 총 600명을 목표로 합니다. 이렇게 하면 월간 유료 사용자 수는 약 2,000명 정도가 됩니다. CAC는 $4.99 가격에 맞춰 최대한 낮추려고 노력할 것입니다."
+    },
+    {
+      "speaker": "정도현",
+      "agent_id": "dohyun",
+      "text": "자, 지금까지 나온 내용을 보면 다음과 같은 합의와 이견이 있습니다.\n\n**합의:**\n1. **마케팅 채널:** TikTok, YouTube Shorts, Reddit을 주요 채널로 활용할 것입니다.\n2. **유입 목표:** TikTok에서 하루 1,000명, YouTube Shorts에서 하루 800명, Reddit에서 하루 300명씩 유입을 기대합니다.\n\n**이견:**\n1. **TikTok 콘텐츠 제작 시간:** 한지오가 8초 동안 관객의 관심을 잡는 콘텐츠를 매일 배포하자는 계획이 있지만, 이에 걸리는 시간과 효율성이 아직 불분명한 상태입니다.\n2. **훅 카피와 메시지 강조:** 이서아가 제안한 훅 카피들은 동양사주의 신비감과 개인화를 잘 전달하지만, 한지오가 서구 astrology와의 비교를 통해 가성비를 강조하는 방향도 필요할 수 있다는 의견이 있습니다.\n\n**포커스 질문:**\n- **TikTok 콘텐츠 제작 시간:** 8초 동안 관객의 관심을 잡는 콘텐츠를 매일 배포하기 위해 필요한 작업 시간과 효율성에 대해 구체적인 계획을 세울 수 있을까요?\n\n자, 이번 주의 실제 실행 계획을 모아보겠습니다."
+    },
+    {
+      "speaker": "박나래",
+      "agent_id": "narae",
+      "text": "TikTok: W1-주제 'Unlock Your Destiny', W2-주제 'Discover Eastern Wisdom', W3-주제 'Personalized Astrology', W4-주제 'K-Saju Experience'. 각 주 당 5개 콘텐츠 제작, 총 20개. YouTube Shorts: W1-W4 각 주 7개 콘텐츠 제작, 총 28개. Reddit: W1-W4 각 주 3회 포스팅, 총 12회. TikTok과 YouTube Shorts는 오가닉으로 진행하며, Reddit은 유료 광고로 1주 당 $50을 예산으로 할 예정입니다.\n\n이렇게 하면 초기 유입과 전환율을 높일 수 있고, 채널별로 일관된 메시지를 전달할 수 있습니다."
+    },
+    {
+      "speaker": "한지오",
+      "agent_id": "jio",
+      "text": "Google OAuth 로그인 채널 활용해 코드 복잡성 줄이고 UX 향상시킬게. TikTok 콘텐츠는 8초 안에 관객 관심 잡는 걸로 뚝딱하면 좋겠네요. 무료 체험 후 유료로 전환할 때는 결제 버튼 색상을 초록으로 바꿔 이완감과 신뢰감 주는 게 좋겠고, $4.99 가격을 띠어주면 유저가 가성비 있는 것 같아 결제 의지를 높일 수 있어요. TikTok 콘텐츠 제작 시간은 좀 더 구체적인 계획 필요해 보이네요."
+    },
+    {
+      "speaker": "이서아",
+      "agent_id": "seoa",
+      "text": "TikTok:\n- 훅 카피: \"Unlock Your Destiny with Eastern Wisdom - Discover the Secrets of Your Future\"\n- 콘텐츠: '너의 사주 한 줄 요약' 동영상, 첫 8초에서 'Unlock Your Destiny'를 강조하여 관객의 관심을 끕니다.\n\nYouTube Shorts:\n- 훅 카피: \"Tailored to You: Unlock Your Personal Destiny with K-Saju\"\n- 콘텐츠: 'astrology vs 사주' 비교 동영상, 첫 8초에서 사주의 재미와 정확성을 강조합니다.\n\nReddit:\n- 훅 카피: \"Step into the Mystique of Eastern Wisdom - Your Path Unveiled\"\n- 콘텐츠: '너의 사주 한 줄 요약' 글 포스트, 첫 8초에서 동양사주의 신비함과 개인화를 강조하여 커뮤니티 참여도 높이는 내용으로 작성합니다.\n\n추가 콘텐츠 시나리오:\n- ' 너의 사주 한 줄 요약 ': TikTok에서 8초 안에 관객의 관심을 잡는 동영상으로, 사주의 주요 키워드와 미래를 예측하는 단어를 강조합니다. 이 내용은 Reddit에서도 유사한 형태로 글 포스트로 작성하여 커뮤니티 참여도를 높입니다.\n\n- ' astrology vs 사주': YouTube Shorts에서 8초 안에 관객의 관심을 잡는 동영상으로, 서구 astrology와 사주의 차이점을 비교하며 가성비를 강조합니다. 이 내용은 TikTok에서도 비슷한 방식으로 동영상을 제작하여 유입을 끌어옵니다."
+    },
+    {
+      "speaker": "박지원",
+      "agent_id": "jiwon",
+      "text": "재현 가능한가요? 먼저, TikTok, YouTube Shorts, Reddit 채널별 유입과 전환율을 측정할 KPI를 정리하겠습니다.\n\n**TikTok:**\n- 유입: 하루 1,000명\n- 전환율: 최종 유료 구독자 수 5%\n- CAC: $4.99 가격에 맞춰 최대한 낮추기\n\n**YouTube Shorts:**\n- 유입: 하루 800명\n- 전환율: 최종 유료 구독자 수 6.25%\n- CAC: $4.99 가격에 맞춰 최대한 낮추기\n\n**Reddit:**\n- 유입: 하루 300명\n- 전환율: 최종 유료 구독자 수 10%\n- CAC: $4.99 가격에 맞춰 최대한 낮추기\n\n이렇게 하면 월간 유료 사용자는 약 2,000명 정도가 됩니다. 트래픽 × 전환 × ARPU 기준으로 보면, 월 1,000만원을 도달할 수 있는 경로입니다.\n\n광고 예산과 측정 도구 비용 등 형 결재 필요 항목은 다음과 같습니다:\n- TikTok: 광고 예상 예산 $375 (1,000명 × 8초 동영상 제작 시간 추가 비용)\n- YouTube Shorts: 광고 예상 예산 $296\n- Reddit: 광고 예상 예산 $150\n\n측정 도구 비용은 GA와 픽셀 활용으로 최소화하겠습니다."
+    },
+    {
+      "speaker": "정도현",
+      "agent_id": "dohyun",
+      "text": "- 박나래: TikTok 콘텐츠 제작 계획 수립, W1-W4 각 주에 5개 동영상 제작. (D-3)\n- 한지오: Google OAuth 로그인 시스템 구현 및 테스트 완료. (D-2)\n- 이서아: Reddit 콘텐츠 작성 계획 수립, W1-W4 각 주에 3회 포스팅 준비. (D-2)\n- 박지원: KPI 설정 및 광고 예산 결재 관련 서류 작성 완료. (D-1)\n다음 점검: D-7까지의 마케팅 캘린더와 예산 배분 계획 검토."
+    },
+    {
+      "speaker": "모아(CEO)",
+      "agent_id": "moa",
+      "text": "[모아 CEO] 도현 본부장이 정리한 안대로 진행합시다. 수고하셨습니다."
+    }
+  ]
+}
