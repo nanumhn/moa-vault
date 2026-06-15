@@ -1,0 +1,28 @@
+{
+  "run": "run_20260615_164744",
+  "team": "saju_subscription",
+  "team_name": "사주 월구독 가치 + 구독 인프라(로그인·마이페이지) 기획 회의",
+  "topic": "사주 월구독 가치 + 로그인·마이페이지 기획 (유저 가치 최우선)",
+  "artifacts": [
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "subscription_value.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "subscription_funnel.md"
+    },
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "auth_mypage_spec.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "subscription_revenue.md"
+    }
+  ]
+}
