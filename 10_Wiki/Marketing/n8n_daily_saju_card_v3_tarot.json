@@ -1,0 +1,67 @@
+{
+  "name": "Daily Saju Tarot Card v3",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c3d4e5f6-0001-4000-8000-000000000001",
+      "name": "Manual Test",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [220, 220]
+    },
+    {
+      "parameters": {
+        "rule": { "interval": [ { "field": "days", "triggerAtHour": 8 } ] }
+      },
+      "id": "c3d4e5f6-0002-4000-8000-000000000002",
+      "name": "Every Day 08:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 420]
+    },
+    {
+      "parameters": {
+        "url": "https://k-saju.me/api/og/daily-card?data=1",
+        "options": {}
+      },
+      "id": "c3d4e5f6-0003-4000-8000-000000000003",
+      "name": "Get Today's Saju",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $json;\nconst hashtags = '#ksaju #ksajume #saju #koreanastrology #fourpillars #easternastrology #dailysaju #kpop #spirituality #astrology #selfcare';\n// Discord/IG가 같은 URL을 캐시하지 않도록 날짜로 캐시버스트\nconst imageUrl = d.cardUrl + '&d=' + d.date;\nconst caption = '🔮 Today\\u2019s Korean Saju: ' + d.keyword + '\\n' + d.pillarHanja + ' \\u00b7 ' + d.romanPillar + '\\n\\n' + d.body + '\\n\\nGet your free daily Saju card \\u2192 k-saju.me\\n\\n' + hashtags;\nreturn [{ json: { ...d, imageUrl, hashtags, caption } }];"
+      },
+      "id": "c3d4e5f6-0004-4000-8000-000000000004",
+      "name": "Build Caption",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 320]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://discord.com/api/webhooks/PASTE_YOUR_WEBHOOK_ID/PASTE_YOUR_WEBHOOK_TOKEN",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ content: '🔮 Today\\u2019s Saju card \\u2014 ready to post:', embeds: [ { title: 'Today\\u2019s Korean Saju: ' + $json.keyword, description: $json.pillarHanja + ' \\u00b7 ' + $json.romanPillar + '\\n\\n' + $json.body + '\\n\\n' + $json.hashtags, url: 'https://k-saju.me', color: 10705385, image: { url: $json.imageUrl }, footer: { text: 'your daily saju \\u00b7 k-saju.me' } } ] }) }}",
+        "options": {}
+      },
+      "id": "c3d4e5f6-0005-4000-8000-000000000005",
+      "name": "Send to Discord",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [930, 320]
+    }
+  ],
+  "connections": {
+    "Manual Test": { "main": [ [ { "node": "Get Today's Saju", "type": "main", "index": 0 } ] ] },
+    "Every Day 08:00": { "main": [ [ { "node": "Get Today's Saju", "type": "main", "index": 0 } ] ] },
+    "Get Today's Saju": { "main": [ [ { "node": "Build Caption", "type": "main", "index": 0 } ] ] },
+    "Build Caption": { "main": [ [ { "node": "Send to Discord", "type": "main", "index": 0 } ] ] }
+  },
+  "settings": { "executionOrder": "v1", "timezone": "Asia/Seoul" },
+  "pinData": {}
+}
