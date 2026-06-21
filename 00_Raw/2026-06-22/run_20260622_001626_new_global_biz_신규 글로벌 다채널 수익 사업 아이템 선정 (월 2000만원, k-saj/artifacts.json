@@ -1,0 +1,28 @@
+{
+  "run": "run_20260622_001626",
+  "team": "new_global_biz",
+  "team_name": "신규 글로벌 다채널 수익 사업 아이템 선정 회의",
+  "topic": "신규 글로벌 다채널 수익 사업 아이템 선정 (월 2000만원, k-saju 제외, 음악 제외)",
+  "artifacts": [
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "strategy_ideas_kpi_decision.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "global_acquisition_plan.md"
+    },
+    {
+      "agent_id": "jinwoo",
+      "agent_name": "박진우",
+      "filename": "multichannel_revenue.md"
+    },
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "tech_automation_spec.md"
+    }
+  ]
+}

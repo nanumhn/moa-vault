@@ -1,0 +1,116 @@
+{
+  "id": "blogAutoPost001",
+  "name": "k-saju Blog Auto-Post (08:10 KST)",
+  "nodes": [
+    {
+      "id": "blog-schedule",
+      "name": "Daily 08:10 KST",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "10 8 * * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "blog-pick-topic",
+      "name": "Pick Today Topic",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [420, 300],
+      "parameters": {
+        "jsCode": "// KST today\nconst now = new Date();\nconst kst = new Date(now.getTime() + 9 * 60 * 60 * 1000);\nconst today = kst.toISOString().split('T')[0];\n\nconst topics = [\n  { day:1,  date:'2026-06-22', title:'What Is Saju? A Beginner\\'s Guide to Korean Four Pillars Astrology', category:'Korean Saju Basics', keyword:'what is saju', secondary:'korean astrology, four pillars of destiny', slug:'what-is-saju-beginners-guide' },\n  { day:2,  date:'2026-06-23', title:'The Four Pillars of Destiny Explained (Year, Month, Day, Hour)', category:'Korean Saju Basics', keyword:'four pillars of destiny', secondary:'what is saju, korean birth chart', slug:'four-pillars-of-destiny-explained' },\n  { day:3,  date:'2026-06-24', title:'The Five Elements in Saju: Wood, Fire, Earth, Metal, Water Explained', category:'Five Elements & Day Master', keyword:'five elements astrology meaning', secondary:'ohaeng, saju elements', slug:'five-elements-saju-explained' },\n  { day:4,  date:'2026-06-25', title:'What Is a Day Master? Your Core Self in Korean Astrology', category:'Five Elements & Day Master', keyword:'what is a day master saju', secondary:'heavenly stem, ilgan', slug:'what-is-day-master-korean-astrology' },\n  { day:5,  date:'2026-06-26', title:'Eastern vs. Western Astrology: Which One Is More Accurate?', category:'Eastern vs. Western', keyword:'eastern vs western astrology', secondary:'saju vs horoscope, korean vs zodiac', slug:'eastern-vs-western-astrology-accurate' },\n  { day:6,  date:'2026-06-27', title:'What Is a Daily Saju Reading and How to Use It', category:'Daily Saju & Timing', keyword:'daily saju horoscope', secondary:'daily saju reading, morning routine', slug:'what-is-daily-saju-reading-how-to-use' },\n  { day:7,  date:'2026-06-28', title:'Saju vs. BaZi: Are Korean and Chinese Astrology the Same?', category:'Korean Saju Basics', keyword:'bazi vs saju difference', secondary:'korean astrology, chinese astrology bazi', slug:'saju-vs-bazi-korean-chinese-astrology' },\n  { day:8,  date:'2026-06-29', title:'Are You Yang Metal or Yin Water? Find Your Saju Element', category:'Five Elements & Day Master', keyword:'yin yang five elements personality', secondary:'yang metal, yin water, day master', slug:'yang-metal-yin-water-saju-element' },\n  { day:9,  date:'2026-06-30', title:'Beyond Your Sun Sign: Why Saju Goes Deeper Than the Zodiac', category:'Eastern vs. Western', keyword:'saju vs western astrology', secondary:'beyond zodiac, four pillars depth', slug:'beyond-sun-sign-saju-deeper-than-zodiac' },\n  { day:10, date:'2026-07-01', title:'Saju Compatibility: How Korean Astrology Reads Relationships', category:'Love Career & Compatibility', keyword:'saju love compatibility', secondary:'saju compatibility calculator, relationship astrology', slug:'saju-compatibility-korean-astrology-relationships' },\n  { day:11, date:'2026-07-02', title:'How to Read a Saju Chart for the First Time (No Experience Needed)', category:'Korean Saju Basics', keyword:'how to read saju chart', secondary:'saju chart beginner, four pillars reading', slug:'how-to-read-saju-chart-first-time' },\n  { day:12, date:'2026-07-03', title:'Element Imbalance: What It Means When You Have Too Much Fire in Saju', category:'Five Elements & Day Master', keyword:'saju element imbalance fire', secondary:'too much fire saju, element balance', slug:'saju-element-imbalance-too-much-fire' },\n  { day:13, date:'2026-07-04', title:'Saju Fortune Timing: How Eastern Astrology Tracks Your Luck Cycles', category:'Daily Saju & Timing', keyword:'saju fortune timing luck cycles', secondary:'daeun luck pillar, eastern astrology timing', slug:'saju-fortune-timing-luck-cycles' },\n  { day:14, date:'2026-07-05', title:'What Your Saju Says About Your Career Path', category:'Love Career & Compatibility', keyword:'saju career reading', secondary:'saju career path, what saju says about career', slug:'what-saju-says-about-career-path' },\n  { day:15, date:'2026-07-06', title:'Saju and Your Zodiac Sign: Can You Use Both Together?', category:'Eastern vs. Western', keyword:'saju and zodiac sign together', secondary:'korean astrology western astrology combine', slug:'saju-and-zodiac-sign-use-both' },\n  { day:16, date:'2026-07-07', title:'What Your Birth Hour Reveals That Your Zodiac Sign Cannot', category:'Korean Saju Basics', keyword:'birth hour astrology meaning', secondary:'saju birth hour, time pillar saju', slug:'birth-hour-reveals-what-zodiac-cant' },\n  { day:17, date:'2026-07-08', title:'Your Day Master Personality: All 10 Heavenly Stems Decoded', category:'Five Elements & Day Master', keyword:'what is a day master saju', secondary:'10 heavenly stems personality, cheongan', slug:'day-master-personality-10-heavenly-stems' },\n  { day:18, date:'2026-07-09', title:'Good Days vs. Bad Days: Can Saju Predict Your Week?', category:'Daily Saju & Timing', keyword:'daily saju horoscope', secondary:'saju good day bad day, saju predict week', slug:'good-days-bad-days-saju-predict-week' },\n  { day:19, date:'2026-07-10', title:'Are You and Your Partner a Good Saju Match?', category:'Love Career & Compatibility', keyword:'saju love compatibility', secondary:'saju partner match, four pillars compatibility', slug:'saju-partner-compatibility-match' },\n  { day:20, date:'2026-07-11', title:'Why Your Birth Time Matters More in Eastern Astrology', category:'Eastern vs. Western', keyword:'birth hour astrology meaning', secondary:'eastern astrology birth time, saju hour pillar', slug:'why-birth-time-matters-eastern-astrology' },\n  { day:21, date:'2026-07-12', title:'The 60-Year Cycle in Korean Astrology, Explained Simply', category:'Korean Saju Basics', keyword:'korean astrology birth chart', secondary:'60 year cycle saju, gapja', slug:'60-year-cycle-korean-astrology-explained' },\n  { day:22, date:'2026-07-13', title:'What Is Your Wealth Element? Money and Saju', category:'Love Career & Compatibility', keyword:'saju career reading', secondary:'wealth element saju, money pillar four pillars', slug:'wealth-element-money-and-saju' },\n  { day:23, date:'2026-07-14', title:'Your Monthly Energy Flow: Reading Saju Trends Over Time', category:'Daily Saju & Timing', keyword:'saju fortune timing luck cycles', secondary:'monthly saju reading, saju energy trends', slug:'monthly-energy-flow-saju-trends' },\n  { day:24, date:'2026-07-15', title:'12 Zodiac Signs vs. 60-Year Cycle: Two Ways to Read Your Fate', category:'Eastern vs. Western', keyword:'eastern vs western astrology', secondary:'zodiac vs saju, 60 year cycle comparison', slug:'12-zodiac-vs-60-year-cycle-saju' },\n  { day:25, date:'2026-07-16', title:'Wood Element People: Strengths, Weaknesses, and Best Matches', category:'Five Elements & Day Master', keyword:'five elements astrology meaning', secondary:'wood element personality, mok saju', slug:'wood-element-people-saju-personality' },\n  { day:26, date:'2026-07-17', title:'How to Build a Morning Ritual Around Your Daily Saju Card', category:'Daily Saju & Timing', keyword:'daily saju horoscope', secondary:'morning ritual saju, daily saju card habit', slug:'morning-ritual-daily-saju-card' },\n  { day:27, date:'2026-07-18', title:'Best Saju Matches for Each of the Five Elements', category:'Love Career & Compatibility', keyword:'saju love compatibility', secondary:'best saju match element, five element compatibility', slug:'best-saju-matches-five-elements' },\n  { day:28, date:'2026-07-19', title:'Fire Element People: What Your Saju Says About You', category:'Five Elements & Day Master', keyword:'yin yang five elements personality', secondary:'fire element personality saju, hwa element', slug:'fire-element-people-saju-personality' },\n  { day:29, date:'2026-07-20', title:'Saju for Beginners: 10 Terms You Need to Know', category:'Korean Saju Basics', keyword:'how to read saju chart', secondary:'saju terms glossary, saju beginner guide', slug:'saju-beginners-10-terms-glossary' },\n  { day:30, date:'2026-07-21', title:'Can Saju Really Predict the Future? An Honest Look', category:'Eastern vs. Western', keyword:'korean saju reading free', secondary:'saju accuracy, does saju predict future', slug:'can-saju-predict-future-honest-look' }\n];\n\n// Find today's topic or loop\nlet topic = topics.find(t => t.date === today);\nif (!topic) {\n  const start = new Date('2026-06-22T00:00:00+09:00');\n  const kstMid = new Date(kst.toISOString().split('T')[0] + 'T00:00:00+09:00');\n  const dayN = Math.floor((kstMid - start) / 86400000);\n  topic = { ...topics[dayN % topics.length], date: today };\n}\n\nconst SYSTEM_PROMPT = `You are an SEO content writer for k-saju.me, an AI-powered Korean Saju (Four Pillars) astrology service for English-speaking readers (ages 25-45) interested in Eastern astrology and spirituality.\n\nGOAL: Write a blog post that ranks on Google for the given keyword AND gently leads the reader to try k-saju.me.\n\nHARD RULES (never break):\n- Honest, warm, curiosity-driven tone. NEVER use fear marketing, fake scarcity, fake statistics, fake urgency, or \"you must do this or bad luck\" claims.\n- Saju is for ENTERTAINMENT and SELF-REFLECTION, not professional medical, legal, or financial advice.\n- Only state facts about k-saju.me that are true: it offers free readings (no card needed), a daily Saju card, deep analysis option, and a monthly plan with a free trial. Do NOT invent specific prices, counts, or guarantees.\n- Write in clear, natural American English. No fluff, no keyword stuffing.\n- Length: 550-800 words.\n- Use the primary keyword in the title, the first paragraph, one H2, and naturally 2-4 times in the body.\n\nSTRUCTURE:\n1. Hook intro (2-3 sentences): pose the reader's question, promise a clear answer.\n2. Body: 3-4 H2 sections that genuinely answer the topic and teach something useful.\n3. Short \"Try it yourself\" CTA paragraph pointing to k-saju.me (free, no card needed).\n4. End with this exact disclaimer line: *Saju readings on k-saju.me are for entertainment and self-reflection only — not professional medical, legal, or financial advice.*\n\nOUTPUT: Return ONLY valid MDX starting with the frontmatter block (---). No explanations before or after.`;\n\nconst userPrompt = `Write today's post.\nTITLE: ${topic.title}\nCATEGORY: ${topic.category}\nPRIMARY KEYWORD: ${topic.keyword}\nSECONDARY KEYWORDS: ${topic.secondary}\nDATE: ${topic.date}\nSLUG: ${topic.slug}`;\n\nconst requestBody = {\n  model: 'qwen2.5-7b-instruct',\n  messages: [\n    { role: 'system', content: SYSTEM_PROMPT },\n    { role: 'user', content: userPrompt }\n  ],\n  temperature: 0.72,\n  max_tokens: 1600,\n  stream: false\n};\n\nreturn [{ json: { ...topic, today, requestBody } }];"
+      }
+    },
+    {
+      "id": "blog-llm",
+      "name": "LM Studio Generate",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [640, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:1234/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json.requestBody) }}",
+        "options": {
+          "timeout": 120000
+        }
+      }
+    },
+    {
+      "id": "blog-build-mdx",
+      "name": "Build MDX Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [860, 300],
+      "parameters": {
+        "jsCode": "// Extract LM Studio output\nconst raw = ($json.choices && $json.choices[0] && $json.choices[0].message)\n  ? $json.choices[0].message.content\n  : '';\n\n// Strip accidental ``` wrappers\nlet mdx = raw.trim();\nif (mdx.startsWith('```mdx')) mdx = mdx.slice(6);\nelse if (mdx.startsWith('```')) mdx = mdx.slice(3);\nif (mdx.endsWith('```')) mdx = mdx.slice(0, -3);\nmdx = mdx.trim();\n\n// Sanity: must start with frontmatter\nif (!mdx.startsWith('---')) {\n  throw new Error('LM Studio output missing frontmatter. Raw: ' + mdx.slice(0, 200));\n}\n\n// Grab slug + date from upstream Pick Today Topic node\nconst upstreamJson = $('Pick Today Topic').item.json;\nconst slug = upstreamJson.slug;\nconst date = upstreamJson.today;\nconst title = upstreamJson.title;\n\n// Base64 encode\nconst base64Content = Buffer.from(mdx, 'utf8').toString('base64');\n\nreturn [{ json: { slug, date, title, mdx, base64Content } }];"
+      }
+    },
+    {
+      "id": "blog-github-push",
+      "name": "GitHub Push MDX",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1080, 300],
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/nanumhn/k-saju-blog/contents/content/posts/{{ $json.slug }}.mdx",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer GITHUB_PAT_HERE" },
+            { "name": "Accept", "value": "application/vnd.github+json" },
+            { "name": "X-GitHub-Api-Version", "value": "2022-11-28" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ message: 'feat: add blog post ' + $json.slug + ' (' + $json.date + ')', content: $json.base64Content, branch: 'main' }) }}",
+        "options": {
+          "timeout": 30000
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily 08:10 KST": {
+      "main": [[{ "node": "Pick Today Topic", "type": "main", "index": 0 }]]
+    },
+    "Pick Today Topic": {
+      "main": [[{ "node": "LM Studio Generate", "type": "main", "index": 0 }]]
+    },
+    "LM Studio Generate": {
+      "main": [[{ "node": "Build MDX Payload", "type": "main", "index": 0 }]]
+    },
+    "Build MDX Payload": {
+      "main": [[{ "node": "GitHub Push MDX", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "timezone": "Asia/Seoul",
+    "saveManualExecutions": true,
+    "saveDataSuccessExecution": "last",
+    "saveDataErrorExecution": "all",
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}
