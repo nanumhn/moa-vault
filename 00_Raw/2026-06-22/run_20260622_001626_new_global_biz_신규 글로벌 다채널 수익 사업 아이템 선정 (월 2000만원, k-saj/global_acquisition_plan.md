@@ -14,37 +14,23 @@
 |---|---|---|---|
 | AI 이미지 배치 사이트 | Pinterest 채널 설정, SEO 키워드 "AI image generator", "AI image creator", "image batcher" | 공식 출시, SNS 포스팅 (Instagram Reels + TikTok), 유튜브 채널 개설 | 첫 바이럴 콘텐츠 포맷 - "AI Image Generator: 5 Reasons Why You Need It" |
 | AI 아바타 생성기 | Reddit 채널 설정, SEO 키워드 "AI avatar generator", "create avatar online", "personalized avatar" | 공식 출시, SNS 포스팅 (Instagram Reels + TikTok), 유튜브 채널 개설 | 첫 바이럴 콘텐츠 포맷 - "Create Your Perfect Avatar with AI: Step-by-Step Guide" |
-| Notion템플릿 상점 | ProductHunt 채널 설정, SEO 키워드 "Notion templates", "notion template creator", "custom Notion templates" | 공식 출시, SNS 포스팅 (Instagram Reels + TikTok), 유튜브 채널 개설 | 첫 바이럴 콘텐츠 포맷 - "Unlock Your Notion Potential with Our Custom Templates"
+| Notion템플릿 상점 | ProductHunt 채널 설정, SEO 키워드 "Notion templates", "notion template creator", "custom Notion templates" | 공식 출시, SNS 포스팅 (Instagram Reels + TikTok), 유튜브 채널 개설 | 첫 바이럴 콘텐츠 포맷 - "Unlock Your Notion Potential with Our Custom Templates" |
 
-# 신규 사업 글로벌 유입 전략
-
-## 상위 3개 아이템별 1순위 채널 + 근거
-| 아이템         | 1순위 채널       | 왜 맞는가                                                                 | 첫 100~1000 방문 시나리오                                                                                                                                                   |
-|---------------|------------------|----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| AI图像批量生成网站 | Pinterest         | Pinterest上有大量的视觉内容创作者，易于找到目标用户群体。SEO关键词与Pinterest上的搜索趋势高度匹配。                          | 用户在搜索AI生成图像时会点击进入，从而开始探索我们的服务并试用功能。                                                                                                      |
-| AI头像生成器    | Reddit           | Reddit社区活跃且多样化，特别是针对个人化的主题。SEO关键词有助于吸引寻求在线创建个性化头像的用户。                            | 用户通过Reddit上的帖子找到我们的服务，并在尝试使用后分享体验，吸引更多人关注和使用。                                                                                      |
-| Notion模板商店  | ProductHunt      | ProductHunt上聚集了大量的创新产品爱好者，能够有效推广Notion模板这样的工具型产品。SEO关键词有助于吸引寻找高效工作流程的用户。 | 用户通过ProductHunt发现我们的服务，并在试用后留下评价和推荐，吸引更多潜在客户。                                                                                          |
-
-## 주력 아이템 첫 30일 Launch 캘린더 (D-7 / D-day / D+14)
-| 周期       | 行动                         |
-|------------|------------------------------|
-| D-7        | Pinterest频道设置完成，SEO关键词设置为“AI image generator”、“AI image creator”、“image batcher”。                           |
-| D-day      | 公式发布，SNS帖子（Instagram Reels + TikTok），YouTube频道开设并上传初步内容。                                            |
-| D+14       | 发布首波病毒传播内容格式——"AI Image Generator: 5 Reasons Why You Need It"                                                    |
-
-## 英文SEO关键词 (主推项目5个)
+## 주력 아이템 영문 SEO 키워드 5개 (AI 이미지 배치 사이트)
 1. AI image generator
 2. AI image creator
-3. image batcher
-4. AI avatar generator
-5. create avatar online
+3. batch image generator
+4. AI stock images
+5. free AI image tool
 
-## 首个病毒传播内容格式及具体方案（1~2个）
-1. "AI Image Generator: 5 Reasons Why You Need It"
-   - 初始用户在Pinterest上探索并使用AI图像生成器后，会持续访问以查看更多功能，进而通过广告或与合作伙伴推荐进一步转化。
+## 첫 바이럴 노릴 콘텐츠 포맷 (구체 시나리오)
+1. **"AI Image Generator: 5 Reasons Why You Need It"** — Pinterest 핀 + Reddit 포스트로 배포. 무료 체험 → 사이트 유입 → 광고 노출 + 프리미엄 구독 깔때기.
+2. **Before/After 비교 캐러셀** — Pinterest/IG Reels에서 "직접 그린 것 vs AI 배치 생성" 1분 클립. 저장·공유율 높음.
 
-##有机流量到广告和合作收益的连接机制
-初始用户通过有机搜索找到网站，并通过SNS分享推广内容。这些用户将持续访问网站，最终通过展示广告（如AdSense）转化为收入，并且通过合作伙伴推荐带来更多流量。
+## 오가닉 트래픽 → 광고·제휴 수익 연결 고리
+오가닉 검색·핀으로 무료 유저가 유입 → 사이트 체류 중 AdSense 노출(베이스 수익) → 비교/가이드 콘텐츠에서 디자인툴·SaaS 제휴 링크 클릭(커미션) → 일부는 프리미엄 구독/디지털 번들 구매로 전환. 단일 방문이 광고+제휴+판매 3채널을 동시에 건드린다.
 
-## 付费广告（如有必要，则选择1个渠道+最低预算$）
-- Instagram Reels + TikTok：预算 $1,000
+## 유료 광고 (필요 시 1개 채널 + 최소 예산)
+- Pinterest Ads 또는 Reddit Ads: 첫 30일 최소 예산 **$300~$500** (오가닉이 임계점 넘기 전 마중물 용도, 메인은 SEO·오가닉).
+
+> (자동 게이트 정리: 1차 산출에 동일 표가 중복 생성 + 후반부가 중국어로 언어 드리프트되어 COO가 중복/드리프트 블록을 제거하고 누락 섹션(SEO 키워드·바이럴 포맷·연결고리·광고예산)을 한국어 정본으로 채움.)

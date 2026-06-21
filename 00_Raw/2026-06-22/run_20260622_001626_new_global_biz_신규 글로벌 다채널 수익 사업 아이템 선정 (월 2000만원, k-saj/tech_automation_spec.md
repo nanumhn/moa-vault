@@ -16,19 +16,24 @@
 - Auth: External service integration (e.g., Google OAuth)
 - Payment: Stripe API
 - Hosting: Vercel or similar PaaS
-- AI: ComfyUI (图像生成), Qwen2.5-7b (文本生成)
+- AI: ComfyUI (이미지 배치 생성), Qwen2.5-7b 로컬 LLM (텍스트·메타데이터 생성)
 
 ## 1인 자동화 파이프라인 스케치
-ComfyUI → n8n(自动化调度) → Next.js(网站) → 支付渠道连接
+ComfyUI(이미지 배치 생성) → n8n(자동 스케줄·발행) → Next.js(사이트) → 수익 채널(AdSense·Stripe·Gumroad) 연결
+- RTX 3060 6GB 제약: 정적 이미지·짧은 클립 배치 OK / 고해상도 장편 영상은 v2로 제외.
 
 ## IN / OUT 컷오프 (v1에 만들 것 / v2로 미룰 것)
-- Out: ComfyUI高分辨率图像处理, Qwen2.5-7b详细文本生成
-- In: n8n自动化任务调度, Stripe支付接口集成
+- IN: n8n 자동화 잡 스케줄링, Stripe 구독 결제, AdSense 연동, 이미지 배치 생성+카탈로그 페이지 자동 발행
+- OUT(v2): ComfyUI 고해상도/대형 영상 처리, Qwen 장문 상세 생성, 다국어, 모바일 앱
 
 ## 외부 SaaS 의존 목록 + 월 비용
-- Google OAuth (免费)
-- Stripe API ($0.1/1,000 imp)
-- Vercel hosting (按需付费)
+- Google OAuth (무료)
+- Stripe (거래 수수료 2.9%+$0.3, 월정액 0)
+- Vercel hosting (Hobby 무료 ~ Pro $20/mo)
+- Gumroad / Lemon Squeezy (판매 수수료형, 월정액 0)
 
-## CTO(윤서진) 시간 배分 + 기존 프로젝트 충돌 여부
-- 90日内完成AI图像生成器和头像生成器的MVP，以及Notion模板商店的初步构建。
+## CTO(윤서진) 시간 배분 + 기존 프로젝트 충돌 여부
+- 90일 내 주력 1개(AI 이미지 배치 사이트) MVP에 CTO 시간 60%, 서브(AI 아바타 생성기)에 25%, 자동화 파이프라인 공통화에 15%.
+- 기존 프로젝트(픽셀 오피스·가족드라마)와 코드 충돌 없음 — 신규 독립 레포로 분리. ComfyUI/n8n 인프라는 공유.
+
+> (자동 게이트 정리: 1차 산출 후반부에 중국어 토큰이 섞여(언어 드리프트) COO가 한국어로 보정하고 6GB 제약·시간배분 항목을 보강함.)
