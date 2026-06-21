@@ -1,5 +1,6 @@
 {
   "name": "Daily Saju Tarot Card v3",
+  "id": "tarotDaily00001",
   "nodes": [
     {
       "parameters": {},
@@ -32,7 +33,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const d = $json;\nconst hashtags = '#ksaju #ksajume #saju #koreanastrology #fourpillars #easternastrology #dailysaju #kpop #spirituality #astrology #selfcare';\n// Discord/IG가 같은 URL을 캐시하지 않도록 날짜로 캐시버스트\nconst imageUrl = d.cardUrl + '&d=' + d.date;\nconst caption = '🔮 Today\\u2019s Korean Saju: ' + d.keyword + '\\n' + d.pillarHanja + ' \\u00b7 ' + d.romanPillar + '\\n\\n' + d.body + '\\n\\nGet your free daily Saju card \\u2192 k-saju.me\\n\\n' + hashtags;\nreturn [{ json: { ...d, imageUrl, hashtags, caption } }];"
+        "jsCode": "const d = $json;\nconst hashtags = '#ksaju #ksajume #saju #koreanastrology #fourpillars #easternastrology #dailysaju #kpop #spirituality #astrology #selfcare';\nconst imageUrl = d.cardUrl + '&d=' + d.date;\nconst head = '🔮 Today\\u2019s Korean Saju: ' + d.keyword;\nconst captionBody = d.pillarHanja + ' \\u00b7 ' + d.romanPillar + '\\n\\n' + d.body + '\\n\\n🔗 Free daily card \\u2192 link in bio\\nyour daily saju \\u00b7 k-saju.me\\n\\n' + hashtags;\nconst caption = head + '\\n' + captionBody;\nreturn [{ json: { ...d, imageUrl, hashtags, caption, captionBody } }];"
       },
       "id": "c3d4e5f6-0004-4000-8000-000000000004",
       "name": "Build Caption",
@@ -46,7 +47,7 @@
         "url": "https://discord.com/api/webhooks/PASTE_YOUR_WEBHOOK_ID/PASTE_YOUR_WEBHOOK_TOKEN",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ content: '🔮 Today\\u2019s Saju card \\u2014 ready to post:', embeds: [ { title: 'Today\\u2019s Korean Saju: ' + $json.keyword, description: $json.pillarHanja + ' \\u00b7 ' + $json.romanPillar + '\\n\\n' + $json.body + '\\n\\n' + $json.hashtags, url: 'https://k-saju.me', color: 10705385, image: { url: $json.imageUrl }, footer: { text: 'your daily saju \\u00b7 k-saju.me' } } ] }) }}",
+        "jsonBody": "={{ JSON.stringify({ content: '🔮 Today\\u2019s Saju card \\u2014 ready to post (caption below):', embeds: [ { title: 'Today\\u2019s Korean Saju: ' + $json.keyword, description: $json.captionBody, url: 'https://k-saju.me', color: 10705385, image: { url: $json.imageUrl } } ] }) }}",
         "options": {}
       },
       "id": "c3d4e5f6-0005-4000-8000-000000000005",

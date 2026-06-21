@@ -1,0 +1,28 @@
+{
+  "run": "run_20260621_134650",
+  "team": "adsense_blog",
+  "team_name": "애드센스 블로그 수익화 전략 회의",
+  "topic": "국내 뉴스 큐레이션/IT 사용법 블로그로 구글 애드센스 수익화 + 포스팅 자동화 전략",
+  "artifacts": [
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "direction_seo.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "themes_content.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "automation_pipeline.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "monetization_roadmap.md"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "name": "Daily Saju Card — k-saju",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Manual Test",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Every Day 08:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 오행 테마 풀 — 날짜에 따라 매일 하나씩 자동 선택 (외부 LLM 불필요, 룰베이스)\nconst themes = [\n  { k: 'Quiet Wandering', ke: 'A day to drift and reflect', b: 'Today carries the mood of a quiet wandering. Let your steps be slow and your mind stay open.' },\n  { k: 'Rising Fire', ke: 'Bold energy is on your side', b: 'Your Fire element burns bright today. Channel it into one bold move you have been postponing.' },\n  { k: 'Still Water', ke: 'Clarity comes from calm', b: 'Still Water energy. Reflect before you react, and clarity will rise to the surface.' },\n  { k: 'Deep Roots', ke: 'Strength in what you have built', b: 'Earth grounds you today. Tend patiently to what you have already built.' },\n  { k: 'Sharp Metal', ke: 'Focus, then let go', b: 'Metal sharpens your focus. Cut away one thing that no longer serves you.' },\n  { k: 'Green Sprout', ke: 'Small starts, big growth', b: 'Wood energy of new growth. A small start today becomes tomorrow\\u2019s strength.' },\n  { k: 'Golden Hour', ke: 'A lucky window opens', b: 'A lucky window opens this afternoon. Say yes to the unexpected and see where it leads.' }\n];\nconst now = new Date();\nconst start = new Date(now.getFullYear(), 0, 0);\nconst dayOfYear = Math.floor((now - start) / 86400000);\nconst t = themes[dayOfYear % themes.length];\nconst base = 'https://k-saju.me/api/og/keyword-card';\nconst cardUrl = base + '?fmt=story&k=' + encodeURIComponent(t.k) + '&ke=' + encodeURIComponent(t.ke) + '&b=' + encodeURIComponent(t.b);\nconst hashtags = '#saju #koreanastrology #fourpillars #easternastrology #dailysaju';\nconst caption = '🔮 Your daily Korean Saju: ' + t.k + '\\n\\n' + t.b + '\\n\\nGet your free daily card → k-saju.me\\n\\n' + hashtags;\nreturn [{ json: { keyword: t.k, keywordEn: t.ke, body: t.b, caption, hashtags, cardUrl } }];"
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Pick Today's Card",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [560, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.cardUrl }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file",
+              "outputPropertyName": "card"
+            }
+          }
+        }
+      },
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Render Card PNG",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [820, 300]
+    }
+  ],
+  "connections": {
+    "Manual Test": {
+      "main": [
+        [
+          {
+            "node": "Pick Today's Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every Day 08:00": {
+      "main": [
+        [
+          {
+            "node": "Pick Today's Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pick Today's Card": {
+      "main": [
+        [
+          {
+            "node": "Render Card PNG",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
