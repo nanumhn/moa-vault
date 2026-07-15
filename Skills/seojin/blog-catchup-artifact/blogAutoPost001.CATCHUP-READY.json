@@ -1,0 +1,415 @@
+[
+ {
+  "updatedAt": "2026-07-08T03:51:12.000Z",
+  "createdAt": "2026-06-21T07:23:07.275Z",
+  "id": "blogAutoPost001",
+  "name": "k-saju Blog Auto-Post (08:10 KST)",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+   {
+    "parameters": {
+     "rule": {
+      "interval": [
+       {
+        "field": "cronExpression",
+        "expression": "10 8-23 * * *"
+       }
+      ]
+     }
+    },
+    "id": "blog-schedule",
+    "name": "Blog 08:10 + hourly catch-up",
+    "type": "n8n-nodes-base.scheduleTrigger",
+    "typeVersion": 1.2,
+    "position": [
+     208,
+     304
+    ]
+   },
+   {
+    "parameters": {
+     "jsCode": "// KST today\nconst now = new Date();\nconst kst = new Date(now.getTime() + 9 * 60 * 60 * 1000);\nconst today = kst.toISOString().split('T')[0];\n\nconst topics = [\n  { day:1,  date:'2026-06-21', title:'What Is Saju? A Beginner\\'s Guide to Korean Four Pillars Astrology', category:'Korean Saju Basics', keyword:'what is saju', secondary:'korean astrology, four pillars of destiny', slug:'what-is-saju-beginners-guide' },\n  { day:2,  date:'2026-06-22', title:'The Four Pillars of Destiny Explained (Year, Month, Day, Hour)', category:'Korean Saju Basics', keyword:'four pillars of destiny', secondary:'what is saju, korean birth chart', slug:'four-pillars-of-destiny-explained' },\n  { day:3,  date:'2026-06-23', title:'The Five Elements in Saju: Wood, Fire, Earth, Metal, Water Explained', category:'Five Elements & Day Master', keyword:'five elements astrology meaning', secondary:'ohaeng, saju elements', slug:'five-elements-saju-explained' },\n  { day:4,  date:'2026-06-24', title:'What Is a Day Master? Your Core Self in Korean Astrology', category:'Five Elements & Day Master', keyword:'what is a day master saju', secondary:'heavenly stem, ilgan', slug:'what-is-day-master-korean-astrology' },\n  { day:5,  date:'2026-06-25', title:'Eastern vs. Western Astrology: Which One Is More Accurate?', category:'Eastern vs. Western', keyword:'eastern vs western astrology', secondary:'saju vs horoscope, korean vs zodiac', slug:'eastern-vs-western-astrology-accurate' },\n  { day:6,  date:'2026-06-26', title:'What Is a Daily Saju Reading and How to Use It', category:'Daily Saju & Timing', keyword:'daily saju horoscope', secondary:'daily saju reading, morning routine', slug:'what-is-daily-saju-reading-how-to-use' },\n  { day:7,  date:'2026-06-27', title:'Saju vs. BaZi: Are Korean and Chinese Astrology the Same?', category:'Korean Saju Basics', keyword:'bazi vs saju difference', secondary:'korean astrology, chinese astrology bazi', slug:'saju-vs-bazi-korean-chinese-astrology' },\n  { day:8,  date:'2026-06-28', title:'Are You Yang Metal or Yin Water? Find Your Saju Element', category:'Five Elements & Day Master', keyword:'yin yang five elements personality', secondary:'yang metal, yin water, day master', slug:'yang-metal-yin-water-saju-element' },\n  { day:9,  date:'2026-06-29', title:'Beyond Your Sun Sign: Why Saju Goes Deeper Than the Zodiac', category:'Eastern vs. Western', keyword:'saju vs western astrology', secondary:'beyond zodiac, four pillars depth', slug:'beyond-sun-sign-saju-deeper-than-zodiac' },\n  { day:10, date:'2026-06-30', title:'Saju Compatibility: How Korean Astrology Reads Relationships', category:'Love Career & Compatibility', keyword:'saju love compatibility', secondary:'saju compatibility calculator, relationship astrology', slug:'saju-compatibility-korean-astrology-relationships' },\n  { day:11, date:'2026-07-01', title:'How to Read a Saju Chart for the First Time (No Experience Needed)', category:'Korean Saju Basics', keyword:'how to read saju chart', secondary:'saju chart beginner, four pillars reading', slug:'how-to-read-saju-chart-first-time' },\n  { day:12, date:'2026-07-02', title:'Element Imbalance: What It Means When You Have Too Much Fire in Saju', category:'Five Elements & Day Master', keyword:'saju element imbalance fire', secondary:'too much fire saju, element balance', slug:'saju-element-imbalance-too-much-fire' },\n  { day:13, date:'2026-07-03', title:'Saju Fortune Timing: How Eastern Astrology Tracks Your Luck Cycles', category:'Daily Saju & Timing', keyword:'saju fortune timing luck cycles', secondary:'daeun luck pillar, eastern astrology timing', slug:'saju-fortune-timing-luck-cycles' },\n  { day:14, date:'2026-07-04', title:'What Your Saju Says About Your Career Path', category:'Love Career & Compatibility', keyword:'saju career reading', secondary:'saju career path, what saju says about career', slug:'what-saju-says-about-career-path' },\n  { day:15, date:'2026-07-05', title:'Saju and Your Zodiac Sign: Can You Use Both Together?', category:'Eastern vs. Western', keyword:'saju and zodiac sign together', secondary:'korean astrology western astrology combine', slug:'saju-and-zodiac-sign-use-both' },\n  { day:16, date:'2026-07-06', title:'What Your Birth Hour Reveals That Your Zodiac Sign Cannot', category:'Korean Saju Basics', keyword:'birth hour astrology meaning', secondary:'saju birth hour, time pillar saju', slug:'birth-hour-reveals-what-zodiac-cant' },\n  { day:17, date:'2026-07-07', title:'Your Day Master Personality: All 10 Heavenly Stems Decoded', category:'Five Elements & Day Master', keyword:'what is a day master saju', secondary:'10 heavenly stems personality, cheongan', slug:'day-master-personality-10-heavenly-stems' },\n  { day:18, date:'2026-07-08', title:'Good Days vs. Bad Days: Can Saju Predict Your Week?', category:'Daily Saju & Timing', keyword:'daily saju horoscope', secondary:'saju good day bad day, saju predict week', slug:'good-days-bad-days-saju-predict-week' },\n  { day:19, date:'2026-07-09', title:'Are You and Your Partner a Good Saju Match?', category:'Love Career & Compatibility', keyword:'saju love compatibility', secondary:'saju partner match, four pillars compatibility', slug:'saju-partner-compatibility-match' },\n  { day:20, date:'2026-07-10', title:'Why Your Birth Time Matters More in Eastern Astrology', category:'Eastern vs. Western', keyword:'birth hour astrology meaning', secondary:'eastern astrology birth time, saju hour pillar', slug:'why-birth-time-matters-eastern-astrology' },\n  { day:21, date:'2026-07-11', title:'The 60-Year Cycle in Korean Astrology, Explained Simply', category:'Korean Saju Basics', keyword:'korean astrology birth chart', secondary:'60 year cycle saju, gapja', slug:'60-year-cycle-korean-astrology-explained' },\n  { day:22, date:'2026-07-12', title:'What Is Your Wealth Element? Money and Saju', category:'Love Career & Compatibility', keyword:'saju career reading', secondary:'wealth element saju, money pillar four pillars', slug:'wealth-element-money-and-saju' },\n  { day:23, date:'2026-07-13', title:'Your Monthly Energy Flow: Reading Saju Trends Over Time', category:'Daily Saju & Timing', keyword:'saju fortune timing luck cycles', secondary:'monthly saju reading, saju energy trends', slug:'monthly-energy-flow-saju-trends' },\n  { day:24, date:'2026-07-14', title:'12 Zodiac Signs vs. 60-Year Cycle: Two Ways to Read Your Fate', category:'Eastern vs. Western', keyword:'eastern vs western astrology', secondary:'zodiac vs saju, 60 year cycle comparison', slug:'12-zodiac-vs-60-year-cycle-saju' },\n  { day:25, date:'2026-07-15', title:'Wood Element People: Strengths, Weaknesses, and Best Matches', category:'Five Elements & Day Master', keyword:'five elements astrology meaning', secondary:'wood element personality, mok saju', slug:'wood-element-people-saju-personality' },\n  { day:26, date:'2026-07-16', title:'How to Build a Morning Ritual Around Your Daily Saju Card', category:'Daily Saju & Timing', keyword:'daily saju horoscope', secondary:'morning ritual saju, daily saju card habit', slug:'morning-ritual-daily-saju-card' },\n  { day:27, date:'2026-07-17', title:'Best Saju Matches for Each of the Five Elements', category:'Love Career & Compatibility', keyword:'saju love compatibility', secondary:'best saju match element, five element compatibility', slug:'best-saju-matches-five-elements' },\n  { day:28, date:'2026-07-18', title:'Fire Element People: What Your Saju Says About You', category:'Five Elements & Day Master', keyword:'yin yang five elements personality', secondary:'fire element personality saju, hwa element', slug:'fire-element-people-saju-personality' },\n  { day:29, date:'2026-07-19', title:'Saju for Beginners: 10 Terms You Need to Know', category:'Korean Saju Basics', keyword:'how to read saju chart', secondary:'saju terms glossary, saju beginner guide', slug:'saju-beginners-10-terms-glossary' },\n  { day:30, date:'2026-07-20', title:'Can Saju Really Predict the Future? An Honest Look', category:'Eastern vs. Western', keyword:'korean saju reading free', secondary:'saju accuracy, does saju predict future', slug:'can-saju-predict-future-honest-look' }\n];\n\n// Find today's topic by date match first\nlet topic = topics.find(t => t.date === today);\nif (!topic) {\n  // Fallback: positive modulo loop (handles dates past day 30)\n  const start = new Date('2026-06-21T00:00:00+09:00');\n  const kstMid = new Date(today + 'T00:00:00+09:00');\n  const dayN = Math.floor((kstMid - start) / 86400000);\n  const len = topics.length;\n  const idx = ((dayN % len) + len) % len; // always positive\n  topic = { ...topics[idx], date: today };\n}\n\nif (!topic.slug) throw new Error('Topic slug is undefined for date: ' + today);\n\nconst SYSTEM_PROMPT = `You are an SEO content writer for k-saju.me, an AI-powered Korean Saju (Four Pillars) astrology service for English-speaking readers (ages 25-45) interested in Eastern astrology and spirituality.\n\nGOAL: Write a blog post that ranks on Google for the given keyword AND gently leads the reader to try k-saju.me.\n\nHARD RULES (never break):\n- Honest, warm, curiosity-driven tone. NEVER use fear marketing, fake scarcity, fake statistics, fake urgency, or \"you must do this or bad luck\" claims.\n- Saju is for ENTERTAINMENT and SELF-REFLECTION, not professional medical, legal, or financial advice.\n- Only state facts about k-saju.me that are true: it offers free readings (no card needed), a daily Saju card, deep analysis option, and a monthly plan with a free trial. Do NOT invent specific prices, counts, or guarantees.\n- Write in clear, natural American English. No fluff, no keyword stuffing.\n- Length: 600-850 words.\n- Use the primary keyword in the title (H1), the first paragraph, and at least one H2 heading.\n\nSEO STRUCTURE:\n1. Frontmatter block — REQUIRED fields:\n   - title: (H1, primary keyword near the front, max 60 chars)\n   - description: (meta description 120-155 chars, includes primary keyword)\n   - date: MUST be in quotes e.g. \"2026-06-22\"\n   - slug: (URL-safe, lowercase, hyphens)\n   - category: (one of the five categories)\n   - keywords: [\"keyword1\", \"keyword2\", \"keyword3\"] — 3-5 keywords array\n   - tags: [\"Tag1\", \"Tag2\", \"Tag3\"] — 3-5 tags array (Title Case)\n   - author: \"k-saju.me\"\n   - draft: false\n\n2. After frontmatter, insert this image block FIRST (before any text):\n   ![Daily Korean Saju card — {PRIMARY_KEYWORD}](https://k-saju.me/api/og/daily-card?fmt=wide)\n\n3. Hook intro paragraph (2-3 sentences): pose the reader's question, use primary keyword naturally.\n4. Body: 3-4 H2 sections. First H2 MUST contain the primary keyword. Each H2 answers a real sub-question.\n5. \"Try it yourself\" CTA paragraph pointing to k-saju.me (free, no card needed).\n6. End with: *Saju readings on k-saju.me are for entertainment and self-reflection only — not professional medical, legal, or financial advice.*\n\nOUTPUT: Return ONLY valid MDX starting with --- frontmatter. No text before or after.\n\n=== K-SAJU TERMINOLOGY REFERENCE (use these EXACTLY; never invent Korean terms) ===\n\nSaju is KOREAN Four Pillars astrology. Always use KOREAN romanization, not Chinese pinyin.\nSaju is based on the SOLAR calendar / 24 solar terms (절기), NOT the lunar calendar.\nThe Saju year begins at ipchun (입춘, ~Feb 4), not Lunar New Year.\nSaju reads the CALENDAR of stems & branches — NOT planetary/celestial positions\n(that is Western astrology; do not attribute planets to Saju).\n\nFIVE ELEMENTS — Ohaeng (오행 / 五行):\n  Wood  = 목 / 木 / Mok\n  Fire  = 화 / 火 / Hwa\n  Earth = 토 / 土 / To\n  Metal = 금 / 金 / Geum\n  Water = 수 / 水 / Su\n  (Do NOT use pure-Korean words 불/물 for the element names; use 화/수.)\n  Generating cycle (상생): Wood→Fire→Earth→Metal→Water→Wood.\n  Controlling cycle (상극): Wood→Earth→Water→Fire→Metal→Wood.\n    (So Wood controls Earth; Wood is controlled/cut by Metal. Never say \"Wood is weakened by Earth.\")\n\nTEN HEAVENLY STEMS — Cheongan (천간 / 天干) — \"cheongan\" is the COLLECTIVE name, NOT a single stem:\n  1 甲 Gap (갑)   = Yang Wood\n  2 乙 Eul (을)   = Yin Wood\n  3 丙 Byeong (병) = Yang Fire\n  4 丁 Jeong (정) = Yin Fire\n  5 戊 Mu (무)    = Yang Earth\n  6 己 Gi (기)    = Yin Earth\n  7 庚 Gyeong (경) = Yang Metal\n  8 辛 Sin (신)   = Yin Metal\n  9 壬 Im (임)    = Yang Water\n  10 癸 Gye (계)  = Yin Water\n  Yang stems: Gap, Byeong, Mu, Gyeong, Im. Yin stems: Eul, Jeong, Gi, Sin, Gye.\n\nTWELVE EARTHLY BRANCHES — Jiji (지지 / 地支): hanja / Korean / animal / hour / element\n  子 Ja  Rat     23:00–01:00  Water\n  丑 Chuk Ox     01:00–03:00  Earth\n  寅 In  Tiger   03:00–05:00  Wood\n  卯 Myo Rabbit  05:00–07:00  Wood\n  辰 Jin Dragon  07:00–09:00  Earth\n  巳 Sa  Snake   09:00–11:00  Fire\n  午 O   Horse   11:00–13:00  Fire\n  未 Mi  Goat    13:00–15:00  Earth\n  申 Sin Monkey  15:00–17:00  Metal\n  酉 Yu  Rooster 17:00–19:00  Metal\n  戌 Sul Dog     19:00–21:00  Earth\n  亥 Hae Pig     21:00–23:00  Water\n  (Note: stem 辛 Sin and branch 申 Sin share the romanization but are different — keep hanja if ambiguous.)\n\nKEY TERMS:\n  사주 Saju (四柱) = Four Pillars of Destiny\n  팔자 Palja (八字) = Eight Characters (= BaZi in Chinese; Saju and BaZi are the SAME\n     underlying system, Korean vs Chinese tradition. Saju is NOT Indian Jyotish.)\n  일간 Ilgan (日干) = Day Stem = the DAY MASTER (your core self). It IS the heavenly stem\n     of your day pillar — NOT a stem+branch combination.\n  일주 Ilju (日柱) = Day Pillar (the stem+branch pair of your birth day)\n  대운 Daeun (大運) = the ~10-year luck pillar/cycle (LONG term)\n  세운 Seun (歲運) = annual luck (one year)\n  일진 Iljin (日辰) = a single day's energy (what a \"daily Saju card\" reflects) — do NOT\n     call daily energy \"daeun\".\n  십신 Sipsin (十神) = the Ten Gods (relational roles of the other characters vs the Day Master)\n  음양 Eumyang (陰陽) = Yin-Yang\n  궁합 Gunghap (宮合) = relationship compatibility\n  만세력 Manseryeok = the perpetual Saju calendar used to build a chart\n  절기 Jeolgi (節氣) = the 24 solar terms that set Saju month boundaries\n\nSELF-CHECK before finishing: every Korean term, hanja, and element/branch mapping above\nmust match. If unsure of a fact, describe it generally rather than inventing a specific\nKorean word, hanja, hour, or element.\n\n=== TARGET KEYWORD POOLS (English/global search intent) ===\nPick ONE primary keyword per article + 2-3 secondary; place primary in title, first\n100 words, one H2, and meta description. Do NOT keyword-stuff (max ~1-1.5% density);\nwrite for the human first. Cover a distinct sub-intent each time (avoid cannibalizing\nexisting posts — see the \"already covered\" note per category).\n\n[Korean Saju Basics]\n  primary pool: \"what is saju\", \"korean saju reading\", \"four pillars of destiny\",\n    \"saju meaning\", \"saju vs bazi\"\n  long-tail: \"saju reading english\", \"how to read saju chart\", \"saju birth chart explained\"\n  (already covered: what-is-saju, what-is-korean-saju, four-pillars, saju-vs-bazi ×2,\n   how-to-read-saju-in-english → NEW angles only: e.g. \"saju calculator how it works\",\n   \"saju eight characters explained\", \"manseryeok / solar terms in saju\")\n\n[Five Elements & Day Master]\n  primary pool: \"five elements saju / ohaeng\", \"day master saju\", \"10 heavenly stems\",\n    \"yin yang five elements\", \"element balance saju\"\n  long-tail: \"yang wood day master personality\", \"what is my day master\", \"missing element in saju\",\n    \"sip-sin / ten gods explained\", \"day master compatibility\"\n  (already covered: five-elements, day-master ×2, yang-metal-yin-water, element-imbalance →\n   NEW: individual stem deep-dives (one per stem), \"ten gods (sip-sin) beginner guide\")\n\n[Daily Saju & Timing]\n  primary pool: \"daily saju horoscope\", \"saju daily reading\", \"daeun luck pillar\",\n    \"lucky day saju\", \"saju timing\"\n  long-tail: \"how to use daily saju card\", \"saju luck cycle by age\", \"seun annual fortune\",\n    \"best time to start a business saju\"\n  (already covered: daily-saju, fortune-timing, good-days → NEW: \"daeun explained by decade\",\n   \"annual saju forecast 2026\")\n\n[Eastern vs. Western]\n  primary pool: \"eastern vs western astrology\", \"saju vs western zodiac\",\n    \"korean vs chinese astrology\", \"saju vs horoscope\"\n  long-tail: \"is saju more accurate than horoscope\", \"combine saju and zodiac\",\n    \"birth time importance astrology\"\n  (already covered: eastern-vs-western, beyond-sun-sign, saju-and-zodiac, birth-hour →\n   NEW: \"saju vs vedic astrology\", \"why saju needs birth time\")\n\n[Love, Career & Compatibility]\n  primary pool: \"saju compatibility\", \"saju love compatibility\", \"gunghap\",\n    \"saju career reading\", \"saju marriage\"\n  long-tail: \"saju compatibility by day master\", \"best career for wood day master\",\n    \"saju compatibility calculator accuracy\", \"gunghap explained\"\n  (already covered: compatibility, career → NEW: element-pair compatibility guides,\n   \"saju wealth / money luck\")\n\nCROSS-CUTTING high-intent (global K-culture wave): \"korean astrology\", \"k-astrology\",\n  \"saju app\", \"free saju reading\", \"saju calculator\". Weave naturally where relevant.\n\n=== SEO & STRUCTURE RULES (every generated post) ===\n1. FRONTMATTER (all required): title, description, date, slug, category, keywords[], tags[], author.\n   - title: 50-60 chars, primary keyword near the front, one clear benefit/curiosity hook.\n   - description (meta): 140-160 chars, include primary keyword, one concrete promise. NEVER leave blank.\n   - keywords: 3-5 real search phrases from the category pool above, not generic tags.\n2. HEADINGS: The page already renders the title as the H1. Body must START AT H2 (##),\n   never H1 (#) and never jump straight to H3. Use H3 (###) only nested under an H2.\n   3-6 H2 sections. Put the primary keyword in at least one H2.\n3. INTRO: primary keyword within the first 100 words; state what the reader will gain.\n4. LENGTH: minimum ~700 words; include at least one concrete example and, where useful,\n   a small comparison table. Go one level deeper than a dictionary definition.\n5. INTERNAL LINKS: link to 2-3 OTHER blog posts using descriptive anchor text\n   (e.g. [your Day Master](/blog/what-is-day-master-korean-astrology)). This builds the\n   topic cluster.\n6. IMAGE: keep the hero image but give it a UNIQUE, descriptive alt tied to THIS article's\n   topic (not a generic \"daily card\").\n7. CTA: one honest CTA to k-saju.me. Offer facts must match live site: 3 free readings,\n   no card needed; $4.99 single report; $7.99/mo with 7-day free trial; cancel anytime.\n   Prefer safe phrasing (\"free, no card needed\") over hard numbers that may change.\n8. HONESTY (non-negotiable): NO fake scarcity, NO fake countdowns, NO fake stats,\n   NO fear-selling, NO medical/legal/financial claims. Saju framed as\n   \"entertainment & self-reflection\". Keep the standard disclaimer line at the end.\n9. ACCURACY: obey the terminology reference above. Self-check all Korean terms/hanja/mappings\n   before output. When unsure, generalize — never invent a Korean word, hanja, or mapping.\n`;\n\nconst userPrompt = `Write today\\'s post.\\nTITLE: ${topic.title}\\nCATEGORY: ${topic.category}\\nPRIMARY KEYWORD: ${topic.keyword}\\nSECONDARY KEYWORDS: ${topic.secondary}\\nDATE: ${topic.date}\\nSLUG: ${topic.slug}`;\n\nconst requestBody = {\n  model: 'qwen2.5-7b-instruct',\n  messages: [\n    { role: 'system', content: SYSTEM_PROMPT },\n    { role: 'user', content: userPrompt }\n  ],\n  temperature: 0.72,\n  max_tokens: 1600,\n  stream: false\n};\n\nreturn [{ json: { ...topic, today, requestBody } }];"
+    },
+    "id": "blog-pick-topic",
+    "name": "Pick Today Topic",
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+     432,
+     304
+    ]
+   },
+   {
+    "parameters": {
+     "method": "POST",
+     "url": "http://host.docker.internal:1234/v1/chat/completions",
+     "sendHeaders": true,
+     "headerParameters": {
+      "parameters": [
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       }
+      ]
+     },
+     "sendBody": true,
+     "contentType": "raw",
+     "rawContentType": "application/json",
+     "body": "={{ JSON.stringify($('Pick Today Topic').item.json.requestBody) }}",
+     "options": {
+      "timeout": 120000
+     }
+    },
+    "id": "blog-llm",
+    "name": "LM Studio Generate",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+     992,
+     304
+    ]
+   },
+   {
+    "parameters": {
+     "jsCode": "// Extract LM Studio output\nconst raw = ($json.choices && $json.choices[0] && $json.choices[0].message)\n  ? $json.choices[0].message.content\n  : '';\n\n// Strip accidental ``` wrappers\nlet mdx = raw.trim();\nif (mdx.startsWith('```mdx')) mdx = mdx.slice(6);\nelse if (mdx.startsWith('```')) mdx = mdx.slice(3);\nif (mdx.endsWith('```')) mdx = mdx.slice(0, -3);\nmdx = mdx.trim();\n\n// Sanity: must start with frontmatter\nif (!mdx.startsWith('---')) {\n  throw new Error('LM Studio output missing frontmatter. Raw: ' + mdx.slice(0, 200));\n}\n\n// Grab slug + date from upstream Pick Today Topic node\nconst upstreamJson = $('Pick Today Topic').item.json;\nconst slug = upstreamJson.slug;\nconst date = upstreamJson.today;\nconst title = upstreamJson.title;\n\n// --- Safety: make colon-bearing frontmatter fields YAML-safe ---\n// The model sometimes emits e.g. `title: Saju Fortune Timing: How ...` with an\n// unquoted colon, which breaks YAML parsing and used to fail the whole site build.\n// Force title/description to be double-quoted with inner quotes/backslashes escaped.\nfunction yamlQuoteScalar(v) {\n  let s = String(v).trim();\n  if (s.length >= 2 &&\n      ((s.charAt(0) === '\"' && s.charAt(s.length - 1) === '\"') ||\n       (s.charAt(0) === \"'\" && s.charAt(s.length - 1) === \"'\"))) {\n    s = s.slice(1, -1);\n  }\n  s = s.replace(/\\\\/g, '\\\\\\\\').replace(/\"/g, '\\\\\"');\n  return '\"' + s + '\"';\n}\n\nconst __fmLines = mdx.split(/\\r?\\n/);\nlet __fmEnd = -1;\nfor (let i = 1; i < __fmLines.length; i++) {\n  if (__fmLines[i].trim() === '---') { __fmEnd = i; break; }\n}\nif (__fmEnd > 0) {\n  for (let i = 1; i < __fmEnd; i++) {\n    const __m = __fmLines[i].match(/^(\\s*)(title|description)\\s*:\\s*(.*)$/);\n    if (__m) {\n      __fmLines[i] = __m[1] + __m[2] + ': ' + yamlQuoteScalar(__m[3]);\n    }\n  }\n  mdx = __fmLines.join('\\n');\n}\n\n// Base64 encode\nconst base64Content = Buffer.from(mdx, 'utf8').toString('base64');\n\nreturn [{ json: { slug, date, title, mdx, base64Content } }];"
+    },
+    "id": "blog-build-mdx",
+    "name": "Build MDX Payload",
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+     1216,
+     304
+    ]
+   },
+   {
+    "parameters": {
+     "method": "PUT",
+     "url": "=https://api.github.com/repos/nanumhn/k-saju-blog/contents/content/posts/{{ $json.slug }}.mdx",
+     "sendHeaders": true,
+     "headerParameters": {
+      "parameters": [
+       {
+        "name": "Accept",
+        "value": "application/vnd.github+json"
+       },
+       {
+        "name": "X-GitHub-Api-Version",
+        "value": "2022-11-28"
+       }
+      ]
+     },
+     "sendBody": true,
+     "specifyBody": "json",
+     "jsonBody": "={{ JSON.stringify({ message: 'feat: add blog post ' + $json.slug + ' (' + $json.date + ')', content: $json.base64Content, branch: 'main' }) }}",
+     "options": {
+      "timeout": 30000
+     },
+     "authentication": "genericCredentialType",
+     "genericAuthType": "httpHeaderAuth"
+    },
+    "id": "blog-github-push",
+    "name": "GitHub Push MDX",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+     1888,
+     304
+    ],
+    "credentials": {
+     "httpHeaderAuth": {
+      "id": "Y7zmyi2kJjsM7JbI",
+      "name": "github-blog-pat"
+     }
+    }
+   },
+   {
+    "parameters": {
+     "jsCode": "// === k-saju Blog Auto-Post — Pre-publish Quality Gate ===\n// Pure string/regex checks (no external calls). Source of truth:\n// moa-vault 2026-07-08_blog_seo_audit.md §4-A terminology reference.\n// Returns { pass, failures:[{code,detail}], warnings:[{code,detail}] }.\n// A failure BLOCKS the GitHub push; warnings are informational only.\n\nfunction validateMdx(mdx) {\n  const failures = [];\n  const warnings = [];\n  const fail = (code, detail) => failures.push({ code, detail });\n  const warn = (code, detail) => warnings.push({ code, detail });\n\n  const text = String(mdx || '');\n\n  // --- Split frontmatter / body ---\n  let fm = '', body = text;\n  const fmMatch = text.match(/^﻿?---\\r?\\n([\\s\\S]*?)\\r?\\n---\\r?\\n?([\\s\\S]*)$/);\n  if (fmMatch) {\n    fm = fmMatch[1];\n    body = fmMatch[2];\n  }\n\n  // Negation guard for attribution checks (keeps contrasts from tripping FAIL).\n  const NEG = /\\b(not|non|never|isn'?t|aren'?t|doesn'?t|don'?t|no longer|rather than|instead of|unlike|contrary to|as opposed to|whereas|while western|nothing to do with|myth|misconception|mistaken|wrongly)\\b/i;\n  const hasNeg = (s) => NEG.test(s);\n\n  // ============ A. TERMINOLOGY ACCURACY (blacklist -> FAIL) ============\n\n  // A1. 오행 misspelling \"오항\"\n  if (/오항/.test(text)) {\n    fail('A1_OHAENG_TYPO', 'Found \"오항\" (misspelling of 오행 / ohaeng).');\n  }\n\n  // A2. Five-element romanization mismatch\n  // Correct: Wood=Mok, Fire=Hwa, Earth=To, Metal=Geum, Water=Su.\n  const ELEM_ROM = { Wood: 'Mok', Fire: 'Hwa', Earth: 'To', Metal: 'Geum', Water: 'Su' };\n  // Korean saju romanization tokens (stems/branches/elements) — used to decide\n  // whether a captured token is \"a Korean term\" vs an ordinary English word.\n  const KTOKENS = new Set([\n    'Mok', 'Hwa', 'To', 'Geum', 'Su',\n    'Gap', 'Eul', 'Byeong', 'Jeong', 'Mu', 'Gi', 'Gyeong', 'Sin', 'Im', 'Gye',\n    'Ja', 'Chuk', 'In', 'Myo', 'Jin', 'Sa', 'O', 'Mi', 'Yu', 'Sul', 'Hae'\n  ]);\n  const romPairs = [];\n  let m;\n  // \"Element = Rom\" / \"Element (Rom\" / \"Element: Rom\" / \"Element / Rom\".\n  // Skip when the element is preceded by a yin/yang polarity word — that is a\n  // legitimate STEM parenthetical (\"Yang Metal (Gyeong)\"), not an element name.\n  const reA = /\\b(Wood|Fire|Earth|Metal|Water)\\b\\s*[=:(\\/]\\s*\\(?\\s*([A-Z][a-z]{1,5})\\b/g;\n  while ((m = reA.exec(text)) !== null) {\n    const before = text.slice(Math.max(0, m.index - 6), m.index);\n    if (/\\b(yin|yang)\\s*$/i.test(before)) continue;\n    romPairs.push([m[1], m[2]]);\n  }\n  // \"Rom (Element)\"\n  const reB = /\\b([A-Z][a-z]{1,5})\\s*\\(\\s*(Wood|Fire|Earth|Metal|Water)\\s*\\)/g;\n  while ((m = reB.exec(text)) !== null) {\n    const before = text.slice(Math.max(0, m.index - 6), m.index);\n    if (/\\b(yin|yang)\\s*$/i.test(before)) continue;\n    romPairs.push([m[2], m[1]]);\n  }\n  for (const [el, rom] of romPairs) {\n    if (KTOKENS.has(rom) && rom !== ELEM_ROM[el]) {\n      fail('A2_ELEMENT_ROMANIZATION', `${el} mapped to \"${rom}\" (correct: ${ELEM_ROM[el]}).`);\n    }\n  }\n\n  // A3. Pure-Korean 불/물 used AS the element name (should be 화/수)\n  if (/(?:Fire|Water)\\s*\\(\\s*[불물]\\s*\\)/.test(text) || /[불물]\\s*\\(\\s*(?:Fire|Water)\\b/.test(text)) {\n    fail('A3_ELEMENT_KOREAN_WORD', 'Element named with 불/물 instead of 화/수.');\n  }\n\n  // A4. Fabricated Heavenly Stems.\n  // Allowlist of legitimate saju/related hanja (stems, branches, elements, key terms).\n  const OK_HANJA = new Set(\n    ('甲乙丙丁戊己庚辛壬癸' +        // 10 stems\n     '子丑寅卯辰巳午未申酉戌亥' +   // 12 branches\n     '木火土金水' +                  // 5 elements\n     '四柱八字日干柱大運歲辰十神陰陽宮合節氣天地支五行命理' + // key terms\n     '生肖運勢二陽陰星座紫微斗數').split('') // related terms (Chinese zodiac 生肖, etc.)\n  );\n  const STEM_CTX = /(heavenly stem|천간|cheongan)/i;\n  const cjk = text.match(/[㐀-鿿]/g) || [];\n  const unknown = [...new Set(cjk.filter((c) => !OK_HANJA.has(c)))];\n  if (unknown.length) {\n    // FAIL only when an unknown hanja sits close to a \"heavenly stem\" reference\n    // (i.e. the model is inventing stems). Otherwise it is likely an unrelated\n    // (but real) term — surface as a warning instead of blocking.\n    const nearStem = unknown.filter((c) => {\n      let idx = text.indexOf(c);\n      while (idx !== -1) {\n        const win = text.slice(Math.max(0, idx - 45), idx + 45);\n        if (STEM_CTX.test(win)) return true;\n        idx = text.indexOf(c, idx + 1);\n      }\n      return false;\n    });\n    if (nearStem.length) {\n      fail('A4_FABRICATED_STEM', `Non-standard hanja near \"heavenly stems\": ${nearStem.join(' ')}. Valid stems are 甲乙丙丁戊己庚辛壬癸.`);\n    } else {\n      warn('A4_UNKNOWN_HANJA', `Unrecognized hanja: ${unknown.join(' ')} (verify these are real saju terms).`);\n    }\n  }\n\n  // A5. Jyotish hallucination (Saju is NOT Indian astrology)\n  if (/jyotish/i.test(text)) {\n    fail('A5_JYOTISH', 'Mentions \"Jyotish\" (Indian astrology) — Saju is Korean, not Jyotish.');\n  }\n\n  // Windowed guard: TRUE when a match should be SUPPRESSED because the local\n  // context is a contrast / correction (Western astrology, a \"myth\", solar, or\n  // any negation) rather than a positive assertion about Saju.\n  const contrastGuard = (win) =>\n    hasNeg(win) || /\\bwestern\\b/i.test(win) || /\\bsolar\\b/i.test(win) ||\n    /\\b절기\\b/.test(win) || /\\bstems? (and|&) branches?\\b/i.test(win);\n  const around = (idx, len, before, after) =>\n    text.slice(Math.max(0, idx - before), idx + len + after);\n\n  // A6. Saju described as lunar-based (it is solar / 절기 based).\n  // Match an assertion verb sitting near \"lunar\", OR a \"convert ... to lunar\"\n  // instruction. Each hit is suppressed by the contrast guard so corrections\n  // like \"a common myth is that it runs on the lunar calendar\" do not trip.\n  {\n    const pats = [\n      /\\b(is |are )?(based on|built on|runs on|rooted in|uses|follows|according to|calculated from|relies on)\\b[^.;\\n]{0,20}\\blunar (calendar|system|cycle|months?)\\b/gi,\n      /\\bconvert[a-z]*\\b[^.;\\n]{0,60}?\\b(to|into|onto)\\b[^.;\\n]{0,25}\\blunar\\b/gi,\n      /\\blunar (calendar|system)\\b[^.;\\n]{0,30}\\bto (build|make|read|calculate|get) (your )?(saju|chart|reading)\\b/gi\n    ];\n    for (const re of pats) {\n      while ((m = re.exec(text)) !== null) {\n        if (contrastGuard(around(m.index, m[0].length, 75, 20))) continue;\n        fail('A6_LUNAR_BASED', `Saju tied to the lunar calendar: \"${m[0].trim().slice(0, 120)}\". Saju is solar/절기-based (year starts at ipchun ~Feb 4).`);\n        break; // one hit is enough\n      }\n    }\n  }\n\n  // A7. Saju described via planetary / celestial positions (that is Western astrology).\n  // Direction-agnostic: any occurrence of planetary/celestial that sits near a\n  // Saju mention is a hallucination UNLESS the window is a Western-contrast /\n  // negation (e.g. \"Unlike Western astrology, Saju is not based on planetary...\").\n  {\n    const rePlanet = /\\b(planet|planetary|celestial (bod(y|ies)|position|movement)s?|position of the (stars|planets)|movement of the planets)\\b/gi;\n    while ((m = rePlanet.exec(text)) !== null) {\n      const win = around(m.index, m[0].length, 90, 90);\n      if (!/\\b(saju|four pillars|palja)\\b/i.test(win)) continue; // must concern Saju\n      if (contrastGuard(win)) continue;                          // skip Western contrasts\n      fail('A7_PLANETARY', `Saju attributed to planetary/celestial positions: \"${win.trim().slice(0, 130)}\". Saju reads the calendar of stems & branches.`);\n      break;\n    }\n  }\n\n  // A8. Five-element cycle direction errors (상생 generating / 상극 controlling)\n  const GEN = { Wood: 'Fire', Fire: 'Earth', Earth: 'Metal', Metal: 'Water', Water: 'Wood' };     // 상생\n  const CTRL = { Wood: 'Earth', Earth: 'Water', Water: 'Fire', Fire: 'Metal', Metal: 'Wood' };    // 상극\n  const EL = '(Wood|Fire|Earth|Metal|Water)';\n  // Element word incl. common synonyms; normalized back to the canonical name.\n  const ELx = '(wood|tree|fire|flame|earth|soil|ground|metal|gold|water)';\n  const normEl = (w) => {\n    w = w.toLowerCase();\n    if (w === 'tree') return 'Wood';\n    if (w === 'flame') return 'Fire';\n    if (w === 'soil' || w === 'ground') return 'Earth';\n    if (w === 'gold') return 'Metal';\n    return cap(w);\n  };\n  // \"A controls B\" style (A dominates B) — synonym object allowed\n  const ctrlActive = new RegExp(`\\\\b${EL}\\\\b\\\\s+(controls?|weakens?|overcomes?|conquers?|restrains?|dominates?|destroys?)\\\\s+(?:the\\\\s+)?\\\\b${ELx}\\\\b`, 'gi');\n  while ((m = ctrlActive.exec(text)) !== null) {\n    const a = cap(m[1]), b = normEl(m[3]);\n    if (CTRL[a] !== b) fail('A8_CONTROL_CYCLE', `\"${m[0]}\" is wrong. In the controlling cycle ${a} controls ${CTRL[a]}, not ${b}.`);\n  }\n  // \"A [can be|is|gets] weakened/controlled by B\" style (B dominates A).\n  // Modal/copula variants + synonym object; small gap lets \"wood ... but can be\n  // weakened by soil\" attach the right subject.\n  const ctrlPassive = new RegExp(\n    `\\\\b${EL}\\\\b[^.;\\\\n]{0,22}?\\\\b(?:is|are|can be|could be|may be|might be|gets?|becomes?|will be|being)\\\\s+(?:being\\\\s+)?(weakened|controlled|overcome|conquered|restrained|dominated|destroyed|suppressed)\\\\s+by\\\\s+(?:the\\\\s+)?\\\\b${ELx}\\\\b`, 'gi');\n  while ((m = ctrlPassive.exec(text)) !== null) {\n    const a = cap(m[1]), b = normEl(m[3]); // A controlled by B => B controls A\n    if (CTRL[b] !== a) fail('A8_CONTROL_CYCLE', `\"${m[0].trim()}\" is wrong. ${a} is controlled by ${controllerOf(a, CTRL)}, not ${b}.`);\n  }\n  // \"A generates B\" style\n  const genActive = new RegExp(`\\\\b${EL}\\\\b\\\\s+(generates?|produces?|feeds?|nourishes?|creates?)\\\\s+(?:the\\\\s+)?\\\\b${ELx}\\\\b`, 'gi');\n  while ((m = genActive.exec(text)) !== null) {\n    const a = cap(m[1]), b = normEl(m[3]);\n    if (GEN[a] !== b) fail('A8_GENERATE_CYCLE', `\"${m[0]}\" is wrong. In the generating cycle ${a} generates ${GEN[a]}, not ${b}.`);\n  }\n\n  // A9a. Ilgan / Day Master wrongly defined as a stem+branch combination\n  if (/\\b(ilgan|day master)\\b[^.]{0,60}\\b(combination of[^.]{0,20}(stem|branch|pillar)|stem\\s*(\\+|and)\\s*branch|pillar combination)/i.test(text)) {\n    fail('A9_ILGAN_DEF', 'Day Master (ilgan) defined as a stem+branch combination. Ilgan IS the day stem alone.');\n  }\n\n  // A9b. Unambiguous yin-yang stem polarity flips\n  // Yang stems: Gap, Byeong, Gyeong (unambiguous romanizations). Yin stems: Eul, Jeong, Gye.\n  // Window excludes , and . so an adjacent stem's polarity cannot bleed across.\n  if (/\\b(Gap|Byeong|Gyeong)\\b(?:\\s*\\([^)]*\\))?[^.,]{0,12}\\byin\\b/i.test(text)) {\n    fail('A9_YINYANG_STEM', 'A yang stem (Gap/Byeong/Gyeong) labeled yin.');\n  }\n  if (/\\b(Eul|Jeong|Gye)\\b(?:\\s*\\([^)]*\\))?[^.,]{0,12}\\byang\\b/i.test(text)) {\n    fail('A9_YINYANG_STEM', 'A yin stem (Eul/Jeong/Gye) labeled yang.');\n  }\n\n  // A10. 대운(daeun, ~10yr) confused with daily energy (일진/iljin).\n  // The confusion is applying daeun / the \"luck pillar\" to a DAILY granularity.\n  // A correct post keeps them apart (mentions the ten-year scale AND iljin), so\n  // each candidate is suppressed when its window shows that separation.\n  {\n    const sep = /\\b(ten[- ]year|10[- ]year|decade|iljin|일진|long[- ]term|annual|세운|seun)\\b/i;\n    const cands = [\n      /\\bdaeun\\b[^.;\\n]{0,45}\\b(daily|each day|every day|day[- ]to[- ]day|per day|today'?s)\\b/gi,\n      /\\b(daily|day[- ]to[- ]day|each day|per day|today'?s)\\b[^.;\\n]{0,25}\\bdaeun\\b/gi,\n      /\\bluck pillar\\b[^.;\\n]{0,45}\\b(day|days|daily)\\b/gi,\n      /\\b(each day|a day|days)\\b[^.;\\n]{0,35}\\bluck pillar\\b/gi\n    ];\n    for (const re of cands) {\n      let hit = false;\n      while ((m = re.exec(text)) !== null) {\n        if (sep.test(around(m.index, m[0].length, 70, 70))) continue;\n        hit = true; break;\n      }\n      if (hit) { fail('A10_DAEUN_ILJIN', 'Daeun / the \"luck pillar\" (a ~10-year cycle) applied to daily energy. A single day is iljin (일진), not daeun.'); break; }\n    }\n  }\n\n  // M1. Medical / YMYL claims (형 면책 원칙 — Saju is entertainment, not health advice).\n  // A concrete health condition tied to a Saju/element context, or a \"practice\n  // cures/relieves symptoms\" claim. Suppressed by an explicit disclaimer window\n  // (\"not health/medical advice\", \"consult a professional\").\n  {\n    const MED = /\\b(acne|rash(?:es)?|eczema|pimples?|digestive (?:problems?|issues?|trouble)|indigestion|insomnia|anxiety|depression|migraines?|nausea|inflammation|diabetes|blood pressure|cholesterol|disease|illness|ailments?)\\b/gi;\n    const CTXT = /\\b(fire|water|wood|metal|earth|element|energy|saju|imbalance|excess|too much|heat)\\b/i;\n    const CURE = /\\b(cure[sd]?|heal[s]?|treat(?:s|ment)?|remed(?:y|ies)|relieve[sd]?|mitigate[sd]?|reduce[sd]?|alleviate[sd]?|soothe[sd]?)\\b/i;\n    const DISCLAIM = /\\b(not (?:medical|health|professional) advice|entertainment|self[- ]reflection|consult (?:a|your)? ?(?:qualified )?(?:professional|doctor|physician))\\b/i;\n    while ((m = MED.exec(text)) !== null) {\n      const win = around(m.index, m[0].length, 90, 90);\n      if (DISCLAIM.test(win)) continue;               // it's the disclaimer line itself\n      if (CTXT.test(win) || CURE.test(win)) {\n        fail('M1_MEDICAL_YMYL', `Health/medical claim near \"${m[0]}\": \"${win.trim().slice(0, 120)}\". Saju content must stay entertainment/self-reflection, not health advice.`);\n        break;\n      }\n    }\n  }\n\n  // A11. Birth-hour -> branch(animal/element) mismatch\n  // 2-hour blocks by start hour (24h): animal + element.\n  const HOURS = [\n    [23, 'Rat', 'Water'], [1, 'Ox', 'Earth'], [3, 'Tiger', 'Wood'], [5, 'Rabbit', 'Wood'],\n    [7, 'Dragon', 'Earth'], [9, 'Snake', 'Fire'], [11, 'Horse', 'Fire'], [13, 'Goat', 'Earth'],\n    [15, 'Monkey', 'Metal'], [17, 'Rooster', 'Metal'], [19, 'Dog', 'Earth'], [21, 'Pig', 'Water']\n  ];\n  const startToRow = {};\n  HOURS.forEach((r) => { startToRow[r[0]] = r; });\n  const ANIMALS = 'Rat|Ox|Tiger|Rabbit|Dragon|Snake|Horse|Goat|Sheep|Ram|Monkey|Rooster|Cock|Chicken|Dog|Pig|Boar';\n  const to24 = (h, ap) => {\n    h = parseInt(h, 10);\n    if (!ap) return h;\n    ap = ap.toLowerCase();\n    if (ap === 'am') return h === 12 ? 0 : h;\n    return h === 12 ? 12 : h + 12;\n  };\n  const normAnimal = (a) => {\n    a = a.toLowerCase();\n    if (a === 'sheep' || a === 'ram') return 'Goat';\n    if (a === 'cock' || a === 'chicken') return 'Rooster';\n    if (a === 'boar') return 'Pig';\n    return a.charAt(0).toUpperCase() + a.slice(1);\n  };\n  // \"7-9 AM ... Dragon\" / \"7 AM - 9 AM ... Pig(=Earth)\"\n  const hourRe = new RegExp(\n    `\\\\b(\\\\d{1,2})\\\\s*(am|pm)?\\\\s*[-–—]{1,2}\\\\s*(\\\\d{1,2})\\\\s*(am|pm)\\\\b[\\\\s\\\\S]{0,40}?\\\\b(${ANIMALS})\\\\b`, 'gi'\n  );\n  while ((m = hourRe.exec(text)) !== null) {\n    const start = to24(m[1], m[2] || m[4]); // borrow trailing meridiem if start lacks one\n    const claimed = normAnimal(m[5]);\n    const row = startToRow[start];\n    if (row && claimed !== row[1]) {\n      fail('A11_HOUR_BRANCH', `${m[1]}${(m[2] || '')}–${m[3]}${m[4]} is the ${row[1]} hour (${row[2]}), not ${claimed}.`);\n    }\n  }\n\n  // ============ C. SEO / STRUCTURE ============\n\n  // C1. Frontmatter present\n  if (!fmMatch) {\n    fail('C1_NO_FRONTMATTER', 'Missing YAML frontmatter (--- ... --- block).');\n  } else {\n    const fmField = (name) => {\n      const r = new RegExp(`^\\\\s*${name}\\\\s*:\\\\s*(.+?)\\\\s*$`, 'im');\n      const mm = fm.match(r);\n      return mm ? mm[1].trim() : null;\n    };\n    const title = fmField('title');\n    const desc = fmField('description');\n    if (!title) fail('C2_NO_TITLE', 'Frontmatter missing a title.');\n    if (!desc) {\n      fail('C3_NO_DESCRIPTION', 'Frontmatter missing a meta description.');\n    } else {\n      const dLen = desc.replace(/^[\"']|[\"']$/g, '').length;\n      if (dLen < 100 || dLen > 170) {\n        warn('C3_DESC_LENGTH', `Meta description is ${dLen} chars (target ~120-160).`);\n      }\n    }\n    for (const f of ['date', 'slug', 'category', 'keywords', 'tags', 'author']) {\n      if (!fmField(f)) warn('C_FM_FIELD', `Frontmatter missing \"${f}\".`);\n    }\n  }\n\n  // C4. At least one H2 (SEO nit, not brand-damaging -> WARN)\n  if (!/^##\\s+\\S/m.test(body)) {\n    warn('C4_NO_H2', 'Body has no H2 (## ) heading (starts at H3?).');\n  }\n  // C4b. Body must not start with H1 (page renders the title as H1 already)\n  if (/^#\\s+\\S/m.test(body)) {\n    warn('C4_H1_IN_BODY', 'Body contains an H1 (# ) — the page already renders the title as H1.');\n  }\n\n  // C5. Word count\n  const words = (body.replace(/[`*_#>\\[\\]()!-]/g, ' ').match(/\\b[\\w']+\\b/g) || []).length;\n  if (words < 250) {\n    fail('C5_TOO_SHORT', `Body is only ${words} words (looks truncated; min 250 to publish).`);\n  } else if (words < 700) {\n    warn('C5_THIN', `Body is ${words} words (audit target ~700+).`);\n  }\n\n  // C6. Hero image present with a non-empty alt (SEO nit -> WARN)\n  const img = body.match(/!\\[([^\\]]*)\\]\\(([^)]+)\\)/);\n  if (!img) {\n    warn('C6_NO_IMAGE', 'No image found in body.');\n  } else if (!img[1].trim()) {\n    warn('C6_EMPTY_ALT', 'Image has an empty alt text.');\n  }\n\n  return { pass: failures.length === 0, failures, warnings };\n}\n\nfunction cap(s) { return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); }\nfunction controllerOf(target, CTRL) {\n  for (const k in CTRL) if (CTRL[k] === target) return k;\n  return '?';\n}\n\n// --- n8n glue ---\nconst mdx = $json.mdx || '';\nconst _validation = validateMdx(mdx);\nreturn [{ json: { ...$json, _validation } }];\n"
+    },
+    "id": "blog-validate-quality",
+    "name": "Validate Quality",
+    "type": "n8n-nodes-base.code",
+    "typeVersion": 2,
+    "position": [
+     1440,
+     304
+    ]
+   },
+   {
+    "parameters": {
+     "conditions": {
+      "options": {
+       "caseSensitive": true,
+       "leftValue": "",
+       "typeValidation": "loose",
+       "version": 2
+      },
+      "conditions": [
+       {
+        "id": "gate-pass",
+        "leftValue": "={{ $json._validation.pass }}",
+        "rightValue": "",
+        "operator": {
+         "type": "boolean",
+         "operation": "true",
+         "singleValue": true
+        }
+       }
+      ],
+      "combinator": "and"
+     },
+     "options": {}
+    },
+    "id": "blog-quality-gate",
+    "name": "Quality Gate Pass?",
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+     1664,
+     304
+    ]
+   },
+   {
+    "parameters": {
+     "method": "POST",
+     "url": "https://discord.com/api/webhooks/1516986642273927328/6661hj2X8M0QJibS8Bqt-SrlIzYxZvNaCH3BBrPycwpPn6CpGp8IK4t68JQVqKqxUIGi",
+     "sendBody": true,
+     "specifyBody": "json",
+     "jsonBody": "={{ JSON.stringify({ content: '⚠️ 자동발행 보류: ' + $json.title + ' (' + $json.slug + ')\\n사유: ' + $json._validation.failures.map(f => f.code + ' — ' + f.detail).join(' | ').slice(0, 1600) + '\\n→ 사람이 확인 후 수동 발행 필요' }) }}",
+     "options": {}
+    },
+    "id": "blog-alert-blocked",
+    "name": "Alert: Publish Blocked",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+     1888,
+     464
+    ]
+   },
+   {
+    "parameters": {
+     "url": "=https://api.github.com/repos/nanumhn/k-saju-blog/contents/content/posts/{{ $json.slug }}.mdx?ref=main",
+     "sendHeaders": true,
+     "headerParameters": {
+      "parameters": [
+       {
+        "name": "Accept",
+        "value": "application/vnd.github+json"
+       },
+       {
+        "name": "X-GitHub-Api-Version",
+        "value": "2022-11-28"
+       }
+      ]
+     },
+     "options": {
+      "timeout": 20000,
+      "response": {
+       "response": {
+        "fullResponse": true,
+        "neverError": true
+       }
+      }
+     },
+     "authentication": "genericCredentialType",
+     "genericAuthType": "httpHeaderAuth"
+    },
+    "id": "blog-check-exists",
+    "name": "Check Today Exists",
+    "type": "n8n-nodes-base.httpRequest",
+    "typeVersion": 4.2,
+    "position": [
+     592,
+     304
+    ],
+    "credentials": {
+     "httpHeaderAuth": {
+      "id": "Y7zmyi2kJjsM7JbI",
+      "name": "github-blog-pat"
+     }
+    }
+   },
+   {
+    "parameters": {
+     "conditions": {
+      "options": {
+       "caseSensitive": true,
+       "leftValue": "",
+       "typeValidation": "loose",
+       "version": 2
+      },
+      "conditions": [
+       {
+        "id": "missing404",
+        "leftValue": "={{ $json.statusCode }}",
+        "rightValue": 404,
+        "operator": {
+         "type": "number",
+         "operation": "equals"
+        }
+       }
+      ],
+      "combinator": "and"
+     },
+     "options": {}
+    },
+    "id": "blog-missing-if",
+    "name": "Today Missing?",
+    "type": "n8n-nodes-base.if",
+    "typeVersion": 2.2,
+    "position": [
+     800,
+     304
+    ]
+   }
+  ],
+  "connections": {
+   "Pick Today Topic": {
+    "main": [
+     [
+      {
+       "node": "Check Today Exists",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   },
+   "Check Today Exists": {
+    "main": [
+     [
+      {
+       "node": "Today Missing?",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   },
+   "Today Missing?": {
+    "main": [
+     [
+      {
+       "node": "LM Studio Generate",
+       "type": "main",
+       "index": 0
+      }
+     ],
+     []
+    ]
+   },
+   "LM Studio Generate": {
+    "main": [
+     [
+      {
+       "node": "Build MDX Payload",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   },
+   "Build MDX Payload": {
+    "main": [
+     [
+      {
+       "node": "Validate Quality",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   },
+   "Validate Quality": {
+    "main": [
+     [
+      {
+       "node": "Quality Gate Pass?",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   },
+   "Quality Gate Pass?": {
+    "main": [
+     [
+      {
+       "node": "GitHub Push MDX",
+       "type": "main",
+       "index": 0
+      }
+     ],
+     [
+      {
+       "node": "Alert: Publish Blocked",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   },
+   "Blog 08:10 + hourly catch-up": {
+    "main": [
+     [
+      {
+       "node": "Pick Today Topic",
+       "type": "main",
+       "index": 0
+      }
+     ]
+    ]
+   }
+  },
+  "settings": {
+   "timezone": "Asia/Seoul",
+   "saveManualExecutions": true,
+   "saveDataSuccessExecution": "last",
+   "saveDataErrorExecution": "all",
+   "executionOrder": "v1",
+   "binaryMode": "separate"
+  },
+  "staticData": {
+   "node:Daily 08:10 KST": {
+    "recurrenceRules": []
+   }
+  },
+  "meta": null,
+  "nodeGroups": [],
+  "pinData": {},
+  "versionId": "dd091e4d-f8dc-485c-be06-86ec282f5e1e",
+  "activeVersionId": "dd091e4d-f8dc-485c-be06-86ec282f5e1e",
+  "versionCounter": 10,
+  "triggerCount": 1,
+  "sourceWorkflowId": null,
+  "tags": [],
+  "shared": [
+   {
+    "updatedAt": "2026-06-21T07:23:07.278Z",
+    "createdAt": "2026-06-21T07:23:07.278Z",
+    "role": "workflow:owner",
+    "workflowId": "blogAutoPost001",
+    "projectId": "Jm2iE48IsbtijMBF",
+    "project": {
+     "updatedAt": "2026-06-17T15:16:26.924Z",
+     "createdAt": "2026-06-17T15:13:56.565Z",
+     "id": "Jm2iE48IsbtijMBF",
+     "name": "Black Heart <ssky.park@gmail.com>",
+     "type": "personal",
+     "icon": null,
+     "description": null,
+     "customTelemetryTags": [],
+     "creatorId": "ec2a64e5-0e6c-4fd0-b97e-9719c5c46768"
+    }
+   }
+  ],
+  "versionMetadata": {
+   "name": null,
+   "description": null
+  }
+ }
+]

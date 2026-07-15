@@ -6,7 +6,7 @@
 
 ## 누적 노트
 
-_(아직 학습 기록 없음 — 첫 회의/작업 후 자동 추가됩니다)_
+- [2026-07-09] `2026-07-09_n8n_sqlite_readonly_crashloop.md` — n8n DB 소유권 root 오염 → SQLITE_READONLY 크래시루프(RestartCount 폭주). chown node:node 원복으로 해결. 재발방지=컨테이너 파일작업 `-u node`, root 사용 후 즉시 원복. 부수: 5679 broker 우회·node:sqlite 조회·MSYS_NO_PATHCONV·startedAt UTC.
 
 ---
 

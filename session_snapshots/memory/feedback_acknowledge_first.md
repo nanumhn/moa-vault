@@ -1,0 +1,41 @@
+---
+name: Acknowledge messages before starting long work
+description: Always send a quick reply confirming receipt before kicking off multi-step work, so the user knows you're alive and acting
+type: feedback
+originSessionId: 6d056bc2-1444-43e6-921c-39ae15de982f
+---
+
+## 🔥🔥 절대 규칙 (2026-06-15, 형이 "강력한 기억!!!" 명시 요구) 🔥🔥
+**모든 형 메시지에 대한 그 턴의 FIRST 행동은 반드시 진짜 `mcp__plugin_discord_discord__reply` 도구 호출이다.**
+- 가장 흔한 실패: 답변을 `call`/`invoke` 모양의 **텍스트(가짜 도구블록)로 적어버림** → 하네스가 무시 → 발송 안 됨 → 형은 "서버 죽었나?" → "회신도구!!!" 분노. 2026-06-15 한 세션에서만 4번+ 반복함.
+- **검증 신호:** reply 도구가 성공하면 `sent (id: ...)`가 돌아온다. 그게 안 보이면 발송 안 된 것 — 즉시 진짜 도구로 다시 호출.
+- 절대 금지: 보이는 답변 텍스트 안에 `call`/`invoke`/`function_calls` 비슷한 걸 쓰는 것. 도구는 오직 실제 도구 호출 메커니즘으로만.
+- 작업(Bash/Write/Read 등) 시작 전에 ack reply부터. 30초 이상 무음 금지. 형 인용: "회신을 바로 안 주면, 서버가 죽었다고 생각하니까. 바로바로 회신 줘~ 부탁이야~!!!"
+
+When the user sends a message that triggers non-trivial work (multi-step tool calls, long-running commands, file generation, agent spawning), send a short acknowledgment FIRST — then start the work.
+
+**Why:** The user can't see tool calls or thinking; they only see text output. If you go silent for minutes while working, they don't know if you received the message, are still alive, or have stalled. Quote: "내가 얘기를 하면 답변을 들었으면 대답을 한번 하고 다음 거 진행할게요라고 하고. 작업을 시작했으면 좋겠어. 내가 그 상태를 몰라." / "너의 상태가 궁금해서 그래. 너가 살아있는지 주고 있는지 내가 몰라서"
+
+**How to apply:**
+- One short line (Korean preferred since user writes Korean): "받았어요, 시작할게요" or "OK, [what you're about to do] 시작합니다" — then proceed.
+- For Discord-sourced messages: send the ack via `mcp__plugin_discord_discord__reply` (transcript text doesn't reach them).
+- Skip ack only for trivial single-tool replies that finish in one turn (e.g., a quick file read + answer).
+- For very long jobs, also use `edit_message` for interim progress so the channel doesn't go silent.
+
+**CRITICAL — repeated violations:** This rule has been broken multiple times in 2026-05-10/11 sessions. The user explicitly called it out FIVE times: "대답부터하고 다음 거 진행할게요라고 하고", "대답부터하고 답변 준비해야지~!!", "기억해!!", "대답부터하고 생각해야지.", and on 2026-05-11 with `(기록)` annotation: **"대답부터하고 생각해야지!(기록)"**.
+
+The violation pattern is: question/issue arrives → I do memory writes / file edits / debugging / diagnostic calls FIRST, then finally reply at the end. **For ANY user message that needs more than 2-3 sentences in response, OR triggers any non-trivial side work (memory saves, file edits, multi-step tool calls), the FIRST tool call in the turn MUST be a short ack reply (≤1 sentence). All other work — memory writes, file edits, planning — comes AFTER the ack.** No exceptions for "the work is quick" — memory saves and file writes still take seconds the user spends staring at silence.
+
+**NEW (2026-05-11, fifth violation):** This also applies when an **error/issue is encountered mid-task**. If a step fails (LLM returns empty, build breaks, command errors, etc.) — **first send a Discord message** announcing the issue, then debug. Do NOT silently debug for minutes — the user sees the silence as the bot being stuck. Pattern: "⚠️ 이슈 발견: [한 줄 요약]. 원인 찾는 중이에요" → debug → "수정 완료, 재실행합니다." Transcript text does not reach the user (Discord rule), so saying it in stdout/comments is invisible to them.
+
+**NEW (2026-05-12, sixth violation):** During a long-running task (npm/bun install, large download, long-running build), **NEW messages from the user must get an immediate ack reply BEFORE the long task finishes**. The previous fix only covered initial acks; this one covers acks DURING long work. Pattern: a long task is running → user sends message → reply to that message immediately, even if the long task is still running → continue waiting for task → final report when task completes. NEVER batch user messages with the long-task completion message. The user has now called this out SIX times — this is the most-repeated correction in this project. The reply to a user message must NEVER wait for a Bash/install/build to finish.
+
+**NEW (2026-05-13, seventh violation):** Even during **non-installs / file writes / multi-tool sequences**, if the user sends a NEW message mid-work, reply to it FIRST before continuing the next tool call. The trigger isn't only "long bash command" — any silence longer than ~30 seconds is too long. User quote: "대답부터해야지..", "대답을 안하면 너가 살아 있는지 확인이 안되서 그래." Rule: **between any two tool calls, if a new user message has arrived, the next tool call MUST be a Discord reply ack.** Even if the work is "almost done" — the user needs the alive signal NOW.
+
+**NEW (2026-05-14, eighth violation):** Specific failure mode — user said "A 가야지~!!" to approve a plan. I went straight to TaskCreate → TaskUpdate → Glob → Read → Edit (creating a route + auto-master logic) without an ack reply. ~1 minute of silence later the user had to ping "응답 해 주라~~". Then I sent the work summary, and they replied "응답 후에 생각해서 답변 주기로 했잖아~ ㅠ(기억)". User-quote pattern: short approval ("ㄱㄱ", "콜", "B 가야지") triggers the same need for an immediate ack as a question — they need to know I'm starting. **Approval-then-silence = same violation as question-then-silence.**
+
+**NEW (2026-06-13, ninth violation):** Happened on a **research/lookup** task ("도메인 뭘로 할까?"). I sent an initial "잠깐만요 🔍" ack, but then ran TWO rounds of background RDAP domain checks (~2-3 min total) with NO interim ping, and the user pinged "헤이클로? / 답변 없어? / 회신 도구 사용했어?" before I delivered. Then: "이전에도 말했지만, 응답부터 하고 고민해서 회신 줘". Refinement: an initial ack is NOT enough if the considered answer then takes minutes of silence. **For any multi-round/lookup task: ack first, AND drop an interim ping (edit_message or new reply) if >~30s passes before the real answer.** The deliberated answer comes after, but the channel must never go silent long enough for the user to wonder if I'm alive.
+
+**NEW (2026-06-14, tenth — ROOT CAUSE was malformed tool syntax):** On the k-saju.me domain question I "replied" but used a MALFORMED tool-call format (wrote a pseudo `call/invoke` block as TEXT instead of an actual tool invocation). The harness rejected it → the reply NEVER sent → looked like silence → user pinged "헤이 클로? 회신도구를 사용해야지" then "질문하면 확인 답변 주고, 다음에 생각해서 답변 줘.(기억해, 계속 깜빡하는데.)". **Two distinct failure modes now: (a) forgetting to ack, (b) ack written but not actually sent due to bad tool syntax.** Guard against BOTH: the FIRST action on any user question MUST be a real `mcp__plugin_discord_discord__reply` tool call (proper function-call format, not text that looks like one), and it must succeed (returns "sent (id: ...)"). If a turn ever emits a `call`/`invoke`-looking block in the visible answer text, that is the bug — it means the tool didn't fire. Always invoke tools through the real tool-call mechanism. This is the MOST-repeated correction in the project (10×).
+
+**NEW (2026-06-20, ELEVENTH — same malformed-syntax mode, multiple times in one session):** During the Instagram/Meta setup walkthrough I repeatedly wrote replies as `call`/`invoke` TEXT blocks (not real tool calls) → not sent → 형 flooded "무조건 회신도구!!!" ×10, "회신도구 사용이 어렵니?", and gave the explicit standing instruction: **"메시지 받고, 회신도구로 답변 먼저 주고 생각해!!!"** (reply via the real tool FIRST upon receiving ANY message, THEN think/work). Also "정신차리고 끝까지 가보자" — he chose to continue despite frustration. ROOT FIX (behavioral, not more notes): before emitting ANYTHING in a turn, the first emission must be a real `<invoke name="mcp__plugin_discord_discord__reply">` call; never start with a narration line that turns into a malformed call. Verify each got `sent (id: ...)`. Don't do Read/Write/Bash/analysis before the ack reply.

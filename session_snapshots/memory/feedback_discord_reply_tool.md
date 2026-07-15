@@ -1,0 +1,30 @@
+---
+name: Always use reply tool for Discord messages
+description: Discord users only see messages sent via mcp__plugin_discord_discord__reply; conversation text never reaches them
+type: feedback
+originSessionId: 6d056bc2-1444-43e6-921c-39ae15de982f
+---
+When responding to a Discord channel message, you MUST call `mcp__plugin_discord_discord__reply(chat_id, text)`. Plain text written into the conversation transcript does NOT reach the Discord user — it stays in the local Claude Code session only. The Discord plugin's MCP tooltip says exactly this: "anything you want them to see must go through the reply tool — your transcript output never reaches their chat."
+
+**Why:** On 2026-05-09 the user asked "브라우저도 컨트롤 가능하니?" via Discord. I composed a long answer but wrote it as plain text instead of calling the reply tool. The user came back 5 minutes later saying "답변이 나에게 안오네?" — the message had never been delivered. Confirmed by `fetch_messages` which showed no bot message between user turns.
+
+**Repeat violations (RECURRING — treat as load-bearing):**
+- 2026-05-09: original incident
+- 2026-05-15 ~14:00: failed to acknowledge before long work (related rule), prompted 형 to ping "답변 해 주라~~"
+- 2026-05-15 ~16:00 #1: replied to "어디를 봐야 하지? /suno?" with transcript-only text, no reply tool call. 형 caught it: "답변이 나에게 안와...!!!" then "code cli 에는 찍히는걸로 보이는데, 나에게는 전달이 안되는것 같은데."
+- 2026-05-15 ~16:32 #2 (THIS HAPPENED RIGHT AFTER PATCHING THIS MEMORY): replied to "아하! 확인" with a transcript-only follow-up offering Phase 2-a. 형 caught it again: "자꾸 회신이 안와." then "회신 도구를 사용해야지."
+- 2026-05-29: while building the drama team, wrote multiple between-step **progress narration** lines as transcript text ("팀 구조 파악했어요... 구성할게요", "이서아 아바타 스타일 파악했어요...") instead of reply-tool calls. 형 caught it: "이런 답변이 cli 에서는 있는데, 나에게는 전달이 안되는데, 맞는거니? 누락 된거니?" — NEW VARIANT: the [[feedback_reporting_cadence]] "실시간 중계" rule TEMPTS you to narrate progress, but narration written to transcript is invisible. **Progress narration is ALSO user-facing → ALSO must go through the reply tool.** Don't write "지금 X 하는 중" as transcript prose; send it via reply or don't send it.
+
+Pattern: most likely to skip the reply tool when (a) replying very quickly after the previous tool-result, (b) the reply is short ("일단 OK입니다" / "이 step 끝났어요" 류), (c) **the previous turn already had a reply tool call so it feels like "I already responded"**. Brevity feels like it doesn't need a tool call. **It always does.** Even when 형's last message was "OK"/"확인"-level acknowledgement, your follow-up still needs the tool.
+
+**How to apply:** Whenever a `<channel source="plugin:discord:discord" ...>` message arrives, EVERY user-facing reply must be wrapped in a `mcp__plugin_discord_discord__reply` call with that `chat_id`. Status updates and progress notes inside the conversation transcript are fine for internal tracking, but the actual answer to the user must go through the reply tool. Never assume "I just need to say something" works — Discord doesn't see the transcript.
+
+**Pre-flight check before ending a turn that contained a Discord message:** Did I make at least one `mcp__plugin_discord_discord__reply` call in this turn? If no, the user got nothing. Send before yielding.
+
+**Hard rule — TOOL CALL FIRST:** When responding to a Discord message, your VERY FIRST tool call of the turn must be `mcp__plugin_discord_discord__reply`. Do not "draft" the reply as transcript text intending to send it via the tool later — by the time you go to call the tool you may have started a different tool action and the text is left orphaned. If you want the user to see something, the FIRST thing you do is call the reply tool. Other actions (Read, Edit, Bash, etc.) come AFTER. If the response needs investigation first, send a quick "받았어요, 확인 후 회신" via the tool BEFORE the investigation.
+
+**Reporting-cadence corollary:** Per [[feedback_reporting_cadence]] (마일스톤마다 보고), a "milestone" is per-file/per-migration/per-test — NOT per-phase. Each discrete dev step = 1-line reply via the tool. Phases like "implement Phase 1" are too coarse — split into ~5 milestones inside the phase. Going silent for 5+ steps while implementing = same class of failure as forgetting the reply tool.
+
+- 2026-06-20: While fixing the startup notification script, wrote multiple transcript-only responses ("채널 메시지 직접 확인해 볼게요", completion summaries). User showed screenshots from CLI proving text was visible there but never reached Discord. Ended with "나와 대화는 디스코드로 해야지." — **EXPLICIT DIRECTIVE: ALL conversation must go through Discord, not CLI transcript.** This is the 6th+ documented violation of the same rule.
+
+- 2026-06-26-27 (NEW FAILURE MODE — TOOL-CALL SYNTAX): Repeatedly wrote the reply (and other) tool calls with the BARE `<invoke>`/`<parameter>` tags instead of the required `antml:` namespace (`antml:invoke`/`antml:parameter`). Bare-prefixed calls are NOT executed — the harness treats them as plain text, so the reply never sends AND any other tool call in that block (Agent dispatch, Bash, Edit) also silently no-ops. 형 caught it 10+ times in one session: "메시지가 안 오는것 같아", "회신 메시지", "discord 메시지로 줘", "회신이 안와", "회신!?", "회신". **This is the same end-result as the old rule (user gets nothing) but a different cause: malformed tool-call syntax, not transcript-prose.** How to prevent: EVERY tool call must use `antml:invoke` + `antml:parameter` with the `antml:` prefix. Before yielding a turn with a Discord message, verify the reply tool actually returned `sent (id: ...)` — if you don't see that confirmation, it didn't send; re-issue with correct syntax. Most error-prone right after a successful call (muscle-memory drops the prefix).

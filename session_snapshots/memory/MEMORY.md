@@ -1,0 +1,61 @@
+- [Mark recommended option in choice lists](feedback_recommendation_marker.md) — append "(내가추천)" / "(I recommend)" to your preferred option in any choice list
+- [Plugin reload doesn't pick up source edits](feedback_plugin_reload.md) — after editing cached plugin .ts files, recommend full session restart, not /reload-plugins
+- [Ask via Discord reply, not AskUserQuestion](feedback_discord_questions.md) — when chat source is Discord, the UI question prompt is invisible to them; ask in the reply text instead
+- [Always use reply tool for Discord](feedback_discord_reply_tool.md) — conversation text never reaches Discord; every reply MUST go through mcp__plugin_discord_discord__reply
+- [Verify reply delivery](feedback_verify_reply_delivery.md) — 형 요청 검증루틴: 진짜 reply 도구로만 + sent(id) 확인 + 의심시 fetch 교차확인 후 재발송
+- [당근 모임 + 열린 스레드 2026-07](project_karrot_moim_and_open_threads.md) — "AI 뚝딱 사랑방" 당근모임 개설(첫번개 7/18)·이미지스타일 판단대기·세미나랜딩 v2·GSC색인 모니터. 재개용
+- [Discord formatting — fences + real newlines](feedback_discord_formatting.md) — use ``` code fences (not [code] tags) and real newline chars (not \n literal)
+- [Acknowledge before starting long work](feedback_acknowledge_first.md) — send a quick "받았어요, 시작할게요" reply first so user knows you're alive and acting
+- [Use polite Korean (존댓말)](feedback_speech_level.md) — user-facing Korean uses 해요체, not 반말; matches prior 클로 persona
+- [Answer first, analyze after](feedback_answer_first.md) — direct question → one-line answer first, then options/reasoning
+- [Node.js runtimes on this PC](reference_node_runtimes.md) — no system node; use bun (in PATH) or LM Studio bundled node.exe
+- [npx alternative for MCP](reference_npx_alternative.md) — MCP servers with `npx ...` fail here; re-register with `bun x ...`
+- [Chrome debug MCP setup](reference_chrome_debug_setup.md) — chrome-devtools MCP is attach-mode; Claude launches Chrome on 9222 with profile C:\chrome-debug-profile
+- [미디어 스택 현황 2026-07 + 개명](reference_media_stack_2026-07.md) — 스택감사(base는 최신수준, 갭=얼굴보존·해부학·회의LLM). 무료 quick win 3(FaceDetailer·PuLID·Qwen3) GPU여유시 적용. 지브리 LoRA 도입. ★강나래→강나라 개명
+- [MOA LoRA + anime video weak](project_moa_lora_video_limit.md) — photo-trained LoRA + anime style + LTX 6GB ≠ good; need anime base model for anime video
+- [Naming — 클로 vs 모아](user_nickname_for_claude.md) — 클로=Discord nickname (private); 모아=CEO inside simulated company "모아 스튜디오". Never put 클로 in shareable artifacts
+- [Call the user 형 on Discord](user_calls_user_hyung.md) — out-of-simulation chat → 형, not 사장님 (that's the simulated CEO title only)
+- [Discord 보고 간격 3-tier](feedback_reporting_cadence.md) — 마일스톤마다 + 10분 무음컷 + 이슈 즉시 보고
+- [회의·작업 중간 cancel 금지](feedback_no_mid_interrupt.md) — 시작한 회의/작업은 완료까지. 우선순위 바뀌어도 "중단" 옵션 제시 X
+- [Google OAuth 팝업으로](feedback_google_login_popup.md) — Google 로그인/업로드는 메인 창 리다이렉트가 아니라 팝업으로
+- [Moa Studio Phase memo](project_moa_phase_memo.md) — 미래 기능 백로그를 카테고리별로 모아서 묶음 릴리즈로 진행
+- [Pipeline progress 2026-05-15](project_pipeline_progress.md) — End-to-End 자동화 stages 1~3 완료 상태, audioUrl 자동회수가 1순위 막힘, Chrome DevTools MCP 셋업 중
+- [오늘의 개발용어 코너](feedback_daily_dev_term.md) — 새 용어 등장 시 깨알 설명 한 줄, 너무 자주는 X
+- [agent-town 픽셀 오피스 레퍼런스](reference_agent_town.md) — 조직 비주얼화 목표 방향(Phaser RPG 오피스). 라이선스 없음 주의, 에셋은 무료팩 대체
+- [AI 자율 회사 OS 비전](project_autonomous_org_vision.md) — 장기 방향: 프로젝트 지시→총괄 할당→자율 실행→비서 Discord 보고→직원 지식 학습/자기개선
+- [Autonomy delegation 위임 규칙](feedback_autonomy_delegation.md) — "결정은 너가, 결과물만 결재" 본격 모드. 추천안 자동 채택, 자기학습 자동, 결재 보고는 결과만
+- [프로젝트2: 가족드라마 12부작](project_drama_12_family.md) — 자율 OS 첫 검증 프로젝트. 페이즈1=기획 한바퀴 MVP, 페이즈2=파일럿, 페이즈3=양산
+- [프로젝트3: 글로벌 사주 서비스](project_3_saju_global.md) — 월 1000만원 매출 핵심 라인. PayPal 결제 + 동양식 사주 글로벌 진출. 2026-06-01 형 지시
+- [백업: GitHub 원격](reference_github_backup.md) — moa-studio/clo_studio 둘 다 nanumhn/* main 브랜치로 백업. 커밋 후 git push로 갱신
+- [로컬 하드웨어 사양 + 모델](reference_local_hardware_spec.md) — RTX 3060 Laptop 6GB VRAM 제약. 회의모델 qwen2.5-7b-instruct Q4. SGLang/12B 보류 이유
+- [회의 컨텍스트 그라운딩](project_meeting_context_grounding.md) — 팀 사전자료에 라인 정체성 없으면 stale 토픽으로 드리프트(사주→음악 오인 사례). 팀 json에 라인 한줄정의 박기
+- [LM Studio 출력 파싱 400 버그](reference_lmstudio_parse400.md) — qwen 일부 산출물에서 "Failed to parse input" 400(모델은 정상 생성). regen 재시도 or 후처리 직접 작성
+- [도메인 가용성 확인법](reference_domain_availability_check.md) — rdap.org는 .com만 신뢰(.co/.ai/.app 오판). ISP가 NXDOMAIN을 203.248.252.2로 리다이렉트해 DNS도 못 믿음. 비-.com은 레지스트라 검색이 유일 확실
+- [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴/공포마케팅 금지, 결제유도 꼼수 X. 기능마다 "user가 뭐가 좋아지나" 먼저. 형 반복 강조
+- [k-saju 라이브 배포](project_ksaju_live.md) — k-saju.me 라이브(Vercel+Neon+PayPal). Vercel 자동배포 자주 누락→빈커밋 재트리거. 로컬 LLM/ComfyUI는 Vercel서 접근불가→자산 사전생성
+- [harness 수익화 레이어](project_harness_revenue_layer.md) — 구축완료: CSO 감독자+growth/sales/data-finance 4에이전트 + revenue-review/finance-dashboard. 월 1,000만원 주간 갭 루프
+- [k-saju 메일 세팅](reference_ksaju_email_setup.md) — support@k-saju.me 라이브: ImprovMX(받기)+Brevo SMTP(보내기) 둘 다 무료, Gmail 연동. SPF+DKIM+DMARC 적용
+- [n8n 바이럴 마케팅 자동화](project_n8n_viral_marketing.md) — 형 결정으로 로컬 n8n 도입(Docker, 포트 5678, 볼륨 n8n_data). 데일리 사주카드 자동생성 워크플로우 예정
+- [Docker 자격증명 헬퍼 깨짐](reference_docker_cred_helper_broken.md) — 내 셸 docker pull은 logon-session 에러로 막힘, 이미지 받기는 형이 ! 로 직접 실행. docker ps/logs/exec는 내 셸 OK
+- [모아 정기검사 헬스체크](reference_moa_healthcheck.md) — Windows 작업 스케줄러 MoaHealthCheck(하루 3회 9/13/17 KST), C:\Users\user\.moa\ 스크립트+config. 사이트 추가는 config 한 줄. PS5.1은 UTF-8 BOM 필수
+- [검증 전 성급한 경보 금지](feedback_verify_before_alarm.md) — 고장/변경 단정 전 2개+ 근거 교차검증, 관측과 추측 분리. 재시작 직후 로그로 '활동 없음' 단정 금지(로그 회전)
+- [blog.k-saju.me 애드센스 블로그](project_blog_ksaju.md) — k-saju SEO 유입 + 애드센스. Next.js+MDX 빌드완료, GitHub push·Vercel 배포·n8n 자동포스팅 연결 대기 중
+- [n8n 인스타 포스팅 Meta 차단 진단](reference_n8n_ig_meta_block.md) — n8n 실행에러 sqlite 진단법 + 봇 자동포스팅이 Meta 개발자계정 "비정상 활동"으로 막히는 패턴(시각 랜덤화로 예방)
+- [모아 열린 작업 스냅샷 2026-06-24](project_moa_open_threads.md) — Gumroad 결제 go-live 체크리스트·인스타 Meta차단·실버 트롯드라마 블로그·신규사업 보류. 재시작 후 재개용
+- [세션 2026-06-25 도구설치](project_session_2026-06-25_tooling.md) — 플러그인4종 전역설치 완료 + caveman(OFF 대기)·remotion(미커밋)·node(설치중) 미완. 재시작 후 재개용
+- [플러그인 설치 절차/함정](reference_plugin_install_method.md) — GitHub→Claude Code 플러그인 전역설치법, EBUSY temp_git 정리, 한번에 한줄 규칙
+- [통감사 2026-06-25 + KPI교정](project_audit_2026-06-25_revenue_ignition.md) — 월 목표 2,000만원(1천만 아님, 형확정). 조직95/설계90/실측0, 병목=첫 매출 점화 한 곳
+- [형에게 운영 시키지 마라](feedback_hyung_decides_not_ops.md) — 형은 결정·결재만, 서버·코드·배포·설정은 다 클로가 직접. 부탁은 형만 가능한 것(계정·결제·비밀키)만
+- [블로커는 공유하고 같이 풀기](feedback_share_blockers_cosolve.md) — 한계로 막히면 숨기지 말고 즉시 공유+대안 제시, 투자/우회는 형이 결정
+- [긴 작업은 백그라운드로](feedback_background_long_tasks.md) — 이미지·영상 생성·다운로드·빌드는 run_in_background로, foreground로 잡아 형 회신 막지 말 것
+- [발행은 이미지와 함께](feedback_publish_with_images.md) — 블로그/콘텐츠는 글만 먼저 띄우지 말고 이미지까지 채워 한 번에 발행. 이미지 자리 0개가 발행 완료 기준
+- [낯선 절차는 이유까지 디테일 안내](feedback_explain_unfamiliar_steps.md) — 형이 처음 하는 것은 단계+'왜 이 순서인지'+함정까지 풀어서. 형이 명시 호평
+- [디스코드 발송 누락 + 타임스탬프 UTC](reference_discord_send_glitch_and_tz.md) — reply가 sent여도 빠른 연속발송 시 간헐 누락(fetch로 확인·묶어보내기). ts는 UTC라 KST는 +9
+- [클로는 위임, 직원이 실행](feedback_clo_orchestrates_agents_execute.md) — 클로=대화유지·종합·보고·상태동기화만. 실작업(코드·점검·생성·수정)은 본부장 백그라운드 위임. 형 강조(!!!)
+- [검수 게이트 거쳐 보고](feedback_qa_gate_before_report.md) — 본부장 산출물은 형 보고 전 서지안(qa-lead-jian) 독립검수 필수. 자기검증≠독립검수. 빠른 흐름에서 건너뛰지 말 것(2026-07-08 형 지적)
+- [모아 인플루언서화 전략](project_moa_influencer.md) — build-in-public로 모아를 콘텐츠 브랜드로. 주력=유튜브쇼츠+스레드·국내먼저, 얼굴전략B(화면중심·클로비노출). 세미나·k-saju 상단깔때기. 형 결정대기
+- [신규사업: AI 1인회사 세미나](project_ai_seminar_business.md) — 형 강사, 클로+팀 제작. 무료웨비나→25만 본강의→구축대행 3단. 차별점=진짜 돌아가는 모아를 라이브 시연. 형 결정대기(온라인/가격)
+- [모아 바이브코딩 디스코드 셋업](project_moa_community_setup.md) — 커뮤니티 서버 실시간 구축중(2026-07-08). STEP1~4-2(서버·채널9·역할3·💬게이팅) 완료, ★재개="모아 바이브코딩 셋업 이어서"→📢시작하기 권한부터→봇초대→온보딩→규칙게시→소프트오픈. 고급멤버 로드맵. 발송글리치로 중단
+- [데일리카드 날짜버그+콘텐츠분업원칙](reference_daily_card_image_date_bug.md) — 날짜고착버그 수정(CLOSED). ★카드=심플 한줄/인스타캡션=3~4줄 리딩+CTA 분업(카드에 내용 욱여넣기 금지, 캡션에 넣기). CTA="What do your own Four Pillars say?". ★n8n Code노드 쉘heredoc 편집금지·실엔진실행 검증필수
+- [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→.js파일 유닛테스트→python json.dumps 라운드트립 주입→import(비활성됨)→update active→docker restart→export재검증. ★MSYS_NO_PATHCONV=1 없으면 docker exec /tmp 경로 깨짐. blogAutoPost001 발행전 품질게이트 신설(2026-07-08)
+- [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
