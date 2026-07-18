@@ -58,4 +58,5 @@
 - [모아 바이브코딩 디스코드 셋업](project_moa_community_setup.md) — 커뮤니티 서버 실시간 구축중(2026-07-08). STEP1~4-2(서버·채널9·역할3·💬게이팅) 완료, ★재개="모아 바이브코딩 셋업 이어서"→📢시작하기 권한부터→봇초대→온보딩→규칙게시→소프트오픈. 고급멤버 로드맵. 발송글리치로 중단
 - [데일리카드 날짜버그+콘텐츠분업원칙](reference_daily_card_image_date_bug.md) — 날짜고착버그 수정(CLOSED). ★카드=심플 한줄/인스타캡션=3~4줄 리딩+CTA 분업(카드에 내용 욱여넣기 금지, 캡션에 넣기). CTA="What do your own Four Pillars say?". ★n8n Code노드 쉘heredoc 편집금지·실엔진실행 검증필수
 - [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→.js파일 유닛테스트→python json.dumps 라운드트립 주입→import(비활성됨)→update active→docker restart→export재검증. ★MSYS_NO_PATHCONV=1 없으면 docker exec /tmp 경로 깨짐. blogAutoPost001 발행전 품질게이트 신설(2026-07-08)
+- [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
