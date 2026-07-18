@@ -60,3 +60,5 @@
 - [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→.js파일 유닛테스트→python json.dumps 라운드트립 주입→import(비활성됨)→update active→docker restart→export재검증. ★MSYS_NO_PATHCONV=1 없으면 docker exec /tmp 경로 깨짐. blogAutoPost001 발행전 품질게이트 신설(2026-07-08)
 - [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
+- [Cite sources for web/external facts](feedback_cite_sources.md) — 웹 검색·외부 수치 보고엔 항상 출처 링크 첨부. 형 명시 호평·상시 요청
+- [인스타 캐러셀 자동화 검토·흡수](project_insta_carousel_automation.md) — 9후킹공식 흡수완료(검수PASS)·페르소나프리셋. Higgsfield 무료테스트(형가입) 대기 → nano_banana_pro 한글정확도+장당크레딧 측정
