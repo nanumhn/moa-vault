@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: d0abf862-7dc4-496c-9ab4-5dcd8828296f
-  modified: 2026-07-19T02:51:23.141Z
+  modified: 2026-07-19T03:22:05.380Z
 ---
 
 **2026-07-18 세션에서 진행 중이던 것: 서버 재부팅 자동복구 시스템 구축 + 리얼 테스트.**
@@ -31,5 +31,13 @@ metadata:
 - **조치 ① 수신 워치독 cron** `2,7,12,17,22,27,32,37,42,47,52,57 * * * *` (5분마다, 형이 5분 선택). fetch_messages로 Discord 직접 조회 → 내 마지막 실제 답장보다 형 마지막 메시지가 나중이면 자동 처리·응답. 세션 내부 타이머라 gateway 죽어도 동작. 세션 전용이라 **매 세션시작 재등록 필요**(CLAUDE.md 세션시작 체크리스트 ②에 박음). 자동알림(🚀🔄✅)은 답장으로 안 침·중복응답 금지.
 - **조치 ② 모델표시 버그 수정**: `notify-startup.sh`가 settings.json(모델필드 없음)→sonnet-4-6 기본값으로 잘못 표기하던 것. hook input JSON의 실제 model 읽도록 수정([1m] 접미사 strip). 실제 모델은 계속 opus-4-8이었음(다운그레이드 아님).
 - 형 결정 대기: 워치독 지연 10분→5분 단축 여부.
+
+**2026-07-19 12:xx — 재실증 2차 결과 + 3차 진행 중:**
+- 12:03 `moa_server_reboot.ps1` 재부팅 → 12:07:09 부팅 → 기동작업 12:08:11 exit 0으로 wt+claude(부트스트랩 인자 정상 심김) 띄움.
+- **그런데 자기시작 부트스트랩이 안 돎.** 확증 3개: ①`session_boot.flag` 미삭제 ②워치독·저장 cron 미등록(CronList 비어있었음) ③새 세션이 "✅ 복구완료" 자동인사 못 함. → 형이 직접 말 걸어서야 반응.
+- 형이 **(A) 콘솔 에러 텍스트** 목격(크래시 아님 — 이벤트로그에 claude/node 크래시 흔적 0, 세션은 살아남음). 캡처는 이번에 못 받음.
+- 정상 확인된 인프라: 기동작업 인자(부트스트랩 지시 심김·STATE Ready·LastResult 0), flag 생성 주체=`moa_boot_notify.ps1`(매 부팅 새로 씀), 재부팅 스크립트.
+- **핵심 미해결 가설:** claude를 위치인자 프롬프트 + `--channels discord`로 띄우면 그 프롬프트가 자동 실행 안 되는 것 아닌가(그래서 부트스트랩 md read가 안 돌고 대기 상태로 뜸). ★다음 세션이 검증할 것.
+- **12:xx 재실증 3차 쏨(형 "고고").** ★재부팅 후 돌아온 새 세션이 할 일: (1)flag 확인→fetch 회수 (2)**형이 콘솔 (A) 에러 캡처를 Discord로 보낼 것 → 받아서 원인 분석** (3)이 파일 존재 = 이전 재실증 흔적이니, 부트스트랩이 이번엔 자동으로 돌았는지 자가점검(안 돌았으면 flag·cron·인사로 티남 → 위 가설 확정, 부트스트랩 자동실행 방식 자체를 고쳐야 함. 대안: 기동 후 별도 트리거/cron으로 부트스트랩 실행).
 
 관련: [[project_moa_open_threads]] [[reference_moa_healthcheck]] [[feedback_discord_reply_tool]] [[reference_discord_send_glitch_and_tz]]
