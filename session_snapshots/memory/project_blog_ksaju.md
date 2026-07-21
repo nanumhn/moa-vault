@@ -5,6 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 0c7866f4-370c-48e7-8670-5ad78d2b0ce0
+  modified: 2026-07-20T02:30:55.275Z
 ---
 
 k-saju 영문 astrology 블로그 프로젝트. 2026-06-21 형 지시로 착수.
@@ -49,6 +50,12 @@ k-saju 영문 astrology 블로그 프로젝트. 2026-06-21 형 지시로 착수.
 - **★2026-07-14 GSC 색인 진행 실측 + 색인 가속 요청**: 형 "k-saju 구글 검색 모니터링 어떻게 되냐"→나라+클로 GSC 스크린샷 실측. **사이트맵 2개 다 상태=성공**(k-saju.me 발견12·blog 발견29, 합 41 URL). 근데 개요 색인생성=**색인1/미색인1**로 표시. `k-saju.me/input` URL검사=**"발견됨-현재 색인 안됨" + 최근크롤링 "해당없음"**(구글이 발견만·크롤 전). blog.k-saju.me 홈은 URL검사="Google에 등록되어 있음"(색인완료). **판정=기술고장 아님, 신생도메인 정상 초기 크롤/색인 지연 + GSC개요 집계랙**(site: 실측선 이미 여러 글 색인됨=개요 수치가 stale). 조치=형이 **URL검사→색인생성요청**으로 우선순위 10개(수익 4: 메인/input/daily/trends + 블로그 상위글 6) 밀어줌, "등록됨"은 패스·"미색인"만 요청, **10건 확인·요청 완료**. 다음=3~5일 뒤 색인수 재확인→두자릿수 오르면 랭킹작업(롱테일/내부링크/브랜드혼동 k-saju.co.kr). ★교훈=성급한 추정("GSC 미등록") 대신 실제 GSC 화면 확인이 정확했다. 관측(스크린샷·site:)/추정 분리. 색인 안 된 페이지는 순위 자체가 없으니 "색인 가속"이 랭킹보다 선행.
 - **★2026-07-09 블로그 개선 2건**: ①k-saju.me 유입 링크 전부 새 창(target=_blank rel=noopener) — 누락 2곳(히어로·헤더) 수정+본문은 MDX a오버라이드 일괄, 커밋 29d2b32. ②번호형 페이징 신설(페이지당 12글, 홈=1p·/blog/page/2, rel next/prev+canonical, 무한스크롤X SEO친화), 커밋 38c0924.
 - ★통합 현황(대시)보드는 형이 백로그로 지시(추후 묶음릴리즈): 시스템헬스+SEO+수익+커뮤니티+자동화 한 화면.
+
+**★2026-07-20 품질게이트 자동복구 루프 신설 (형 "차단 후 재배포까지 마무리하라"):**
+- 증상: 형이 헬스체크 대시 보고 "블로그 라이브 반영 문제 있니?". 진단=오늘(07-20 08:10) 글이 품질게이트 FAIL→`Alert: Publish Blocked` 경로로 빠져 GitHub push 안 됨(어제 07-19까지 정상 라이브). **배포 고장 아님, 게이트가 제 역할.** 근데 n8n은 success로 찍히고(차단알림 경로가 정상종료) 헬스체크는 grace 3h 내라 🟡"대기중"→곧 🔴"배포실패의심" 가짜경보 날 상태.
+- 정확한 실패코드는 DB복구 불가: 블로그 워크플로우 `settings.saveDataSuccessExecution="last"`라 '차단됐지만 success로 끝난' 실행은 영속저장 안 됨(DB max execId=122, 123 없음). 재현으로 확인=오늘 토픽 재생성 시 곧바로 PASS → **비결정적 LLM 출력의 일시적 품질미달**(정당 불량 아님).
+- 조치(서진 구현·서지안 검수 PASS): ①오늘치 재실행 복구=sitemap 35→36글, `/blog/can-saju-predict-future-honest-look` HTTP 200 라이브. ②**자동복구 루프 내장**: blogAutoPost001에 재시도 3단(시도1 temp0.72/seed101 → 게이트 → 실패시 시도2 temp0.8/seed202 → 시도3 temp0.9/seed303), 통과 즉시 GitHub Push, **3회 전부 실패시에만 Alert(실패코드 포함)**. Build MDX throw 제거(크래시→재시도전환)·LM onError=continue. "차단하고 조용히 멈춤" 제거. `Manual Re-run (recovery)` 수동 재실행 엔트리 추가. 현재 17노드·active. ③**헬스체크 가짜경보 수정**: `moa_healthcheck.ps1`에 `Get-N8nBlogGateOutcome`(이벤트로그로 GitHub Push vs Alert 판별) 헬퍼+분기 — 품질차단→🟡(정상·severe아님)/Push했는데 미반영→🔴(진짜 배포실패)/판별불가→🟡.
+- ★교훈: 자동 파이프라인의 "차단"은 종점이 아니라 재시도→마무리까지 자동화해야 그날 산출물이 안 빈다(형 원칙). n8n Code노드 편집은 [[reference_n8n_code_node_safe_edit]] 절차 필수. saveDataSuccessExecution="last"면 차단실행 사유가 DB에 안 남으니 Alert에 사유를 실어야 가시성 확보(형이 "all"로 바꿀지 결정 대기).
 
 **★운영 함정 (2026-06-27 발견):**
 - **배포 브랜치는 `master` 아니라 `main`** (origin/HEAD→main, n8n도 main에 포스팅). master에 push하면 라이브 반영 0 + n8n 글 유실 위험. 항상 main.

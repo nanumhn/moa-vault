@@ -58,7 +58,14 @@
 - [모아 바이브코딩 디스코드 셋업](project_moa_community_setup.md) — 커뮤니티 서버 실시간 구축중(2026-07-08). STEP1~4-2(서버·채널9·역할3·💬게이팅) 완료, ★재개="모아 바이브코딩 셋업 이어서"→📢시작하기 권한부터→봇초대→온보딩→규칙게시→소프트오픈. 고급멤버 로드맵. 발송글리치로 중단
 - [데일리카드 날짜버그+콘텐츠분업원칙](reference_daily_card_image_date_bug.md) — 날짜고착버그 수정(CLOSED). ★카드=심플 한줄/인스타캡션=3~4줄 리딩+CTA 분업(카드에 내용 욱여넣기 금지, 캡션에 넣기). CTA="What do your own Four Pillars say?". ★n8n Code노드 쉘heredoc 편집금지·실엔진실행 검증필수
 - [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→.js파일 유닛테스트→python json.dumps 라운드트립 주입→import(비활성됨)→update active→docker restart→export재검증. ★MSYS_NO_PATHCONV=1 없으면 docker exec /tmp 경로 깨짐. blogAutoPost001 발행전 품질게이트 신설(2026-07-08)
+- [디스코드 두절 1순위 원인 — fakechat 충돌](reference_discord_channel_plugin_conflict.md) — fakechat이 같이 켜져있으면 --channels 무시하고 채널 가로챔. 시작알림은 webhook이라 MCP 죽어도 옴(오판 주의)
+- [부트스트랩 --channels 인자순서 버그](reference_bootstrap_channels_arg_order.md) — 재부팅 창이 "--channels entries must be tagged"로 즉사하면 초기 프롬프트를 --channels 앞으로 옮겨라(2026-07-19 수정)
 - [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
 - [Cite sources for web/external facts](feedback_cite_sources.md) — 웹 검색·외부 수치 보고엔 항상 출처 링크 첨부. 형 명시 호평·상시 요청
 - [인스타 캐러셀 자동화 검토·흡수](project_insta_carousel_automation.md) — 9후킹공식 흡수완료(검수PASS)·페르소나프리셋. Higgsfield 무료테스트(형가입) 대기 → nano_banana_pro 한글정확도+장당크레딧 측정
+- [Eco Sort 분리수거 퍼즐게임](project_eco_sort_game.md) — 형 신규 아이디어(2026-07-20). 버스잼류+쓰레기분리수거 테마. 프로토 완성(D:\Develop\eco-sort, bun serve 5178)·에셋12종 로컬생성$0. 형 플레이 피드백 대기→사운드/별점→Capacitor AOS출시
+- [검증은 싼 것부터](feedback_cheap_check_first.md) — 예/아니오 질문을 비싼 실행으로 묻지 마라(젬마 50분·SadTalker 2시간 사례). 확인→품질 순서. 번복비용·중단기준 숫자화 포함
+- [검증된 사실만 보고](feedback_verified_facts_only.md) — ★형 지시(2026-07-21). 보고에 [확인]/[보고받음]/[추측] 출처표기. 모르면 모른다고. 관측과 해석 분리. 하루 8건 오보 사례 기록
+- [립싱크 스택 선택기준 2026-07](reference_lipsync_stack_2026-07.md) — ★정지이미지=SadTalker/영상=LatentSync(도구-입력 미스매치가 근본원인). lips_expression=개구진폭(기본1.5/최대3.0). 출력PNG에 워크플로우 임베드됨. 오진 4건 기록
+- [세션 저장 스냅샷 2026-07-21](project_session_2026-07-21_snapshot.md) — 회신도구 씹힘으로 형이 세션 재시작 지시. 재시작 후 재개용 열린작업(블로그수정완료·젬마교체권장·립싱크재생성·게임Phaser·얼굴팩). ★재시작 후 복구인사부터

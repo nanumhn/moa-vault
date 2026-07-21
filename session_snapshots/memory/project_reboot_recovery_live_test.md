@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: d0abf862-7dc4-496c-9ab4-5dcd8828296f
-  modified: 2026-07-19T03:22:05.380Z
+  modified: 2026-07-19T04:08:31.852Z
 ---
 
 **2026-07-18 세션에서 진행 중이던 것: 서버 재부팅 자동복구 시스템 구축 + 리얼 테스트.**
@@ -40,4 +40,10 @@ metadata:
 - **핵심 미해결 가설:** claude를 위치인자 프롬프트 + `--channels discord`로 띄우면 그 프롬프트가 자동 실행 안 되는 것 아닌가(그래서 부트스트랩 md read가 안 돌고 대기 상태로 뜸). ★다음 세션이 검증할 것.
 - **12:xx 재실증 3차 쏨(형 "고고").** ★재부팅 후 돌아온 새 세션이 할 일: (1)flag 확인→fetch 회수 (2)**형이 콘솔 (A) 에러 캡처를 Discord로 보낼 것 → 받아서 원인 분석** (3)이 파일 존재 = 이전 재실증 흔적이니, 부트스트랩이 이번엔 자동으로 돌았는지 자가점검(안 돌았으면 flag·cron·인사로 티남 → 위 가설 확정, 부트스트랩 자동실행 방식 자체를 고쳐야 함. 대안: 기동 후 별도 트리거/cron으로 부트스트랩 실행).
 
-관련: [[project_moa_open_threads]] [[reference_moa_healthcheck]] [[feedback_discord_reply_tool]] [[reference_discord_send_glitch_and_tz]]
+**2026-07-19 04:xx — 재실증 4차 = ★성공(CLOSED-성공).**
+- 3차에서 부트스트랩 자동실행이 안 돈 근본원인 = **`--channels` 인자순서 버그**(위치 프롬프트가 채널로 먹혀 창이 뜨자마자 즉사). 형 UAC 승인 후 기동작업 명령을 `claude "프롬프트" --channels ...` 순서로 수정 + `apply_bootstrap.ps1` 소스도 수정(재발방지 주석). 상세: [[reference_bootstrap_channels_arg_order]].
+- 04:01 강제 재시작(shutdown /r /f) → 04:02 새 세션 자동기동 → **부트스트랩 자동실행 성공 확증**: ①boot.flag 감지 ②fetch_messages 회수(유실 형 메시지 없음) ③cron 2개 자동 재등록 ④flag 삭제 ⑤형에게 "✅ 재부팅 복구 완료" 자동인사 — 전부 사람 손 없이 완주. 형 확인 "이번에는 성공이다"(04:07).
+- **결론: 재부팅 자동복구(강제 재시작 포함) + 부트스트랩 자동실행 = 실전 검증 통과 🟢.** 다음에 또 깨지면 오늘 방식(인자순서 점검 우선)으로 진단.
+- 잔여 관찰거리(비긴급): 복귀 웹훅이 헬스체크 채널로 감(이 방으로 옮길지 형 결정 대기), 재부팅 주기(수·일) 조정 여지.
+
+관련: [[project_moa_open_threads]] [[reference_moa_healthcheck]] [[feedback_discord_reply_tool]] [[reference_discord_send_glitch_and_tz]] [[reference_bootstrap_channels_arg_order]]
