@@ -1,0 +1,3 @@
+```json
+(name="Suno Auto Extension", version="1.0.0", manifest_version=3, description="Automate interactions on Suno.com", permissions=["storage"], host_permissions=["https://suno.com/*"], background={"service_worker": "background.js"}, action={"default_popup": "popup.html"}, content_scripts=[{"matches": ["https://suno.com/*"], "js": ["content.js"], "run_at": "document_idle"}], icons={"16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png"})
+```
