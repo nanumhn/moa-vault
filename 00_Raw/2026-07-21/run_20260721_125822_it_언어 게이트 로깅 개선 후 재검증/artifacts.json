@@ -1,0 +1,28 @@
+{
+  "run": "run_20260721_125822",
+  "team": "it",
+  "team_name": "IT/개발본부 회의",
+  "topic": "언어 게이트 로깅 개선 후 재검증",
+  "artifacts": [
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "spec.md"
+    },
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "ext_manifest.md"
+    },
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "ext_popup.md"
+    },
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "ext_content.md"
+    }
+  ]
+}
