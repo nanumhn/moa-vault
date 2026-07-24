@@ -1,0 +1,33 @@
+{
+  "run": "run_20260724_175820",
+  "team": "atodayz_shorts",
+  "team_name": "아투(american-todayz) 유튜브 쇼츠 운영 회의",
+  "topic": "american-todayz 유튜브 쇼츠 운영 전반 — 썸네일 커버 구성 / 트렌드 대응 / 메타데이터 설정 / YouTube Data API 자동등록",
+  "artifacts": [
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "01_thumbnail_copy.md"
+    },
+    {
+      "agent_id": "siwoo",
+      "agent_name": "강시우",
+      "filename": "02_thumbnail_spec.md"
+    },
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "03_trend_playbook.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "04_metadata_template.md"
+    },
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "05_youtube_api_plan.md"
+    }
+  ]
+}
