@@ -1,3 +1,8 @@
+- [PPTX 강의자료 툴킷 + 파워포인트 설치됨](reference_pptx_deck_toolkit.md) — seminar/vibecoding-basic의 python-pptx 툴킷(deck_helpers+build_*). 2026-07-23 형이 PowerPoint 설치 → COM export로 실물 렌더 육안검증 가능(계산검증은 폴백). 인라인 굵게는 run 분리 필수
+- [Flux 이미지 파이프라인 노하우 2026-07](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 이미지 양산. 비율=EmptySD3Latent, Flux 글자버릇 대응, PPT 임베드 크면 JPG 재압축(16.5→2.2MB, 디스코드 8MB 한도)
+- [GPT 이미지 크롬 자동조종 시스템](reference_gpt_image_chrome_system.md) — chrome-devtools로 ChatGPT Projects('이미지박스 YYYYMM') 조종해 이미지 생성. Flux와 병렬 2트랙. 셀렉터·estuary쿠키fetch저장·config(배치4/3분/하루20)·디버그프로필 로그인은 형만
+- [한글 텍스트별 이미지 도구 선택](reference_image_tool_by_korean_text.md) — 한글많은 것(인포그래픽·카드뉴스)=HTML렌더(로컬·무료·한글완벽) 1순위 or GPT / 그림감성=Flux·GPT / Flux는 한글 못씀. 형 확정 2026-07-25
+- [모아 열린작업 2026-07-24](project_moa_open_threads_2026-07-24.md) — 아투 뉴스자동화·쇼츠v2·로고4종·주간전략리포트. ★형 결정대기 3개(리포트톤/로고선택/Blogger GCP). 재개용
 - [Mark recommended option in choice lists](feedback_recommendation_marker.md) — append "(내가추천)" / "(I recommend)" to your preferred option in any choice list
 - [Plugin reload doesn't pick up source edits](feedback_plugin_reload.md) — after editing cached plugin .ts files, recommend full session restart, not /reload-plugins
 - [Ask via Discord reply, not AskUserQuestion](feedback_discord_questions.md) — when chat source is Discord, the UI question prompt is invisible to them; ask in the reply text instead
@@ -59,6 +64,7 @@
 - [데일리카드 날짜버그+콘텐츠분업원칙](reference_daily_card_image_date_bug.md) — 날짜고착버그 수정(CLOSED). ★카드=심플 한줄/인스타캡션=3~4줄 리딩+CTA 분업(카드에 내용 욱여넣기 금지, 캡션에 넣기). CTA="What do your own Four Pillars say?". ★n8n Code노드 쉘heredoc 편집금지·실엔진실행 검증필수
 - [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→.js파일 유닛테스트→python json.dumps 라운드트립 주입→import(비활성됨)→update active→docker restart→export재검증. ★MSYS_NO_PATHCONV=1 없으면 docker exec /tmp 경로 깨짐. blogAutoPost001 발행전 품질게이트 신설(2026-07-08)
 - [디스코드 두절 1순위 원인 — fakechat 충돌](reference_discord_channel_plugin_conflict.md) — fakechat이 같이 켜져있으면 --channels 무시하고 채널 가로챔. 시작알림은 webhook이라 MCP 죽어도 옴(오판 주의)
+- [Discord MCP 연결실패 — 원인확정](reference_discord_mcp_connect_fail.md) — ★근본원인=플러그인 server.ts가 login 1회 실패에 process.exit(1)→MCP 동반 사망(재부팅 직후 재현). bun install은 반증됨. 복구=세션 재시작, 임시발신=웹훅
 - [부트스트랩 --channels 인자순서 버그](reference_bootstrap_channels_arg_order.md) — 재부팅 창이 "--channels entries must be tagged"로 즉사하면 초기 프롬프트를 --channels 앞으로 옮겨라(2026-07-19 수정)
 - [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
@@ -68,4 +74,7 @@
 - [검증은 싼 것부터](feedback_cheap_check_first.md) — 예/아니오 질문을 비싼 실행으로 묻지 마라(젬마 50분·SadTalker 2시간 사례). 확인→품질 순서. 번복비용·중단기준 숫자화 포함
 - [검증된 사실만 보고](feedback_verified_facts_only.md) — ★형 지시(2026-07-21). 보고에 [확인]/[보고받음]/[추측] 출처표기. 모르면 모른다고. 관측과 해석 분리. 하루 8건 오보 사례 기록
 - [립싱크 스택 선택기준 2026-07](reference_lipsync_stack_2026-07.md) — ★정지이미지=SadTalker/영상=LatentSync(도구-입력 미스매치가 근본원인). lips_expression=개구진폭(기본1.5/최대3.0). 출력PNG에 워크플로우 임베드됨. 오진 4건 기록
+- [MCP 미부착 복구 2026-07-22](project_session_2026-07-22_mcp_recovery.md) — 재부팅 후 discord MCP 안 붙음. 플러그인은 정상(수동 실행 확인) → 세션 재시작이 유일 복구. 임시발신=moa_webhook_send.ps1
 - [세션 저장 스냅샷 2026-07-21](project_session_2026-07-21_snapshot.md) — 회신도구 씹힘으로 형이 세션 재시작 지시. 재시작 후 재개용 열린작업(블로그수정완료·젬마교체권장·립싱크재생성·게임Phaser·얼굴팩). ★재시작 후 복구인사부터
+- [플러그인 cache vs marketplace 경로](reference_plugin_cache_vs_marketplace.md) — MCP는 plugins/cache/<ver>/에서 실행. marketplace 폴더 보고 오진한 사례(2026-07-22)
+- [MoaMcpGuard 귀닫힘 파수꾼](reference_mcp_guard_watchdog.md) — claude 살고 MCP만 죽은 상태를 밖에서 10분마다 잡아 재시동. -SimulateDeaf/-DryRun로 안전검증
