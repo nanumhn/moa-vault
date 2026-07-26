@@ -1,3 +1,8 @@
+- [★재부팅 복구 전면수리 + 실전테스트 2026-07-26](project_reboot_recovery_overhaul_2026-07-26.md) — 재부팅 직후 새 세션은 이거부터. **테스트 성공: T3(귀 연결) 48분→2분50초.** 근본원인=MCP 30초 타임아웃(→120초). T4는 boot.flag 삭제 시 마킹
+- [★한도가 어디서 타는가 — 세션 비용 구조](reference_session_cost_structure.md) — 긴 세션 × 5분 워치독이 주범(컨텍스트 재읽기 98.5%, 하루 2.2억 토큰). 한도는 계정 공용. 워치독 시간대 차등 적용됨. MoaSessionReset 활성화는 형 결정 대기
+- [★세션 저장 2026-07-27 (리부팅 전)](project_session_2026-07-27_snapshot.md) — 재개용. 형 대기항목 6개·한시우 미완작업·오늘 실수 5건 교훈. ★09:18 GSC 첫발송 점검 cron 재등록 필요. 한도는 계정 공용(서브에이전트별 아님)
+- [GSC 리포트에 아투 추가 2026-07-26](project_gsc_atz_report_2026-07-26.md) — ★GSC sitemaps 단순합은 과다표기(236 vs 실제 179). lastSubmitted 90일 컷이 정답. 아투 속성 2개 공존 주의. 형 할 일 없음
+- [아투 이미지 4축 개편 + Pexels 도입 2026-07-26](project_atz_image_overhaul_2026-07-26.md) — 재개용. 형지적=기사마다 같은 그림(원인 image.mjs 하드코딩 7분기). 4축 배치·로고 허용·히어로 Pexels 14917510 확정. Pexels 함정(UA 403·인물혼입·사과) 기록
 - [PPTX 강의자료 툴킷 + 파워포인트 설치됨](reference_pptx_deck_toolkit.md) — seminar/vibecoding-basic의 python-pptx 툴킷(deck_helpers+build_*). 2026-07-23 형이 PowerPoint 설치 → COM export로 실물 렌더 육안검증 가능(계산검증은 폴백). 인라인 굵게는 run 분리 필수
 - [Flux 이미지 파이프라인 노하우 2026-07](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 이미지 양산. 비율=EmptySD3Latent, Flux 글자버릇 대응, PPT 임베드 크면 JPG 재압축(16.5→2.2MB, 디스코드 8MB 한도)
 - [GPT 이미지 크롬 자동조종 시스템](reference_gpt_image_chrome_system.md) — chrome-devtools로 ChatGPT Projects('이미지박스 YYYYMM') 조종해 이미지 생성. Flux와 병렬 2트랙. 셀렉터·estuary쿠키fetch저장·config(배치4/3분/하루20)·디버그프로필 로그인은 형만

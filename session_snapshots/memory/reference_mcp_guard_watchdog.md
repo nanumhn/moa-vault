@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: fdbadc66-c231-46ec-91be-2b3150f85ac4
-  modified: 2026-07-21T21:56:51.598Z
+  modified: 2026-07-26T01:12:57.868Z
 ---
 
 `C:\Users\user\.moa\moa_mcp_guard.ps1` + 작업 스케줄러 `MoaMcpGuard` (10분, **RunLevel Highest**, 2026-07-22).
@@ -15,6 +15,15 @@ metadata:
 
 **판정:** claude.exe 있음 + `bun server.ts` 없음 = 귀 닫힘.
 (정상이면 wrapper `bun run --cwd .../discord/0.0.4 start` + 자식 `bun server.ts` 2개)
+
+## ★ 미해결 사각지대 — "프로세스는 살았는데 세션이 못 붙은" 상태 (2026-07-26 10:10 실측)
+세션 도중 **discord MCP 도구가 내 손에서 사라졌는데**(reply/fetch_messages 전부 소실, ToolSearch도 no match) 같은 시각 `mcp_health.json`은 `state=up`, `bun server.ts pid 23828` 살아있음으로 기록됐다.
+→ 파수꾼은 프로세스 존재만 보므로 **"정상"으로 판정하고 아무 것도 하지 않는다. 자동 재시동은 물론 경보조차 안 간다.**
+내가 형에게 예고한 트레이드오프("붙었다가 죽으면 알림만 간다")보다 **한 단계 더 나쁜 구멍** — 알림도 안 온다.
+- 증상: 수신은 될 수도 있으나 **발신 불가**. 형은 "왜 답이 없나" 상태가 된다.
+- 임시 발신: `moa_webhook_send.ps1 -Path <UTF8파일>` (2000자 자동 분할, 시크릿은 config에서 읽음)
+- 복구: 세션 재시작이 유일(진행 중 서브에이전트는 함께 중단됨 — 형에게 손실 알리고 판단받을 것)
+- **고칠 방향:** 프로세스 존재가 아니라 **세션이 실제로 MCP를 쓸 수 있는지**를 근거로 삼아야 한다(예: claude 로그의 MCP 연결/도구목록 상태, 또는 세션이 주기적으로 갱신하는 heartbeat 파일). 프로세스 유무만으로는 이 상태를 절대 못 잡는다.
 
 ## ★★ 반드시 관리자 권한으로 등록할 것 (안 그러면 무조건 오작동)
 
