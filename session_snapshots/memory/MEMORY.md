@@ -2,6 +2,9 @@
 - [★매일 04시 재부팅 리셋 + 워치독 분리 2026-07-27](project_daily_reset_and_watchdog_2026-07-27.md) — 형 확정. 리셋=claude재시작이 아니라 **서버 재부팅**(자체 재시작 경로는 부트스트랩·프리웜 다 빠져 귀 닫힘). 워치독 07~03시 5분 / 03~07시 30분
 - [★한도가 어디서 타는가 — 세션 비용 구조](reference_session_cost_structure.md) — 긴 세션 × 5분 워치독이 주범(컨텍스트 재읽기 98.5%, 하루 2.2억 토큰). 한도는 계정 공용. 워치독 시간대 차등 적용됨. MoaSessionReset 활성화는 형 결정 대기
 - [★세션 저장 2026-07-27 (리부팅 전)](project_session_2026-07-27_snapshot.md) — 재개용. 형 대기항목 6개·한시우 미완작업·오늘 실수 5건 교훈. ★09:18 GSC 첫발송 점검 cron 재등록 필요. 한도는 계정 공용(서브에이전트별 아님)
+- [빌드 로그 파이프 = SIGPIPE 함정](reference_build_pipe_sigpipe_trap.md) — `bun run build | head`는 빌드를 중간에 죽인다. prerender-manifest.json 미생성 → next start가 전 라우트 500. 500을 코드 버그로 오진 금지, 로그는 파일로 받고 grep
+- [★blog.k-saju.me 애드센스 + 글 스펙 개편 2026-07-27](project_ksaju_blog_adsense_2026-07-27.md) — 심사 제출 완료(계정=아투와 동일 ca-pub). ★내일 08:10 새 스펙 첫 실전 지켜볼 것. 글감 91개 확보(8/3 소진 해소). 형 미결정=글쓰기 모델
+- [★아투 환각 구조 수리 2026-07-27](project_atz_hallucination_fix_2026-07-27.md) — 근거 없이 정부기관 발언까지 창작하던 원인(푸터를 원문으로 긁고 "확보 성공"으로 기록) + 게이트 4중 방어 + LM PARALLEL 함정. 파이프라인 만질 때 이거부터
 - [GSC 리포트에 아투 추가 2026-07-26](project_gsc_atz_report_2026-07-26.md) — ★GSC sitemaps 단순합은 과다표기(236 vs 실제 179). lastSubmitted 90일 컷이 정답. 아투 속성 2개 공존 주의. 형 할 일 없음
 - [아투 이미지 4축 개편 + Pexels 도입 2026-07-26](project_atz_image_overhaul_2026-07-26.md) — 재개용. 형지적=기사마다 같은 그림(원인 image.mjs 하드코딩 7분기). 4축 배치·로고 허용·히어로 Pexels 14917510 확정. Pexels 함정(UA 403·인물혼입·사과) 기록
 - [PPTX 강의자료 툴킷 + 파워포인트 설치됨](reference_pptx_deck_toolkit.md) — seminar/vibecoding-basic의 python-pptx 툴킷(deck_helpers+build_*). 2026-07-23 형이 PowerPoint 설치 → COM export로 실물 렌더 육안검증 가능(계산검증은 폴백). 인라인 굵게는 run 분리 필수
@@ -21,6 +24,8 @@
 - [Answer first, analyze after](feedback_answer_first.md) — direct question → one-line answer first, then options/reasoning
 - [Node.js runtimes on this PC](reference_node_runtimes.md) — no system node; use bun (in PATH) or LM Studio bundled node.exe
 - [npx alternative for MCP](reference_npx_alternative.md) — MCP servers with `npx ...` fail here; re-register with `bun x ...`
+- [아투 목차 링크 복구 2026-07-27](reference_atz_toc_anchor_fix.md) — 테마가 제목에서 id 뽑을 때 한글을 전부 버려 링크가 죽음(`\w`만 남김). 해결=sec-N id 부착. 181편 복구. ★번호 붙이기(B)는 목차에 번호 두 번, list-style:none은 안 먹힘(counter라서) — 둘 다 스크린샷에서만 드러남
+- [구글 계정 2개 용도 구분](reference_google_accounts_by_purpose.md) — ★Default=ssky.park(GPT이미지) / **Profile 1=info.nanumn(아투 소유)**. 아투 Blogger 작업은 Profile 1 창에서. ★authuser 바꿔봐야 소용없다(쿠키 저장소가 분리) — 프로필을 바꿔라. 2026-07-27 2시간 소모
 - [Chrome debug MCP setup](reference_chrome_debug_setup.md) — chrome-devtools MCP is attach-mode; Claude launches Chrome on 9222 with profile C:\chrome-debug-profile
 - [미디어 스택 현황 2026-07 + 개명](reference_media_stack_2026-07.md) — 스택감사(base는 최신수준, 갭=얼굴보존·해부학·회의LLM). 무료 quick win 3(FaceDetailer·PuLID·Qwen3) GPU여유시 적용. 지브리 LoRA 도입. ★강나래→강나라 개명
 - [MOA LoRA + anime video weak](project_moa_lora_video_limit.md) — photo-trained LoRA + anime style + LTX 6GB ≠ good; need anime base model for anime video
@@ -42,6 +47,7 @@
 - [회의 컨텍스트 그라운딩](project_meeting_context_grounding.md) — 팀 사전자료에 라인 정체성 없으면 stale 토픽으로 드리프트(사주→음악 오인 사례). 팀 json에 라인 한줄정의 박기
 - [LM Studio 출력 파싱 400 버그](reference_lmstudio_parse400.md) — qwen 일부 산출물에서 "Failed to parse input" 400(모델은 정상 생성). regen 재시도 or 후처리 직접 작성
 - [도메인 가용성 확인법](reference_domain_availability_check.md) — rdap.org는 .com만 신뢰(.co/.ai/.app 오판). ISP가 NXDOMAIN을 203.248.252.2로 리다이렉트해 DNS도 못 믿음. 비-.com은 레지스트라 검색이 유일 확실
+- [종착점부터 역산해 기획](feedback_design_from_endpoint.md) — ★형 지시 2026-07-27. 새 자산은 "어떻게 돈 버나→관문 합격기준→산출물 스펙→게이트" 순으로 정하고 시작. 블로그 44편·아투 186건 쌓고 나서 요건 미달 발견한 사고
 - [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴/공포마케팅 금지, 결제유도 꼼수 X. 기능마다 "user가 뭐가 좋아지나" 먼저. 형 반복 강조
 - [k-saju 라이브 배포](project_ksaju_live.md) — k-saju.me 라이브(Vercel+Neon+PayPal). Vercel 자동배포 자주 누락→빈커밋 재트리거. 로컬 LLM/ComfyUI는 Vercel서 접근불가→자산 사전생성
 - [harness 수익화 레이어](project_harness_revenue_layer.md) — 구축완료: CSO 감독자+growth/sales/data-finance 4에이전트 + revenue-review/finance-dashboard. 월 1,000만원 주간 갭 루프
@@ -74,13 +80,16 @@
 - [부트스트랩 --channels 인자순서 버그](reference_bootstrap_channels_arg_order.md) — 재부팅 창이 "--channels entries must be tagged"로 즉사하면 초기 프롬프트를 --channels 앞으로 옮겨라(2026-07-19 수정)
 - [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
+- [★답하기 전 로그·원장부터 뒤져라](reference_moa_logs_and_ledgers.md) — 형 지시 2026-07-27. 질문유형별 조회처 표(로그17+원장13). "쇼츠 없음" 오답이 발행원장 30초면 잡혔을 건. 순서=①우리기록 ②반례 ③단정
+- [★원인 말하기 전 반례부터](feedback_find_counterexample_first.md) — 형 지시 2026-07-27(하루 2번 오진). "A 때문"이라 말하려면 "A인데 안 그런 경우"를 먼저 찾아라. 못 찾았을 때만 단정. 표본 2~3개로 전체 말하지 말고 전수 스캔
 - [Cite sources for web/external facts](feedback_cite_sources.md) — 웹 검색·외부 수치 보고엔 항상 출처 링크 첨부. 형 명시 호평·상시 요청
 - [인스타 캐러셀 자동화 검토·흡수](project_insta_carousel_automation.md) — 9후킹공식 흡수완료(검수PASS)·페르소나프리셋. Higgsfield 무료테스트(형가입) 대기 → nano_banana_pro 한글정확도+장당크레딧 측정
 - [Eco Sort 분리수거 퍼즐게임](project_eco_sort_game.md) — 형 신규 아이디어(2026-07-20). 버스잼류+쓰레기분리수거 테마. 프로토 완성(D:\Develop\eco-sort, bun serve 5178)·에셋12종 로컬생성$0. 형 플레이 피드백 대기→사운드/별점→Capacitor AOS출시
 - [검증은 싼 것부터](feedback_cheap_check_first.md) — 예/아니오 질문을 비싼 실행으로 묻지 마라(젬마 50분·SadTalker 2시간 사례). 확인→품질 순서. 번복비용·중단기준 숫자화 포함
-- [검증된 사실만 보고](feedback_verified_facts_only.md) — ★형 지시(2026-07-21). 보고에 [확인]/[보고받음]/[추측] 출처표기. 모르면 모른다고. 관측과 해석 분리. 하루 8건 오보 사례 기록
+- [검증된 사실만 보고](feedback_verified_facts_only.md) — ★형 지시(2026-07-21). [확인]/[보고받음]/[추측] 표기, 관측과 해석 분리. 오보 8건 + **2026-07-27 추가: 로컬git≠라이브·curl 쿠키자·평균≠상한·헤지는 검증 아님·축약 시 요약↔본문 한정어 대조**
 - [립싱크 스택 선택기준 2026-07](reference_lipsync_stack_2026-07.md) — ★정지이미지=SadTalker/영상=LatentSync(도구-입력 미스매치가 근본원인). lips_expression=개구진폭(기본1.5/최대3.0). 출력PNG에 워크플로우 임베드됨. 오진 4건 기록
 - [MCP 미부착 복구 2026-07-22](project_session_2026-07-22_mcp_recovery.md) — 재부팅 후 discord MCP 안 붙음. 플러그인은 정상(수동 실행 확인) → 세션 재시작이 유일 복구. 임시발신=moa_webhook_send.ps1
 - [세션 저장 스냅샷 2026-07-21](project_session_2026-07-21_snapshot.md) — 회신도구 씹힘으로 형이 세션 재시작 지시. 재시작 후 재개용 열린작업(블로그수정완료·젬마교체권장·립싱크재생성·게임Phaser·얼굴팩). ★재시작 후 복구인사부터
 - [플러그인 cache vs marketplace 경로](reference_plugin_cache_vs_marketplace.md) — MCP는 plugins/cache/<ver>/에서 실행. marketplace 폴더 보고 오진한 사례(2026-07-22)
+- [하네스 변경 원장](reference_harness_change_ledger.md) — 스킬·cron 변경은 "넣기로 했다"로 끝내지 말고 `_workspace/harness-pending.md`에. 주간 리포트가 매주 점검. 결정만 있고 실행이 없어 다음 사고까지 잠든 사례
 - [MoaMcpGuard 귀닫힘 파수꾼](reference_mcp_guard_watchdog.md) — claude 살고 MCP만 죽은 상태를 밖에서 10분마다 잡아 재시동. -SimulateDeaf/-DryRun로 안전검증
