@@ -1,0 +1,28 @@
+{
+  "run": "run_20260727_203326",
+  "team": "senior_channel",
+  "team_name": "시니어 타깃 신규 블로그+유튜브 채널 기획 회의",
+  "topic": "시니어 타깃 신규 블로그+유튜브 채널 기획 — 아이템 3개 도출과 1순위 확정",
+  "artifacts": [
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "senior_items_market.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "senior_formats.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "senior_pipeline.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "senior_revenue_roadmap.md"
+    }
+  ]
+}
