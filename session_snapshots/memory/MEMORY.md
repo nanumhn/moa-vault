@@ -1,5 +1,7 @@
 - [★재부팅 복구 전면수리 + 실전테스트 2026-07-26](project_reboot_recovery_overhaul_2026-07-26.md) — 재부팅 직후 새 세션은 이거부터. **테스트 성공: T3(귀 연결) 48분→2분50초.** 근본원인=MCP 30초 타임아웃(→120초). T4는 boot.flag 삭제 시 마킹
 - [★매일 04시 재부팅 리셋 + 워치독 분리 2026-07-27](project_daily_reset_and_watchdog_2026-07-27.md) — 형 확정. 리셋=claude재시작이 아니라 **서버 재부팅**(자체 재시작 경로는 부트스트랩·프리웜 다 빠져 귀 닫힘). 워치독 07~03시 5분 / 03~07시 30분
+- [★한도는 주간이 먼저 찬다 + Fable은 딴 주머니](reference_usage_limit_weekly_is_binding.md) — 2026-07-28 /usage 실측: 세션 2% / **주간 85%**. 리셋해도 주간은 안 돌아온다. 무거운 건 `Agent(model:'fable')`로. 워치독 20분/60분으로 낮춤
+- [★조회된다 ≠ 권한 있다 (Blogger)](reference_blogger_getbyurl_is_not_ownership.md) — getByUrl은 공개면 남의 블로그도 된다. 소유 판정은 `view:'ADMIN'`(403이면 남의 것). 이걸 안 하고 "같은 계정"이라 보고했다가 형이 잡음
 - [★한도가 어디서 타는가 — 세션 비용 구조](reference_session_cost_structure.md) — 긴 세션 × 5분 워치독이 주범(컨텍스트 재읽기 98.5%, 하루 2.2억 토큰). 한도는 계정 공용. 워치독 시간대 차등 적용됨. MoaSessionReset 활성화는 형 결정 대기
 - [★세션 저장 2026-07-27 (리부팅 전)](project_session_2026-07-27_snapshot.md) — 재개용. 형 대기항목 6개·한시우 미완작업·오늘 실수 5건 교훈. ★09:18 GSC 첫발송 점검 cron 재등록 필요. 한도는 계정 공용(서브에이전트별 아님)
 - [빌드 로그 파이프 = SIGPIPE 함정](reference_build_pipe_sigpipe_trap.md) — `bun run build | head`는 빌드를 중간에 죽인다. prerender-manifest.json 미생성 → next start가 전 라우트 500. 500을 코드 버그로 오진 금지, 로그는 파일로 받고 grep
