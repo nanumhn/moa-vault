@@ -80,6 +80,10 @@
 - [부트스트랩 --channels 인자순서 버그](reference_bootstrap_channels_arg_order.md) — 재부팅 창이 "--channels entries must be tagged"로 즉사하면 초기 프롬프트를 --channels 앞으로 옮겨라(2026-07-19 수정)
 - [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
+- [★유튜브 Inauthentic 정책 = 우리 쇼츠 파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 2025-07-15 개정. 기사→TTS→스톡슬라이드→템플릿이 수익배제 정의에 부합. 회피축=AI여부 아니라 "고유 관점". 아투 각도전환이 곧 회피설계. 쇼츠 실측 901/1543/247회·댓글 0
+- [★포기 제안 금지 — 성공할 때까지](feedback_no_giving_up.md) — 형 지시 2026-07-28. "포기를 권합니다/남는 게 적어요/내일 하죠" 금지. 막히면 다음 수를 들고 와라. 하루 2번 걸림(GPT비교·첫프레임)
+- [★거짓은 담지 않는다 + 더블체크](feedback_no_falsehood_double_check.md) — 형 지시 2026-07-28. 멈추지도 말고 거짓도 싣지 마라(못 쓰면 비운다). 목표는 "잘 빼기"가 아니라 "뺄 게 없는 글". ★완료 보고는 재조회 값으로만 — 같은 날 "했다≠됐다"로 3번 틀림
+- [★정시 발행 > 검수](feedback_ontime_publish_over_qa.md) — 형 지시 2026-07-28. 발행을 막는 건 사실오류·법적문제·낚시뿐, 미관 결함은 올리고 보정. 쇼츠 자동공개는 무수정 승인 3회 연속이면 전환(현재 0/3)
 - [★답하기 전 로그·원장부터 뒤져라](reference_moa_logs_and_ledgers.md) — 형 지시 2026-07-27. 질문유형별 조회처 표(로그17+원장13). "쇼츠 없음" 오답이 발행원장 30초면 잡혔을 건. 순서=①우리기록 ②반례 ③단정
 - [★원인 말하기 전 반례부터](feedback_find_counterexample_first.md) — 형 지시 2026-07-27(하루 2번 오진). "A 때문"이라 말하려면 "A인데 안 그런 경우"를 먼저 찾아라. 못 찾았을 때만 단정. 표본 2~3개로 전체 말하지 말고 전수 스캔
 - [Cite sources for web/external facts](feedback_cite_sources.md) — 웹 검색·외부 수치 보고엔 항상 출처 링크 첨부. 형 명시 호평·상시 요청
@@ -93,3 +97,11 @@
 - [플러그인 cache vs marketplace 경로](reference_plugin_cache_vs_marketplace.md) — MCP는 plugins/cache/<ver>/에서 실행. marketplace 폴더 보고 오진한 사례(2026-07-22)
 - [하네스 변경 원장](reference_harness_change_ledger.md) — 스킬·cron 변경은 "넣기로 했다"로 끝내지 말고 `_workspace/harness-pending.md`에. 주간 리포트가 매주 점검. 결정만 있고 실행이 없어 다음 사고까지 잠든 사례
 - [MoaMcpGuard 귀닫힘 파수꾼](reference_mcp_guard_watchdog.md) — claude 살고 MCP만 죽은 상태를 밖에서 10분마다 잡아 재시동. -SimulateDeaf/-DryRun로 안전검증
+- [★아투 색인 전수감사 2026-07-28](project_atz_indexing_audit_2026-07-28.md) — "색인 안 붙는다"는 전제가 틀렸다. 크롤되면 97% 색인, 미색인 38편은 크롤 대기. 진짜 병목은 노출 0. URL Inspection 전수 스캔법(languageCode=en-US 필수)
+- [아투 원장 URL ≠ 라이브 URL](reference_atz_pipeline_live_url_truth.md) — state.json published 7건 중 2건이 404(공개 후 DRAFT 되돌림). 링크·검증은 `bun list-live.mjs` 실측으로. posts.get은 view:ADMIN 없으면 DRAFT를 삭제로 오진
+- [아투 옛글 원문근거 재수집법](reference_atz_source_refetch_for_audit.md) — 07-27 이전 글은 sources.txt 없음. GNews RSS는 JS렌더라 못 뚫음 → 헤드라인 웹검색으로 같은 wire 실은 타매체에서 회수. ★페이지 전체를 근거로 쓰면 사이드바 때문에 다 "근거 있음"이 된다
+- [★아투 게이트 맹점 — 평서문 창작은 통과](reference_atz_gate_blindspot_plain_claims.md) — qa-gate는 인용·숫자만 대조. 평서문 주장으로 쓴 창작은 원리적으로 못 잡는다. 쇼츠 auditScript도 같은 맹점(블로그와 별개 경로라 따로 고쳐야 함). ★"근거가 잘렸다"는 진단은 이후 정정됨 → [[reference_atz_evidence_never_reached_model]] (애초에 안 들어갔다)
+- [★아투 고유관점 게이트 + 유튜브 정책 2026-07-28](project_atz_originality_policy_2026-07-28.md) — Inauthentic Content 판정축=고유 관점 유무. originality-gate 구현(5검사·15/15) ★run.mjs에 **계측 모드로 배선 완료**(D=매체귀속만 차단, 나머지는 점수만 기록 → 06:00 안 죽는 것 dry-run 실증). 전환조건=통과율 3회 연속 100%. 라이브 8편 중 합격 1편이었고 그건 사람이 고친 것
+- [★테스트 실행이 형에게 새면 안 된다](feedback_test_runs_must_not_reach_user.md) — --dry가 외부 발송을 막아줄 거라 가정하지 마라. 아투 dry-run이 프리뷰카드+큐레이션로그를 형 채널로 발송(2026-07-28, 같은 날 k-saju도). 테스트 산출물 임의 삭제도 금지 — 조사 증거였다
+- [★아투 원문이 모델에 안 들어가고 있었다](reference_atz_evidence_never_reached_model.md) — LM_PARALLEL=4 하드코딩(실제 1)이 근거 예산을 0으로 만들어 제목만 보고 기사를 써 왔다. 문단복제·고유명사깨짐의 진짜 원인. 런타임값을 추정해 상수로 굳히지 마라
+- [쇼츠는 블로그 창작을 물려받는다](reference_atz_shorts_inherit_blog_fabrication.md) — 자막을 블로그 본문과 대조하면 창작이 통과. 기준은 out/*_sources.txt. auditClaims 신설(기관행위만 차단, auditScript는 throw라 분리). 쇼츠 프롬프트만 고쳐선 못 막고 상류=블로그
