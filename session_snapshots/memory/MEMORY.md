@@ -107,3 +107,4 @@
 - [★테스트 실행이 형에게 새면 안 된다](feedback_test_runs_must_not_reach_user.md) — --dry가 외부 발송을 막아줄 거라 가정하지 마라. 아투 dry-run이 프리뷰카드+큐레이션로그를 형 채널로 발송(2026-07-28, 같은 날 k-saju도). 테스트 산출물 임의 삭제도 금지 — 조사 증거였다
 - [★아투 원문이 모델에 안 들어가고 있었다](reference_atz_evidence_never_reached_model.md) — LM_PARALLEL=4 하드코딩(실제 1)이 근거 예산을 0으로 만들어 제목만 보고 기사를 써 왔다. 문단복제·고유명사깨짐의 진짜 원인. 런타임값을 추정해 상수로 굳히지 마라
 - [쇼츠는 블로그 창작을 물려받는다](reference_atz_shorts_inherit_blog_fabrication.md) — 자막을 블로그 본문과 대조하면 창작이 통과. 기준은 out/*_sources.txt. auditClaims 신설(기관행위만 차단, auditScript는 throw라 분리). 쇼츠 프롬프트만 고쳐선 못 막고 상류=블로그
+- [★아투 승인카드는 아투 채널이 정답](reference_atz_shorts_approval_channel.md) — 형 DM 아니다. 내가 박은 OWNER_CHANNEL_ID 경고를 검증 없이 인용해 "배선 비었다"고 오보. 채널은 웹훅 GET으로 channel_id 찍어 확인. 진짜 결손은 영상 미첨부(→makeWebCopy)
