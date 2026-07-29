@@ -55,6 +55,7 @@
 - [harness 수익화 레이어](project_harness_revenue_layer.md) — 구축완료: CSO 감독자+growth/sales/data-finance 4에이전트 + revenue-review/finance-dashboard. 월 1,000만원 주간 갭 루프
 - [k-saju 메일 세팅](reference_ksaju_email_setup.md) — support@k-saju.me 라이브: ImprovMX(받기)+Brevo SMTP(보내기) 둘 다 무료, Gmail 연동. SPF+DKIM+DMARC 적용
 - [n8n 바이럴 마케팅 자동화](project_n8n_viral_marketing.md) — 형 결정으로 로컬 n8n 도입(Docker, 포트 5678, 볼륨 n8n_data). 데일리 사주카드 자동생성 워크플로우 예정
+- [git push wincredman 에러 → gh 우회](reference_owenlab_git_push_gh_credential.md) — 에이전트 셸에서 GCM이 credential store 접근 불가. `-c "credential.helper=!gh auth git-credential"`로 push (2026-07-29 검증)
 - [Docker 자격증명 헬퍼 깨짐](reference_docker_cred_helper_broken.md) — 내 셸 docker pull은 logon-session 에러로 막힘, 이미지 받기는 형이 ! 로 직접 실행. docker ps/logs/exec는 내 셸 OK
 - [모아 정기검사 헬스체크](reference_moa_healthcheck.md) — Windows 작업 스케줄러 MoaHealthCheck(하루 3회 9/13/17 KST), C:\Users\user\.moa\ 스크립트+config. 사이트 추가는 config 한 줄. PS5.1은 UTF-8 BOM 필수
 - [검증 전 성급한 경보 금지](feedback_verify_before_alarm.md) — 고장/변경 단정 전 2개+ 근거 교차검증, 관측과 추측 분리. 재시작 직후 로그로 '활동 없음' 단정 금지(로그 회전)
@@ -82,6 +83,10 @@
 - [부트스트랩 --channels 인자순서 버그](reference_bootstrap_channels_arg_order.md) — 재부팅 창이 "--channels entries must be tagged"로 즉사하면 초기 프롬프트를 --channels 앞으로 옮겨라(2026-07-19 수정)
 - [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
 - [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
+- [★세션 저장 2026-07-29](project_session_2026-07-29_snapshot.md) — 재개용. 형 대기 3건(클로2 토큰·리셋 권한·아투는 쇼케이스 확정). 오늘 실수 4건. 아투 코드 미커밋
+- [★아투 창작의 발원지 찾음 2026-07-29](project_atz_fabrication_root_cause_2026-07-29.md) — 원인=확장 프롬프트가 산업 5칸을 이름까지 불러줌 + 분량 하향이 함수에 전달 안 됨(방어막이 한 번도 작동 안 함). 라이브 5편 복구·회귀테스트 신설. ★수치 게이트가 기념사엔 창작을 유도함(미해결)
+- [★Blogger posts.update는 제목·라벨을 지운다](reference_blogger_update_wipes_fields.md) — 2026-07-29 라이브 사고. update=전체치환, patch=부분갱신. 진짜 원인은 기존 update-post.mjs 놔두고 즉석 스크립트를 짠 것. 수정 후엔 title·labels·status 같이 재조회
+- [★아투 유튜브 채널 경제성 실측](reference_atz_youtube_channel_economics.md) — 광고수익은 문턱 넘어도 월 5~33만원(산수 안 됨). 24만은 2025년 봄 자산이고 98%가 거기서 나옴. 값어치=B2B 쇼케이스. 조회 1,558회당 구독 1명. yt-analytics 스코프 없음
 - [★유튜브 Inauthentic 정책 = 우리 쇼츠 파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 2025-07-15 개정. 기사→TTS→스톡슬라이드→템플릿이 수익배제 정의에 부합. 회피축=AI여부 아니라 "고유 관점". 아투 각도전환이 곧 회피설계. 쇼츠 실측 901/1543/247회·댓글 0
 - [★포기 제안 금지 — 성공할 때까지](feedback_no_giving_up.md) — 형 지시 2026-07-28. "포기를 권합니다/남는 게 적어요/내일 하죠" 금지. 막히면 다음 수를 들고 와라. 하루 2번 걸림(GPT비교·첫프레임)
 - [★거짓은 담지 않는다 + 더블체크](feedback_no_falsehood_double_check.md) — 형 지시 2026-07-28. 멈추지도 말고 거짓도 싣지 마라(못 쓰면 비운다). 목표는 "잘 빼기"가 아니라 "뺄 게 없는 글". ★완료 보고는 재조회 값으로만 — 같은 날 "했다≠됐다"로 3번 틀림
