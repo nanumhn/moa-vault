@@ -1,19 +1,38 @@
 ---
 name: reference_google_accounts_by_purpose
-description: 크롬 디버그 프로필의 구글 계정 2개 용도 구분 — ssky.park=GPT 이미지 / info.nanumn=아투 소유
+description: 구글 계정별 자산 소유 + ★authuser 규칙 정정(2026-07-30) — 프로필에 로그인된 계정 중에선 authuser가 먹는다
 metadata: 
   node_type: memory
   type: reference
   originSessionId: 771e9b4c-1ade-4980-828c-f82c0b7d539a
-  modified: 2026-07-27T06:56:51.683Z
+  modified: 2026-07-30T00:42:31.640Z
 ---
 
-`C:\chrome-debug-profile` 안에 **크롬 프로필이 2개** 있고, 각각 다른 구글 계정이다 (형 확인 + 실측 2026-07-27).
+`C:\chrome-debug-profile` 안에 **크롬 프로필이 3개** 있고, 각각 다른 구글 계정이다 (2026-07-30 `Preferences` 전수 확인).
 
 ```
-Default     | BlackHeart          | ssky.park@gmail.com     →  GPT 이미지 생성 작업용
-Profile 1   | 박기효.SMDsolutions   | info.nanumn@gmail.com   →  아투(american-todayz) 소유 ★
+Default     | BlackHeart          | ssky.park@gmail.com     →  ★ChatGPT(글쓰기·이미지)
+Profile     | 나눔엔               | nanumn.com@gmail.com    →  유튜브 3채널(나눔엔·모아 들을래·해의 이름)
+Profile 1   | 박기효.SMDsolutions   | info.nanumn@gmail.com   →  ★Blogger 4개 · 애드센스 · 아투 유튜브
 ```
+
+## ★★ 크롬을 띄울 땐 반드시 `--profile-directory` 를 지정한다
+
+**안 주면 "마지막에 쓰던 프로필"로 열린다.** 2026-07-30 이것 때문에 반나절을 잃었다 —
+프로필을 안 주고 띄웠더니 `Profile`(나눔엔)로 열렸고, 거기서 ChatGPT를 보니 로그아웃 상태라
+**형이 이미 로그인해 두셨는데도 "로그인 안 됐다"고 형에게 대여섯 번 요청했다.**
+형의 "GPT 쓰려면 사용자 선택에서 BlackHeart를 선택해야 해" 한마디로 풀렸다.
+
+```bash
+# ChatGPT 작업
+chrome.exe --user-data-dir=C:/chrome-debug-profile --profile-directory=Default        "https://chatgpt.com/"
+# Blogger·애드센스 작업
+chrome.exe --user-data-dir=C:/chrome-debug-profile --profile-directory="Profile 1"    "https://www.blogger.com/..."
+```
+
+**한 인스턴스에 여러 프로필 창이 동시에 뜰 수 있고, CDP 9222는 그 창들의 탭을 전부 보여준다.**
+그래서 "탭마다 계정이 다르게 보이는" 현상이 생긴다 — 계정이 섞인 게 아니라 **창(프로필)이 섞인 것**이다.
+작업 전 판정법: 그 탭에서 계정 표시를 읽어 목표 프로필인지 확인한다.
 
 형 화면 기준: **작업표시줄 크롬 아이콘 2개 중 우측 = info.nanumn, 좌측 = ssky.park** (형 확인 2026-07-27).
 
@@ -26,8 +45,27 @@ Profile 1   | 박기효.SMDsolutions   | info.nanumn@gmail.com   →  아투(ame
 ```
 2026-07-27 목차 작업에서 Default 창이 막히자 "계정 때문에 못 한다"로 갈 뻔했는데, **하려던 일(목차 CSS)은 글 본문에 `<style>`을 넣어 API만으로 끝났다.** 브라우저가 막히면 **그 일이 정말 브라우저를 요구하는지부터** 되물어라 — 테마를 안 건드리는 우회가 오히려 안전할 때가 많다(테마는 외부 CDN 기반이라 업데이트 시 되돌아간다).
 
-## ★함정 — `authuser`를 바꿔서는 안 된다. 프로필을 바꿔야 한다
-2026-07-27에 `?authuser=0/1/2/3`을 전부 두드렸는데 넷 다 같은 리다이렉트였다. **크롬 프로필은 쿠키 저장소가 아예 분리돼 있어서, Default 프로필 안에서는 authuser를 뭘로 줘도 info.nanumn 세션에 닿을 수 없다.** 진입 성공 시 URL에 authuser 파라미터가 아예 안 붙는다(`?pli=1`만).
+## ★`authuser` 규칙 — 2026-07-30 정정 (예전 표현이 나를 잘못 이끌었다)
+
+**정확한 규칙: `authuser`는 "그 프로필에 이미 로그인된 계정들" 중에서만 고른다.**
+
+- 목표 계정이 그 프로필에 로그인돼 **있으면** → `authuser=N`으로 닿는다. **된다.**
+- 로그인돼 **있지 않으면** → authuser를 뭘로 줘도 못 닿는다. 그때만 프로필을 바꿔야 한다.
+
+2026-07-27에 "authuser는 소용없다"로 적어둔 건 **그날 Default 프로필에 ssky.park 하나만 로그인돼 있었기 때문**이지, authuser가 원리적으로 무력해서가 아니었다.
+
+**2026-07-30 실측 — 같은 프로필 안에서 계정이 갈렸다:**
+```
+adsense.google.com            → "nanumn.com@gmail.com은 애드센스 계정이 없습니다"  (authuser=0)
+adsense.google.com?authuser=1 → pub-6268517976287068 정상 진입 ✅              (info.nanumn)
+```
+이날 `C:\chrome-debug-profile` Default 에는 **nanumn.com(=0)과 info.nanumn(=1)이 동시에** 로그인돼 있었다. 옛 메모대로 "프로필을 바꿔라"만 믿었으면 이 한 줄짜리 해결을 놓쳤다.
+
+**판정 순서:** ① 그 프로필에 목표 계정이 로그인돼 있나(`myaccount.google.com` 또는 서비스의 계정 전환 화면) → ② 있으면 authuser 돌려보기 → ③ 없으면 그때 프로필 교체 or 로그인 요청.
+
+**서비스별로 기본 계정이 다를 수 있다** — 같은 프로필에서 Blogger는 info.nanumn을, 유튜브는 nanumn.com을 잡았다.
+
+**ChatGPT는 별개다** — openai.com 쿠키라 구글 로그인과 무관하고, 구글 계정을 추가해도 기존 세션이 밀려나지 않는다.
 
 CDP에서는 Profile 1 창이 **별도 target**으로 잡히므로, 그 target을 선택해 이동하면 열린다.
 
