@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: b09dd449-d149-4b1d-9d48-8552ad405f1c
-  modified: 2026-07-31T04:56:03.866Z
+  modified: 2026-07-31T05:25:30.097Z
 ---
 
 2026-07-31 04:00~08:00 세션. 재부팅 복구로 시작해 아투 파이프라인을 대수술했다.
@@ -70,4 +70,18 @@ metadata:
 - Flux 고질병 2개 — 선체 가짜 글자, 사람 혼입. 라이브에도 있음
 - `buildRelatedBlock`은 아직 작성자 라벨 사용(관련글 선택용, 발행 라벨과 무관)
 
-관련: [[reference_vram_contention_lm_vs_flux]] · [[feedback_report_length_short]] · [[feedback_ontime_publish_over_qa]] · [[reference_harness_change_ledger]]
+## ★★ 14:20 갱신 — 이후 일어난 일 (다음 세션은 여기부터 읽을 것)
+
+**쇼츠 유튜브 발행 완료**: https://www.youtube.com/shorts/lKqiAGAsgxY · PUBLIC · 84.69초 · 세로 썸네일(1080x1920, HTML+헤드리스크롬 직접 제작) 적용. 형 결재("발행하자") 후 클로가 직접 올림(담당 에이전트가 권한프롬프트+세션한도로 4시간 정지했었음). 재업로드 시도(에이전트가 65초 개선판으로 덮으려 함)는 QA 게이트 "하루1건·중복차단"이 막아 중복 안 생김 — 클로가 즉시 중단 지시.
+
+**14:00 세션 리셋 — 이틀 연속(07-30·07-31) 실패, 원인 규명·수정 완료**: `클로드 코드 디스코드 연결`(Highest 권한) vs `MoaSessionRestartDay`(Limited 권한) 격차로 일반권한 스크립트가 관리자권한 클로를 못 죽임(윈도우 보안 경계, 재시도 무의미). ★Task Scheduler LastResult는 계속 0(성공)으로 찍혀 — 스크립트가 abort해도 정상 종료하기 때문에 **시스템 자체가 실패를 못 드러내는 구조**였음. 형 승인 후 수정: `Set-ScheduledTaskPrincipal`로 RunLevel→Highest, `moa_session_reset.ps1`에 `moa_common.ps1` dot-source 추가(Send-MoaDiscord 실패알림도 같이 죽어있었음). DryRun 검증 완료. **실전 검증은 8/1 14:00 — 다음 세션이 로그로 확인할 것.**
+
+**전체 스케줄 12개 감사 완료**: 9개 정상, 1개 오늘 수리(위), **★MoaAtzShorts 06:30 오늘 자동실행은 exit=1로 실패**(낮에 손으로 고친 게 아직 자동 스케줄엔 반영 안 됨 — 진짜 검증은 **8/1 06:30**), MoaServerReboot·MoaSessionReset이 수·일 04:00 중복(무해하지만 미정리).
+
+**오늘 일지 완료**: `Obsidian/owenlab/70 Record/2026-07-31.md` 작성, `모아 자산 목록.md` 갱신, git push(c3c24c4) 완료.
+
+**에이전트 6개 전부 정리 완료**: atz-shorts-gate·atz-image-relevance·qwen-image-review·atz-autopublish·atz-label-fix·atz-gpt-autorun 전부 TaskStop. 형이 직접 지적해서 정리("종료시켜") — 일 끝난 뒤도 안 꺼진 채 토큰 태우고 있었음.
+
+**형 결재 대기 (누적, 급하지 않음)**: 쇼츠 자동발행 / 블로그 이미지 새 방식 전환(샘플 4장 보냄) / 사람 검출 게이트 / 썸네일 하단 여백에 사진 배치 / fp8 인코더 재측정(에이전트 한도로 미완) / MoaServerReboot 중복 정리.
+
+관련: [[reference_vram_contention_lm_vs_flux]] · [[feedback_report_length_short]] · [[feedback_ontime_publish_over_qa]] · [[reference_harness_change_ledger]] · [[feedback_report_while_delegating]]
