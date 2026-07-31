@@ -14,6 +14,7 @@
 - [★아투 환각 구조 수리 2026-07-27](project_atz_hallucination_fix_2026-07-27.md) — 근거 없이 정부기관 발언까지 창작하던 원인(푸터를 원문으로 긁고 "확보 성공"으로 기록) + 게이트 4중 방어 + LM PARALLEL 함정. 파이프라인 만질 때 이거부터
 - [GSC 리포트에 아투 추가 2026-07-26](project_gsc_atz_report_2026-07-26.md) — ★GSC sitemaps 단순합은 과다표기(236 vs 실제 179). lastSubmitted 90일 컷이 정답. 아투 속성 2개 공존 주의. 형 할 일 없음
 - [아투 이미지 4축 개편 + Pexels 도입 2026-07-26](project_atz_image_overhaul_2026-07-26.md) — 재개용. 형지적=기사마다 같은 그림(원인 image.mjs 하드코딩 7분기). 4축 배치·로고 허용·히어로 Pexels 14917510 확정. Pexels 함정(UA 403·인물혼입·사과) 기록
+- [★Kaggle 립싱크 영상 생성 성공](reference_colab_lipsync_feasibility_2026-07-31.md) — 코랩은 자동화 정책위반, Kaggle 브라우저조종으로 실제 생성 성공(2초/18분). 원인=Internet 스위치 off. 사진은 1장 크롭 필요(4컷 시트 넣으면 그대로 나옴)
 - [PPTX 강의자료 툴킷 + 파워포인트 설치됨](reference_pptx_deck_toolkit.md) — seminar/vibecoding-basic의 python-pptx 툴킷(deck_helpers+build_*). 2026-07-23 형이 PowerPoint 설치 → COM export로 실물 렌더 육안검증 가능(계산검증은 폴백). 인라인 굵게는 run 분리 필수
 - [이미지 모델 속도 실측 + ★취소된 VRAM 결론](reference_vram_contention_lm_vs_flux.md) — turbo가 schnell보다 5배 느림(이름으로 속도 판단 금지). ★"LM 상주가 라이브를 마비시킨다"는 라이브 반례 2건으로 **취소**됨 — 인과 단정 전 반례부터. 실제 확인된 경합은 우리 에이전트끼리
 - [Flux 이미지 파이프라인 노하우 2026-07](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 이미지 양산. 비율=EmptySD3Latent, Flux 글자버릇 대응, PPT 임베드 크면 JPG 재압축(16.5→2.2MB, 디스코드 8MB 한도)
