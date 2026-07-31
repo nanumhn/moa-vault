@@ -1,3 +1,4 @@
+- [★세션 저장 2026-07-31](project_session_2026-07-31_snapshot.md) — 재개용. **★19:30 자동발행 첫 실전은 리셋 이후 — 다음 세션이 지켜볼 것.** 블로그=GPT 전환·자동발행·라벨 2층 수정·쇼츠 90초 적용. 형 결재 4건. 클로 오답 4건
 - [★"실패했다" 말하기 전에 측정 도구부터 의심하라](feedback_verify_measurement_before_declaring_failure.md) — 형 지시 2026-07-30. GPT는 1,475자를 다 썼는데 내가 293자만 읽고 "잘렸다"고 보고. 틀린 진단 3연발로 하루를 태움. 되돌릴 수 없는 조치는 원인 확정 전 제안 금지
 - [★GPT 브라우저 조종 함정 8개](reference_gpt_browser_automation_pitfalls.md) — 실패 8건 중 7건이 GPT가 아니라 **내가 붙인 자동 장치**였다. 주문은 목적·자료·요구사항 3단으로. 검사를 붙일수록 그 검사가 새 실패를 만든다. ★긴 기사 ~300자 절단은 미해결
 - [★세션 저장 2026-07-30](project_session_2026-07-30_snapshot.md) — 재개용. **아투 글쓰기 GPT 이관 진행중(형 ChatGPT 로그인 대기)**. 광고 과다 수정 완료. 검수 게이트 3건 수정. 오늘 내 오답 5건
@@ -14,6 +15,7 @@
 - [GSC 리포트에 아투 추가 2026-07-26](project_gsc_atz_report_2026-07-26.md) — ★GSC sitemaps 단순합은 과다표기(236 vs 실제 179). lastSubmitted 90일 컷이 정답. 아투 속성 2개 공존 주의. 형 할 일 없음
 - [아투 이미지 4축 개편 + Pexels 도입 2026-07-26](project_atz_image_overhaul_2026-07-26.md) — 재개용. 형지적=기사마다 같은 그림(원인 image.mjs 하드코딩 7분기). 4축 배치·로고 허용·히어로 Pexels 14917510 확정. Pexels 함정(UA 403·인물혼입·사과) 기록
 - [PPTX 강의자료 툴킷 + 파워포인트 설치됨](reference_pptx_deck_toolkit.md) — seminar/vibecoding-basic의 python-pptx 툴킷(deck_helpers+build_*). 2026-07-23 형이 PowerPoint 설치 → COM export로 실물 렌더 육안검증 가능(계산검증은 폴백). 인라인 굵게는 run 분리 필수
+- [이미지 모델 속도 실측 + ★취소된 VRAM 결론](reference_vram_contention_lm_vs_flux.md) — turbo가 schnell보다 5배 느림(이름으로 속도 판단 금지). ★"LM 상주가 라이브를 마비시킨다"는 라이브 반례 2건으로 **취소**됨 — 인과 단정 전 반례부터. 실제 확인된 경합은 우리 에이전트끼리
 - [Flux 이미지 파이프라인 노하우 2026-07](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 이미지 양산. 비율=EmptySD3Latent, Flux 글자버릇 대응, PPT 임베드 크면 JPG 재압축(16.5→2.2MB, 디스코드 8MB 한도)
 - [GPT 이미지 크롬 자동조종 시스템](reference_gpt_image_chrome_system.md) — chrome-devtools로 ChatGPT Projects('이미지박스 YYYYMM') 조종해 이미지 생성. Flux와 병렬 2트랙. 셀렉터·estuary쿠키fetch저장·config(배치4/3분/하루20)·디버그프로필 로그인은 형만
 - [한글 텍스트별 이미지 도구 선택](reference_image_tool_by_korean_text.md) — 한글많은 것(인포그래픽·카드뉴스)=HTML렌더(로컬·무료·한글완벽) 1순위 or GPT / 그림감성=Flux·GPT / Flux는 한글 못씀. 형 확정 2026-07-25
@@ -27,6 +29,7 @@
 - [Discord formatting — fences + real newlines](feedback_discord_formatting.md) — use ``` code fences (not [code] tags) and real newline chars (not \n literal)
 - [Acknowledge before starting long work](feedback_acknowledge_first.md) — send a quick "받았어요, 시작할게요" reply first so user knows you're alive and acting
 - [Use polite Korean (존댓말)](feedback_speech_level.md) — user-facing Korean uses 해요체, not 반말; matches prior 클로 persona
+- [★보고는 짧게 — 3~4줄 + 형이 답할 것](feedback_report_length_short.md) — 형 지시 2026-07-31 "어렵다, 간략하게". 파일명·줄번호·내부용어 금지. 길어지면 내가 정리를 덜 한 것
 - [Answer first, analyze after](feedback_answer_first.md) — direct question → one-line answer first, then options/reasoning
 - [Node.js runtimes on this PC](reference_node_runtimes.md) — no system node; use bun (in PATH) or LM Studio bundled node.exe
 - [npx alternative for MCP](reference_npx_alternative.md) — MCP servers with `npx ...` fail here; re-register with `bun x ...`
@@ -37,6 +40,7 @@
 - [MOA LoRA + anime video weak](project_moa_lora_video_limit.md) — photo-trained LoRA + anime style + LTX 6GB ≠ good; need anime base model for anime video
 - [Naming — 클로 vs 모아](user_nickname_for_claude.md) — 클로=Discord nickname (private); 모아=CEO inside simulated company "모아 스튜디오". Never put 클로 in shareable artifacts
 - [Call the user 형 on Discord](user_calls_user_hyung.md) — out-of-simulation chat → 형, not 사장님 (that's the simulated CEO title only)
+- [★위임해도 소통은 내 몫](feedback_report_while_delegating.md) — 형 지시 2026-07-31. 직원이 조용하면 나도 조용해져 4시간 무응답(실제론 업로드가 안 돼 있었음). **직원 무응답 자체가 보고할 사건**. 답 없으면 내가 로그·원장을 직접 조회
 - [Discord 보고 간격 3-tier](feedback_reporting_cadence.md) — 마일스톤마다 + 10분 무음컷 + 이슈 즉시 보고
 - [회의·작업 중간 cancel 금지](feedback_no_mid_interrupt.md) — 시작한 회의/작업은 완료까지. 우선순위 바뀌어도 "중단" 옵션 제시 X
 - [Google OAuth 팝업으로](feedback_google_login_popup.md) — Google 로그인/업로드는 메인 창 리다이렉트가 아니라 팝업으로
