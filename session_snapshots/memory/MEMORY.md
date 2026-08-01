@@ -1,3 +1,7 @@
+- [★아투 보류큐 유실 + 정시발행 감시 신설](project_atz_held_queue_and_slot_monitoring_2026-08-01.md) — 미발행 원인은 재부팅 아니라 QA게이트 오탐+보류큐 소비자 부재(내 첫 추측 오답). 감시·cron 신설. 형결정 2건
+- [★아투 쇼츠 썸네일 첨부 누락 버그 수리](reference_atz_shorts_thumbnail_bug_2026-08-01.md) — publish.mjs 호출 시 --thumb 미전달로 전 자동쇼츠가 임의프레임 썸네일. 수정+백필 완료. 형 결정대기 2건(비공개영상·미커밋코드)
+- [reply를 placeholder 문구로 실수발송한 사고](feedback_never_send_placeholder_text.md) — 워치독 중 "placeholder" 텍스트를 그대로 형에게 발송. reply는 즉시발송, 드라이런 없음. 호출 전 text 내용 항상 확인
+- [★Discord 도중 de-allowlist 신규장애 2026-08-01](reference_discord_mid_session_deallowlist_2026-08-01.md) — 세션 재시작 없이 reply/fetch가 "channel not allowlisted"로 막힘. access.json 정상. 웹훅 폴백 우회 성공, 원인 미확정
 - [★세션 저장 2026-07-31](project_session_2026-07-31_snapshot.md) — 재개용. **★19:30 자동발행 첫 실전은 리셋 이후 — 다음 세션이 지켜볼 것.** 블로그=GPT 전환·자동발행·라벨 2층 수정·쇼츠 90초 적용. 형 결재 4건. 클로 오답 4건
 - [★"실패했다" 말하기 전에 측정 도구부터 의심하라](feedback_verify_measurement_before_declaring_failure.md) — 형 지시 2026-07-30. GPT는 1,475자를 다 썼는데 내가 293자만 읽고 "잘렸다"고 보고. 틀린 진단 3연발로 하루를 태움. 되돌릴 수 없는 조치는 원인 확정 전 제안 금지
 - [★GPT 브라우저 조종 함정 8개](reference_gpt_browser_automation_pitfalls.md) — 실패 8건 중 7건이 GPT가 아니라 **내가 붙인 자동 장치**였다. 주문은 목적·자료·요구사항 3단으로. 검사를 붙일수록 그 검사가 새 실패를 만든다. ★긴 기사 ~300자 절단은 미해결
