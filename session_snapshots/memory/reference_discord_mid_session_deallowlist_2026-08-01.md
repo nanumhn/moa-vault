@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: a5faaf90-9bc4-408d-9eba-7ef115b04f4c
-  modified: 2026-07-31T23:23:45.438Z
+  modified: 2026-08-03T13:09:59.181Z
 ---
 
 2026-08-01 새벽 워치독 cron 도중 발생. 그 직전까지(같은 세션 안에서) `mcp__plugin_discord_discord__reply`·`fetch_messages`가 정상 동작해 여러 번 성공적으로 발송/조회했는데, 이후 호출부터 **세션 재시작 없이** 아래 에러로 막힘:
@@ -37,3 +37,6 @@ curl -H "Authorization: Bot $TOKEN" "https://discord.com/api/v10/channels/<chann
 **쓰기는 여전히 안 됨**: reply도 동일하게 막혀서, 발송(특히 파일 첨부)은 계속 `moa_webhook_send.ps1` 또는 웹훅 multipart curl(`curl -F content=... -F file1=@path <webhook_url>`)로 우회해야 한다.
 
 관련: [[reference_discord_mcp_connect_fail]] · [[reference_discord_channel_plugin_conflict]] · [[reference_discord_send_glitch_and_tz]]
+
+## 재발 2026-08-03
+같은 세션 안에서 워치독 cron 도중 재발. 이번엔 fetch_messages와 reply **둘 다** 동일 에러로 막힘(8/1엔 읽기만 막혔었는지 기록이 불명확했는데, 이번엔 양쪽 다 확인). curl 직접조회로 놓친 형 메시지 없음을 확인하고, `moa_webhook_send.ps1 -Path <utf8 파일>`로 즉시 폴백 알림 발송 성공. 세션 재시작 없이 self-heal 되는지는 다음 관찰 필요 — 재시작이 유일한 확정된 복구법이라는 결론은 아직 유효.
