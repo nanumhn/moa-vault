@@ -1,128 +1,96 @@
-- [★아투 보류큐 유실 + 정시발행 감시 신설](project_atz_held_queue_and_slot_monitoring_2026-08-01.md) — 미발행 원인은 재부팅 아니라 QA게이트 오탐+보류큐 소비자 부재(내 첫 추측 오답). 감시·cron 신설. 형결정 2건
-- [★아투 쇼츠 썸네일 첨부 누락 버그 수리](reference_atz_shorts_thumbnail_bug_2026-08-01.md) — publish.mjs 호출 시 --thumb 미전달로 전 자동쇼츠가 임의프레임 썸네일. 수정+백필 완료. 형 결정대기 2건(비공개영상·미커밋코드)
-- [reply를 placeholder 문구로 실수발송한 사고](feedback_never_send_placeholder_text.md) — 워치독 중 "placeholder" 텍스트를 그대로 형에게 발송. reply는 즉시발송, 드라이런 없음. 호출 전 text 내용 항상 확인
-- [★Discord 도중 de-allowlist 신규장애 2026-08-01](reference_discord_mid_session_deallowlist_2026-08-01.md) — 세션 재시작 없이 reply/fetch가 "channel not allowlisted"로 막힘. access.json 정상. 웹훅 폴백 우회 성공, 원인 미확정
-- [★세션 저장 2026-07-31](project_session_2026-07-31_snapshot.md) — 재개용. **★19:30 자동발행 첫 실전은 리셋 이후 — 다음 세션이 지켜볼 것.** 블로그=GPT 전환·자동발행·라벨 2층 수정·쇼츠 90초 적용. 형 결재 4건. 클로 오답 4건
-- [★"실패했다" 말하기 전에 측정 도구부터 의심하라](feedback_verify_measurement_before_declaring_failure.md) — 형 지시 2026-07-30. GPT는 1,475자를 다 썼는데 내가 293자만 읽고 "잘렸다"고 보고. 틀린 진단 3연발로 하루를 태움. 되돌릴 수 없는 조치는 원인 확정 전 제안 금지
-- [★GPT 브라우저 조종 함정 8개](reference_gpt_browser_automation_pitfalls.md) — 실패 8건 중 7건이 GPT가 아니라 **내가 붙인 자동 장치**였다. 주문은 목적·자료·요구사항 3단으로. 검사를 붙일수록 그 검사가 새 실패를 만든다. ★긴 기사 ~300자 절단은 미해결
-- [★세션 저장 2026-07-30](project_session_2026-07-30_snapshot.md) — 재개용. **아투 글쓰기 GPT 이관 진행중(형 ChatGPT 로그인 대기)**. 광고 과다 수정 완료. 검수 게이트 3건 수정. 오늘 내 오답 5건
-- [★아투 광고 밀도 손잡이 = 애드센스 고급설정](reference_adsense_ad_density_controls.md) — 템플릿 아님. 최대개수·최소간격(역방향 슬라이더)·전면광고. 본문 안 4→2개 실측. ★CSS로 광고 숨기면 정책 위반
-- [★재부팅 복구 전면수리 + 실전테스트 2026-07-26](project_reboot_recovery_overhaul_2026-07-26.md) — 재부팅 직후 새 세션은 이거부터. **테스트 성공: T3(귀 연결) 48분→2분50초.** 근본원인=MCP 30초 타임아웃(→120초). T4는 boot.flag 삭제 시 마킹
-- [★매일 04시 재부팅 리셋 + 워치독 분리 2026-07-27](project_daily_reset_and_watchdog_2026-07-27.md) — 형 확정. 리셋=claude재시작이 아니라 **서버 재부팅**(자체 재시작 경로는 부트스트랩·프리웜 다 빠져 귀 닫힘). 워치독 07~03시 5분 / 03~07시 30분
-- [★한도는 주간이 먼저 찬다 + Fable은 딴 주머니](reference_usage_limit_weekly_is_binding.md) — 2026-07-28 /usage 실측: 세션 2% / **주간 85%**. 리셋해도 주간은 안 돌아온다. 무거운 건 `Agent(model:'fable')`로. 워치독 20분/60분으로 낮춤
-- [★조회된다 ≠ 권한 있다 (Blogger)](reference_blogger_getbyurl_is_not_ownership.md) — getByUrl은 공개면 남의 블로그도 된다. 소유 판정은 `view:'ADMIN'`(403이면 남의 것). 이걸 안 하고 "같은 계정"이라 보고했다가 형이 잡음
-- [★한도가 어디서 타는가 — 세션 비용 구조](reference_session_cost_structure.md) — 긴 세션 × 5분 워치독이 주범(컨텍스트 재읽기 98.5%, 하루 2.2억 토큰). 한도는 계정 공용. 워치독 시간대 차등 적용됨. MoaSessionReset 활성화는 형 결정 대기
-- [★세션 저장 2026-07-27 (리부팅 전)](project_session_2026-07-27_snapshot.md) — 재개용. 형 대기항목 6개·한시우 미완작업·오늘 실수 5건 교훈. ★09:18 GSC 첫발송 점검 cron 재등록 필요. 한도는 계정 공용(서브에이전트별 아님)
-- [빌드 로그 파이프 = SIGPIPE 함정](reference_build_pipe_sigpipe_trap.md) — `bun run build | head`는 빌드를 중간에 죽인다. prerender-manifest.json 미생성 → next start가 전 라우트 500. 500을 코드 버그로 오진 금지, 로그는 파일로 받고 grep
-- [★blog.k-saju.me 애드센스 + 글 스펙 개편 2026-07-27](project_ksaju_blog_adsense_2026-07-27.md) — 심사 제출 완료(계정=아투와 동일 ca-pub). ★내일 08:10 새 스펙 첫 실전 지켜볼 것. 글감 91개 확보(8/3 소진 해소). 형 미결정=글쓰기 모델
-- [★아투 환각 구조 수리 2026-07-27](project_atz_hallucination_fix_2026-07-27.md) — 근거 없이 정부기관 발언까지 창작하던 원인(푸터를 원문으로 긁고 "확보 성공"으로 기록) + 게이트 4중 방어 + LM PARALLEL 함정. 파이프라인 만질 때 이거부터
-- [GSC 리포트에 아투 추가 2026-07-26](project_gsc_atz_report_2026-07-26.md) — ★GSC sitemaps 단순합은 과다표기(236 vs 실제 179). lastSubmitted 90일 컷이 정답. 아투 속성 2개 공존 주의. 형 할 일 없음
-- [아투 이미지 4축 개편 + Pexels 도입 2026-07-26](project_atz_image_overhaul_2026-07-26.md) — 재개용. 형지적=기사마다 같은 그림(원인 image.mjs 하드코딩 7분기). 4축 배치·로고 허용·히어로 Pexels 14917510 확정. Pexels 함정(UA 403·인물혼입·사과) 기록
-- [★Kaggle 립싱크 영상 생성 성공](reference_colab_lipsync_feasibility_2026-07-31.md) — 코랩은 자동화 정책위반, Kaggle 브라우저조종으로 실제 생성 성공(2초/18분). 원인=Internet 스위치 off. 사진은 1장 크롭 필요(4컷 시트 넣으면 그대로 나옴)
-- [PPTX 강의자료 툴킷 + 파워포인트 설치됨](reference_pptx_deck_toolkit.md) — seminar/vibecoding-basic의 python-pptx 툴킷(deck_helpers+build_*). 2026-07-23 형이 PowerPoint 설치 → COM export로 실물 렌더 육안검증 가능(계산검증은 폴백). 인라인 굵게는 run 분리 필수
-- [이미지 모델 속도 실측 + ★취소된 VRAM 결론](reference_vram_contention_lm_vs_flux.md) — turbo가 schnell보다 5배 느림(이름으로 속도 판단 금지). ★"LM 상주가 라이브를 마비시킨다"는 라이브 반례 2건으로 **취소**됨 — 인과 단정 전 반례부터. 실제 확인된 경합은 우리 에이전트끼리
-- [Flux 이미지 파이프라인 노하우 2026-07](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 이미지 양산. 비율=EmptySD3Latent, Flux 글자버릇 대응, PPT 임베드 크면 JPG 재압축(16.5→2.2MB, 디스코드 8MB 한도)
-- [GPT 이미지 크롬 자동조종 시스템](reference_gpt_image_chrome_system.md) — chrome-devtools로 ChatGPT Projects('이미지박스 YYYYMM') 조종해 이미지 생성. Flux와 병렬 2트랙. 셀렉터·estuary쿠키fetch저장·config(배치4/3분/하루20)·디버그프로필 로그인은 형만
-- [한글 텍스트별 이미지 도구 선택](reference_image_tool_by_korean_text.md) — 한글많은 것(인포그래픽·카드뉴스)=HTML렌더(로컬·무료·한글완벽) 1순위 or GPT / 그림감성=Flux·GPT / Flux는 한글 못씀. 형 확정 2026-07-25
-- [모아 열린작업 2026-07-24](project_moa_open_threads_2026-07-24.md) — 아투 뉴스자동화·쇼츠v2·로고4종·주간전략리포트. ★형 결정대기 3개(리포트톤/로고선택/Blogger GCP). 재개용
-- [Mark recommended option in choice lists](feedback_recommendation_marker.md) — append "(내가추천)" / "(I recommend)" to your preferred option in any choice list
-- [Plugin reload doesn't pick up source edits](feedback_plugin_reload.md) — after editing cached plugin .ts files, recommend full session restart, not /reload-plugins
-- [Ask via Discord reply, not AskUserQuestion](feedback_discord_questions.md) — when chat source is Discord, the UI question prompt is invisible to them; ask in the reply text instead
-- [Always use reply tool for Discord](feedback_discord_reply_tool.md) — conversation text never reaches Discord; every reply MUST go through mcp__plugin_discord_discord__reply
-- [Verify reply delivery](feedback_verify_reply_delivery.md) — 형 요청 검증루틴: 진짜 reply 도구로만 + sent(id) 확인 + 의심시 fetch 교차확인 후 재발송
-- [당근 모임 + 열린 스레드 2026-07](project_karrot_moim_and_open_threads.md) — "AI 뚝딱 사랑방" 당근모임 개설(첫번개 7/18)·이미지스타일 판단대기·세미나랜딩 v2·GSC색인 모니터. 재개용
-- [Discord formatting — fences + real newlines](feedback_discord_formatting.md) — use ``` code fences (not [code] tags) and real newline chars (not \n literal)
-- [Acknowledge before starting long work](feedback_acknowledge_first.md) — send a quick "받았어요, 시작할게요" reply first so user knows you're alive and acting
-- [Use polite Korean (존댓말)](feedback_speech_level.md) — user-facing Korean uses 해요체, not 반말; matches prior 클로 persona
-- [★보고는 짧게 — 3~4줄 + 형이 답할 것](feedback_report_length_short.md) — 형 지시 2026-07-31 "어렵다, 간략하게". 파일명·줄번호·내부용어 금지. 길어지면 내가 정리를 덜 한 것
-- [Answer first, analyze after](feedback_answer_first.md) — direct question → one-line answer first, then options/reasoning
-- [Node.js runtimes on this PC](reference_node_runtimes.md) — no system node; use bun (in PATH) or LM Studio bundled node.exe
-- [npx alternative for MCP](reference_npx_alternative.md) — MCP servers with `npx ...` fail here; re-register with `bun x ...`
-- [아투 목차 링크 복구 2026-07-27](reference_atz_toc_anchor_fix.md) — 테마가 제목에서 id 뽑을 때 한글을 전부 버려 링크가 죽음(`\w`만 남김). 해결=sec-N id 부착. 181편 복구. ★번호 붙이기(B)는 목차에 번호 두 번, list-style:none은 안 먹힘(counter라서) — 둘 다 스크린샷에서만 드러남
-- [구글 계정 2개 용도 구분](reference_google_accounts_by_purpose.md) — ★Default=ssky.park(GPT이미지) / **Profile 1=info.nanumn(아투 소유)**. 아투 Blogger 작업은 Profile 1 창에서. ★authuser 바꿔봐야 소용없다(쿠키 저장소가 분리) — 프로필을 바꿔라. 2026-07-27 2시간 소모
-- [Chrome debug MCP setup](reference_chrome_debug_setup.md) — chrome-devtools MCP is attach-mode; Claude launches Chrome on 9222 with profile C:\chrome-debug-profile
-- [미디어 스택 현황 2026-07 + 개명](reference_media_stack_2026-07.md) — 스택감사(base는 최신수준, 갭=얼굴보존·해부학·회의LLM). 무료 quick win 3(FaceDetailer·PuLID·Qwen3) GPU여유시 적용. 지브리 LoRA 도입. ★강나래→강나라 개명
-- [MOA LoRA + anime video weak](project_moa_lora_video_limit.md) — photo-trained LoRA + anime style + LTX 6GB ≠ good; need anime base model for anime video
-- [Naming — 클로 vs 모아](user_nickname_for_claude.md) — 클로=Discord nickname (private); 모아=CEO inside simulated company "모아 스튜디오". Never put 클로 in shareable artifacts
-- [Call the user 형 on Discord](user_calls_user_hyung.md) — out-of-simulation chat → 형, not 사장님 (that's the simulated CEO title only)
-- [★위임해도 소통은 내 몫](feedback_report_while_delegating.md) — 형 지시 2026-07-31. 직원이 조용하면 나도 조용해져 4시간 무응답(실제론 업로드가 안 돼 있었음). **직원 무응답 자체가 보고할 사건**. 답 없으면 내가 로그·원장을 직접 조회
-- [Discord 보고 간격 3-tier](feedback_reporting_cadence.md) — 마일스톤마다 + 10분 무음컷 + 이슈 즉시 보고
-- [회의·작업 중간 cancel 금지](feedback_no_mid_interrupt.md) — 시작한 회의/작업은 완료까지. 우선순위 바뀌어도 "중단" 옵션 제시 X
-- [Google OAuth 팝업으로](feedback_google_login_popup.md) — Google 로그인/업로드는 메인 창 리다이렉트가 아니라 팝업으로
-- [Moa Studio Phase memo](project_moa_phase_memo.md) — 미래 기능 백로그를 카테고리별로 모아서 묶음 릴리즈로 진행
-- [Pipeline progress 2026-05-15](project_pipeline_progress.md) — End-to-End 자동화 stages 1~3 완료 상태, audioUrl 자동회수가 1순위 막힘, Chrome DevTools MCP 셋업 중
-- [오늘의 개발용어 코너](feedback_daily_dev_term.md) — 새 용어 등장 시 깨알 설명 한 줄, 너무 자주는 X
-- [agent-town 픽셀 오피스 레퍼런스](reference_agent_town.md) — 조직 비주얼화 목표 방향(Phaser RPG 오피스). 라이선스 없음 주의, 에셋은 무료팩 대체
-- [AI 자율 회사 OS 비전](project_autonomous_org_vision.md) — 장기 방향: 프로젝트 지시→총괄 할당→자율 실행→비서 Discord 보고→직원 지식 학습/자기개선
-- [Autonomy delegation 위임 규칙](feedback_autonomy_delegation.md) — "결정은 너가, 결과물만 결재" 본격 모드. 추천안 자동 채택, 자기학습 자동, 결재 보고는 결과만
-- [프로젝트2: 가족드라마 12부작](project_drama_12_family.md) — 자율 OS 첫 검증 프로젝트. 페이즈1=기획 한바퀴 MVP, 페이즈2=파일럿, 페이즈3=양산
-- [프로젝트3: 글로벌 사주 서비스](project_3_saju_global.md) — 월 1000만원 매출 핵심 라인. PayPal 결제 + 동양식 사주 글로벌 진출. 2026-06-01 형 지시
-- [백업: GitHub 원격](reference_github_backup.md) — moa-studio/clo_studio 둘 다 nanumhn/* main 브랜치로 백업. 커밋 후 git push로 갱신
-- [로컬 하드웨어 사양 + 모델](reference_local_hardware_spec.md) — RTX 3060 Laptop 6GB VRAM 제약. 회의모델 qwen2.5-7b-instruct Q4. SGLang/12B 보류 이유
-- [회의 컨텍스트 그라운딩](project_meeting_context_grounding.md) — 팀 사전자료에 라인 정체성 없으면 stale 토픽으로 드리프트(사주→음악 오인 사례). 팀 json에 라인 한줄정의 박기
-- [LM Studio 출력 파싱 400 버그](reference_lmstudio_parse400.md) — qwen 일부 산출물에서 "Failed to parse input" 400(모델은 정상 생성). regen 재시도 or 후처리 직접 작성
-- [도메인 가용성 확인법](reference_domain_availability_check.md) — rdap.org는 .com만 신뢰(.co/.ai/.app 오판). ISP가 NXDOMAIN을 203.248.252.2로 리다이렉트해 DNS도 못 믿음. 비-.com은 레지스트라 검색이 유일 확실
-- [종착점부터 역산해 기획](feedback_design_from_endpoint.md) — ★형 지시 2026-07-27. 새 자산은 "어떻게 돈 버나→관문 합격기준→산출물 스펙→게이트" 순으로 정하고 시작. 블로그 44편·아투 186건 쌓고 나서 요건 미달 발견한 사고
-- [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴/공포마케팅 금지, 결제유도 꼼수 X. 기능마다 "user가 뭐가 좋아지나" 먼저. 형 반복 강조
-- [k-saju 라이브 배포](project_ksaju_live.md) — k-saju.me 라이브(Vercel+Neon+PayPal). Vercel 자동배포 자주 누락→빈커밋 재트리거. 로컬 LLM/ComfyUI는 Vercel서 접근불가→자산 사전생성
-- [harness 수익화 레이어](project_harness_revenue_layer.md) — 구축완료: CSO 감독자+growth/sales/data-finance 4에이전트 + revenue-review/finance-dashboard. 월 1,000만원 주간 갭 루프
-- [k-saju 메일 세팅](reference_ksaju_email_setup.md) — support@k-saju.me 라이브: ImprovMX(받기)+Brevo SMTP(보내기) 둘 다 무료, Gmail 연동. SPF+DKIM+DMARC 적용
-- [n8n 바이럴 마케팅 자동화](project_n8n_viral_marketing.md) — 형 결정으로 로컬 n8n 도입(Docker, 포트 5678, 볼륨 n8n_data). 데일리 사주카드 자동생성 워크플로우 예정
-- [git push wincredman 에러 → gh 우회](reference_owenlab_git_push_gh_credential.md) — 에이전트 셸에서 GCM이 credential store 접근 불가. `-c "credential.helper=!gh auth git-credential"`로 push (2026-07-29 검증)
-- [Docker 자격증명 헬퍼 깨짐](reference_docker_cred_helper_broken.md) — 내 셸 docker pull은 logon-session 에러로 막힘, 이미지 받기는 형이 ! 로 직접 실행. docker ps/logs/exec는 내 셸 OK
-- [모아 정기검사 헬스체크](reference_moa_healthcheck.md) — Windows 작업 스케줄러 MoaHealthCheck(하루 3회 9/13/17 KST), C:\Users\user\.moa\ 스크립트+config. 사이트 추가는 config 한 줄. PS5.1은 UTF-8 BOM 필수
-- [검증 전 성급한 경보 금지](feedback_verify_before_alarm.md) — 고장/변경 단정 전 2개+ 근거 교차검증, 관측과 추측 분리. 재시작 직후 로그로 '활동 없음' 단정 금지(로그 회전)
-- [blog.k-saju.me 애드센스 블로그](project_blog_ksaju.md) — k-saju SEO 유입 + 애드센스. Next.js+MDX 빌드완료, GitHub push·Vercel 배포·n8n 자동포스팅 연결 대기 중
-- [n8n 인스타 포스팅 Meta 차단 진단](reference_n8n_ig_meta_block.md) — n8n 실행에러 sqlite 진단법 + 봇 자동포스팅이 Meta 개발자계정 "비정상 활동"으로 막히는 패턴(시각 랜덤화로 예방)
-- [모아 열린 작업 스냅샷 2026-06-24](project_moa_open_threads.md) — Gumroad 결제 go-live 체크리스트·인스타 Meta차단·실버 트롯드라마 블로그·신규사업 보류. 재시작 후 재개용
-- [세션 2026-06-25 도구설치](project_session_2026-06-25_tooling.md) — 플러그인4종 전역설치 완료 + caveman(OFF 대기)·remotion(미커밋)·node(설치중) 미완. 재시작 후 재개용
-- [플러그인 설치 절차/함정](reference_plugin_install_method.md) — GitHub→Claude Code 플러그인 전역설치법, EBUSY temp_git 정리, 한번에 한줄 규칙
-- [통감사 2026-06-25 + KPI교정](project_audit_2026-06-25_revenue_ignition.md) — 월 목표 2,000만원(1천만 아님, 형확정). 조직95/설계90/실측0, 병목=첫 매출 점화 한 곳
-- [형에게 운영 시키지 마라](feedback_hyung_decides_not_ops.md) — 형은 결정·결재만, 서버·코드·배포·설정은 다 클로가 직접. 부탁은 형만 가능한 것(계정·결제·비밀키)만
-- [블로커는 공유하고 같이 풀기](feedback_share_blockers_cosolve.md) — 한계로 막히면 숨기지 말고 즉시 공유+대안 제시, 투자/우회는 형이 결정
-- [긴 작업은 백그라운드로](feedback_background_long_tasks.md) — 이미지·영상 생성·다운로드·빌드는 run_in_background로, foreground로 잡아 형 회신 막지 말 것
-- [발행은 이미지와 함께](feedback_publish_with_images.md) — 블로그/콘텐츠는 글만 먼저 띄우지 말고 이미지까지 채워 한 번에 발행. 이미지 자리 0개가 발행 완료 기준
-- [낯선 절차는 이유까지 디테일 안내](feedback_explain_unfamiliar_steps.md) — 형이 처음 하는 것은 단계+'왜 이 순서인지'+함정까지 풀어서. 형이 명시 호평
-- [디스코드 발송 누락 + 타임스탬프 UTC](reference_discord_send_glitch_and_tz.md) — reply가 sent여도 빠른 연속발송 시 간헐 누락(fetch로 확인·묶어보내기). ts는 UTC라 KST는 +9
-- [클로는 위임, 직원이 실행](feedback_clo_orchestrates_agents_execute.md) — 클로=대화유지·종합·보고·상태동기화만. 실작업(코드·점검·생성·수정)은 본부장 백그라운드 위임. 형 강조(!!!)
-- [검수 게이트 거쳐 보고](feedback_qa_gate_before_report.md) — 본부장 산출물은 형 보고 전 서지안(qa-lead-jian) 독립검수 필수. 자기검증≠독립검수. 빠른 흐름에서 건너뛰지 말 것(2026-07-08 형 지적)
-- [모아 인플루언서화 전략](project_moa_influencer.md) — build-in-public로 모아를 콘텐츠 브랜드로. 주력=유튜브쇼츠+스레드·국내먼저, 얼굴전략B(화면중심·클로비노출). 세미나·k-saju 상단깔때기. 형 결정대기
-- [신규사업: AI 1인회사 세미나](project_ai_seminar_business.md) — 형 강사, 클로+팀 제작. 무료웨비나→25만 본강의→구축대행 3단. 차별점=진짜 돌아가는 모아를 라이브 시연. 형 결정대기(온라인/가격)
-- [모아 바이브코딩 디스코드 셋업](project_moa_community_setup.md) — 커뮤니티 서버 실시간 구축중(2026-07-08). STEP1~4-2(서버·채널9·역할3·💬게이팅) 완료, ★재개="모아 바이브코딩 셋업 이어서"→📢시작하기 권한부터→봇초대→온보딩→규칙게시→소프트오픈. 고급멤버 로드맵. 발송글리치로 중단
-- [데일리카드 날짜버그+콘텐츠분업원칙](reference_daily_card_image_date_bug.md) — 날짜고착버그 수정(CLOSED). ★카드=심플 한줄/인스타캡션=3~4줄 리딩+CTA 분업(카드에 내용 욱여넣기 금지, 캡션에 넣기). CTA="What do your own Four Pillars say?". ★n8n Code노드 쉘heredoc 편집금지·실엔진실행 검증필수
-- [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→.js파일 유닛테스트→python json.dumps 라운드트립 주입→import(비활성됨)→update active→docker restart→export재검증. ★MSYS_NO_PATHCONV=1 없으면 docker exec /tmp 경로 깨짐. blogAutoPost001 발행전 품질게이트 신설(2026-07-08)
-- [디스코드 두절 1순위 원인 — fakechat 충돌](reference_discord_channel_plugin_conflict.md) — fakechat이 같이 켜져있으면 --channels 무시하고 채널 가로챔. 시작알림은 webhook이라 MCP 죽어도 옴(오판 주의)
-- [Discord MCP 연결실패 — 원인확정](reference_discord_mcp_connect_fail.md) — ★근본원인=플러그인 server.ts가 login 1회 실패에 process.exit(1)→MCP 동반 사망(재부팅 직후 재현). bun install은 반증됨. 복구=세션 재시작, 임시발신=웹훅
-- [부트스트랩 --channels 인자순서 버그](reference_bootstrap_channels_arg_order.md) — 재부팅 창이 "--channels entries must be tagged"로 즉사하면 초기 프롬프트를 --channels 앞으로 옮겨라(2026-07-19 수정)
-- [재부팅 자동복구 라이브 테스트 2026-07-18](project_reboot_recovery_live_test.md) — 재부팅 후 돌아온 세션은 session_boot.flag 확인→fetch_messages 회수→형에게 "복구 성공" 인사부터. 재부팅복구 3종 구축 완료
-- [n8n credential 마이그레이션+인증검증](reference_n8n_credential_migration.md) — HTTP Request 노드 평문토큰→Header Auth credential 참조 전환법. 인증검증은 webhook 임시워크플로우+읽기전용 GET(execute CLI는 5679 broker 충돌). 401=토큰무효/403=스코프
-- [★세션 저장 2026-07-29](project_session_2026-07-29_snapshot.md) — 재개용. 형 대기 3건(클로2 토큰·리셋 권한·아투는 쇼케이스 확정). 오늘 실수 4건. 아투 코드 미커밋
-- [★아투 창작의 발원지 찾음 2026-07-29](project_atz_fabrication_root_cause_2026-07-29.md) — 원인=확장 프롬프트가 산업 5칸을 이름까지 불러줌 + 분량 하향이 함수에 전달 안 됨(방어막이 한 번도 작동 안 함). 라이브 5편 복구·회귀테스트 신설. ★수치 게이트가 기념사엔 창작을 유도함(미해결)
-- [★Blogger posts.update는 제목·라벨을 지운다](reference_blogger_update_wipes_fields.md) — 2026-07-29 라이브 사고. update=전체치환, patch=부분갱신. 진짜 원인은 기존 update-post.mjs 놔두고 즉석 스크립트를 짠 것. 수정 후엔 title·labels·status 같이 재조회
-- [★아투 유튜브 채널 경제성 실측](reference_atz_youtube_channel_economics.md) — 광고수익은 문턱 넘어도 월 5~33만원(산수 안 됨). 24만은 2025년 봄 자산이고 98%가 거기서 나옴. 값어치=B2B 쇼케이스. 조회 1,558회당 구독 1명. yt-analytics 스코프 없음
-- [★유튜브 Inauthentic 정책 = 우리 쇼츠 파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 2025-07-15 개정. 기사→TTS→스톡슬라이드→템플릿이 수익배제 정의에 부합. 회피축=AI여부 아니라 "고유 관점". 아투 각도전환이 곧 회피설계. 쇼츠 실측 901/1543/247회·댓글 0
-- [★포기 제안 금지 — 성공할 때까지](feedback_no_giving_up.md) — 형 지시 2026-07-28. "포기를 권합니다/남는 게 적어요/내일 하죠" 금지. 막히면 다음 수를 들고 와라. 하루 2번 걸림(GPT비교·첫프레임)
-- [★거짓은 담지 않는다 + 더블체크](feedback_no_falsehood_double_check.md) — 형 지시 2026-07-28. 멈추지도 말고 거짓도 싣지 마라(못 쓰면 비운다). 목표는 "잘 빼기"가 아니라 "뺄 게 없는 글". ★완료 보고는 재조회 값으로만 — 같은 날 "했다≠됐다"로 3번 틀림
-- [★정시 발행 > 검수](feedback_ontime_publish_over_qa.md) — 형 지시 2026-07-28. 발행을 막는 건 사실오류·법적문제·낚시뿐, 미관 결함은 올리고 보정. 쇼츠 자동공개는 무수정 승인 3회 연속이면 전환(현재 0/3)
-- [★답하기 전 로그·원장부터 뒤져라](reference_moa_logs_and_ledgers.md) — 형 지시 2026-07-27. 질문유형별 조회처 표(로그17+원장13). "쇼츠 없음" 오답이 발행원장 30초면 잡혔을 건. 순서=①우리기록 ②반례 ③단정
-- [★원인 말하기 전 반례부터](feedback_find_counterexample_first.md) — 형 지시 2026-07-27(하루 2번 오진). "A 때문"이라 말하려면 "A인데 안 그런 경우"를 먼저 찾아라. 못 찾았을 때만 단정. 표본 2~3개로 전체 말하지 말고 전수 스캔
-- [Cite sources for web/external facts](feedback_cite_sources.md) — 웹 검색·외부 수치 보고엔 항상 출처 링크 첨부. 형 명시 호평·상시 요청
-- [인스타 캐러셀 자동화 검토·흡수](project_insta_carousel_automation.md) — 9후킹공식 흡수완료(검수PASS)·페르소나프리셋. Higgsfield 무료테스트(형가입) 대기 → nano_banana_pro 한글정확도+장당크레딧 측정
-- [Eco Sort 분리수거 퍼즐게임](project_eco_sort_game.md) — 형 신규 아이디어(2026-07-20). 버스잼류+쓰레기분리수거 테마. 프로토 완성(D:\Develop\eco-sort, bun serve 5178)·에셋12종 로컬생성$0. 형 플레이 피드백 대기→사운드/별점→Capacitor AOS출시
-- [검증은 싼 것부터](feedback_cheap_check_first.md) — 예/아니오 질문을 비싼 실행으로 묻지 마라(젬마 50분·SadTalker 2시간 사례). 확인→품질 순서. 번복비용·중단기준 숫자화 포함
-- [검증된 사실만 보고](feedback_verified_facts_only.md) — ★형 지시(2026-07-21). [확인]/[보고받음]/[추측] 표기, 관측과 해석 분리. 오보 8건 + **2026-07-27 추가: 로컬git≠라이브·curl 쿠키자·평균≠상한·헤지는 검증 아님·축약 시 요약↔본문 한정어 대조**
-- [립싱크 스택 선택기준 2026-07](reference_lipsync_stack_2026-07.md) — ★정지이미지=SadTalker/영상=LatentSync(도구-입력 미스매치가 근본원인). lips_expression=개구진폭(기본1.5/최대3.0). 출력PNG에 워크플로우 임베드됨. 오진 4건 기록
-- [MCP 미부착 복구 2026-07-22](project_session_2026-07-22_mcp_recovery.md) — 재부팅 후 discord MCP 안 붙음. 플러그인은 정상(수동 실행 확인) → 세션 재시작이 유일 복구. 임시발신=moa_webhook_send.ps1
-- [세션 저장 스냅샷 2026-07-21](project_session_2026-07-21_snapshot.md) — 회신도구 씹힘으로 형이 세션 재시작 지시. 재시작 후 재개용 열린작업(블로그수정완료·젬마교체권장·립싱크재생성·게임Phaser·얼굴팩). ★재시작 후 복구인사부터
-- [플러그인 cache vs marketplace 경로](reference_plugin_cache_vs_marketplace.md) — MCP는 plugins/cache/<ver>/에서 실행. marketplace 폴더 보고 오진한 사례(2026-07-22)
-- [하네스 변경 원장](reference_harness_change_ledger.md) — 스킬·cron 변경은 "넣기로 했다"로 끝내지 말고 `_workspace/harness-pending.md`에. 주간 리포트가 매주 점검. 결정만 있고 실행이 없어 다음 사고까지 잠든 사례
-- [MoaMcpGuard 귀닫힘 파수꾼](reference_mcp_guard_watchdog.md) — claude 살고 MCP만 죽은 상태를 밖에서 10분마다 잡아 재시동. -SimulateDeaf/-DryRun로 안전검증
-- [★아투 색인 전수감사 2026-07-28](project_atz_indexing_audit_2026-07-28.md) — "색인 안 붙는다"는 전제가 틀렸다. 크롤되면 97% 색인, 미색인 38편은 크롤 대기. 진짜 병목은 노출 0. URL Inspection 전수 스캔법(languageCode=en-US 필수)
-- [아투 원장 URL ≠ 라이브 URL](reference_atz_pipeline_live_url_truth.md) — state.json published 7건 중 2건이 404(공개 후 DRAFT 되돌림). 링크·검증은 `bun list-live.mjs` 실측으로. posts.get은 view:ADMIN 없으면 DRAFT를 삭제로 오진
-- [아투 옛글 원문근거 재수집법](reference_atz_source_refetch_for_audit.md) — 07-27 이전 글은 sources.txt 없음. GNews RSS는 JS렌더라 못 뚫음 → 헤드라인 웹검색으로 같은 wire 실은 타매체에서 회수. ★페이지 전체를 근거로 쓰면 사이드바 때문에 다 "근거 있음"이 된다
-- [★아투 게이트 맹점 — 평서문 창작은 통과](reference_atz_gate_blindspot_plain_claims.md) — qa-gate는 인용·숫자만 대조. 평서문 주장으로 쓴 창작은 원리적으로 못 잡는다. 쇼츠 auditScript도 같은 맹점(블로그와 별개 경로라 따로 고쳐야 함). ★"근거가 잘렸다"는 진단은 이후 정정됨 → [[reference_atz_evidence_never_reached_model]] (애초에 안 들어갔다)
-- [★아투 고유관점 게이트 + 유튜브 정책 2026-07-28](project_atz_originality_policy_2026-07-28.md) — Inauthentic Content 판정축=고유 관점 유무. originality-gate 구현(5검사·15/15) ★run.mjs에 **계측 모드로 배선 완료**(D=매체귀속만 차단, 나머지는 점수만 기록 → 06:00 안 죽는 것 dry-run 실증). 전환조건=통과율 3회 연속 100%. 라이브 8편 중 합격 1편이었고 그건 사람이 고친 것
-- [★테스트 실행이 형에게 새면 안 된다](feedback_test_runs_must_not_reach_user.md) — --dry가 외부 발송을 막아줄 거라 가정하지 마라. 아투 dry-run이 프리뷰카드+큐레이션로그를 형 채널로 발송(2026-07-28, 같은 날 k-saju도). 테스트 산출물 임의 삭제도 금지 — 조사 증거였다
-- [★아투 원문이 모델에 안 들어가고 있었다](reference_atz_evidence_never_reached_model.md) — LM_PARALLEL=4 하드코딩(실제 1)이 근거 예산을 0으로 만들어 제목만 보고 기사를 써 왔다. 문단복제·고유명사깨짐의 진짜 원인. 런타임값을 추정해 상수로 굳히지 마라
-- [쇼츠는 블로그 창작을 물려받는다](reference_atz_shorts_inherit_blog_fabrication.md) — 자막을 블로그 본문과 대조하면 창작이 통과. 기준은 out/*_sources.txt. auditClaims 신설(기관행위만 차단, auditScript는 throw라 분리). 쇼츠 프롬프트만 고쳐선 못 막고 상류=블로그
-- [★아투 승인카드는 아투 채널이 정답](reference_atz_shorts_approval_channel.md) — 형 DM 아니다. 내가 박은 OWNER_CHANNEL_ID 경고를 검증 없이 인용해 "배선 비었다"고 오보. 채널은 웹훅 GET으로 channel_id 찍어 확인. 진짜 결손은 영상 미첨부(→makeWebCopy)
+- [★아투 쇼츠 자동발행 근본원인 3개 수정 2026-08-04](project_atz_shorts_autopublish_fix_2026-08-04.md) — 8/1~8/4 4일 연속 승인대기였던 원인(따옴표파싱·폴백제목절단·키워드불일치) 수정. 검증=8/5 06:30 대기, push 결재대기
+- [★아투 보류큐 유실 + 정시발행 감시 신설](project_atz_held_queue_and_slot_monitoring_2026-08-01.md) — 원인은 재부팅 아니라 QA게이트 오탐+소비자 부재. 감시·cron 신설
+- [★아투 쇼츠 썸네일 첨부 누락 버그 수리](reference_atz_shorts_thumbnail_bug_2026-08-01.md) — publish.mjs에 --thumb 미전달로 전 쇼츠가 임의프레임 썸네일. 수정+백필 완료
+- [reply를 placeholder 문구로 실수발송](feedback_never_send_placeholder_text.md) — reply는 즉시발송·드라이런 없음. 호출 전 text 내용 항상 확인
+- [★Discord de-allowlist 신규장애 2026-08-01](reference_discord_mid_session_deallowlist_2026-08-01.md) — 세션 안 죽었는데 reply/fetch 막힘. 웹훅 폴백 우회, 원인 미확정
+- [★측정 도구부터 의심](feedback_verify_measurement_before_declaring_failure.md) — 293자만 읽고 "잘렸다" 오진(실제 1,475자). 원인 확정 전 되돌릴 수 없는 조치 제안 금지
+- [★GPT 브라우저 함정 8개](reference_gpt_browser_automation_pitfalls.md) — 실패 8건 중 7건이 내가 붙인 자동 장치가 원인. 검사를 붙일수록 새 실패 생김
+- [아투 광고밀도 = 애드센스 고급설정](reference_adsense_ad_density_controls.md) — 최대개수·최소간격(역방향)·전면광고. CSS로 숨기면 정책 위반
+- [★재부팅 복구 전면수리 2026-07-26](project_reboot_recovery_overhaul_2026-07-26.md) — 근본원인=MCP 30초 타임아웃(→120초). T3 48분→2분50초
+- [★매일 04시 재부팅 + 워치독 분리](project_daily_reset_and_watchdog_2026-07-27.md) — 리셋=서버 재부팅(자체재시작은 귀닫힘). 워치독 낮5분/밤30분
+- [★한도는 주간이 먼저 참](reference_usage_limit_weekly_is_binding.md) — 세션2%/주간85%. 리셋해도 주간은 안 돌아옴. 무거운 건 fable 모델로
+- [조회됨 ≠ 소유권 (Blogger)](reference_blogger_getbyurl_is_not_ownership.md) — getByUrl은 공개면 남의 것도 조회됨. 소유판정=view:'ADMIN'(403=남의 것)
+- [★세션비용 = 워치독 재읽기](reference_session_cost_structure.md) — 긴세션×5분워치독이 주범(컨텍스트 재읽기 98.5%). 한도는 계정 공용
+- [빌드로그 파이프 SIGPIPE 함정](reference_build_pipe_sigpipe_trap.md) — `build \| head`가 빌드 중단시킴. 로그는 파일로 받고 grep
+- [★ksaju블로그 애드센스+글스펙](project_ksaju_blog_adsense_2026-07-27.md) — 심사 제출완료(계정=아투 동일). 형 미결정=글쓰기 모델
+- [★아투 환각구조 수리](project_atz_hallucination_fix_2026-07-27.md) — 원인=푸터를 원문으로 긁음. 게이트 4중 방어. 파이프라인 만질 때 이거부터
+- [아투 이미지 4축개편+Pexels](project_atz_image_overhaul_2026-07-26.md) — 원인=image.mjs 하드코딩 7분기. 4축배치·로고허용 확정
+- [★Kaggle 립싱크 성공 / LatentSync 선택기준](reference_colab_lipsync_feasibility_2026-07-31.md) — 코랩=정책위반, Kaggle 브라우저조종 성공. 정지이미지=SadTalker/영상=LatentSync
+- [Flux 이미지 파이프라인](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 양산. PPT임베드 크면 재압축(8MB한도)
+- [GPT 이미지 크롬 자동조종](reference_gpt_image_chrome_system.md) — chrome-devtools로 ChatGPT Projects 조종. Flux와 병렬 2트랙
+- [한글텍스트=HTML렌더, 그림감성=Flux/GPT](reference_image_tool_by_korean_text.md) — Flux는 한글 못씀. 형 확정
+- [모아 열린작업 2026-07-24](project_moa_open_threads_2026-07-24.md) — 아투뉴스자동화·쇼츠v2·로고4종·주간리포트. 형결정대기 3개
+- [추천옵션 마킹](feedback_recommendation_marker.md) — 선택지에 "(내가추천)"/"(I recommend)" 표시
+- [플러그인 소스수정은 세션재시작](feedback_plugin_reload.md) — /reload-plugins 아니라 세션 재시작
+- [Discord = reply 도구로만](feedback_discord_reply_tool.md) — transcript는 안 보임. AskUserQuestion 대신 reply 텍스트로 질문. sent(id) 확인, 의심시 fetch 교차확인
+- [Discord 서식/누락](feedback_discord_formatting.md) — 코드는 ``` 펜스+실제 개행. 빠른 연속발송시 간헐 누락(fetch 확인). ts는 UTC(+9=KST)
+- [작업 시작 전 ack부터](feedback_acknowledge_first.md) — "받았어요, 시작할게요" 먼저 보내 생존 알림
+- [해요체 사용](feedback_speech_level.md) — 반말 아니라 해요체
+- [★보고는 짧게 3~4줄](feedback_report_length_short.md) — 파일명·줄번호·내부용어 금지. 길어지면 정리 덜 한 것
+- [질문엔 답부터](feedback_answer_first.md) — 직답 한줄 먼저, 분석/옵션은 뒤
+- [Node 런타임](reference_node_runtimes.md) — 시스템 node 없음. bun 또는 LM Studio 번들 node.exe
+- [MCP npx 대체](reference_npx_alternative.md) — `npx` 실패, `bun x`로 재등록
+- [구글계정 2개 용도](reference_google_accounts_by_purpose.md) — ★Default=ssky.park(GPT이미지)/**Profile1=info.nanumn(아투소유)**. authuser 무의미, 프로필을 바꿔라
+- [Chrome debug MCP](reference_chrome_debug_setup.md) — attach-mode, 9222포트, 프로필 C:\chrome-debug-profile
+- [미디어스택 감사 + 개명](reference_media_stack_2026-07.md) — 갭=얼굴보존·해부학. 지브리 LoRA 도입. ★강나래→강나라
+- [클로 vs 모아 네이밍](user_nickname_for_claude.md) — 클로=비공개 닉네임, 모아=회사내 CEO. 클로를 공유산출물에 넣지 말 것
+- [형 호칭](user_calls_user_hyung.md) — 시뮬레이션 밖 대화는 형(사장님 아님)
+- [★위임해도 소통은 내 몫](feedback_report_while_delegating.md) — 직원 무응답 자체가 보고할 사건. 답 없으면 로그·원장 직접 조회
+- [보고 간격 3-tier](feedback_reporting_cadence.md) — 마일스톤마다+10분무음컷+이슈 즉시
+- [작업 중간 cancel 금지](feedback_no_mid_interrupt.md) — 시작한 회의/작업은 완료까지
+- [Google 로그인은 팝업으로](feedback_google_login_popup.md) — 메인창 리다이렉트 아니라 팝업
+- [미래기능 백로그](project_moa_phase_memo.md) — 카테고리별 묶음 릴리즈로 진행
+- [AI 자율회사 OS 비전](project_autonomous_org_vision.md) — 지시→할당→자율실행→비서보고→자기개선
+- [위임 규칙](feedback_autonomy_delegation.md) — "결정은 너가, 결과물만 결재" 모드. 추천안 자동채택
+- [프로젝트: 가족드라마 12부작](project_drama_12_family.md) — 페이즈1=기획MVP, 2=파일럿, 3=양산
+- [프로젝트: 글로벌 사주서비스](project_3_saju_global.md) — 월1000만원 핵심라인. PayPal+동양사주 글로벌
+- [GitHub 백업](reference_github_backup.md) — moa-studio/clo_studio → nanumhn/* main. 커밋 후 push
+- [로컬 HW 사양](reference_local_hardware_spec.md) — RTX3060 6GB VRAM 제약. 회의모델 qwen2.5-7b Q4
+- [★역산 기획](feedback_design_from_endpoint.md) — 새 자산은 "수익화→합격기준→스펙→게이트" 순
+- [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴·공포마케팅 금지, "user가 뭐가 좋아지나" 먼저
+- [k-saju 라이브 배포](project_ksaju_live.md) — Vercel+Neon+PayPal. 자동배포 누락시 빈커밋 재트리거. 로컬LLM은 사전생성 필요
+- [harness 수익화 레이어](project_harness_revenue_layer.md) — CSO감독자+growth/sales/data-finance 4에이전트 구축완료
+- [git push wincredman→gh 우회](reference_owenlab_git_push_gh_credential.md) — `-c "credential.helper=!gh auth git-credential"`로 push
+- [Docker 자격증명 깨짐](reference_docker_cred_helper_broken.md) — pull은 형이 직접, ps/logs/exec는 내 셸 OK
+- [모아 헬스체크](reference_moa_healthcheck.md) — 작업스케줄러 하루3회. 사이트추가=config 한줄. PS5.1 UTF-8 BOM 필수
+- [★경보 전 교차검증](feedback_verify_before_alarm.md) — 고장 단정 전 2개+ 근거. 재시작 직후 로그 '활동없음' 단정 금지(로그회전)
+- [플러그인 설치 절차](reference_plugin_install_method.md) — EBUSY temp_git 정리, 한번에 한줄
+- [형은 결정만, 운영은 클로](feedback_hyung_decides_not_ops.md) — 부탁은 형만 가능한 것(계정·결제·비밀키)만
+- [블로커 공유 후 같이 해결](feedback_share_blockers_cosolve.md) — 숨기지 말고 즉시 공유+대안 제시
+- [긴 작업은 백그라운드로](feedback_background_long_tasks.md) — 생성·다운로드·빌드는 run_in_background
+- [발행은 이미지와 함께](feedback_publish_with_images.md) — 이미지 자리 0개가 발행 완료 기준
+- [낯선 절차는 이유까지 설명](feedback_explain_unfamiliar_steps.md) — 단계+'왜 이 순서'+함정까지
+- [클로=위임, 직원=실행](feedback_clo_orchestrates_agents_execute.md) — 실작업은 본부장 백그라운드 위임(!!!)
+- [검수 게이트 거쳐 보고](feedback_qa_gate_before_report.md) — 서지안 독립검수 필수, 자기검증≠독립검수
+- [모아 인플루언서화](project_moa_influencer.md) — build-in-public, 유튜브쇼츠+스레드 주력. 형결정대기
+- [AI 1인회사 세미나](project_ai_seminar_business.md) — 무료웨비나→25만본강의→구축대행. 형결정대기(온라인/가격)
+- [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→테스트→python json.dumps 주입→import→restart. MSYS_NO_PATHCONV=1 필수
+- [디스코드 두절 = fakechat 충돌](reference_discord_channel_plugin_conflict.md) — fakechat 켜져있으면 --channels 무시하고 채널 가로챔
+- [★Discord MCP 연결실패 원인](reference_discord_mcp_connect_fail.md) — server.ts login 1회 실패→exit(1)→MCP 동반사망. 복구=세션재시작
+- [부트스트랩 --channels 순서버그](reference_bootstrap_channels_arg_order.md) — 초기 프롬프트를 --channels 앞으로
+- [재부팅 복구 절차](project_reboot_recovery_live_test.md) — boot.flag확인→fetch_messages 회수→"복구 성공" 인사
+- [★아투 창작 발원지](project_atz_fabrication_root_cause_2026-07-29.md) — 확장프롬프트가 산업명까지 불러줌+분량하향 미전달. 회귀테스트 신설
+- [★Blogger update는 필드를 지움](reference_blogger_update_wipes_fields.md) — update=전체치환/patch=부분갱신. 수정 후 title·labels·status 재조회
+- [아투 유튜브 채널 경제성](reference_atz_youtube_channel_economics.md) — 광고수익 월5~33만원. 값어치=B2B쇼케이스
+- [★유튜브 Inauthentic정책=쇼츠파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 기사→TTS→스톡슬라이드가 수익배제 정의 부합. 회피축="고유관점"
+- [★포기 제안 금지](feedback_no_giving_up.md) — 막히면 다음 수를 들고 와라
+- [★거짓 금지+더블체크](feedback_no_falsehood_double_check.md) — 못 쓰면 비워라. 완료보고는 재조회 값으로만
+- [★정시발행 > 검수](feedback_ontime_publish_over_qa.md) — 막는 건 사실오류·법적문제·낚시뿐, 미관결함은 올리고 보정
+- [★답하기 전 로그·원장부터](reference_moa_logs_and_ledgers.md) — 순서=①우리기록 ②반례 ③단정
+- [★원인 전 반례부터](feedback_find_counterexample_first.md) — "A인데 안그런 경우"부터 찾아라. 표본으로 전체 말하지 말 것
+- [출처 첨부](feedback_cite_sources.md) — 웹검색·외부수치 보고엔 항상 링크
+- [인스타 캐러셀 자동화](project_insta_carousel_automation.md) — 9후킹공식 흡수완료. Higgsfield 테스트 대기
+- [Eco Sort 게임](project_eco_sort_game.md) — 프로토완성(bun serve 5178). 형 플레이피드백 대기
+- [검증은 싼 것부터](feedback_cheap_check_first.md) — 예/아니오를 비싼 실행으로 묻지 마라
+- [★검증된 사실만 보고](feedback_verified_facts_only.md) — [확인]/[추측] 표기. 로컬git≠라이브, 평균≠상한, 헤지는 검증 아님
+- [하네스 변경 원장](reference_harness_change_ledger.md) — 변경은 harness-pending.md에, 주간리포트가 점검
+- [MoaMcpGuard 파수꾼](reference_mcp_guard_watchdog.md) — MCP만 죽은 상태 10분마다 재시동
+- [아투 색인 전수감사](project_atz_indexing_audit_2026-07-28.md) — 크롤되면 97%색인, 진짜 병목=노출0
+- [★아투 원장≠라이브 URL](reference_atz_pipeline_live_url_truth.md) — state.json published 일부 404. 검증=`bun list-live.mjs`
+- [아투 옛글 근거 재수집법](reference_atz_source_refetch_for_audit.md) — GNews RSS 못뚫음→헤드라인 웹검색으로 타매체 회수
+- [★아투 게이트 맹점: 평서문 창작](reference_atz_gate_blindspot_plain_claims.md) — qa-gate는 인용·숫자만 대조, 평서문 창작은 원리적으로 못 잡음
+- [아투 고유관점 게이트+유튜브정책](project_atz_originality_policy_2026-07-28.md) — 5검사·15/15. 전환조건=통과율 3회연속100%
+- [★테스트 실행이 형에게 새면 안 됨](feedback_test_runs_must_not_reach_user.md) — --dry가 발송 막는다고 가정 금지
+- [★아투 원문이 모델에 안 들어감](reference_atz_evidence_never_reached_model.md) — LM_PARALLEL=4 하드코딩(실제1)이 근거예산 0. 런타임값 추정해 상수화 금지
+- [쇼츠는 블로그 창작을 물려받음](reference_atz_shorts_inherit_blog_fabrication.md) — 자막-본문 대조론 창작 통과. 기준=out/*_sources.txt
+- [★아투 승인카드=아투채널](reference_atz_shorts_approval_channel.md) — 형DM 아님. channel_id는 웹훅GET으로 확인
