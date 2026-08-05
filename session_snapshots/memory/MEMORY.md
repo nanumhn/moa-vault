@@ -1,4 +1,11 @@
-- [★아투 쇼츠 자동발행 근본원인 3개 수정 2026-08-04](project_atz_shorts_autopublish_fix_2026-08-04.md) — 8/1~8/4 4일 연속 승인대기였던 원인(따옴표파싱·폴백제목절단·키워드불일치) 수정. 검증=8/5 06:30 대기, push 결재대기
+- [★★아투 파이프라인 미커밋 발견+수리+커밋완료](project_atz_image_mismatch_after_regen_2026-08-05.md) — 이미지매칭 버그 수리+7845줄 커밋 완료. push는 결재대기
+- [★커밋은 바로바로](feedback_commit_promptly.md) — 형지시 2026-08-05. 완료보고 전 커밋부터, push는 별개 판단
+- [★★일지+세션저장 cron 구조적 미실행](project_journal_gap_2026-08-05.md) — 30분지연이 세션종료 이후로 밀림. 5일치 백필완료, cron시각조정 결재대기(세션저장도 8/1부터 안됨!)
+- [★리셋=신호→완료확인→종료 구조로](feedback_reset_should_signal_and_wait.md) — 형제안. cron타이밍경주 대신 순서강제. cto위임예정
+- [★ksaju 블로그 글감소진 발행중단 2026-08-05](project_ksaju_topic_exhaustion_2026-08-05.md) — 44일치 글감 8/3 소진→낡은글감 재활용. 원인·수리·병합·push 전부 완료
+- [k-saju daily 보고채널 접근법](reference_ksaju_daily_report_channel_2026-08-05.md) — channel_id 1516986557968420864, 형이 /discord:access로 허용목록 등록완료
+- [아투 보고채널](reference_atz_report_channel_2026-08-05.md) — channel_id 1529814918658785350(웹훅ID 1529814961646338098과 혼동주의, 등록완료)
+- [★아투 쇼츠 자동발행 근본원인 3개 수정 2026-08-04](project_atz_shorts_autopublish_fix_2026-08-04.md) — 8/1~8/4 4일 연속 승인대기였던 원인(따옴표파싱·폴백제목절단·키워드불일치) 수정 → 8/5 06:30 실전검증 성공(확인)
 - [★아투 게이트 앵커 한글음역 사각지대 2026-08-04](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) — 트럼프·엑손모빌처럼 한글음역 고유명사는 앵커로 못 잡아 매일 오탐 가능. 8/4건 직접검증 후 발행. cto 위임 필요
 - [★아투 보류큐 유실 + 정시발행 감시 신설](project_atz_held_queue_and_slot_monitoring_2026-08-01.md) — 원인은 재부팅 아니라 QA게이트 오탐+소비자 부재. 감시·cron 신설
 - [★아투 쇼츠 썸네일 첨부 누락 버그 수리](reference_atz_shorts_thumbnail_bug_2026-08-01.md) — publish.mjs에 --thumb 미전달로 전 쇼츠가 임의프레임 썸네일. 수정+백필 완료
