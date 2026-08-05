@@ -1,3 +1,4 @@
+- [★2026-08-06 04:25 세션저장 스냅샷](project_open_threads_2026-08-06_snapshot.md) — /usage 응답대기가 유일한 열린작업. 나머지 전부 완료
 - [★도구호출 쪼개면 그만큼 비쌈](feedback_batch_tool_calls_per_turn.md) — "체크" 한마디에 301만토큰(10회 분산호출). 간단한 확인은 묶어서 처리
 - [★외부 디스코드 감시 스크립트 신설+실측비교, 세션워치독은 형지시로 중단됨](project_discord_external_watchdog_2026-08-05.md) — 세션크론 삭제완료, MoaDiscordWatchdogExternal(5분,0토큰)로 대체
 - [★★아투 파이프라인 미커밋 발견+수리+커밋완료](project_atz_image_mismatch_after_regen_2026-08-05.md) — 이미지매칭 버그 수리+7845줄 커밋 완료. push는 결재대기
