@@ -1,8 +1,8 @@
-# 덱스·나이 멀티모델 워커 도입 실행계획
+# 덱스·제나 멀티모델 워커 도입 실행계획
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** OpenAI Codex("덱스")와 Google Antigravity/Gemini("나이")를 디스코드 봇 워커로 붙여, 클로(지휘자)가 작업을 위임할 수 있게 만든다.
+**Goal:** OpenAI Codex("덱스")와 Google Antigravity/Gemini("제나")를 디스코드 봇 워커로 붙여, 클로(지휘자)가 작업을 위임할 수 있게 만든다.
 
 **Architecture:** 오픈소스 브리지(`netwaif/codex-discord`, Node.js + discord.js)를 윈도우 네이티브로 패치해서 쓴다. 각 CLI(codex.exe, agy.exe)를 서브프로세스로 구동하고, 디스코드 채널 메시지를 중계한다. 상시구동은 tmux 대신 우리가 이미 검증한 Windows Task Scheduler + Hidden PowerShell 패턴(`MoaAckBot` 선례)을 쓴다.
 
@@ -23,9 +23,9 @@
 
 이 태스크는 코드가 아니라 **형이 직접 해야 하는 일**이다. 클로는 이 단계에서 안내만 하고, 완료 확인 후 다음 태스크로 넘어간다.
 
-**형이 할 일 — 디스코드 봇 계정 생성 (2회 반복, 덱스용 1개 + 나이용 1개):**
+**형이 할 일 — 디스코드 봇 계정 생성 (2회 반복, 덱스용 1개 + 제나용 1개):**
 
-1. `discord.com/developers/applications` → New Application → 이름 입력(예: "덱스", "나이")
+1. `discord.com/developers/applications` → New Application → 이름 입력(예: "덱스", "제나")
 2. Bot 탭 → Reset Token → 토큰 복사 (한 번만 보인다, 안전한 곳에 임시 보관)
 3. 같은 화면 Privileged Gateway Intents → **MESSAGE CONTENT INTENT** 켜고 Save
 4. OAuth2 → URL Generator → SCOPES: `bot` / 권한: View Channels·Send Messages·Read Message History·Embed Links·Attach Files 다섯 개 체크
@@ -234,7 +234,7 @@ Add-Content .gitignore ".env"
 | 항목 | 값 출처 |
 |---|---|
 | `DISCORD_TOKEN`(코덱스 봇용) | Task 0에서 발급받은 덱스 토큰 |
-| `DISCORD_TOKEN`(제미나이 봇용, 별도 `.env`면 분리) | Task 0에서 발급받은 나이 토큰 |
+| `DISCORD_TOKEN`(제미나이 봇용, 별도 `.env`면 분리) | Task 0에서 발급받은 제나 토큰 |
 | `WORK_CHANNEL_ID` | Task 0에서 만든 `#작업` 채널 ID |
 | `MEETING_CHANNEL_ID` | Task 0에서 만든 `#회의` 채널 ID |
 | `CHAT_CHANNEL_ID` | Task 0에서 만든 `#수다` 채널 ID |
@@ -307,10 +307,10 @@ Expected: `LastTaskResult`가 실행 중이거나 0.
 
 **Interfaces:**
 - Consumes: Task 5까지 전부
-- Produces: "덱스·나이가 실제로 반응한다"는 확인
+- Produces: "덱스·제나가 실제로 반응한다"는 확인
 
 - [ ] **Step 1: `#작업` 채널에서 덱스에게 간단한 코딩 질문**을 던져보고, 덱스 봇 이름으로 응답이 오는지 확인
-- [ ] **Step 2: `#작업` 채널에서 나이에게 간단한 리서치 질문**을 던져보고, 나이 봇 이름으로 응답이 오는지 확인
+- [ ] **Step 2: `#작업` 채널에서 제나에게 간단한 리서치 질문**을 던져보고, 제나 봇 이름으로 응답이 오는지 확인
 - [ ] **Step 3: `#수다` 채널에서 자유 대화 1회씩 확인**
 - [ ] **Step 4: 문제 있으면 design.md §7 리스크 표 기준으로 원인 분류** (샌드박스 문제 / 토큰 문제 / PATH 문제 등)
 - [ ] **Step 5: 전부 통과하면 형에게 완료 보고 + vault에 결과 기록**
