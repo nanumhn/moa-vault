@@ -5,6 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 613b6a58-160d-4467-ac7f-3f4d6b5f9c34
+  modified: 2026-08-06T08:20:12.583Z
 ---
 
 2026-06-27 세션에서 관찰한 디스코드 운영 두 가지.
@@ -21,4 +22,7 @@ metadata:
 ## 2. 디스코드 타임스탬프는 UTC — KST는 +9
 inbound `<channel ... ts="...Z">`의 시각은 **UTC**다. 한국시간(KST)으로 인지하려면 **+9시간**. 예: ts `02:30Z` = KST **오전 11:30**. 이 세션에서 02:30Z를 "새벽"으로 착각해 형이 정정함("지금 오전 11:30인데"). 형에게 시간 언급할 땐 항상 +9 적용해 KST로.
 
-관련: [[feedback_discord_reply_tool]] [[feedback_acknowledge_first]] [[feedback_clo_orchestrates_agents_execute]]
+## 재발 2026-08-06
+회의·구현 사이클 여러 개 병렬로 돌리며 짧은 간격으로 reply 연속 발송하던 중 1건 누락(sent 정상 반환, fetch_messages엔 없음). 형이 "회신이 안 왔어"로 즉시 알려줘서 fetch로 교차확인 후 바로 재전송, 이번엔 fetch로 도달 확인까지 완료. 패턴 동일 — 짧은 시간에 메시지를 여러 번 쪼개 보낼 때 발생 빈도가 높아 보임([[feedback_batch_tool_calls_per_turn]]과 같은 맥락, 도구호출을 쪼갤수록 이런 부작용도 늘어남).
+
+관련: [[feedback_discord_reply_tool]] [[feedback_acknowledge_first]] [[feedback_clo_orchestrates_agents_execute]] [[feedback_batch_tool_calls_per_turn]]
