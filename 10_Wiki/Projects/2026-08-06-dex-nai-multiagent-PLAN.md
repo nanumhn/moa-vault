@@ -8,6 +8,8 @@
 
 **Tech Stack:** Node.js 22+(시스템에 v24.18.0 설치 확인됨), discord.js v14, OpenAI Codex CLI(`@openai/codex`), Google Antigravity CLI(`agy`), PowerShell(상시구동 스크립트), Windows Task Scheduler.
 
+**상태: 2026-08-06 전체 완료.** Task 0~6 전부 종결, 덱스·제나·클로 셋 다 실채널에서 응답 확인. 상세 로그는 `C:\Users\user\.moa\dex_jena_setup_progress.md` 참고.
+
 ## Global Constraints
 
 - 조사 근거: `10_Wiki/Projects/2026-08-06-dex-nai-multiagent-design.md` §1 (모든 실현성 판단이 여기서 나옴)
