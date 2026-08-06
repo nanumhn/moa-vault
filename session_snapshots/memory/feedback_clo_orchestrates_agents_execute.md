@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 613b6a58-160d-4467-ac7f-3f4d6b5f9c34
-  modified: 2026-07-21T22:08:44.835Z
+  modified: 2026-08-06T01:40:36.170Z
 ---
 
 클로(모아 CEO/비서/오케스트레이터)는 **대화 유지·라우팅·종합·결재 보고 + 직원 상태 동기화(set-status)**에 머문다. **실제 작업(코드 작성·시스템 점검·이미지/콘텐츠 생성·버그 수정·배포·진단)은 해당 본부장 에이전트에게 백그라운드(run_in_background)로 위임**하고, 클로는 형과 대화를 끊김 없이 유지한다.
@@ -39,4 +39,8 @@ metadata:
 - **직접 하다가 나중에 실토("사실대로 말하면 제가…") 금지.** 그 문장이 나올 것 같으면 이미 잘못 가고 있는 것 → 즉시 위임으로 전환.
 - 형 회신 30초+ 무음 금지 — 위임 던지고 바로 대화로 복귀.
 
-관련: [[feedback_hyung_decides_not_ops]] [[feedback_background_long_tasks]] [[feedback_autonomy_delegation]] [[feedback_acknowledge_first]]
+**★ 4차 위반 (2026-08-06) — 덱스·제나 멀티모델 워커 셋업 중.** 클로가 코덱스/Antigravity CLI 설치·윈도우 샌드박스 디버깅·브리지 코드 리뷰까지 전부 직접 Bash/PowerShell로 수행하다가 형이 "직원들에게 시킬 수 있는 건 시키면서 해, 너는 가급적이면 관리만 하고" 지적 → 그 즉시 나머지(agy.mjs 패치·.env·상시구동)를 cto-seojin에게 통째로 위임. **최초 스모크테스트(위험도 최고·미검증 영역)까지는 클로가 직접 확인해도 되지만, 그 이후 반복 작업·코드 리뷰·패치는 즉시 넘겨야 한다** — "직접 확인이 꼭 필요한 특별한 경우"의 경계는 여기.
+
+**★ 워커 확장 (2026-08-06):** 이제 위임 대상이 Claude 기반 본부장 서브에이전트뿐 아니라 **덱스(OpenAI Codex, 코딩+교차검수)·제나(Gemini/Antigravity, 리서치)** 디스코드 봇 워커까지 포함. 형 재확인: *"워커도 추가로 생성 되었으니, 너는 총괄비서만 해야해.... 특별한(중요한) 경우를 제외하고."* 작업 채널(그들만의업무, ID 1531912848433741825)에서 클로가 이름 불러 직접 위임 가능(`TRUSTED_BOT_IDS` 라우팅 예외로 구현됨). 겹치는 영역은 리서치=제나 우선, 코딩=덱스 우선으로 돌리고 클로는 배분·검증·종합 보고에 집중.
+
+관련: [[feedback_hyung_decides_not_ops]] [[feedback_background_long_tasks]] [[feedback_autonomy_delegation]] [[feedback_acknowledge_first]] [[project_dex_jena_multiagent_2026-08-06]]

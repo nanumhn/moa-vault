@@ -1,3 +1,4 @@
+- [★★덱스·제나 멀티모델 워커 신설(2026-08-06)](project_dex_jena_multiagent_2026-08-06.md) — 코덱스·제미나이 디스코드봇, 윈도우네이티브 구축완료+실전투입
 - [★2026-08-06 04:25 세션저장 스냅샷](project_open_threads_2026-08-06_snapshot.md) — /usage 응답대기가 유일한 열린작업. 나머지 전부 완료
 - [★도구호출 쪼개면 그만큼 비쌈](feedback_batch_tool_calls_per_turn.md) — "체크" 한마디에 301만토큰(10회 분산호출). 간단한 확인은 묶어서 처리
 - [★외부 디스코드 감시 스크립트 신설+실측비교, 세션워치독은 형지시로 중단됨](project_discord_external_watchdog_2026-08-05.md) — 세션크론 삭제완료, MoaDiscordWatchdogExternal(5분,0토큰)로 대체
