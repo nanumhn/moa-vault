@@ -3,6 +3,7 @@
 - [★★옵시디언 팀뇌 개편 완료(2026-08-06)](project_obsidian_brain_overhaul_2026-08-06.md) — dataview 방식 채택, MOC6개+대시보드 완료. 형 GUI확인 대기
 - [★덱스 git lock 근본원인=코덱스 의도적 DENY](project_dex_git_lock_root_cause_2026-08-06.md) — ACL 무관, 형 결정 대기(3옵션, 추천②)
 - [★회의 시작=멘션 필수](feedback_mention_on_meeting_start.md) — 멘션 없으면 형 알림 안 감. 회의소집·공지 시작점마다 멘션
+- [★2026-08-07 04시 새벽저장 스냅샷](project_open_threads_2026-08-07_snapshot.md) — 열린작업: 아투 순위가중치·데몬사망원인·커밋마커 실전미검증
 - [★★덱스·제나 멀티모델 워커 신설(2026-08-06)](project_dex_jena_multiagent_2026-08-06.md) — 코덱스·제미나이 디스코드봇, 윈도우네이티브 구축완료+실전투입
 - [★2026-08-06 14:05 오후 세션저장 스냅샷](project_open_threads_2026-08-06_snapshot.md) — 열린작업: 오늘밤 19:30 아투발행 확인·제나 오디오첨부 버그·git lock 재확인
 - [★도구호출 쪼개면 그만큼 비쌈](feedback_batch_tool_calls_per_turn.md) — "체크" 한마디에 301만토큰(10회 분산호출). 간단한 확인은 묶어서 처리
