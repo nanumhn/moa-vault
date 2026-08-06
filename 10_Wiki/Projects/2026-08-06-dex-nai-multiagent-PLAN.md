@@ -337,5 +337,22 @@ Expected: `LastTaskResult`가 실행 중이거나 0.
 
 ---
 
+### Task 8 (후속): 덱스가 파일을 못 쓰던 문제 — 원인은 폴더가 아니었다
+
+형이 아투 과제를 덱스에게 시키려다 발견. 첫 가설은 "moa-studio(대형 저장소)에서만 샌드박스 쓰기가 거부된다"였는데 **틀렸다.**
+
+- [x] **진짜 원인** — `apply_patch` 도구가 `unelevated` 샌드박스에서 **항상** 실패한다(`Failed to write file`, exit 1). **폴더와 무관**하게 moa-studio·dex-jena-bridge·dex-workspace 전부 동일. 그런데도 대개 파일은 생긴다 — 모델이 2~3회 실패 후 **셸 리다이렉트로 우회**하기 때문. 이 폴백이 "간헐적이다 / 특정 폴더만 그렇다"는 착시를 만들었고, 덱스가 실패로 보고한 건 폴백까지 안 가고 포기한 턴이었다
+- [x] **기각한 가설 7개(전부 실측)** — 폴더 고유문제 / NTFS ACL(codex는 ACL을 건드리지도 않음) / 호출자 권한(관리자 셸도 Limited 작업도 **동일하게 실패**) / 세션재개 cwd(롤아웃 `session_meta`는 정상) / `windowsHide`(true·false 무관) / `codex-resources` PATH / 정체불명 ACE(다른 머신 잔재 SID이고 Allow라 차단 사유가 못 됨)
+- [x] **결정타** — `-s danger-full-access`(샌드박스 off)면 apply_patch 실패 **0회** → 샌드박스가 원인 확정
+- [x] **해결** — `config.toml`을 `[windows] sandbox = "elevated"`로 전환(백업 `.bak.20260806`). apply_patch 0 실패, **비상승 Limited 컨텍스트에서도 동작 검증**(덱스 데몬이 Limited라 이 검증이 핵심), **실제 브리지로 최종 확인** — 직전에 "쓰기가 거부됐습니다"라던 그 요청에 "성공"으로 응답
+- [x] Task 1의 "elevated는 `CreateProcessWithLogonW failed: 2`로 실패" 기록은 **stale** — 그때는 샌드박스 계정 프로비저닝 전이었고, 지금은 `CodexSandboxOnline/Offline` 계정이 존재·활성이라 정상 동작
+- [x] 진단 도구 `.moa\codex_sandbox_probe.ps1` 신설 — LLM 답변이 아니라 **파일 생성 여부와 실패 횟수**로 판정
+
+**부작용:** elevated로 만든 파일은 소유자가 `CodexSandboxOffline`이 되지만, 상속된 `Authenticated Users: Modify` 덕에 형이 읽기·쓰기·삭제 다 가능(확인함).
+
+**부수 수정:** Task 7에서 넣은 고아 수거 코드가 **덱스 재시작마다 제나 워커를 죽이고 있었다** — `.env`가 `.env.gemini`의 접두사라 부분문자열 매칭에 걸렸다(프로덕션 로그 2회). 제나 데몬이 곧장 재기동시켜 겉으로 드러나지 않았다. `--env-file="<경로>"` 전체 인자 매칭으로 수정.
+
+---
+
 ## 관련
 [[2026-08-06-dex-nai-multiagent-design]] · [[feedback_autonomy_delegation]] · [[reference_harness_change_ledger]]
