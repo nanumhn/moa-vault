@@ -1,0 +1,33 @@
+{
+  "run": "run_20260806_142539",
+  "team": "obsidian_ops_loop",
+  "team_name": "옵시디언 활용 극대화 — 칸반 진행상태 + 그래프 연결고리 + 읽기-쓰기 루프 설계 회의",
+  "topic": "옵시디언 칸반·그래프뷰를 모아 운영에 실제로 엮기 — 쓰기전용 볼트를 읽기-쓰기 루프로",
+  "artifacts": [
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "kanban_sync_architecture.md"
+    },
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "vault_structure_and_templates.md"
+    },
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "read_loop_spec.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "qa_acceptance_and_drift.md"
+    },
+    {
+      "agent_id": "jian",
+      "agent_name": "서지안",
+      "filename": "record_integrity_gate.md"
+    }
+  ]
+}
