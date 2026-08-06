@@ -354,5 +354,21 @@ Expected: `LastTaskResult`가 실행 중이거나 0.
 
 ---
 
+### Task 9 (후속): 루트는 되는데 하위폴더만 거부 — ACL 상속 차단
+
+Task 8로 elevated 전환한 뒤에도 덱스가 `tools/atz-pipeline/fetch-news.mjs`를 못 고쳤다. **증상이 바뀐 별개 문제**였다.
+
+- [x] **원인** — elevated 샌드박스는 로컬 계정으로 실행되고, 쓰기 권한은 codex가 **워크스페이스 루트에 심는 상속형 `CodexSandboxUsers: Modify` ACE**로 얻는다. 그런데 `tools`를 포함한 **19개 폴더가 상속 차단(`AreAccessRulesProtected=True`)** 이라 그 ACE가 하위로 못 내려갔다 → 샌드박스 계정 권한 없음 → `Failed to write file`
+- [x] **끊긴 폴더가 실제 작업 폴더 대부분** — `lib`·`app/api`·`app/components`·`app/(main)/*`·`prisma`·`tools`·`remotion/*`·`_workspace/*`. 다른 머신에서 파일을 복원한 흔적으로 보인다(트리에 이 PC 것이 아닌 미해석 SID ACE가 함께 남아 있음)
+- [x] **★함정** — `Authenticated Users: Modify`가 있어서 ACL만 보면 "권한 정상"으로 보인다. 그 SID는 샌드박스의 제한 토큰에서 접근을 부여하는 주체가 아니다. **ACL이 있느냐가 아니라 어느 SID에 부여됐느냐**를 봐야 한다
+- [x] **기각** — 정션·심링크(경로 전 단계 reparse point 없음) / `.gitignore`가 writable root 계산에 영향(`/out/`은 루트 앵커라 `tools/atz-pipeline/out`과 무관) / `.codex`·execpolicy `.rules` 파일(존재하지 않음)
+- [x] **해결** — `.moa\fix_moastudio_acl_inheritance.ps1` 신설, `icacls /inheritance:e`로 상속 복구(기존 명시 ACE는 유지하고 루트 ACE가 추가되기만 함)
+- [x] **검증** — 직접 실행 시 `tools/atz-pipeline`·`lib` 동시 생성 성공, apply_patch 실패 0회. **실제 덱스 브리지로 최종 확인** — 막혔던 그 경로에 파일 생성, 덱스 응답과 **실제 파일 존재가 일치**
+- 되돌리기: `.moa\moastudio_acl_fixed_dirs.txt`의 19개 경로에 `icacls "<경로>" /inheritance:d`
+
+**교훈:** Task 8과 9는 증상이 같고 원인이 다른 별개 문제였다. 하나를 고치니 다음 것이 드러났다 — "파이프라인 결함은 끝까지 실행해봐야 다음 것이 보인다"와 같은 구조.
+
+---
+
 ## 관련
 [[2026-08-06-dex-nai-multiagent-design]] · [[feedback_autonomy_delegation]] · [[reference_harness_change_ledger]]
