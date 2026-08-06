@@ -56,4 +56,44 @@ moa-vault(vault-learn, 내부 학습) ↔ owenlab(work-journal, 형용 문서). 
 - 형 결재 후 **Day 1 작업**: `02 Projects` 허브 노트 5개 + 모아 전용 보드 파일 + `01 Dashboard` dataview 대시보드 생성. 담당 archive-head-haru, 검수 qa-lead-jian.
 - 위 결함 6개는 구현 담당자가 착수 전 반드시 반영.
 
+---
+
+## 실행 결과 (2026-08-06, archive-head-haru)
+
+**★dataview 자동 집계 방식 채택. 칸반 카드를 손으로/CLI로 옮기는 방식은 폐기.**
+진실의 원천 = 각 MOC 프론트매터 `status`. 대시보드는 그것을 읽어 그린 파생 화면일 뿐이다.
+
+### 실제 만든 것 (owenlab, 커밋 `9ab2125` + 후속 커밋)
+| 무엇 | 경로 |
+|---|---|
+| 프로젝트 MOC 6개 | `02 Projects/20 모아 스튜디오/{모아 스튜디오, k-saju, 아메리칸 투데이, 쇼츠 자동화, 덱스·제나 워커, 하네스 운영} MOC.md` |
+| 모아 전용 대시보드 | `01 Dashboard/모아 프로젝트 현황.md` — dataview 3쿼리(진행중·최근7일완료·막힌것) |
+| 일지 템플릿 | `90 Templates/일일 업무일지 템플릿.md` (`projects::`/`decisions::` 필수) |
+| 기록 규칙 | `09 업무 가이드/옵시디언 기록 규칙.md` |
+| 결정 기록(형용) | `05 회의·기획/2026-08-06 옵시디언 지식그래프 개편.md` |
+| 소급 연결 | 일지 13편(06-26~08-05)에 연결 블록 추가 |
+
+### 회의안에서 바꾼 것
+- 허브 노트 **5개 → MOC 6개**(하네스 운영 추가, 애드센스는 k-saju·아투 MOC로 흡수). 폴더는 기존 번호와 안 겹치는 `02 Projects/20 모아 스튜디오/`.
+- status 어휘를 영문 6값(todo/waiting/doing/done/hold/blocked) → **한글 4값 `진행중|대기중|완료|보류`** + 보조 필드 `blocked`(막는 것) · `waiting_on`(형·외부 회신 대기) · `updated`.
+- 드리프트 자동 경보는 **미구현**. 지금은 `updated` 육안 확인만. (7일 박제 감지는 다음 과제)
+
+### 결함 6개 처리
+| # | 처리 |
+|---|---|
+| 1 | `Todo.Kanban.md` 폐기 → `01 Dashboard/모아 프로젝트 현황.md`. 형 개인 `TODO.Kanban.md`는 무수정 |
+| 2 | qa-lead-jian 쓰기 권한 배정 삭제 — 검수는 **판정만**(생성≠검증) |
+| 3 | git stash/빈 커밋 설명 폐기 → "임시파일 후 rename"으로 문서 정정(실구현엔 미사용) |
+| 4 | dataview 문법 재작성 — `FROM "02 Projects/20 모아 스튜디오"` · `date(today) - dur(7 days)` · `TABLE WITHOUT ID`. **와일드카드·`DATENOW()` 제거** |
+| 5 | 타임라인 시각을 실제 cron(13:48 오전분 / 03:44 오후·야간분)에 맞춤 |
+| 6 | "앱 UI 자동 조작 가능" 서술 삭제 — 불가(GUI 접근 없음) |
+
+### 미검증 (확인된 것으로 취급 금지)
+- **옵시디언 화면에서 dataview 표가 실제로 렌더링되는지 확인 못 했다.** GUI 접근 불가. 쿼리 문법과 대상 파일·필드 존재만 텍스트 검증함.
+- 그래프 뷰의 실제 개선 여부도 미확인. 링크 수만 실측(아투 17·쇼츠 15·모아 13·k-saju 12·하네스 10·덱스제나 6, 깨진 링크 0).
+- `.obsidian/graph.json`이 `showTags:false`라 태그는 노드로 안 뜬다. 형 화면 설정이라 미변경.
+
+### 부수 발견
+회의 sync가 **moa-vault에 `01 Dashboard/TODO.Kanban.md`(빈 칸반)를 생성**했다. 칸반의 실체는 owenlab에 있으므로 잘못된 볼트 쓰기로 보인다. 타 에이전트 산출물이라 삭제하지 않고 보고만 함.
+
 관련: work-journal 스킬, archive-head-haru, 2026-08-05 일지 cron 구조 수리.
