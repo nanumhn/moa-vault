@@ -1,3 +1,7 @@
+- [★아투 GPT폴백=품질위험 신호](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — GPT실패시 로컬7B 폴백, 이 회차에 창작·오염 몰림. 진단시 폴백여부 1순위 확인
+- [★경로 텍스트≠첨부, files파라미터 필수](feedback_attach_files_dont_just_cite_path.md) — 경로만 적으면 형은 파일 못 받음. 발송후 +Natt 교차확인
+- [★SendMessage 우선순위 텍스트일뿐, 큐에 쌓임](reference_agent_mailbox_no_priority_preempt_2026-08-07.md) — "급한거 먼저"보내도 안 끼어듦. 착수여부 직접 재확인 필수
+- [★QA게이트 규칙역전 사각지대(아투+PPT 재발)](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md) — 금지규칙이 표기규칙으로 뒤집혀도 키워드검사론 못잡음. completion-gate 항목화 제안
 - [★2026-08-07 14시 오후저장 스냅샷](project_open_threads_2026-08-07_pm_snapshot.md) — 열린작업: 립싱크뮤비 재작업중(226s/141s컷+조립 미완)·조코딩영상 형응답대기
 - [★★아투 트럼프기사 인용왜곡 반려+게이트버그2개 확정](project_atz_reversed_quote_incident_2026-08-06.md) — 발언 뒤집힘 발행직전 저지. qa-gate.mjs 수리 위임중
 - [★덱스·제나 데몬 조용히 죽음, 감시사각지대](project_dex_jena_daemon_silent_death_2026-08-06.md) — 재기동만 함, 원인미확정+감시 없음
@@ -109,7 +113,7 @@
 - [아투 옛글 근거 재수집법](reference_atz_source_refetch_for_audit.md) — GNews RSS 못뚫음→헤드라인 웹검색으로 타매체 회수
 - [★아투 게이트 맹점: 평서문 창작](reference_atz_gate_blindspot_plain_claims.md) — qa-gate는 인용·숫자만 대조, 평서문 창작은 원리적으로 못 잡음
 - [아투 고유관점 게이트+유튜브정책](project_atz_originality_policy_2026-07-28.md) — 5검사·15/15. 전환조건=통과율 3회연속100%
-- [★테스트 실행이 형에게 새면 안 됨](feedback_test_runs_must_not_reach_user.md) — --dry가 발송 막는다고 가정 금지
+- [★테스트 실행이 형에게 새면 안 됨](feedback_test_runs_must_not_reach_user.md) — 차단은 목킹 아닌 구조로. 억제 증명은 "안 불렀다"가 아니라 "원장 증가 0"
 - [★아투 원문이 모델에 안 들어감](reference_atz_evidence_never_reached_model.md) — LM_PARALLEL=4 하드코딩(실제1)이 근거예산 0. 런타임값 추정해 상수화 금지
 - [쇼츠는 블로그 창작을 물려받음](reference_atz_shorts_inherit_blog_fabrication.md) — 자막-본문 대조론 창작 통과. 기준=out/*_sources.txt
 - [★아투 승인카드=아투채널](reference_atz_shorts_approval_channel.md) — 형DM 아님. channel_id는 웹훅GET으로 확인

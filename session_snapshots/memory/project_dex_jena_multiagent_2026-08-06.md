@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: f20c02b9-e2eb-42d4-96c3-cade5d5e53c0
-  modified: 2026-08-06T02:10:27.004Z
+  modified: 2026-08-07T07:14:19.674Z
 ---
 
 형이 유튜브(AI 치트키)에서 본 "디스코드 하네스 멀티 에이전트" 매뉴얼(macOS+tmux 전용)을 계기로, 클로(지휘자)가 OpenAI Codex("덱스")·Google Gemini/Antigravity("제나")를 디스코드 봇 워커로 직접 지휘하는 시스템을 하루 만에 구축·실전투입했다.
@@ -33,6 +33,12 @@ metadata:
 
 **형 확정 규칙(2026-08-06):** 워커(덱스·제나)한테 업무 지시는 항상 "그들만의업무" 채널(ID **1534714627383099493** — 위 채널ID 정정 참고, 헷갈리지 말 것)에서 한다.
 
+**형 정정(2026-08-07):** 위 규칙은 "업무(코딩·구현)" 지시 한정. **회의/의견수렴형 요청**(도현 팀 페르소나 회의와 비교하려고 덱스·제나에게 같은 안건 던지는 것처럼)은 "그들만의회의" 채널(ID **1531838653066645654**)로 보내야 한다. 클로가 처음에 업무방으로 잘못 보내서 형이 직접 지적함. 판단 기준: 산출물이 코드/구현이면 업무방, 의견/아이디어/비교 목적이면 회의방.
+
+**형 지시 확장(2026-08-07, 같은 세션):** 회의 요약/비교는 회의방에 기록하고, **실제 작업 산출물(코드 결과·재가공된 파일 등)은 업무방(ID 1534714627383099493)에 올려라**고 명시적으로 지시함. 즉 "회의방=논의 기록", "업무방=완성된 산출물"로 용도가 나뉜다(덱스·제나뿐 아니라 클로가 cto-seojin 등에게 위임해 나온 결과물도 동일 규칙 적용). 형에게는 두 채널 모두에 짧게 링크/요약만 알려주면 됨(전문은 각 채널에, 본채널엔 한 줄 안내).
+
 **형 지시로 신설된 규칙:** 단위 작업 완료마다 세션일지와 별도로 "전문 완료보고서"를 archive-head-haru가 작성 (참고: [[feedback_clo_orchestrates_agents_execute]]).
 
-관련: [[feedback_clo_orchestrates_agents_execute]] [[project_harness_revenue_layer]] [[project_atz_hallucination_fix_2026-07-27]]
+**★트리거 함정(2026-08-07 발견):** `classifyMessage()`는 `mentionsMe`(진짜 디스코드 @멘션) 또는 `content.trim().startsWith(triggerName)`(메시지가 그 봇의 트리거명으로 **시작**)일 때만 'trigger'로 분류하고, 아니면 조용히 'context'로 흡수한다(응답 없음, 에러도 없음 — 죽은 것처럼 보이지만 정상 동작). 덱스·제나 둘 다에게 같은 안건을 한 메시지로 던지고 싶어서 "덱스, 제나 — ..."로 시작했더니 덱스(트리거명 "덱스")만 걸리고 제나(트리거명 "제나")는 안 걸림 — 메시지가 "제나"로 시작하지 않아서. **여러 워커를 한 번에 부르려면 각자 트리거명으로 시작하는 메시지를 따로 보내거나 실제 @멘션을 써야 한다.** 트리거명은 `.env.codex`/`.env.gemini`의 `TRIGGER_NAME`. 이 실패모드는 [[project_dex_jena_daemon_silent_death_2026-08-06]](데몬 자체 사망)과 겉보기 증상이 같아 보이니 먼저 프로세스 생존을 확인한 뒤 이 트리거 규칙부터 의심할 것.
+
+관련: [[feedback_clo_orchestrates_agents_execute]] [[project_harness_revenue_layer]] [[project_atz_hallucination_fix_2026-07-27]] [[project_dex_jena_daemon_silent_death_2026-08-06]]
