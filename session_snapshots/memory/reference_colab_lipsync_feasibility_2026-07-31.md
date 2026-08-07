@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: b09dd449-d149-4b1d-9d48-8552ad405f1c
-  modified: 2026-07-31T14:57:08.049Z
+  modified: 2026-08-07T03:30:11.211Z
 ---
 
 형 질문 "구글 무료 GPU로 립싱크 영상, 우리가 컨트롤 가능한가"에 대한 조사 결과(media-head-siwoo, 2026-07-31).
@@ -114,5 +114,16 @@ res = KaggleClient().kernels.kernels_api_client.list_kernel_session_output(req)
 - **실측 결과**: 2초 클립 생성에 **1101초(≈18.4분)** 소요(첫 컷, 모델 로딩 포함). seed 랜덤 지정 시 자동 배정.
 - **★사진은 "첫 프레임" 그대로 쓰인다** — 4컷 모델시트(정면·측면·후면·클로즈업 모아찍기)를 통째로 넣었더니 영상도 그 4컷 콜라주 구도 그대로 살짝 움직이는 결과가 나왔다. 노트북 안내대로 **얼굴 1장(정면~살짝 측면, 상반신 크게)** 크롭이 필요 — 다음 시도는 크롭 이미지로.
 - 결론 갱신: 완전 자동화(옵션 2 무인)는 여전히 미검증이지만, **형이 원하는 "된다/안된다" 질문에는 확답 가능 — 됩니다.** 브라우저 조종(클로 직접)으로 사진+노래→립싱크 영상 파이프라인이 실측 성공.
+
+## ★★★★★ 첫 실전 납품 완료 (2026-08-07, media-head-siwoo — 형 실제 사진+노래로 뮤직비디오 제작)
+
+`hangglewriter/ltx-2-3` 노트북(cell 9)의 하드 제약과 신규 함정을 실전에서 확인. 268초(4분28초) 곡 전체 립싱크 요청이었으나 구조적으로 불가능함을 확인하고 "후렴 1구간 진짜 립싱크(6초) + 나머지 모델시트 인서트"로 대체 완주.
+
+- **[확인] 6초/컷 상한은 코드에 박혀 있다**: `WIDTH, HEIGHT, FPS = 768, 416, 24.0`, 길이 슬라이더 `gr.Slider(2, 6, ...)`. 컷당 실측 23분(07-31 실측 18.4분에서 소폭 증가). 45컷 필요한 전곡 립싱크는 17시간으로 주간 할당(30h)의 절반 초과 — 여러 곡 서비스하려면 이 노트북으로는 "하이라이트 컷 + 인서트" 구조가 사실상 유일한 실전 방식.
+- **[확인] ★신규 함정 — 입력 사진 강제 리사이즈(비율 무시)**: `Image.open(image_path).convert("RGB").resize((WIDTH, HEIGHT), Image.LANCZOS)` — `force_original_aspect_ratio` 없이 직행이라, 세로로 긴 사진(790×704 등)을 넣으면 768×416으로 눌려서 얼굴이 납작해지고 **입이 안 움직인다**(1차 시도 실패 원인, 립싱크 자체가 안 걸림 — 에러 없이 조용히 실패해서 알아채기 어려움). **입력 이미지는 반드시 768×416 비율로 미리 크롭/리사이즈해서 넣을 것.**
+- **[확인] 기본 프롬프트가 입 움직임을 억제한다**: `DEFAULT_PROMPT`의 "calm steady posture, no sudden movement" 류 문구가 립싱크 모션까지 눌러버림. "mouth opening wide and closing repeatedly, teeth visible while singing" 같은 명시적 입모양 지시로 교체해야 함.
+- 노래 구간 선정은 스테레오 mid/side 분석(센터채널 우세도)으로 보컬 존재를 사전 검증 — 이미지 문제로 원인을 좁힐 수 있었던 근거.
+- 소요: 1차 실패(23분, 결과물 버림) + 2차 성공(23분) + 로컬 조립. Kaggle 주간 할당 1h16m 소모, 직접비 0원. 세션 Stop 정상 종료.
+- 산출물 경로: `D:\Develop\moa-studio\_workspace\lipsync-2026-08-07\`(전곡 mp4·디스코드용 프리뷰·립싱크 컷·실패본 보존).
 
 관련: [[reference_lipsync_stack_2026-07]] · [[reference_vram_contention_lm_vs_flux]] · [[reference_local_hardware_spec]]
