@@ -1,0 +1,43 @@
+{
+  "run": "run_20260807_150625",
+  "team": "ppt_generation",
+  "team_name": "Claude Code PPT 생성 품질 개선 회의",
+  "topic": "Claude Code로 PPT를 만들 때 화려한 디자인과 풍성한 자료를 담보하는 방법",
+  "artifacts": [
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "ppt_tech_stack_comparison.md"
+    },
+    {
+      "agent_id": "serin",
+      "agent_name": "오세린",
+      "filename": "slide_design_system.md"
+    },
+    {
+      "agent_id": "siwoo",
+      "agent_name": "강시우",
+      "filename": "visual_asset_pipeline.md"
+    },
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "content_density_playbook.md"
+    },
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "data_viz_spec.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "use_case_priority.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "ppt_quality_gate.md"
+    }
+  ]
+}
