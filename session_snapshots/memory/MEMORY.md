@@ -1,3 +1,4 @@
+- [★2026-08-07 14시 오후저장 스냅샷](project_open_threads_2026-08-07_pm_snapshot.md) — 열린작업: 립싱크뮤비 재작업중(226s/141s컷+조립 미완)·조코딩영상 형응답대기
 - [★★아투 트럼프기사 인용왜곡 반려+게이트버그2개 확정](project_atz_reversed_quote_incident_2026-08-06.md) — 발언 뒤집힘 발행직전 저지. qa-gate.mjs 수리 위임중
 - [★덱스·제나 데몬 조용히 죽음, 감시사각지대](project_dex_jena_daemon_silent_death_2026-08-06.md) — 재기동만 함, 원인미확정+감시 없음
 - [★★옵시디언 팀뇌 개편 완료(2026-08-06)](project_obsidian_brain_overhaul_2026-08-06.md) — dataview 방식 채택, MOC6개+대시보드 완료. 형 GUI확인 대기
