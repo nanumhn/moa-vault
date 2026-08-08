@@ -1,3 +1,4 @@
+- [★★2026-08-08 14시 오후 세션리셋 스냅샷](project_open_threads_2026-08-08_afternoon_snapshot.md) — 열린작업: 오전일지완료확인·SaaS결재3건대기·덱스제나응답대기
 - [★형 예정요청: 시스템 전체설명+정리 세션](project_full_system_review_pending_2026-08-08.md) — 형이 먼저 안 물어봐도 클로가 주기적으로 상기시켜야 함
 - [덱스·제나 공유채널 3개 용도구분](reference_dex_jena_shared_channels_2026-08-08.md) — 그들만의대화/회의/업무 ID. 정리물은 "업무" 채널에
 - [★★2026-08-08 04시 새벽저장 스냅샷](project_open_threads_2026-08-08_dawn_snapshot.md) — 열린작업: 아투06:00첫실전 확인·소스언어 추이관찰·립싱크뮤비 미완·조코딩영상 형응답대기
