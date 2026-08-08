@@ -2,7 +2,9 @@
 
 작성: 윤서진(CTO) · 2026-08-08 · **rev9 (qa-lead-jian 8차 검수 FAIL 반영 — 문서 서술만 수정)**
 선행 결정문서: [[2026-08-08_naver_blog_saas_plan]] (형 결재 완료 · 노선 ㉡ 사용자 PC 설치형 확정)
-상태: **설계 초안 rev9 — qa-lead-jian 9차 검수 대기**
+상태: **페이즈1 완료(10라운드 검수 PASS) · 형 결재 완료 2026-08-08 → 페이즈2(개발) 진행 중**
+
+> **[페이즈2 진행 표시 2026-08-08]** 2-4의 마지막 남은 **[미검증]**(제약 9개 실제 실행)이 **해소됐다.** 실행 결과·실측 발견 3건·뮤테이션 검증은 **2-4 절 안**에 기록했다. 구현 레포는 `D:\Develop\nblog-saas`(포트 3002).
 
 > 결정문서 관례를 따라 전문용어에는 괄호로 짧은 한글 설명을 붙였다.
 
@@ -852,7 +854,33 @@ CREATE UNIQUE INDEX publish_job_one_active_per_slot
 
 **검증 상태 (정직하게 구분)**
 - **[확인]** 위 SQL이 참조하는 테이블·컬럼 식별자는 `prisma migrate diff --from-empty --script`로 실제 DDL을 뽑아 대조했다. `"PublishJob"."kind"`는 `CREATE TYPE "JobKind" AS ENUM ('PUBLISH','VERIFY')` 타입, `"PublishJob"."slotId" TEXT` nullable, `"PublishSlot"."slotIndex" INTEGER`, `"Schedule"."slotIndex"·"hour"`, `"Blog"."jitterSec"`, `"Subscription"."extraBlogSlots"` 모두 존재하며 대소문자 인용도 일치한다. `PublishSlot_blogId_slotDate_slotIndex_key`, `PublishJob_slotId_attemptSeq_key` 유니크 인덱스도 실제로 생성된다.
-- **[미검증]** 위 **9개 문(ALTER 7 + CREATE INDEX 2)** 을 **실제 Postgres에서 실행해 보지는 못했다.** 로컬에 Postgres 컨테이너·이미지가 없고 docker pull이 막혀 있다. 따라서 "3번째 슬롯 INSERT가 거부된다", "한 자리에 두 번째 발행이 거부된다"는 것은 아직 **설계상 주장이지 실행 확인이 아니다.** 페이즈2 첫 마이그레이션에서 반드시 실측하고, 8장 테스트 목록이 그 확인을 담당한다. (1차 설계에서 "물리적으로 안 생긴다"고 단정했다가 반려된 것과 같은 실수를 반복하지 않기 위해 명시한다.)
+- ~~**[미검증]** 위 **9개 문(ALTER 7 + CREATE INDEX 2)** 을 **실제 Postgres에서 실행해 보지는 못했다.**~~ → **[검증 완료 2026-08-08 · 페이즈2 착수 첫 단계]** 아래 참조.
+
+**★[검증 완료 2026-08-08] 제약 9개 실제 실행 결과 (페이즈2 첫 마이그레이션)**
+
+| 항목 | 결과 |
+|---|---|
+| 실행 환경 | PostgreSQL **16.4** (로컬 포터블 바이너리, `127.0.0.1:5433`). docker pull은 이번에도 자격증명 오류(`A specified logon session does not exist`)로 실패 — Docker 없이 Maven Central의 zonky embedded-postgres 바이너리를 받아 클러스터를 직접 띄웠다 |
+| 적용 방법 | `prisma migrate dev`가 만든 초기 마이그레이션 SQL 끝에 2-4의 9개 문을 **원문 그대로** 덧붙여 실행 (레포 `nblog-saas`, 마이그레이션 `20260808105757_init`) |
+| 실행 결과 | **9개 전부 성공.** `pg_constraint`에 CHECK 7개, `pg_indexes`에 부분 유니크 인덱스 2개가 이름 그대로 존재 |
+| 드리프트 | `prisma migrate diff --from-schema-datasource --to-schema-datamodel` = **빈 마이그레이션**. 즉 손으로 덧붙인 제약이 Prisma의 드리프트 감지에 걸리지 않는다(2-4 마지막 단락의 절차가 실제로 성립) |
+| 동작 확인 | 3번째 슬롯 INSERT 거부(제약 2+유니크=`INV3`) · 한 자리 두 번째 `publishAttemptAt` UPDATE 거부(제약 8=`INV2`) · 한 자리 두 번째 ACTIVE 잡 거부(제약 9=`INV5`) · 나머지 CHECK 5개도 거부/통과 양쪽 확인. 총 **33개 테스트가 실제 DB에 대고 통과** |
+
+**★실행해 봐야 알 수 있었던 것 3가지 (설계 문서만으로는 안 보였다)**
+
+1. **제약 6이 제약 1을 가린다.** `Schedule`에 `slotIndex = 2`를 넣으면 제약 1(`schedule_slot_index_range`)이 아니라 **제약 6(`schedule_hour_shape`)이 먼저 터진다** — `slotIndex ∉ {0,1}`은 제약 6의 두 disjunct를 모두 못 만족하기 때문이다. 거부된다는 결과는 같지만 **에러 메시지에 뜨는 제약 이름이 다르므로**, "제약 1이 막는다"고 단정하는 테스트/운영 알림은 실패한다. 제약 1의 단독 동작은 제약 6을 잠시 뗀 롤백 트랜잭션에서 따로 확인했다.
+2. **부분 유니크 인덱스 위반 메시지에는 인덱스 이름이 안 실린다.** Prisma는 `Unique constraint failed on the fields: (slotId)`, raw SQL도 `Key ("slotId")=(...) already exists`까지만 준다. 그래서 **"제약 8이 막았나 제약 9가 막았나"를 에러 메시지로 구별할 수 없다** — 2-4 [F4]가 요구한 "제약 8이 발동하면 A1에 즉시 경보"는 메시지 파싱으로는 구현 불가이고, 위반 시점에 슬롯 상태를 되짚어 판별해야 한다. 페이즈2 A1 경보 구현 시 반영 필요.
+3. **제약 8은 예상대로 "이미 누른 뒤"에만 터진다.** 첫 잡이 `VERIFIED`(TERMINAL)여도 두 번째 잡의 `publishAttemptAt` UPDATE를 막는다 — 2-4 [F4]가 밝힌 "실시간 예방이 아닌 최후 방어선"이 실측으로 확인됐다.
+
+**★회귀테스트 유효성 자체를 검증했다 (뮤테이션 3종).** 테스트가 통과하는 것만으로는 "정말 잡는지" 알 수 없어, 과거 반려 3건의 버그를 코드에 일부러 되살려 넣고 돌렸다. 셋 다 **의도한 테스트가 정확히 하나씩 실패**했다.
+
+| 되살린 버그 | 죽인 테스트 |
+|---|---|
+| `SL4-SWEEP` 가드축을 rev7(ACTIVE 잡 0건)로 되돌림 | `F6-⑨` 스윕이 QUEUED 잡에 막힘 |
+| `SL2`에서 `INV5` 배타조건 제거(rev6 상태) | `F6-⑥` 예약 만료 인터리빙 |
+| `R1-c`가 `SL4`를 안 부름(4차 치명) | `F6-①②③` R1-a→R1-c 왕복 |
+
+산출물: 레포 `D:\Develop\nblog-saas` (커밋 `c83a172`) — `prisma/schema.prisma`는 2-2 원문과, `prisma/constraints.sql`은 2-4 원문과 **`diff` 결과 0바이트 차이**(양쪽 다 문서에서 직접 추출).
 
 ### 2-5. [E5] `skipReason` 표준값 — 정의는 여기 한 곳에만
 
