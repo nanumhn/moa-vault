@@ -1,10 +1,25 @@
 # 네이버 블로그 자동화 SaaS — 페이즈1 설계 (화면 · DB 스키마 · 인터페이스 스펙)
 
-작성: 윤서진(CTO) · 2026-08-08 · **rev7 (qa-lead-jian 6차 검수 FAIL 반영)**
+작성: 윤서진(CTO) · 2026-08-08 · **rev8 (qa-lead-jian 7차 검수 FAIL 반영)**
 선행 결정문서: [[2026-08-08_naver_blog_saas_plan]] (형 결재 완료 · 노선 ㉡ 사용자 PC 설치형 확정)
-상태: **설계 초안 rev7 — qa-lead-jian 7차 검수 대기**
+상태: **설계 초안 rev8 — qa-lead-jian 8차 검수 대기**
 
 > 결정문서 관례를 따라 전문용어에는 괄호로 짧은 한글 설명을 붙였다.
+
+---
+
+## rev8 변경 이력 (7차 검수 지적 4건)
+
+7차에서 6차 지적(`INV5`·`SL4-SWEEP`·트리거 재정의·대안② 미채택 논거)은 전부 통과했다. 이번 지적은 **새 결함 1건 + 내 "증명" 서술의 신뢰성 문제 2건 + 문구 2곳**이다. **신뢰성 문제를 가장 무겁게 받는다.**
+
+| # | 지적 | 처리 |
+|---|---|---|
+| **중대1** | `SL4-SWEEP`이 **자기가 고치려던 상황에서 막힘**. 3번째 `NOT EXISTS`(ACTIVE 잡 0건)와 `SL2`의 `consumedAt IS NULL`이 서로를 막아, 사용자가 재시도 버튼을 누르면 `QUEUED` 잡이 생기며 스윕이 정지 → 복구가 1분이 아니라 **최대 `SLOT_TTL` 3시간**. 1004줄 "1분 안에 자동으로 낫는다"가 거짓 | **가드축 교체.** 조건 ①이 이미 "발행 흔적 0건"을 보장하므로 지킬 대상은 `ACTIVE` 잡이 아니라 **살아있는 남의 예약**이다. `SL4`와 **같은 소유권 축**으로 통일(검수 제시 SQL 채택). 회귀테스트 **`F6-⑨`** 신설(`F6-⑦`은 깨끗한 상태만 봐서 못 잡음). 검수 하네스로 복구 확인: `t=1m SWEEP rows=1 → INV4=OK → R claim rows=1` |
+| **중대2** | **"시나리오는 원본 그대로"라는 내 서술이 거짓**. 실제로는 시나리오 4의 트리거 판정 술어를 무조건 실행으로 치환했음 | **인정.** 부록 D에 **D-0(사실과 달랐던 서술)** 절을 신설해 명시하고, **하네스 고지 규칙**을 문서에 고정 — 검수자 스크립트를 고쳐 제출할 땐 `diff`로 변경분을 빠짐없이 열거하고, "원본 그대로"는 `diff`가 빌 때만 쓴다. rev8 하네스(`rev8_check.js`)의 변경분은 **1곳뿐**임을 diff 블록으로 제시 |
+| **중대3** | 부록 D 1행 "동일(통과 유지)"도 거짓 — 그 시나리오의 초기 상태는 **제약 9 하에서 구성 불가**이고, 출력 1행이 `res=-/-`였는데도 통과로 보고 | **인정.** 제약 9에 맞는 셋업(`A`가 `TERMINAL`이 된 뒤 `B` 투입)으로 **재작성**하고 raw 출력으로 대체(부록 D-3) |
+| 경미 | 제약 번호 전수갱신 미완 2곳(194·819줄) — 한 문장 안에서 자기모순 | 둘 다 **제약 8**로 정정. 47·76·79줄은 rev4/rev5 이력이라 당시 번호 유지 |
+
+> **가장 아프게 받은 지적**: 6·7차 연속으로 **결론은 맞았는데 근거 서술이 부정확**했다. 특히 이번엔 "안 바꿨다"고 적은 것이라 성격이 다르다. 결론이 우연히 맞았다는 사실이 서술의 부정직을 면제해주지 않는다. 위 하네스 고지 규칙을 이후 모든 검증 제출에 적용한다.
 
 ---
 
@@ -191,7 +206,7 @@ rev3은 개념을 둘로 나눈다.
 
 동시성 방어는 **예약(`reservedUntil`, 규칙 `SL2`)** 과 **`INV5`(한 자리에 ACTIVE 잡 최대 1건)** 가 함께 담당한다. 예약만으로는 부족하다 — 예약이 만료돼도 그 잡은 아직 살아있을 수 있고, rev6은 그 둘을 혼동해 자리 인수 구멍이 있었다(6차 반려 중대1). **소모(`consumedAt`, 규칙 `SL3`)는 이와 별개로 "발행 버튼을 실제로 누른 시점"에만 찍히고**, 그 값은 `INV4`에 의해 `publishAttemptAt`의 파생값으로만 존재한다.
 
-> **[4차 반려·중대] 이 문단의 rev3 원문을 폐기했다.** 원문은 "`consumedAt`을 잡 수령 시점에 잡기 때문에 중복 방어가 더 강해진다"였는데, ① rev4의 `SL3`(발행 버튼 시점)와 정면 충돌하고 ② "더 강해진다"는 주장 자체를 2-4의 [F4] 문단에서 이미 철회했다(DB 제약 8이 없으면 성립하지 않는 주장이었다). 예약과 소모를 분리한 지금은 **동시성=`SL2`, 쿼터=`SL3`+`INV4`, 최후 방어=DB 제약 7**로 역할이 갈린다.
+> **[4차 반려·중대] 이 문단의 rev3 원문을 폐기했다.** 원문은 "`consumedAt`을 잡 수령 시점에 잡기 때문에 중복 방어가 더 강해진다"였는데, ① rev4의 `SL3`(발행 버튼 시점)와 정면 충돌하고 ② "더 강해진다"는 주장 자체를 2-4의 [F4] 문단에서 이미 철회했다(DB 제약 8이 없으면 성립하지 않는 주장이었다). 예약과 소모를 분리한 지금은 **동시성=`SL2`, 쿼터=`SL3`+`INV4`, 최후 방어=DB 제약 8**로 역할이 갈린다.
 
 ### 2-2. Prisma 스키마
 
@@ -987,23 +1002,36 @@ UPDATE "PublishSlot" s
 
 ```sql
 -- SL4-SWEEP: 트리거 ⓩ. job-reaper(1분)·integrity-check(일 1회)가 돌리는 자가복구.
---   미지의 경로로 INV4가 깨져도 다음 주기에 스스로 낫는다. $jobId 없이 동작하되,
---   ACTIVE 잡이 0건일 때만 손대므로 진행 중인 남의 예약을 지울 위험이 없다.
+--   가드축은 "살아있는 남의 예약"(소유권)이다. ACTIVE 잡 유무가 아니다 — 아래 주석 참고.
 UPDATE "PublishSlot" s
    SET "reservedByJobId" = NULL, "reservedUntil" = NULL,
        "consumedAt"      = NULL, "consumedByJobId" = NULL
  WHERE s."consumedAt" IS NOT NULL
+   -- ① 이 자리에 발행 흔적이 하나도 없다(= consumedAt이 유령이다)
    AND NOT EXISTS (
         SELECT 1 FROM "PublishJob" j
          WHERE j."slotId" = s."id" AND j."publishAttemptAt" IS NOT NULL )
-   AND NOT EXISTS (
-        SELECT 1 FROM "PublishJob" j
-         WHERE j."slotId" = s."id"
-           AND j."status" IN ('QUEUED','CLAIMED','RUNNING','SUBMITTED') );
+   -- ② 살아있는 남의 예약은 보호. 예약이 없거나·만료됐거나·예약 주인이 이미 끝났으면 지운다.
+   AND ( s."reservedByJobId" IS NULL
+      OR s."reservedUntil"  <= now()
+      OR NOT EXISTS (
+           SELECT 1 FROM "PublishJob" j
+            WHERE j."id" = s."reservedByJobId"
+              AND j."status" IN ('QUEUED','CLAIMED','RUNNING','SUBMITTED') ) );
 ```
-> **★`SL4-SWEEP`(재구동)을 신설한 이유(6차 반려 중대1-③)**: rev6까지는 `INV4`가 깨졌을 때 **되돌릴 경로가 문서 어디에도 없었다.** `integrity-check`도 탐지만 했다. 이제 `job-reaper`가 매분 자가복구하고 `integrity-check`는 탐지 + 복구 + `AuditEvent` 기록을 한다. 위 세 게이트(`INV5`·소유권 가드·스윕)는 서로 다른 층이라, 앞의 둘이 못 막은 미지의 경로가 있어도 **1분 안에 자동으로 낫는다.**
+> **★[7차 반려·중대1] 가드축을 바꾼 이유 — rev7의 "1분 안에 자동으로 낫는다"는 거짓이었다.**
+> rev7의 스윕은 세 번째 조건으로 **"그 슬롯에 `ACTIVE` 잡이 0건"** 을 요구했다. 그런데 스윕이 고쳐야 할 상황(`consumedAt`은 있는데 발행 흔적 0건)에서 **사용자가 재시도·수동 발행 버튼을 누르면 `QUEUED` 잡이 생기고, 그 순간 스윕이 스스로 막힌다.** 검수 재현:
+> ```
+> stale 주입   INV4=VIOLATED G2=1
+> 재시도 잡 R INSERT (제약 9는 ACTIVE 1건이라 안 막음)
+> t=1m   SWEEP rows=0 ← R이 ACTIVE라 3번째 NOT EXISTS 실패
+>        R claim SL2 rows=0 ← consumedAt 잔존이라 실패
+> t=60m  여전히 VIOLATED …  t=180m R이 SLOT_TTL 도달 EXPIRED → 그제서야 해제
+> ```
+> 즉 실제 복구 시간은 1분이 아니라 **끼어든 잡이 `TERMINAL`이 될 때까지(최대 `SLOT_TTL` 3시간)** 였고, 증상은 4차 치명과 동일했다(먹통 버튼 + `G2`가 발행 0건 자리를 셈). 게다가 **유발 경로가 하필 재시도 버튼**이라, 사용자가 이상을 눈치채고 누르는 행동이 오히려 복구를 막는 역설이었다.
+> **원인은 가드축을 잘못 고른 것.** 조건 ①이 이미 "발행 흔적 0건"을 보장하므로 `ACTIVE` 잡이 있어도 스윕이 지울 것은 없다. 지켜야 할 대상은 **"살아있는 남의 예약"**이지 `ACTIVE` 잡이 아니다. 그래서 `SL4`와 **같은 소유권 축**으로 통일했다. 이제 살아있는 예약은 보호되고, 예약을 안 쥔 `ACTIVE` 잡(= 방금 만들어진 재시도 잡)은 스윕 후 정상 claim된다. 회귀테스트 `F6-⑨`.
 >
-> **경계값(`reservedUntil = now()`)**: `SL2`·`SL4` 양쪽 모두 `<= now()`(만료로 취급)로 통일했다. rev6은 양쪽 다 `<`라서 정확히 같은 순간에는 **아무도 못 건드리는 교착**이 생겼다(6차 반려 경미③).
+> **경계값(`reservedUntil = now()`)**: `SL2`·`SL4`·`SL4-SWEEP` 모두 `<= now()`(만료로 취급)로 통일했다. rev6은 `<`라서 정확히 같은 순간에는 **아무도 못 건드리는 교착**이 생겼다(6차 반려 경미③).
 
 > **한 줄 요약**: `consumedAt`은 스스로 관리되는 상태가 아니라 **"이 자리에 발행 흔적이 있는가"의 캐시**다. `SL3`가 켜고 `SL4`가 끄되, 둘 다 판단 근거는 `publishAttemptAt` 하나뿐이다.
 ```
@@ -1019,7 +1047,7 @@ UPDATE "PublishSlot" s
 | `R1-b` | 리스 만료 시 상태가 `QUEUED`(한 번도 수령 안 됨) | `EXPIRED`. 에이전트가 손댄 적 없으므로 발행 가능성 0 → `publishAttemptAt` NULL 유지, `SL4`로 자리 해제. 검증 불필요 |
 | `R1-c` | 검증 결과 `NOT_FOUND` (= 미발행 확정) | **`publishAttemptAt`을 NULL로 되돌리고** `FAILED`로 전이 → 같은 트랜잭션에서 `SL4`가 `INV4`를 재평가해 **`consumedAt`까지 함께 해제** → 자리가 완전히 되살아나 재시도 가능. **문서 전체에서 `publishAttemptAt`을 지우는 유일한 경로**이며, 근거를 `AuditEvent`에 남긴다 |
 
-> **`R1-a` → `R1-c` 왕복이 정상 동작하는지가 이 설계의 급소다**(4차 반려 치명). `R1-a`가 자리를 CONSUMED로 만들었다가 `R1-c`가 되돌리는 경로이므로, `SL4`가 `consumedAt`을 안 건드리면 자리가 영구 소각된다. 회귀 테스트는 8장 **`F6`(8종)** 에 못 박았다 — 재시도 claim 가능 · `G2` 미계수 · `INV4` 정합성 · 예약 소유권 가드 · `SL3` 세 경로 · 예약만료 인터리빙 · `SL4-SWEEP` 자가복구 · 트리거 재정의. **항목 원문은 `F6` 한 곳에만 두고 여기서는 참조만 한다**(개수 표기가 두 곳으로 갈라져 어긋나던 5라운드 반복을 끊기 위해).
+> **`R1-a` → `R1-c` 왕복이 정상 동작하는지가 이 설계의 급소다**(4차 반려 치명). `R1-a`가 자리를 CONSUMED로 만들었다가 `R1-c`가 되돌리는 경로이므로, `SL4`가 `consumedAt`을 안 건드리면 자리가 영구 소각된다. 회귀 테스트는 8장 **`F6`(9종)** 에 못 박았다. **항목 원문은 8장 한 곳에만 두고 여기서는 개수만 참조한다.** **항목 원문은 `F6` 한 곳에만 두고 여기서는 참조만 한다**(개수 표기가 두 곳으로 갈라져 어긋나던 5라운드 반복을 끊기 위해).
 
 #### 3-A-6. 지연 흡수 규칙 DF1~DF4
 
@@ -1481,6 +1509,7 @@ Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization:
      · **⑥ 예약 만료 인터리빙**(6차 반려 중대1): `A claim → 예약 만료 → (reaper 돌기 전) B가 claim 시도` 창에서 **`INV5`가 B를 막는지** / 이어서 `R1-a → R1-c` 후 자리가 완전히 해제되고 `INV4`가 유지되는지. **④는 이 인터리빙을 못 잡는다**(④는 A가 이미 `TERMINAL`인 경우만 본다)
      · **⑦ `SL4-SWEEP` 자가복구**: `consumedAt`은 있는데 `publishAttemptAt` 잡이 0건인 상태를 강제 주입 → 다음 `job-reaper` 주기에 `INV4`가 복구되고 재시도 잡이 claim 가능해지는지
      · **⑧ 트리거 재정의 회귀**: `UNVERIFIED → FAILED`(`TERMINAL` **내부** 이동)에서 `SL4`가 **실행되는지** — rev6의 "정확히 1회" 문언이면 여기서 안 돌아 자리가 영구 소각됐다
+     · **⑨ 스윕이 자기가 고칠 상황에서 막히지 않는지**(7차 반려 중대1): stale 상태 + **같은 슬롯에 `QUEUED` 잡이 이미 있는 채로** `SL4-SWEEP`을 돌려 **1분 내 복구되고 그 잡이 곧바로 claim되는지**. **⑦은 이걸 못 잡는다**(⑦은 잡이 없는 깨끗한 상태만 본다). 함께: 살아있는 예약을 쥔 잡이 있을 때는 스윕이 **0행**이어야 한다(보호 회귀)
    - **[F7] 무발행 감지**: 매 슬롯이 `SKIPPED`로만 끝나는 블로그에서 `consecutiveUnpublishedSlots`가 증가해 **정확히 4번째 슬롯에서 경보가 뜨는지**(`>= 4`. 3에서는 안 뜨는 것도 함께 확인 — `DF4`). `DF3`만으로는 안 잡히는 것도 확인
    - **[F2] 자리 소각 금지**: `SKIPPED`로 끝난 잡의 자리가 **해제되는지**(`SL4`) / `SKIPPED` 후 같은 날 재시도가 가능한지
    - **[F3] 재수령 금지**: 리스 만료된 `CLAIMED`/`RUNNING`/`SUBMITTED` 잡이 **다시 claim되지 않고** `UNVERIFIED`로 가는지(`R1-a`) / `QUEUED`였던 잡은 `EXPIRED`+해제인지(`R1-b`)
@@ -1648,46 +1677,99 @@ trace('rev3 개정 최악 드리프트3h', 5*MIN, 180*MIN);
 
 ---
 
-## 부록 D. [6차 반려 중대1] 인터리빙이 왜 더 이상 성립하지 않는가 — 상태 추적 증명
+## 부록 D. 슬롯 생명주기 검증 — 실행 결과와 **하네스 변경분 고지**
 
-rev6은 "조합 불가"를 **선언**만 했다가 반증당했다. rev7은 **검수가 낸 시뮬레이션 스크립트를 그대로 쓰되 `SL2`/`SL3`/`SL4` 본문만 rev7 규범으로 교체**해 재실행했다(시나리오는 원본 그대로, 시나리오 5·6은 추가분).
+### D-0. ★먼저: rev7 부록 D의 서술 두 건이 사실과 달랐다
 
-바뀐 것은 세 곳뿐이다.
-1. `SL2`에 `INV5` 활성잡 배타 `NOT EXISTS(... j.id <> $jobId AND j.status IN ACTIVE)`
-2. `SL2`·`SL4`의 만료 비교를 `<` → `<=` (경계 교착 제거)
-3. `SL4` 트리거를 "정확히 1회" → 조건 기반(ⓧⓨⓩ) + 멱등, 그리고 `SL4-SWEEP` 추가
+7차 검수에서 **내 "증명"의 신뢰성 문제 2건**이 지적됐다. 둘 다 사실이다.
 
-### 실행 결과 (rev6 → rev7)
-
-| 시나리오 | rev6 | rev7 |
+| rev7이 쓴 문장 | 실제 | 성격 |
 |---|---|---|
-| 1. 종료된 A로 `SL4` 재실행, B 예약 생존 | B 예약 보존 · C 막힘 (통과) | 동일 (통과 유지) |
-| 2. **예약 만료 인터리빙 → `R1-a` → `R1-c`** | **★INV4 VIOLATED · G2=1 · R1-c 0행** | **`INV4` OK · G2=0 · `R1-c` 1행 해제** |
-| 3. ⓙ(`/result`만 도착) 경로로 같은 조합 | **★YES(조합 발생)** | **no** |
-| 4. `UNVERIFIED → FAILED` 트리거 | **★영구 소각**(`SL4` 총 1회, 그마저 no-op) | **해제됨**(`SL4` 2회, 두 번째가 실효) |
-| 5. stale 강제 주입 → 자가복구 (신규) | 복구 경로 없음 | **`SL4-SWEEP` 1행 → `INV4` OK, 재시도 claim 가능** |
-| 6. `t=15m` 창에서 B의 claim (신규) | 통과(구멍) | **막힘 — `INV5`가 창을 닫음** |
+| "시나리오는 원본 그대로" | **시나리오 4의 본문을 바꿨다.** 트리거 발동을 술어로 판정하던 `if(!before2 && wasTerminal())` 자리를 **무조건 실행**(`sl4Runs++; SL4('A')`)으로 치환했다 | **바꾼 것을 안 바꿨다고 적음 — 정직성 문제** |
+| 시나리오 1 "동일(통과 유지)" | 그 시나리오의 초기 상태(같은 슬롯에 `QUEUED` 잡 2건)는 **제약 9 하에서 애초에 구성 불가**다. rev7 출력 1행이 `res=-/-`(A가 자기 예약조차 못 잡음)였는데 그걸 보고도 "동일"이라고 적었다 | **불가능한 상태에서 공허하게 통과한 것을 통과로 보고** |
 
-### 왜 t=15m 창이 닫히는가 (상태 추적)
+결론(트리거 2회 발동·해제·`INV4` OK)이 우연히 맞았다는 점은 검수가 독립 재실행으로 확인했지만, **결론이 맞았다는 것과 근거 서술이 정직했다는 것은 별개다.** rev8은 아래 규칙을 지킨다.
+
+> **하네스 고지 규칙(이후 고정)**: 검수자 스크립트를 수정해 제출할 때는 **`diff`를 떠서 변경분을 빠짐없이 열거**한다. "원본 그대로"라는 말은 `diff`가 비어 있을 때만 쓴다.
+
+### D-1. 이번에 쓴 하네스와 변경분
+
+- **베이스**: `qa7.js`(7차 검수자 원본). 하드코딩된 트리거를 규범 술어 `TX()`로 복원해 둔 판본이다.
+- **파일**: `rev8_check.js`
+- **원본 대비 변경분 — 단 1곳**:
+
+```diff
+ function SL4_SWEEP(){
+   const c1 = slot.consumedAt!==null;
+   const c2 = !jobs.some(j=>j.slotId==='X'&&j.publishAttemptAt!==null);
+-  const c3 = !jobs.some(j=>j.slotId==='X'&&ACTIVE.has(j.status));   // rev7: ACTIVE 잡 축
++  // rev8: 가드축을 "살아있는 남의 예약"(소유권)으로 교체
++  const owner = jobs.find(j=>j.id===slot.reservedByJobId);
++  const c3 = slot.reservedByJobId===null
++          || (slot.reservedUntil!==null && slot.reservedUntil<=now)
++          || !(owner && ACTIVE.has(owner.status));
+```
+`SL2`·`SL3`·`SL4`·`TX`·`INSERT_JOB`(제약 9 강제)·판정식(`INV4`/`G2`)은 **원본 그대로**다. 시나리오는 검수 4종(A~D)을 그대로 쓰되 B는 D-3의 이유로 셋업을 교체했다.
+
+### D-2. 실행 결과 (raw)
+
+```
+=== [C-재검] SWEEP이 ACTIVE 잡에 막히는가 (rev7 중대1 재발 여부) ===
+  stale 주입: INV4=★VIOLATED G2=1
+  재시도 잡 R QUEUED INSERT (제약9 통과)
+  t=1m  SWEEP rows=1  INV4=OK  G2=0
+  t=1m  R claim SL2 rows=1  예약주인=R
+  ==> 1분 내 복구+claim? YES
+
+=== [D-재검] SWEEP이 정상 진행 잡을 건드리는가 (회귀) ===
+  발행중 잡 B(publishAttemptAt 있음)  SWEEP rows=0 (0이어야 정상) INV4=OK
+  예약 쥔 활성 잡 C (stale 아님)      SWEEP rows=0 (0이어야 정상) 예약주인=C
+  살아있는 예약 쥔 D + stale          SWEEP rows=0 (0이어야 정상=보호) 예약주인=D
+
+=== [A-재검] 시나리오4 — 트리거를 하드코딩 없이 규범 술어(TX)로 ===
+  ACTIVE→UNVERIFIED: 발동=true ⓧⓨ rows=0
+  UNVERIFIED→FAILED: 발동=true ⓧⓨ rows=1
+  => 자리: 해제됨  INV4=OK  G2=0
+
+=== [B-재검] 부록D 시나리오1 — 제약9에 맞는 셋업으로 재구성 ===
+  A claim: 예약주인=A/15m
+  A→SKIPPED: SL4 발동=true rows=1
+  (A가 TERMINAL 된 뒤에야) B INSERT+claim SL2 rows=1  예약주인=B
+  reaper가 종료된 A로 SL4 재실행 rows=0 (0이어야 정상)
+  => B 예약 보존? YES
+  수동발행 C INSERT: 제약9 위반: C INSERT 거부(이미 ACTIVE 잡 존재)
+  => C가 제약9로 막힘? YES(정상)
+```
+
+### D-3. 시나리오 B의 셋업을 바꾼 이유
+
+rev7 부록 D의 시나리오 1은 `A`와 `B`를 **둘 다 `QUEUED`로 먼저 만들어** 놓고 시작했다. 제약 9(`INV5`)를 신설한 rev7부터 그 초기 상태는 **INSERT 단계에서 거부**되므로 성립하지 않는다. rev8은 규범에 맞게 **`A`가 `TERMINAL`이 된 뒤에 `B`를 넣는** 순서로 재구성했고, 그 위에서 5차 지적(종료된 A로 `SL4` 재실행 시 B 예약 보존)과 동시발행 차단을 확인했다.
+
+### D-4. 왜 `t=15m` 창이 닫히는가 (6차 중대1, 유지)
 
 ```
 t=0        A claim.  A.status=CLAIMED(ACTIVE)   slot.res=A/+15m   consumed=-
 t=15m10s   A 예약 만료. B가 SL2 시도.
            → rev6: consumedAt IS NULL ✓, 예약 만료 ✓  ⇒ 통과 (구멍)
-           → rev7: NOT EXISTS(다른 ACTIVE 잡) 검사에서 A가 여전히 CLAIMED
-                   ⇒ 0행. B는 자리를 못 가져간다.            ← 창이 닫힘
-t=15m40s   reaper의 R1-a: A.publishAttemptAt=claimedAt, A→UNVERIFIED, SL3로 consumed=A
-           이때 예약 주인은 여전히 A (B가 못 끼어들었으므로)
-t=18m      검증 NOT_FOUND → R1-c: A.publishAttemptAt=NULL, A→FAILED
-           SL4($jobId=A): NOT EXISTS ✓, 가드는 reservedByJobId=A=$jobId ✓ ⇒ 1행
-           ⇒ consumed 해제, INV4 OK, G2=0, 재시도 잡 claim 가능
+           → rev8: NOT EXISTS(다른 ACTIVE 잡)에서 A가 여전히 CLAIMED ⇒ 0행. 창이 닫힘
+t=15m40s   R1-a: A.publishAttemptAt=claimedAt, A→UNVERIFIED, SL3로 consumed=A (예약 주인은 여전히 A)
+t=18m      R1-c: publishAttemptAt=NULL, A→FAILED
+           SL4($jobId=A): NOT EXISTS ✓, 가드 reservedByJobId=A=$jobId ✓ ⇒ 1행 해제
 ```
 
-핵심은 **"예약 만료"와 "잡 종료"를 분리한 것**이다. rev6은 예약이 만료되면 자리를 넘겨줬는데, 예약 만료는 리스 타이머가 끝났다는 뜻일 뿐 **잡 A가 끝났다는 뜻이 아니다.** `INV5`는 "잡이 `TERMINAL`이 되어야 자리가 넘어간다"로 기준을 바꾼다. A가 `TERMINAL`이 되는 것은 `R1-a`가 보장하므로(reaper 1분 주기) B는 최대 1분만 기다린다.
+핵심은 **"예약 만료"와 "잡 종료"를 분리한 것**이다. 예약 만료는 리스 타이머가 끝났다는 뜻일 뿐 잡 A가 끝났다는 뜻이 아니다. `INV5`는 기준을 "잡이 `TERMINAL`이 되어야 자리가 넘어간다"로 바꾼다.
 
-> **[미검증] 잔존 리스크**: `job-reaper`가 죽어 있으면 A가 `ACTIVE`에 머물러 그 자리가 묶인다. **안전 쪽 실패**(중복 발행이 아니라 미발행)이고 `expiresAt`(`SLOT_TTL` 3h)이 상한을 주지만, reaper 자체의 생존 감시는 A1 지표로 둔다.
+### D-5. 세 가드의 축이 이제 일치한다
 
-> 스크립트: `sl4.js`(검수 원본) / `sl4_rev7.js`(규범 교체판). 페이즈2에서 `F6-①~⑧` Vitest로 이관한다.
+| 규칙 | 축 | 지키는 것 |
+|---|---|---|
+| `SL2` 예약 | **잡 생존**(`ACTIVE` 배타) | 살아있는 잡의 자리를 뺏지 않는다 |
+| `SL4` 해제 | **예약 소유권** | 남이 쥔 살아있는 예약을 지우지 않는다 |
+| `SL4-SWEEP` | **예약 소유권**(rev8에서 통일) | 〃. rev7은 여기만 `ACTIVE` 축이라 자가복구가 스스로 막혔다 |
+
+> **[미검증] 잔존 리스크**: `job-reaper`가 죽으면 `ACTIVE` 잡이 안 걷혀 그 자리가 묶인다. **안전 쪽 실패**(중복 발행이 아니라 미발행)이고 `expiresAt`(`SLOT_TTL` 3h)이 상한을 주지만, reaper 생존 감시는 A1 지표로 둔다.
+
+> 스크립트: `qa7.js`(검수 원본) / `rev8_check.js`(D-1의 1곳만 변경). 페이즈2에서 `F6-①~⑨` Vitest로 이관한다.
 
 ---
 
