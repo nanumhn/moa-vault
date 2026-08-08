@@ -1,4 +1,5 @@
-- [★★네이버블로그SaaS 노선결재 완료(2026-08-08)](project_naver_blog_saas_2026-08-08.md) — API폐지 확인+카페반려+㉡PC설치형 채택. 페이즈1 설계 qa 7라운드 반려중(실동시성버그)
+- [★★★2026-08-09 04시 새벽저장 스냅샷](project_open_threads_2026-08-09_dawn_snapshot.md) — 1순위:cron/sheet-sync qa검수, 2순위:덱스응답확인, 3순위:PC에이전트착수
+- [★★네이버블로그SaaS 진행중(2026-08-08)](project_naver_blog_saas_2026-08-08.md) — 페이즈2 백엔드 전부qa통과+push, GitHub연결완료
 - [★긴 루프는 라운드마다 보고](feedback_report_each_stage.md) — 형지시, 최종결과만 말고 매 라운드 짧게+이슈는 즉시
 - [★QA루프 속도>완벽주의](feedback_qa_loop_speed_over_exhaustiveness.md) — 치명/중대만 반려유지, 경미는 통과+권고로
 - [★덱스·제나 적극병렬배분](feedback_delegate_to_dex_jena_proactively.md) — 형 명시지시(반복), cto한명에게만 몰지말것
