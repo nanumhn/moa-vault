@@ -149,7 +149,7 @@
 
 | | 내용 |
 |---|---|
-| **확정(승인 대상)** | ① DB 스키마 **모델 17개** + raw SQL 제약 **9개**(CHECK 7 + 부분 유니크 인덱스 2) ② 웹 대시보드 **화면 13개** ③ PC 에이전트↔서버 인터페이스 **엔드포인트 7개** ④ 발행 제약(하루 2회·12시간) 강제 지점 4곳 + 근거 계산 |
+| **확정(승인 대상)** | ① DB 스키마 **모델 17개** + raw SQL 제약 **10개**(CHECK 7 + 부분 유니크 인덱스 3 — 2026-08-08 `INV6` 추가) ② 웹 대시보드 **화면 13개** ③ PC 에이전트↔서버 인터페이스 **엔드포인트 7개** ④ 발행 제약(하루 2회·12시간) 강제 지점 4곳 + 근거 계산 |
 | **확정 안 함(형 결재 필요, 9장)** | 요금 금액(**미이행·이월 승인 요청**) · 구글시트 연결 방식 · 에이전트 배포/코드서명 · 신규 레포/포트 |
 | **범위 밖(절대 안 만듦)** | 사용자 네이버 아이디·비밀번호·세션쿠키의 서버 저장 (선행문서 5장) |
 | 웹 배포(2026-08-08 형 승인) | **Vercel(호스팅) + Neon(PostgreSQL)** — saju-studio와 동일 패턴, 개발단계는 Neon 무료플랜 |
@@ -787,6 +787,8 @@ model AuditEvent {
 
 ### 2-4. [D3] Prisma로 표현 안 되는 제약 — 초기 마이그레이션 raw SQL
 
+> **개수 변경 이력**: rev4~rev9 내내 **9개**(CHECK 7 + 부분 유니크 2)였고, 2026-08-08 페이즈2 2차 검수의 치명 발견으로 **제약 10(`INV6`)이 추가돼 지금은 10개**(CHECK 7 + 부분 유니크 **3**)다. 아래 본문·8장·0장의 개수는 전부 10 기준으로 갱신했다. rev 변경이력(문서 상단)의 "9개"는 그 시점 기록이라 그대로 둔다.
+
 **여기가 방어층 `L3`의 실체다.** **Prisma 6은 CHECK 제약을 스키마 문법으로 지원하지 않는다.** 1차 설계에서 "`slotIndex Int` + 유니크로 3번째 잡이 물리적으로 안 생긴다"고 쓴 것은 **사실이 아니었다**(slotIndex=2가 그냥 INSERT됨). 아래 SQL을 **초기 마이그레이션에 포함해야만** L3가 성립한다.
 
 ```sql
@@ -845,13 +847,21 @@ CREATE UNIQUE INDEX publish_job_one_published_per_slot
 CREATE UNIQUE INDEX publish_job_one_active_per_slot
   ON "PublishJob" ("slotId")
   WHERE "status" IN ('QUEUED','CLAIMED','RUNNING','SUBMITTED');
+
+-- 10) ★[2차 검수·치명] 한 블로그에 진행 중(in-flight)인 발행 잡은 최대 1건 = 불변식 `INV6`.
+--    제약 8·9는 슬롯 단위라 "다른 슬롯의 형제 잡"을 못 막았고, 그 틈으로 12시간 간격을
+--    무시한 2회 발행이 가능했다(3-A-3 참조). 앱은 `G3` + Blog 행 잠금으로 먼저 막고,
+--    이 인덱스가 최후 방어선이다. QUEUED는 집합에서 뺀다 — 넣으면 형제 대기 잡이 교착된다.
+CREATE UNIQUE INDEX publish_job_one_inflight_per_blog
+  ON "PublishJob" ("blogId")
+  WHERE "kind" = 'PUBLISH' AND "status" IN ('CLAIMED','RUNNING','SUBMITTED');
 ```
 
 > **[E2] rev2에서 바뀐 점**: rev2의 CHECK#2는 `PublishJob`에 `slotDate`/`slotIndex`를 강제해 **블로그·날짜당 PUBLISH 행이 영구히 2개로 고정**됐고, `EXPIRED` 후 수동 발행·재시도가 unique violation으로 막혔다. rev4는 쿼터를 `PublishSlot`으로 옮겨 **자리는 2개로 유지되면서 시도는 여러 번 가능**하고, 제약 8로 **"자리당 실제 발행 1회"를 DB가 다시 보장**한다.
 
 > **[F4] 제약 8과 앱 로직의 역할 분담 (정직하게)**: 제약 8은 `publishAttemptAt`을 UPDATE하는 순간, 즉 **에이전트가 이미 발행 버튼을 누른 뒤에** 위반을 잡는다. 따라서 이건 *실시간 예방*이 아니라 **불변식 위반을 시끄럽게 터뜨리는 최후 방어선**이다. 실시간 예방은 3-A 규칙 `SL2`(예약)가 담당한다. 제약 8이 발동하면 그 자체가 `SL2`에 구멍이 있다는 뜻이므로 A1에 즉시 경보를 띄운다. rev3은 이 역할 분담을 안 밝히고 "중복 방어가 더 강해졌다"고만 썼는데, 그 주장은 제약 8이 없으면 성립하지 않았다.
 
-> `prisma migrate dev` 로 생성된 SQL 파일 끝에 위 **9개(CHECK 7 + 부분 유니크 인덱스 2)** 를 손으로 덧붙이고, 이후 `prisma migrate diff` 로 드리프트가 안 나는지 확인한다. **CI에 "제약 9개 존재 확인" 테스트를 넣는다** — 나중에 누가 마이그레이션을 재생성하면 조용히 사라지는 종류의 방어이기 때문이다.
+> `prisma migrate dev` 로 생성된 SQL 파일 끝에 위 **10개(CHECK 7 + 부분 유니크 인덱스 3)** 를 손으로 덧붙이고, 이후 `prisma migrate diff` 로 드리프트가 안 나는지 확인한다. **CI에 "제약 10개 존재 확인" 테스트를 넣는다** — 나중에 누가 마이그레이션을 재생성하면 조용히 사라지는 종류의 방어이기 때문이다.
 
 **검증 상태 (정직하게 구분)**
 - **[확인]** 위 SQL이 참조하는 테이블·컬럼 식별자는 `prisma migrate diff --from-empty --script`로 실제 DDL을 뽑아 대조했다. `"PublishJob"."kind"`는 `CREATE TYPE "JobKind" AS ENUM ('PUBLISH','VERIFY')` 타입, `"PublishJob"."slotId" TEXT` nullable, `"PublishSlot"."slotIndex" INTEGER`, `"Schedule"."slotIndex"·"hour"`, `"Blog"."jitterSec"`, `"Subscription"."extraBlogSlots"` 모두 존재하며 대소문자 인용도 일치한다. `PublishSlot_blogId_slotDate_slotIndex_key`, `PublishJob_slotId_attemptSeq_key` 유니크 인덱스도 실제로 생성된다.
@@ -884,7 +894,11 @@ CREATE UNIQUE INDEX publish_job_one_active_per_slot
 **★이번 검증의 범위 한계 (문서만 읽는 사람이 오해하지 않도록 명시)**
 **이번 검증은 DB 레벨에 한정된다.** `F6-⑤`의 세 경로(ⓘ 정상 발행 · ⓙ `/result`만 도착 · ⓚ 리스만료)는 **같은 함수(`sl3Consume`)를 호출하는 형태로만 확인했고, 그 함수의 `path` 인자는 현재 본문에서 쓰이지 않는다** — 즉 세 테스트는 동작상 동일한 테스트 3개다. 실제 API 경로(에이전트 `/result` 수신·이벤트 유실) 연동 검증은 **페이즈2 앱 계층 작업에서 수행**한다. `F1`·`F5`·`F7`·`E3`·`D1`은 이번 범위 밖이다.
 
-산출물: 레포 `D:\Develop\nblog-saas` (커밋 `c83a172`) — `prisma/schema.prisma`는 2-2 원문(이 문서 232~755행)과, `prisma/constraints.sql`은 2-4 원문(793~847행)과 **`diff` 결과 0바이트 차이**(양쪽 다 문서에서 직접 추출). ※행번호는 이 갱신분이 추가된 뒤 기준이다.
+산출물: 레포 `D:\Develop
+blog-saas` (커밋 `c83a172`) — `prisma/schema.prisma`는 2-2 원문과, `prisma/constraints.sql`은 2-4 원문(제약 1~9 부분)과 **`diff` 결과 0바이트 차이**(양쪽 다 문서에서 직접 추출).
+
+> **★행번호를 적을 때는 반드시 커밋 해시를 같이 박는다.** 여기 적었던 "229~752행"은 vault 커밋 `7d4c868` 기준으로 맞았지만, 이후 커밋 `3d0f752`가 155행에 한 줄을 끼워 넣어 밀렸고, 검수자와 내가 서로 다른 리비전을 보며 "네 번호가 틀렸다"를 주고받았다. 리비전을 안 밝힌 행번호는 **다음 커밋에 바로 거짓이 된다.** (2026-08-08 2차 검수 교훈)
+> 더 나은 방법은 행번호가 아니라 명령이다 — ` ```prisma ` 펜스 다음 줄부터 닫는 펜스 전까지를 뽑아 `diff`하면 리비전과 무관하게 성립한다.
 
 ### 2-5. [E5] `skipReason` 표준값 — 정의는 여기 한 곳에만
 
@@ -898,6 +912,13 @@ rev2는 스키마 주석(4개)과 5-2장(5개)에 따로 적어 불일치가 났
 | `BLOG_PAUSED` | 블로그가 `PAUSED`/`DISCONNECTED`/`PENDING_VERIFY` | "블로그가 일시중지 상태입니다" |
 | `AGENT_NOT_PREFERRED` | 선호 기기 지정 + 그 기기가 15분 내 온라인 | "지정하신 PC에서 발행을 기다리는 중입니다" |
 | `SUBSCRIPTION_INACTIVE` | 구독이 `PAST_DUE`/`CANCELED` | "구독 상태를 확인해 주세요" |
+
+**★[페이즈2 추가 2026-08-08] 일시형 2개 — 종결형 6개와 구분한다.** 위 6개는 잡이 실제로 `SKIPPED`로 끝날 때 `PublishJob.skipReason`에 저장되는 값이다. 아래 2개는 **잡이 `QUEUED`로 살아 있고 다음 폴링에 다시 시도**되는 경우이며, API 응답의 `skipped[].reason`으로만 나가고 DB에 저장되지 않는다. `G3` 신설로 필요해졌다 — 이전 구현은 이 두 경우를 `DAILY_QUOTA`로 뭉뚱그려 사용자에게 **"오늘 2회 다 썼다"는 거짓 사유**를 보냈다.
+
+| 값 | 언제 | 사용자에게 보이는 문장 |
+|---|---|---|
+| `BLOG_BUSY` | `G3` 거짓 — 같은 블로그에 진행 중인 발행이 있음 | "이 블로그의 다른 글을 올리는 중입니다" |
+| `SLOT_UNAVAILABLE` | `SL2`가 0행 — 그 자리를 남이 쥐고 있거나 이미 소모됨 | "발행 자리를 준비 중입니다. 잠시 후 다시 시도합니다" |
 
 ---
 
@@ -940,6 +961,7 @@ rev2는 스키마 주석(4개)과 5-2장(5개)에 따로 적어 불일치가 났
 | `INV3` | 한 블로그·하루에 슬롯 행은 **최대 2개** | **DB 제약 2 + 유니크**(2-4) |
 | **`INV4`** | **`slot.consumedAt IS NOT NULL` ⟺ 그 슬롯에 `publishAttemptAt IS NOT NULL`인 잡이 존재.** 그리고 그때 `slot.consumedByJobId` = **그 잡의 id**(`INV2`에 의해 유일) | 앱(`SL3`·`SL4`) + `job-reaper` 자가복구 + `integrity-check` |
 | **`INV5`** | **한 슬롯에 `ACTIVE` 잡은 최대 1건** | **DB 제약 9**(2-4) + 앱(`SL2`) |
+| **`INV6`** | **한 블로그에 `INFLIGHT`(`CLAIMED`·`RUNNING`·`SUBMITTED`) `PUBLISH` 잡은 최대 1건** | 앱(`G3` + `Blog` 행 잠금) + **DB 제약 10**(2-4). 2차 검수 치명 발견으로 신설 |
 
 > `INV2 ∧ INV3` ⇒ **블로그당 하루 실제 발행 ≤ 2회가 DB 레벨에서 보장된다.** (3차 반려 ④ 대응 — rev3은 INV2가 없어 이 보장이 앱 로직에만 있었다.)
 >
@@ -997,7 +1019,34 @@ G2(blogId, slotDate) := 위 COUNT < 2
 ```
 > `INV3`에 의해 슬롯 행 자체가 2개를 넘을 수 없으므로 이 값은 구조적으로 0·1·2뿐이다.
 
-> **동시 실행 배타는 별도 술어를 두지 않는다.** rev3에는 "`CLAIMED`/`RUNNING`이 있으면 차단"하는 세 번째 쿼리가 따로 있었는데, 슬롯 예약(`SL2`)이 같은 일을 더 정확히 한다. **중복 서술을 없애기 위해 그 쿼리는 삭제한다.**
+> **★[2차 검수·치명 2026-08-08] 이 자리에 있던 rev4 문장은 틀렸다.** 원문은 이랬다:
+> > ~~"동시 실행 배타는 별도 술어를 두지 않는다. rev3에는 `CLAIMED`/`RUNNING`이 있으면 차단하는 세 번째 쿼리가 따로 있었는데, **슬롯 예약(`SL2`)이 같은 일을 더 정확히 한다.** 중복 서술을 없애기 위해 그 쿼리는 삭제한다."~~
+>
+> **삭제된 rev3 술어는 `blogId` 단위였고 `SL2`는 `slotId` 단위다. 같은 일이 아니다.** 중복 서술을 지우는 과정에서 **범위가 다른 방어를 중복으로 오인해 없앤 것**이고, 9차 반려의 "형제 인스턴스" 계열이 규칙 층에서 재발한 사례다.
+> 그 결과 뚫린 구멍: `G1`의 기준값 `publishAttemptAt`은 `PUBLISH_SUBMITTED`에야 찍히므로 **아직 발행 전인 형제 잡끼리는 서로를 못 본다** → 같은 블로그의 due 잡 2개가 둘 다 `G1`을 통과하고 **각자 다른 슬롯**을 `SL2`로 예약해 둘 다 수령된다 → 12시간 하드룰이 무시된 채 몇 분 간격 2회 발행. 제약 8·9도 슬롯 단위라 DB 백스톱도 없었다. **페이즈2 구현 중 검수가 재현했다**(claim `max=2` 1회 호출 / 에이전트 2개 동시 `max=1`, 둘 다 재현).
+>
+> **`G3` 블로그 단위 동시성 배타 — 유일 정의**
+> ```
+> G3(blogId, jobId) := 같은 blogId에 이 잡(jobId) 외에
+>                      status ∈ INFLIGHT 인 kind='PUBLISH' 잡이 하나도 없을 것
+> INFLIGHT = { CLAIMED, RUNNING, SUBMITTED }        ← ACTIVE에서 QUEUED를 뺀 집합
+> ```
+> ★**`QUEUED`를 넣지 않는 이유**: 넣으면 형제 대기 잡 2건이 서로를 막아 **아무도 수령 못 하는 교착**이 된다. 막으려는 것은 "동시 발행"이지 "대기열에 2건 있는 상태"가 아니다.
+> ★**판정과 전이는 분리하지 않는다.** `G3`를 읽고 나서 따로 수령 UPDATE를 하면(TOCTOU) 동시 요청에 그대로 뚫린다. 수령은 `G3` 조건을 **UPDATE의 WHERE에 포함한 원자적 문**이어야 하고, 그것만으로는 서로 다른 행을 건드리는 동시 트랜잭션의 write-skew가 남으므로 **해당 `Blog` 행을 `FOR UPDATE`로 먼저 잠근다**(READ COMMITTED 기준).
+>
+> ```sql
+> -- G3 + 수령 전이. $1=jobId $2=agentId $3=leaseExpiresAt. 앞서 Blog 행을 FOR UPDATE로 잠근 상태여야 한다.
+> UPDATE "PublishJob" j
+>    SET "status" = 'CLAIMED', "claimedByAgentId" = $2, "claimedAt" = now(),
+>        "leaseExpiresAt" = $3, "attempt" = j."attempt" + 1
+>  WHERE j."id" = $1
+>    AND j."status" = 'QUEUED'
+>    AND NOT EXISTS (
+>         SELECT 1 FROM "PublishJob" o
+>          WHERE o."blogId" = j."blogId" AND o."id" <> j."id"
+>            AND o."kind" = 'PUBLISH'
+>            AND o."status" IN ('CLAIMED','RUNNING','SUBMITTED') );
+> ```
 
 #### 3-A-4. 슬롯 규칙 SL1~SL5
 
@@ -1123,7 +1172,7 @@ UPDATE "PublishSlot" s
 | `L1` | S8에서 예약 저장 | `J2` | 저장 거부(UI에서 애초에 입력 불가) |
 | `L2` | `slot-planner`가 잡 생성 | `G1(blog, `**`그 잡의 scheduledAt`**`)` ∧ `G2` | `DF1`→`DF2` |
 | `L3` | DB INSERT/UPDATE | `INV2` ∧ `INV3` | 예외 발생 + A1 경보 |
-| `L4` | 잡 수령(claim) | `G1(blog, `**`now()`**`)` ∧ `G2` ∧ `SL2` | `DF1`→`DF2`, 또는 잡 미발급 |
+| `L4` | 잡 수령(claim) | `G1(blog, `**`now()`**`)` ∧ `G2` ∧ **`G3`** ∧ `SL2` (전부 `Blog` 행을 잠근 한 트랜잭션 안에서) | `DF1`→`DF2`, 또는 잡 미발급 |
 
 > ★ **`L2`와 `L4`의 유일한 차이는 `G1`에 넘기는 `candidateRunAt` 값뿐이다.** 임계·컬럼·쿼리는 완전히 동일하다. 둘 중 하나만 고쳐서 어긋나는 일이 다시 생기지 않도록, 구현에서도 **같은 함수 하나를 인자만 바꿔 호출**해야 한다(8장 CI 항목).
 >
@@ -1510,10 +1559,26 @@ Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization:
 | `POST /token/rotate` | 즉시 교체(위 유예 미구현 주석 참고) | 구 토큰 401 / 신 토큰 200 |
 | `GET /release/latest` | 미설정 시 **503 + 누락 항목** (가짜 URL 하드코딩 금지) | 미설정/설정 양쪽 |
 
-- 테스트 **66개** 전부 실제 Postgres에 대고 통과. 뮤테이션 3종(`SL3` ⓙ 제거 · 멱등 가드 제거 · 테넌트 격리 제거)으로 새 테스트가 실제로 잡는 것을 확인했다.
+- 테스트 **68개** 전부 실제 Postgres에 대고 통과. 뮤테이션으로 새 테스트가 실제로 잡는 것을 확인했다(`SL3` ⓙ 제거 · 멱등 가드 제거 · 테넌트 격리 제거 · **`G3` 3중 방어 제거**).
+
+**★[2차 검수 치명 2026-08-08] `claim`에 블로그 단위 배타가 없어 12시간 하드룰이 뚫렸다 — 수리 완료.**
+원인·규범 정의는 **3-A-3**에 있다(여기서 로직을 다시 쓰지 않는다). 여기서는 조치 결과만 적는다.
+
+| 층 | 조치 |
+|---|---|
+| 규범 | 3-A-3에 `G3` 신설, 틀린 문장("`SL2`가 같은 일을 더 정확히 한다")을 폐기 원문과 함께 기록. 3-A-2에 `INV6`, 3-A-8 `L4` 행에 `G3` 추가 |
+| 앱 | `L4` 전체(`G1`·`G2`·`G3`·`SL2` + 수령 전이)를 **`Blog` 행을 `FOR UPDATE`로 잠근 하나의 트랜잭션**으로 합침. 수령 UPDATE의 WHERE에도 `G3` 조건 포함 |
+| DB | 제약 10(`publish_job_one_inflight_per_blog`) 신설 — 마이그레이션 `20260808120000_blog_inflight_exclusion` |
+| 테스트 | `F8` 2종 신설. **수리 전에 먼저 돌려 둘 다 실패하는 것을 확인**하고, 수리 후 통과로 바뀌는 것을 확인했다 |
+
+**층별 기여도를 분리 측정했다**(둘 다 켜두고 "통과했다"로 끝내지 않았다):
+- 앱 3중(잠금·`G3`·원자 UPDATE 조건)을 **전부 제거** → `F8` 2종 모두 실패.
+- 앱은 그대로 두고 **DB 제약 10만 제거** → `F8` 2종 **통과**(실패는 "부분 유니크 3개" 개수 테스트 하나뿐). 즉 **실제로 막는 것은 앱 계층이고 제약 10은 최후 방어선**이다. 제약 8이 그랬듯 이 인덱스가 발동하면 그 자체가 앱에 구멍이 있다는 신호다.
 - 규칙(`G1`·`G2`·`SL2`·`SL3`·`SL4`·`SL4-SWEEP`·`R1-c`·`DF1~DF4`)은 `src/server/rules/` 한 곳에만 두고 라우트는 **호출만** 한다 — 3-A의 단일 정의 원칙을 코드 구조로 옮긴 것.
 - **아직 없는 것**: 대시보드 화면 13개 · NextAuth 세션 · 5-3 cron 8종(특히 `slot-planner`·`job-reaper`) · 시트 동기화 · 에이전트 실물(트레이 앱). 지금은 잡이 이미 있다고 가정하고 수령·보고 경로만 도는 상태다.
+- **[미구현 — 명시]** `DF3`(연속 흡수 8 초과 → 경보 + 블로그 자동 일시중지)와 `DF4`(무발행 4 연속 → 경보 + 사용자 알림)는 **카운터 증감만 구현돼 있고 임계 평가·경보·자동 일시중지 코드가 없다.** 지금은 숫자만 쌓이고 아무 일도 일어나지 않는다. 경보 채널과 `job-reaper`가 생기는 시점에 함께 붙인다.
 - **[미검증]** IP 레이트리밋이 **프로세스 메모리** 기반이라 인스턴스가 여러 개면 인스턴스마다 따로 센다. 배포 형태 확정 시 공유 저장소로 옮겨야 한다.
+- **[환경 주의]** 테스트 DB는 `bun run db:test:setup`으로 마이그레이션 원문에서 **매번 새로 만든다**(Prisma CLI가 셸의 `DATABASE_URL`보다 `.env`를 우선하는 것을 실측해서, `migrate deploy`를 테스트 DB에 쓸 수 없다). 로컬 포터블 Postgres는 검수 중 한 번 죽은 적이 있다 — CI 이관 시 **DB 크래시를 테스트 실패로 오진하지 않도록** 접속 헬스체크를 앞에 두는 것을 권한다.
 
 ### 5-3. 서버 내부 스케줄러 (cron)
 
@@ -1564,7 +1629,7 @@ Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization:
 ## 8. 페이즈2(개발) 착수 전 준비물
 
 1. 신규 레포 `nblog-saas` (Next.js 16 + Prisma 6 + PostgreSQL/Neon), 개발 포트 **3002** — 3000·3001·8080 회피.
-2. 마이그레이션 순서: NextAuth 테이블 → 도메인 테이블 → **2-4의 raw SQL 제약 9개(CHECK 7 + 부분 유니크 인덱스 2) 수동 삽입** → `Plan` 시드.
+2. 마이그레이션 순서: NextAuth 테이블 → 도메인 테이블 → **2-4의 raw SQL 제약 10개(CHECK 7 + 부분 유니크 인덱스 3) 수동 삽입** → `Plan` 시드.
 3. 테스트 우선순위(Vitest) — **하드 룰부터 테스트로 못 박는다**:
    - **[F0 ★구조] 단일 정의 소스 유지 검사** — 이번 반려의 근본원인(로직 중복 서술)이 재발하지 않게 CI로 못 박는다:
      · `G1`·`G2`·`SL2`·`SL4`의 SQL 문자열이 코드베이스에 **각각 1곳에만** 존재하는지(중복 리터럴 검출 시 실패)
@@ -1581,6 +1646,10 @@ Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization:
      · **⑦ `SL4-SWEEP` 자가복구**: `consumedAt`은 있는데 `publishAttemptAt` 잡이 0건인 상태를 강제 주입 → 다음 `job-reaper` 주기에 `INV4`가 복구되고 재시도 잡이 claim 가능해지는지
      · **⑧ 트리거 재정의 회귀**: `UNVERIFIED → FAILED`(`TERMINAL` **내부** 이동)에서 `SL4`가 **실행되는지** — rev6의 "정확히 1회" 문언이면 여기서 안 돌아 자리가 영구 소각됐다
      · **⑨ 스윕이 자기가 고칠 상황에서 막히지 않는지**(7차 반려 중대1): stale 상태 + **같은 슬롯에 `QUEUED` 잡이 이미 있는 채로** `SL4-SWEEP`을 돌려 **1분 내 복구되고 그 잡이 곧바로 claim되는지**. **⑦은 이걸 못 잡는다**(⑦은 잡이 없는 깨끗한 상태만 본다). 함께: 살아있는 예약을 쥔 잡이 있을 때는 스윕이 **0행**이어야 한다(보호 회귀)
+   - **[F8 ★치명 회귀] 블로그 단위 동시성 2종**(2차 검수 발견 — `G3`):
+     · **① `claim(max=2)` 1회 호출**이 같은 블로그 잡을 **1개만** 내주는지
+     · **② 에이전트 2개가 동시에 `max=1`**로 요청했을 때 합계 **1개만** 나가는지(TOCTOU — 순차 호출로는 절대 못 잡는다. 반드시 병렬로 호출할 것)
+     · 두 테스트 모두 `G3`·`Blog` 행 잠금·원자적 UPDATE 조건을 제거하면 죽어야 한다(뮤테이션으로 확인)
    - **[F7] 무발행 감지**: 매 슬롯이 `SKIPPED`로만 끝나는 블로그에서 `consecutiveUnpublishedSlots`가 증가해 **정확히 4번째 슬롯에서 경보가 뜨는지**(`>= 4`. 3에서는 안 뜨는 것도 함께 확인 — `DF4`). `DF3`만으로는 안 잡히는 것도 확인
    - **[F2] 자리 소각 금지**: `SKIPPED`로 끝난 잡의 자리가 **해제되는지**(`SL4`) / `SKIPPED` 후 같은 날 재시도가 가능한지
    - **[F3] 재수령 금지**: 리스 만료된 `CLAIMED`/`RUNNING`/`SUBMITTED` 잡이 **다시 claim되지 않고** `UNVERIFIED`로 가는지(`R1-a`) / `QUEUED`였던 잡은 `EXPIRED`+해제인지(`R1-b`)
@@ -1590,7 +1659,7 @@ Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization:
    - **[E3] 드리프트 감쇠**: 드리프트 3시간을 주입했을 때 4슬롯 이내에 정시 복귀하는지 / 그 과정의 모든 간격이 GATE 이상인지 / `job.deferCount`가 상한 3에 도달하지 않고 `blog.consecutiveDeferredSlots`가 8을 안 넘는지
    - **[E2] 재시도 경로**: 슬롯 `EXPIRED` 후 수동 발행이 **INSERT에 성공**하는지(rev2 회귀) / `publishAttemptAt`이 찍힌 잡은 슬롯이 해제되지 **않는지** / 하루 3번째 슬롯 INSERT가 거부되는지
    - **[D2] 기준 컬럼**: `SUBMITTED`·`UNVERIFIED` 잡이 12시간 검사에 실제로 잡히는지 / 쿼터 쿼리에 `postedAt`이 등장하면 실패하는 정적 검사
-   - **[D3] DB 제약**: **9개 존재 확인**(CHECK 7 + 부분 유니크 인덱스 2 — 개수를 상수로 박고 grep)
+   - **[D3] DB 제약**: **10개 존재 확인**(CHECK 7 + 부분 유니크 인덱스 3 — 개수를 상수로 박고 grep)
    - **[D4] 검증 잡**: UNVERIFIED → VERIFY 생성 → FOUND 시 대상 잡 승격 / VERIFY 잡이 슬롯을 소비하지 않는지
    - **[E5] 문서-코드 일치**: `skipReason` enum 값이 2-5 표의 6개와 정확히 일치하는지
    - 멱등성: 같은 `idempotencyKey` 2회 보고 시 부작용 0
