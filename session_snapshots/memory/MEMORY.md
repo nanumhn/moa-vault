@@ -1,3 +1,12 @@
+- [★★네이버블로그SaaS 노선결재 완료(2026-08-08)](project_naver_blog_saas_2026-08-08.md) — API폐지 확인+카페반려+㉡PC설치형 채택. 페이즈1 설계 qa 7라운드 반려중(실동시성버그)
+- [★긴 루프는 라운드마다 보고](feedback_report_each_stage.md) — 형지시, 최종결과만 말고 매 라운드 짧게+이슈는 즉시
+- [★QA루프 속도>완벽주의](feedback_qa_loop_speed_over_exhaustiveness.md) — 치명/중대만 반려유지, 경미는 통과+권고로
+- [★덱스·제나 적극병렬배분](feedback_delegate_to_dex_jena_proactively.md) — 형 명시지시(반복), cto한명에게만 몰지말것
+- [덱스 워크스페이스 범위+워치독함정](reference_dex_jena_workdir_scope_2026-08-08.md) — CODEX_WORKDIR을 D:\Develop전체로확장, kill시 중복프로세스주의
+- [★업무채널은 자동수신 안됨](reference_dex_jena_channel_no_live_push.md) — 형이 직접지적, fetch나 감시cron 필요
+- [★커밋≠푸시, 새레포는 원격부터](feedback_verify_push_not_just_commit.md) — nblog-saas 수시간분 로컬only였던 사고, 착수시 기본세팅으로 취급
+- [덱스 인코딩버그+엉뚱채널발송](reference_dex_encoding_bug_wrong_channel_2026-08-08.md) — "중국어"로 보인건 mojibake, 내용은 정상(파일유실없음 확인)
+- [★원안 이탈 금지](feedback_stick_to_original_product_definition.md) — 기술피벗보다 원래타깃 유지 우선, 형이 카페전환 반려하며 확정
 - [★★2026-08-08 14시 오후 세션리셋 스냅샷](project_open_threads_2026-08-08_afternoon_snapshot.md) — 열린작업: 오전일지완료확인·SaaS결재3건대기·덱스제나응답대기
 - [★형 예정요청: 시스템 전체설명+정리 세션](project_full_system_review_pending_2026-08-08.md) — 형이 먼저 안 물어봐도 클로가 주기적으로 상기시켜야 함
 - [덱스·제나 공유채널 3개 용도구분](reference_dex_jena_shared_channels_2026-08-08.md) — 그들만의대화/회의/업무 ID. 정리물은 "업무" 채널에
