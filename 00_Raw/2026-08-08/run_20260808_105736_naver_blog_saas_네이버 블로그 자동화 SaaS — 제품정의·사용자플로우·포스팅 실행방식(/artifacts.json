@@ -1,0 +1,33 @@
+{
+  "run": "run_20260808_105736",
+  "team": "naver_blog_saas",
+  "team_name": "네이버 블로그 자동화 SaaS 기획 회의",
+  "topic": "네이버 블로그 자동화 SaaS — 제품정의·사용자플로우·포스팅 실행방식(에이전트 vs 공식API)·아키텍처·MVP·일정",
+  "artifacts": [
+    {
+      "agent_id": "seoa",
+      "agent_name": "이서아",
+      "filename": "product_definition.md"
+    },
+    {
+      "agent_id": "seojin",
+      "agent_name": "윤서진",
+      "filename": "tech_decision_and_architecture.md"
+    },
+    {
+      "agent_id": "doyeon",
+      "agent_name": "이도연",
+      "filename": "user_flow_and_dashboard.md"
+    },
+    {
+      "agent_id": "jinwoo",
+      "agent_name": "박진우",
+      "filename": "pricing_and_mvp_scope.md"
+    },
+    {
+      "agent_id": "jiwon",
+      "agent_name": "박지원",
+      "filename": "risk_and_roadmap.md"
+    }
+  ]
+}
