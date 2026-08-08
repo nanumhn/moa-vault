@@ -1,10 +1,27 @@
 # 네이버 블로그 자동화 SaaS — 페이즈1 설계 (화면 · DB 스키마 · 인터페이스 스펙)
 
-작성: 윤서진(CTO) · 2026-08-08
+작성: 윤서진(CTO) · 2026-08-08 · **rev2 (qa-lead-jian 1차 검수 FAIL 반영 재제출)**
 선행 결정문서: [[2026-08-08_naver_blog_saas_plan]] (형 결재 완료 · 노선 ㉡ 사용자 PC 설치형 확정)
-상태: **설계 초안 — qa-lead-jian 검수 → 형 승인 시 페이즈1 완료 판정**
+상태: **설계 초안 rev2 — qa-lead-jian 재검수 대기**
 
 > 결정문서 관례를 따라 전문용어에는 괄호로 짧은 한글 설명을 붙였다.
+
+---
+
+## rev2 변경 이력 (1차 검수 지적 9건 처리)
+
+| # | 지적 | 처리 | 반영 위치 |
+|---|---|---|---|
+| **D1** | 지터 ±10분 때문에 두 번째 발행의 50%가 조용히 SKIPPED | **수정** — 시뮬레이션으로 재현(49.86%) 후 3개 조치: 슬롯 간격 12h 고정 · 하루 공통 지터 · **실측 허용오차 45분** · 지연 흡수(deferral). 재시뮬 결과 위반 0.00% | 3-2 |
+| **D2** | 12시간을 어느 컬럼으로 재는지 미정의 → 중복발행 위험 | **수정** — 기준 컬럼 `publishAttemptAt` 신설·명시, 판정 SQL 원문 기재. `postedAt`/`finishedAt`은 쿼터 판정 사용 금지 명문화 | 3-3 |
+| **D3** | L3(DB유니크)가 slotIndex=2를 못 막아 실제로 3중 | **수정** — Prisma가 CHECK 미지원임을 인정하고 초기 마이그레이션에 raw SQL CHECK 3개 추가. 잘못된 주석 삭제 | 2-4, 8장 |
+| **D4** | VERIFY(검증) 잡이 모델·API에 없음 → 3-2·7장이 실행 불가 | **수정** — `JobKind` enum, `verifyTargetJobId` 자기참조, claim/result 스펙에 VERIFY 분기, 이벤트 4종 추가 | 2-3, 3-4, 5-2 |
+| **D5** | 화면↔스키마 불일치 4건 | **수정** — `Blog.preferredAgentId` / 본문 스냅샷 3필드 / `Payment` 모델 / `User.role` 추가 | 2-3 |
+| **D6** | 가격 확정을 페이즈2로 조용히 이월 | **수정** — 9장 #2를 "추천안"이 아니라 **"미이행 · 이월 승인 요청"**으로 표기 | 9장 |
+| **D7** | 규모 표기 오류(테이블 12→15, 화면 11→13) | **수정** — 모델 16개(Payment 추가), 화면 13개로 정정 | 전역 |
+| **D8** | claim 200 예시에 `skipped` 누락, 사유 저장 컬럼 없음 | **수정** — 예시 보강 + `PublishJob.skipReason` 추가 | 2-3, 5-2 |
+| **D9** | 구글 OAuth 선택 시 refresh_token 평문 저장 | **수정** — 6장 보안표에 앱레벨 암호화 항목 추가 | 6장 |
+| — | 자정경계 차단 주체를 L2로 잘못 기술 | **수정** — L2/L4가 각각 어느 타이밍을 담당하는지 정확히 재기술 | 3-1 |
 
 ---
 
@@ -12,14 +29,14 @@
 
 | | 내용 |
 |---|---|
-| **확정(승인 대상)** | ① DB 스키마 12개 테이블 ② 웹 대시보드 화면 11개 ③ PC 에이전트↔서버 인터페이스 7개 엔드포인트 ④ 발행 제약(하루 2회·12시간) 강제 지점 4곳 |
-| **확정 안 함(형 결재 필요, 9장)** | 요금 금액 · 구글시트 연결 방식 · 에이전트 배포/코드서명 · 신규 레포/포트 |
+| **확정(승인 대상)** | ① DB 스키마 **모델 16개** ② 웹 대시보드 **화면 13개** ③ PC 에이전트↔서버 인터페이스 **엔드포인트 7개** ④ 발행 제약(하루 2회·12시간) 강제 지점 4곳 + 근거 계산 |
+| **확정 안 함(형 결재 필요, 9장)** | 요금 금액(**미이행·이월 승인 요청**) · 구글시트 연결 방식 · 에이전트 배포/코드서명 · 신규 레포/포트 |
 | **범위 밖(절대 안 만듦)** | 사용자 네이버 아이디·비밀번호·세션쿠키의 서버 저장 (선행문서 5장) |
 
 ### 0-1. 설계를 관통하는 4개 원칙
-1. **서버는 비밀을 모른다.** 네이버 인증정보는 사용자 PC 밖으로 나오지 않는다. 에이전트는 서버에 "로그인 되어 있음/없음"과 "블로그 ID"만 보고한다. 쿠키·비번·토큰 원문은 전송·저장 대상이 아니다.
-2. **발행 경로에 AI가 없다.** 본문은 발행 시점에 만드는 게 아니라 **미리 만들어져 시트/DB에 들어와 있다**. (기본플랜=사용자가 직접 채움 / 업셀=우리 배치 워커가 미리 채움) → 발행은 "이미 있는 글을 올리는" 단순 작업이 되고, 로컬 LLM(LM Studio)이 죽어도 발행은 안 멈춘다. 실시간 LLM 호출을 발행 경로에 넣지 않는 것이 이번 설계의 핵심 단순화다.
-3. **중복 발행은 실패보다 나쁘다.** 사용자 블로그에 같은 글이 두 번 올라가면 저품질 리스크가 커진다. 그래서 "결과를 모르겠는 상태(UNVERIFIED)"는 **절대 자동 재시도하지 않는다**. 실패로 단정할 수 있을 때만 재시도한다.
+1. **서버는 비밀을 모른다.** 네이버 인증정보는 사용자 PC 밖으로 나오지 않는다. 에이전트는 "로그인 되어 있음/없음"과 "블로그 ID"만 보고한다.
+2. **발행 경로에 AI가 없다.** 본문은 발행 시점에 만드는 게 아니라 미리 시트/DB에 들어와 있다. 로컬 LLM이 죽어도 발행은 안 멈춘다.
+3. **중복 발행은 실패보다 나쁘다.** "결과를 모르겠는 상태(UNVERIFIED)"는 자동 재시도하지 않고 검증 잡으로만 구제한다(3-4).
 4. **하드 룰은 한 곳에 두지 않는다.** 하루 2회·12시간 제약은 UI·잡생성기·DB제약·수령시점 4중으로 막는다(3장).
 
 ---
@@ -31,8 +48,8 @@
       │ NextAuth v5 세션
       ▼
 [웹 대시보드 + API]  Next.js 16 (App Router)
-      │                    ├─ /api/agent/v1/*  (에이전트 전용, Bearer 토큰)
-      │                    └─ /api/internal/cron/*  (스케줄러, 시크릿 헤더)
+      │                    ├─ /api/agent/v1/*        (에이전트 전용, Bearer 토큰)
+      │                    └─ /api/internal/cron/*   (스케줄러, 시크릿 헤더)
       ▼
 [PostgreSQL]  Prisma 6
       ▲                    ▲
@@ -47,8 +64,8 @@
    폴링으로 잡 수령 → 사용자 본인 크롬의 실제 네이버 세션으로 발행 → 결과 보고
 ```
 
-- **경계선의 의미**: 네이버에 접속하는 코드는 전부 사용자 PC 안에만 있다. 우리 서버는 네이버와 통신하지 않는다. 이게 선행문서 5장 보안원칙의 구조적 구현이다.
-- 에이전트 기술 스택은 페이즈2에서 확정하되 현재 유력안은 **트레이 앱(Tauri 또는 Electron) + Playwright/CDP로 사용자 기본 크롬 프로필에 attach**. 별도 브라우저를 띄우지 않고 사용자가 평소 쓰는 크롬에 붙는 방식 — 우리가 이미 chrome-devtools attach 운영 경험이 있고, 사용자가 새로 로그인할 필요가 없다.
+- **경계선의 의미**: 네이버에 접속하는 코드는 전부 사용자 PC 안에만 있다. 우리 서버는 네이버와 통신하지 않는다. 선행문서 5장 보안원칙의 구조적 구현이다.
+- 에이전트 기술 스택은 페이즈2 확정. 현재 유력안은 **트레이 앱(Tauri/Electron) + Playwright·CDP로 사용자 기본 크롬 프로필에 attach**.
 
 ---
 
@@ -56,25 +73,26 @@
 
 PostgreSQL + Prisma 6 (saju-studio와 동일 스택). 시각 컬럼은 전부 UTC 저장, 표시·쿼터 계산만 블로그별 타임존 적용.
 
-### 2-1. 테이블 한눈에
+### 2-1. 모델 16개
 
-| 테이블 | 역할 | 핵심 관계 |
+| 모델 | 역할 | 핵심 관계 |
 |---|---|---|
-| `User` | 사용자(테넌트) | 최상위 |
-| `Account`/`Session`/`VerificationToken` | NextAuth v5 표준 | User 1:N |
+| `User` | 사용자(테넌트) + **role(운영자 권한)** | 최상위 |
+| `Account` / `Session` / `VerificationToken` | NextAuth v5 표준 | User 1:N |
 | `Plan` | 요금제 정의(코드·쿼터) | 마스터 |
 | `Subscription` | 사용자의 구독·애드온 | User 1:1 |
+| **`Payment`** | **결제 이력(S10)** | User 1:N |
 | `Blog` | 연결된 네이버 블로그 | **User 1:N (최대 3)** |
-| `Agent` | 페어링된 PC | User 1:N, Blog와는 N:N 아님(3-4 참고) |
+| `Agent` | 페어링된 PC | User 1:N |
 | `PairingCode` | 1회용 페어링 코드 | User 1:N |
 | `SheetSource` | 구글시트 연동 | Blog 1:1 |
 | `ContentItem` | 글감(제목·본문) | Blog 1:N |
 | `Schedule` | 예약 슬롯 | **Blog 1:N (최대 2)** |
-| `PublishJob` | 발행 작업 1건 | Blog 1:N |
+| `PublishJob` | 발행 잡 / **검증 잡** | Blog 1:N, 자기참조 |
 | `JobEvent` | 잡 단계 타임스탬프 로그 | PublishJob 1:N |
 | `AuditEvent` | 계정·설정·페어링 변경 로그 | User 1:N |
 
-**이벤트 테이블을 둘로 나눈 이유**: `JobEvent`는 잡 1건당 5~8행씩 쌓이는 고빈도·정형 로그라 잡 상세 화면에서 `jobId` 하나로 빠르게 긁어야 한다. `AuditEvent`는 저빈도·비정형(보안 감사용)이다. 한 테이블에 섞으면 잡 타임라인 조회가 전체 이벤트 테이블 스캔이 되고, 보존기간 정책(잡 90일 / 감사 1년)도 따로 못 준다.
+**이벤트 테이블을 둘로 나눈 이유**: `JobEvent`는 잡 1건당 5~8행씩 쌓이는 고빈도·정형 로그라 `jobId` 하나로 빠르게 긁어야 한다. `AuditEvent`는 저빈도·비정형(보안 감사용)이다. 한 테이블에 섞으면 잡 타임라인 조회가 전체 스캔이 되고, 보존기간(잡 90일 / 감사 365일)도 따로 못 준다.
 
 ### 2-2. Prisma 스키마
 
@@ -100,10 +118,12 @@ model User {
   emailVerified DateTime?
   timezone      String    @default("Asia/Seoul")
 
-  // 알림 수신 설정 (실패·오프라인 경고)
-  notifyEmail       Boolean @default(true)
-  notifyOnFailure   Boolean @default(true)
-  notifyOnOffline   Boolean @default(true)
+  // [D5] 운영자 콘솔(A1) 접근 권한. MEMBER는 /admin 라우트 진입 자체가 404
+  role UserRole @default(MEMBER)
+
+  notifyEmail     Boolean @default(true)
+  notifyOnFailure Boolean @default(true)
+  notifyOnOffline Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -111,10 +131,16 @@ model User {
   accounts     Account[]
   sessions     Session[]
   subscription Subscription?
+  payments     Payment[]
   blogs        Blog[]
   agents       Agent[]
   pairingCodes PairingCode[]
   auditEvents  AuditEvent[]
+}
+
+enum UserRole {
+  MEMBER
+  ADMIN
 }
 
 model Account {
@@ -123,6 +149,8 @@ model Account {
   type              String
   provider          String
   providerAccountId String
+  // [D9] 구글시트 연동을 OAuth로 갈 경우 이 두 컬럼에 구글 토큰이 들어온다.
+  //      DB 평문 저장 금지 — 앱 레벨 AES-256-GCM 암호문만 저장(6장).
   refresh_token     String?
   access_token      String?
   expires_at        Int?
@@ -151,14 +179,14 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// ─────────────────────────── 요금제 / 구독 ───────────────────────────
+// ─────────────────────────── 요금제 / 구독 / 결제 ───────────────────────────
 
 model Plan {
   code            String  @id            // "BASIC" | "PRO" ...
   name            String
-  blogQuota       Int     @default(1)    // 기본 포함 블로그 수
+  blogQuota       Int     @default(1)
   aiDraftIncluded Boolean @default(false)
-  priceKrw        Int?                   // [미정] 금액 확정 전까지 null
+  priceKrw        Int?                   // [미확정] 9장 #2 결재 전까지 null
   isActive        Boolean @default(true)
   sortOrder       Int     @default(0)
 
@@ -171,16 +199,15 @@ model Subscription {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   planCode String
-  plan     Plan   @relation(fields: [planCode], references: [code])
+  plan     Plan               @relation(fields: [planCode], references: [code])
   status   SubscriptionStatus @default(TRIALING)
 
   // ── 업셀 애드온 2종 (선행문서 3·7장) ──
-  extraBlogSlots Int     @default(0)   // 추가 블로그. plan.blogQuota + 이 값 <= 3 (앱에서 강제)
+  extraBlogSlots Int     @default(0)   // plan.blogQuota + 이 값 <= 3 (앱 + CHECK 제약)
   aiDraftEnabled Boolean @default(false)
 
-  // 결제 레일은 페이즈2에서 확정 — 컬럼만 미리 확보(nullable)
-  billingProvider   String?
-  externalCustomerId String?
+  billingProvider        String?
+  externalCustomerId     String?
   externalSubscriptionId String? @unique
 
   currentPeriodEnd DateTime?
@@ -200,6 +227,33 @@ enum SubscriptionStatus {
   CANCELED
 }
 
+// [D5] S10 결제 이력 화면의 데이터 원천
+model Payment {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  provider          String    // 결제 레일(페이즈2 확정)
+  externalPaymentId String?   @unique
+  amountKrw         Int
+  status            PaymentStatus @default(PAID)
+  paidAt            DateTime
+  periodStart       DateTime?
+  periodEnd         DateTime?
+  receiptUrl        String?
+  memo              String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId, paidAt])
+}
+
+enum PaymentStatus {
+  PAID
+  REFUNDED
+  FAILED
+}
+
 // ─────────────────────────── 블로그 (1:N, 최대 3) ───────────────────────────
 
 model Blog {
@@ -207,19 +261,27 @@ model Blog {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  naverBlogId String     // blog.naver.com/{naverBlogId} 의 그 아이디
+  naverBlogId String
   displayName String
   timezone    String     @default("Asia/Seoul")
   status      BlogStatus @default(PENDING_VERIFY)
 
   // 소유 증명: 서버가 확인할 방법이 없으므로 "그 PC의 네이버 로그인 세션이
-  // 이 blogId를 소유한다"는 사실을 에이전트가 보고한 것으로 갈음한다.
-  verifiedAt      DateTime?
+  // 이 blogId를 소유한다"는 에이전트 보고로 갈음한다.
+  // 에이전트가 삭제돼도 증명 이력은 남아야 하므로 관계가 아닌 값으로 보관.
+  verifiedAt        DateTime?
   verifiedByAgentId String?
 
-  // 발행 기본값
+  // [D5] S6·7장 "선호 기기". null이면 아무 에이전트나 수령 가능.
+  preferredAgentId String?
+  preferredAgent   Agent?  @relation("PreferredAgent", fields: [preferredAgentId], references: [id], onDelete: SetNull)
+
+  // [D1] 지터는 슬롯이 아니라 블로그 단위. 같은 날 두 슬롯에 동일 오프셋을
+  //      적용해 같은 날 간격이 항상 정확히 12시간이 되게 만든다(3-2).
+  jitterSec Int @default(600)   // 상한 600 — 앱 + CHECK 제약
+
   defaultCategoryName String?
-  defaultOpenType     String @default("PUBLIC")   // PUBLIC | NEIGHBOR | PRIVATE
+  defaultOpenType     String  @default("PUBLIC")   // PUBLIC | NEIGHBOR | PRIVATE
   defaultAllowComment Boolean @default(true)
 
   createdAt DateTime @default(now())
@@ -230,19 +292,18 @@ model Blog {
   contents    ContentItem[]
   jobs        PublishJob[]
 
-  // 같은 사용자가 같은 블로그를 두 번 등록하는 것 방지.
-  // 다른 사용자가 같은 blogId를 등록하는 것은 전역 unique로 막지 않는다
-  // (대행사가 고객 블로그를 관리하는 정당한 경우가 있고, 전역 unique는
-  //  "선점 공격"으로 남의 블로그 등록을 막아버리는 부작용이 생긴다.)
+  // 같은 사용자가 같은 블로그를 두 번 등록하는 것만 막는다.
+  // 전역 unique로 안 하는 이유: 대행사가 고객 블로그를 관리하는 정당한 경우가
+  // 있고, 전역 unique는 "선점 등록"으로 남의 블로그를 막아버리는 부작용이 있다.
   @@unique([userId, naverBlogId])
   @@index([status])
 }
 
 enum BlogStatus {
-  PENDING_VERIFY   // 등록됐지만 에이전트가 소유 확인 전 — 발행 불가
+  PENDING_VERIFY   // 에이전트 소유 확인 전 — 발행 불가
   ACTIVE
-  PAUSED           // 사용자가 잠시 끔
-  DISCONNECTED     // 연결 해제(이력 보존용, 발행 불가)
+  PAUSED
+  DISCONNECTED
 }
 
 // ─────────────────────────── 에이전트 / 페어링 ───────────────────────────
@@ -255,28 +316,28 @@ model Agent {
   deviceName    String
   os            String
   osVersion     String?
-  machineIdHash String    // PC 식별자의 해시. 원본 하드웨어 ID는 저장하지 않음
+  machineIdHash String   // PC 식별자의 해시. 원본 하드웨어 ID 미저장
   agentVersion  String
 
-  // ★ 토큰 원문은 저장하지 않는다. sha256 해시만.
+  // ★ 토큰 원문 미저장. sha256 해시만.
   tokenHash      String    @unique
   tokenIssuedAt  DateTime  @default(now())
   tokenExpiresAt DateTime
   revokedAt      DateTime?
   revokedReason  String?
 
-  // 하트비트로 갱신되는 상태
-  lastSeenAt      DateTime?
-  lastStatus      AgentRunState @default(IDLE)
-  naverLoggedIn   Boolean       @default(false)
-  knownBlogIds    String[]      // 그 PC 세션이 소유한 네이버 블로그 아이디 목록
-  nextPollSec     Int           @default(60)
-  lastIpHash      String?       // 감사용. 원본 IP 미저장
+  lastSeenAt    DateTime?
+  lastStatus    AgentRunState @default(IDLE)
+  naverLoggedIn Boolean       @default(false)
+  knownBlogIds  String[]
+  nextPollSec   Int           @default(60)
+  lastIpHash    String?       // 감사용. 원본 IP 미저장
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  claimedJobs PublishJob[]
+  claimedJobs       PublishJob[]
+  preferredForBlogs Blog[]       @relation("PreferredAgent")
 
   @@index([userId, revokedAt])
   @@index([lastSeenAt])
@@ -293,12 +354,12 @@ model PairingCode {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  codeHash  String   @unique   // 코드 원문 미저장
-  expiresAt DateTime            // 발급 +10분
-  usedAt    DateTime?
-  usedByAgentId String?
-  failedAttempts Int @default(0)
-  voidedAt  DateTime?           // 5회 실패 시 폐기
+  codeHash       String    @unique   // 코드 원문 미저장
+  expiresAt      DateTime            // 발급 +10분
+  usedAt         DateTime?
+  usedByAgentId  String?
+  failedAttempts Int       @default(0)
+  voidedAt       DateTime?           // 5회 실패 시 폐기
 
   createdAt DateTime @default(now())
 
@@ -313,15 +374,15 @@ model SheetSource {
   blog   Blog   @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
   spreadsheetId String
-  sheetName     String  @default("글감")
-  headerRow     Int     @default(1)
+  sheetName     String @default("글감")
+  headerRow     Int    @default(1)
 
   lastSyncedAt   DateTime?
-  lastSyncStatus String?    // OK | PERMISSION_DENIED | SCHEMA_MISMATCH | NOT_FOUND
+  lastSyncStatus String?   // OK | PERMISSION_DENIED | SCHEMA_MISMATCH | NOT_FOUND
   lastSyncError  String?
-  syncedRowCount Int        @default(0)
+  syncedRowCount Int       @default(0)
 
-  writeBackEnabled Boolean @default(true)   // 결과 URL을 시트에 되돌려 쓰기
+  writeBackEnabled Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -333,21 +394,21 @@ model ContentItem {
   blog   Blog   @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
   source     ContentSource @default(SHEET)
-  sheetRowNo Int?           // 시트 원본 행 번호 (write-back 대상)
+  sheetRowNo Int?          // 시트 원본 행 번호 (write-back 대상)
 
-  title      String
-  bodyHtml   String        @db.Text   // 스마트에디터3.0 서식 규격
-  tags       String[]
+  title        String
+  bodyHtml     String    @db.Text   // 스마트에디터3.0 서식 규격
+  tags         String[]
   categoryName String?
-  desiredDate DateTime?    @db.Date   // 사용자가 지정한 발행 희망일(없으면 큐 순서대로)
-  priority   Int           @default(0)
+  desiredDate  DateTime? @db.Date
+  priority     Int       @default(0)
 
   status     ContentStatus @default(READY)
   statusNote String?
 
-  contentHash String       // 제목+본문 sha256. 같은 블로그 내 중복 글감 탐지
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  contentHash String   // 제목+본문 sha256. 중복 글감 탐지 + 검증 잡 대조 키
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   jobs PublishJob[]
 
@@ -356,117 +417,147 @@ model ContentItem {
 }
 
 enum ContentSource {
-  SHEET       // 사용자가 시트에 직접 채움 (기본플랜)
-  AI_DRAFT    // 우리 배치 워커가 채움 (업셀)
-  MANUAL      // 대시보드에서 직접 입력
+  SHEET     // 사용자가 시트에 직접 채움 (기본플랜)
+  AI_DRAFT  // 배치 워커가 채움 (업셀)
+  MANUAL    // 대시보드에서 직접 입력
 }
 
 enum ContentStatus {
-  DRAFT      // AI 생성 중/검토 전
-  READY      // 발행 가능
-  ASSIGNED   // 잡에 물림
+  DRAFT
+  READY
+  ASSIGNED
   PUBLISHED
   FAILED
-  SKIPPED    // 사용자가 건너뜀
+  SKIPPED
 }
 
-// ─────────────────────────── 예약 (블로그당 최대 2슬롯) ───────────────────────────
+// ─────────────────────────── 예약 (블로그당 정확히 2슬롯) ───────────────────────────
 
 model Schedule {
   id     String @id @default(cuid())
   blogId String
   blog   Blog   @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
-  slotIndex Int      // 0 또는 1 — 하루 최대 2회 제약의 물리적 표현
-  hour      Int      // 0-23, 블로그 타임존 기준
-  minute    Int      // 0-59
-  weekdays  Int[]    // 0(일)~6(토). 비우면 매일
-  jitterSec Int      @default(600)  // ±10분 랜덤 흔들기 — 정각 기계패턴 회피
-  enabled   Boolean  @default(true)
+  slotIndex Int   // 0 | 1 — CHECK 제약으로 값 제한(2-4)
+  hour      Int   // slot0은 0~11만 허용(3-2). slot1 = slot0 + 12h 자동 산출
+  minute    Int
+  weekdays  Int[] // 0(일)~6(토). 비우면 매일
+  enabled   Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // slotIndex를 0/1로 제한 + 유니크 → 블로그당 스케줄 3개째가 물리적으로 안 생긴다
   @@unique([blogId, slotIndex])
 }
 
-// ─────────────────────────── 발행 잡 ───────────────────────────
+// ─────────────────────────── 발행 잡 / 검증 잡 ───────────────────────────
 
 model PublishJob {
   id     String @id @default(cuid())
   blogId String
   blog   Blog   @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
+  // [D4] 잡 종류. VERIFY는 UNVERIFIED 구제 전용이며 슬롯을 소비하지 않는다.
+  kind JobKind @default(PUBLISH)
+
   contentItemId String?
   contentItem   ContentItem? @relation(fields: [contentItemId], references: [id])
 
-  // ★ 하루 2회 제약의 DB 레벨 방어선
-  slotDate  DateTime @db.Date   // 블로그 타임존 기준 날짜
-  slotIndex Int                  // 0 | 1
+  // [D4] VERIFY 잡이 확인하려는 대상 발행 잡 (자기참조)
+  verifyTargetJobId String?
+  verifyTarget      PublishJob?  @relation("VerifyTarget", fields: [verifyTargetJobId], references: [id])
+  verifyJobs        PublishJob[] @relation("VerifyTarget")
 
-  scheduledAt DateTime           // 지터 적용 후 실제 목표 시각(UTC)
-  expiresAt   DateTime           // scheduledAt + 3시간. 넘기면 EXPIRED
+  // ★ 하루 2회 제약의 DB 레벨 방어선.
+  //   kind=VERIFY면 둘 다 NULL(슬롯 미소비) — CHECK 제약으로 강제(2-4).
+  //   Postgres는 NULL을 서로 다른 값으로 보므로 VERIFY 잡 다건이 공존 가능.
+  slotDate  DateTime? @db.Date   // 블로그 타임존 기준 날짜
+  slotIndex Int?                  // 0 | 1
+
+  // [D1] 지터 적용 전 기준시각. 12시간 "계획 검사"의 기준(3-2 규칙A)
+  slotBaseAt  DateTime
+  // 지터 적용 후 실제 목표시각
+  scheduledAt DateTime
+  expiresAt   DateTime            // slotBaseAt + 3시간
   origin      JobOrigin @default(SCHEDULED)
 
-  status   JobStatus @default(QUEUED)
-  attempt  Int       @default(0)
-  maxAttempts Int    @default(3)
+  status      JobStatus @default(QUEUED)
+  attempt     Int       @default(0)
+  maxAttempts Int       @default(3)
+  deferCount  Int       @default(0)   // [D1] 지연 흡수 횟수 (상한 2)
+  skipReason  String?                 // [D8] MIN_INTERVAL_12H | DAILY_QUOTA | NO_CONTENT | BLOG_PAUSED
 
-  // 수령(claim) 관리
   claimedByAgentId String?
-  claimedByAgent   Agent?  @relation(fields: [claimedByAgentId], references: [id])
+  claimedByAgent   Agent?    @relation(fields: [claimedByAgentId], references: [id])
   claimedAt        DateTime?
   leaseExpiresAt   DateTime?
 
-  // 결과
-  idempotencyKey String   @unique   // 잡 생성 시 발급. 결과 보고 중복 차단용
+  // [D2] ★12시간 판정의 유일한 기준 컬럼.
+  //   PUBLISH_SUBMITTED 이벤트 수신 시각(= 발행 버튼을 누른 시각)을 기록한다.
+  //   이벤트를 못 받고 result만 온 경우 result 수신 시각으로 보정 기록.
+  //   SUBMITTED / UNVERIFIED / VERIFIED 전 상태에서 NOT NULL이 보장된다.
+  publishAttemptAt DateTime?
+
+  // [D5] 발행 당시 본문 스냅샷 — 글감이 나중에 수정·삭제돼도 S9d에서 실제
+  //      올라간 내용을 보여줘야 하고, 검증 잡의 대조 기준이기도 하다.
+  titleSnapshot    String?
+  bodySnapshotHtml String?  @db.Text
+  tagsSnapshot     String[]
+  contentHash      String?
+
+  idempotencyKey String    @unique   // 결과 보고 중복 차단
   postUrl        String?
-  postedAt       DateTime?
+  postedAt       DateTime?           // 표시용. ★쿼터 판정에 쓰지 않음(3-3)
   errorCode      String?
   errorMessage   String?
-  finishedAt     DateTime?
+  finishedAt     DateTime?           // 표시용. ★쿼터 판정에 쓰지 않음(3-3)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   events JobEvent[]
 
-  // 같은 블로그·같은 날짜·같은 슬롯에 잡이 두 개 생길 수 없다
   @@unique([blogId, slotDate, slotIndex])
   @@index([status, scheduledAt])
-  @@index([blogId, status])
+  @@index([blogId, kind, status])
+  @@index([blogId, publishAttemptAt])
+}
+
+enum JobKind {
+  PUBLISH
+  VERIFY
 }
 
 enum JobOrigin {
-  SCHEDULED   // 스케줄러가 만듦
-  MANUAL      // 사용자가 "지금 발행"
-  RETRY       // 실패 후 재시도
+  SCHEDULED
+  MANUAL
+  RETRY
+  VERIFY_FOLLOWUP   // [D4] UNVERIFIED 후속 검증
 }
 
 enum JobStatus {
-  QUEUED      // 만들어짐, 아직 아무도 안 가져감
-  CLAIMED     // 에이전트가 가져감(리스 보유)
-  RUNNING     // 에디터 열고 작성 중
-  SUBMITTED   // 발행 버튼 눌렀음, 결과 확인 전
-  VERIFIED    // 발행 확인됨(postUrl 확보) — 성공
-  UNVERIFIED  // 눌렀는데 확인 실패 ★자동 재시도 절대 금지
-  FAILED      // 실패 확정 — 재시도 가능
-  EXPIRED     // 슬롯 시간 지남(대부분 PC 꺼짐)
-  CANCELED    // 사용자가 취소
-  SKIPPED     // 제약(12시간 룰 등)에 걸려 건너뜀
+  QUEUED
+  CLAIMED
+  RUNNING
+  SUBMITTED
+  VERIFIED
+  UNVERIFIED   // ★자동 재시도 금지. VERIFY 잡으로만 구제
+  FAILED
+  EXPIRED
+  CANCELED
+  SKIPPED
 }
 
 model JobEvent {
-  id    String @id @default(cuid())
+  id    String     @id @default(cuid())
   jobId String
   job   PublishJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
 
-  type      String   // 2-3 이벤트 타입 표
-  at        DateTime           // 실제 발생 시각(에이전트 보고분은 서버시간으로 보정)
-  recordedAt DateTime @default(now())  // 서버 수신 시각
-  actor     String   // "server" | "agent:<id>" | "user:<id>"
-  detail    Json?
+  type       String
+  at         DateTime            // 발생 시각(에이전트 보고분은 서버시간으로 보정)
+  recordedAt DateTime @default(now())
+  actor      String              // "server" | "agent:<id>" | "user:<id>"
+  detail     Json?
 
   @@index([jobId, at])
 }
@@ -476,9 +567,7 @@ model AuditEvent {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  type       String   // PAIRING_CODE_ISSUED, AGENT_PAIRED, AGENT_REVOKED,
-                      // BLOG_ADDED, BLOG_REMOVED, SCHEDULE_CHANGED,
-                      // SHEET_CONNECTED, PLAN_CHANGED, LOGIN ...
+  type       String
   entityType String?
   entityId   String?
   ipHash     String?
@@ -489,153 +578,293 @@ model AuditEvent {
 }
 ```
 
-### 2-3. 잡 단계 이벤트 타입 (선행문서 3장 "액션별 단계 타임스탬프" 요구 충족)
+### 2-3. 잡 단계 이벤트 타입
 
-한 잡의 정상 수명은 아래 순서로 **각각 1행씩** `JobEvent`에 남는다. 대시보드 잡 상세는 이걸 세로 타임라인으로 그린다.
+정상 수명은 아래 순서로 **각각 1행씩** `JobEvent`에 남는다. S9d가 이걸 세로 타임라인으로 그린다.
 
-| 순서 | type | 기록 주체 | 의미 |
+| 순서 | type | 주체 | 의미 |
 |---|---|---|---|
-| 1 | `JOB_CREATED` | server | 스케줄러가 슬롯 잡을 만듦 |
-| 2 | `CONTENT_BOUND` | server | 글감이 잡에 물림 |
-| 3 | `JOB_CLAIMED` | agent | 에이전트가 가져감(리스 시작) |
-| 4 | `AGENT_SESSION_OK` | agent | 네이버 로그인 상태 확인됨 |
-| 5 | `EDITOR_OPENED` | agent | 글쓰기 에디터 진입 |
+| 1 | `JOB_CREATED` | server | 슬롯 잡 생성 |
+| 2 | `CONTENT_BOUND` | server | 글감 바인딩 + 본문 스냅샷 확정 |
+| 3 | `JOB_CLAIMED` | agent | 수령(리스 시작) |
+| 4 | `AGENT_SESSION_OK` | agent | 네이버 로그인 확인 |
+| 5 | `EDITOR_OPENED` | agent | 에디터 진입 |
 | 6 | `CONTENT_FILLED` | agent | 제목·본문·태그 입력 완료 |
-| 7 | `PUBLISH_SUBMITTED` | agent | 발행 버튼 클릭 |
+| 7 | `PUBLISH_SUBMITTED` | agent | **발행 버튼 클릭 → 서버가 `publishAttemptAt` 기록** |
 | 8 | `PUBLISH_VERIFIED` | agent | 결과 URL 확인 → 성공 |
 | — | `PUBLISH_UNVERIFIED` | agent | 눌렀으나 URL 확인 실패 |
+| — | `VERIFY_SCHEDULED` | server | [D4] 검증 잡 생성 |
+| — | `VERIFY_STARTED` | agent | [D4] 최근 글 목록 조회 시작 |
+| — | `VERIFY_FOUND` | agent | [D4] 일치 글 발견 → 대상 잡 VERIFIED 승격 |
+| — | `VERIFY_NOT_FOUND` | agent | [D4] 없음 → 대상 잡 FAILED, 재시도 가능 |
+| — | `VERIFY_INCONCLUSIVE` | agent | [D4] 판단 불가 → UNVERIFIED 유지, 사람 확인 |
 | — | `JOB_FAILED` | agent/server | 실패 확정(errorCode 포함) |
 | — | `JOB_RETRY_SCHEDULED` | server | 재시도 예약 |
+| — | `JOB_DEFERRED` | server | [D1] 지연 흡수로 목표시각 재조정 |
 | — | `LEASE_RENEWED` / `LEASE_EXPIRED` | server | 리스 갱신/만료 |
-| — | `JOB_SKIPPED_BY_QUOTA` | server | 12시간 룰에 걸려 건너뜀 |
+| — | `JOB_SKIPPED` | server | 제약 위반(skipReason 동봉) |
 | — | `JOB_EXPIRED` | server | 슬롯 만료(PC 꺼짐 등) |
 | — | `JOB_CANCELED` | user | 사용자 취소 |
 
 보존기간: `JobEvent` 90일 / `AuditEvent` 365일 (일 배치 삭제).
 
----
+### 2-4. [D3] Prisma로 표현 안 되는 제약 — 초기 마이그레이션 raw SQL
 
-## 3. 발행 제약(하루 2회 · 최소 12시간)을 강제하는 4개 지점
+**Prisma 6은 CHECK 제약을 스키마 문법으로 지원하지 않는다.** 1차 설계에서 "`slotIndex Int` + 유니크로 3번째 잡이 물리적으로 안 생긴다"고 쓴 것은 **사실이 아니었다**(slotIndex=2가 그냥 INSERT됨). 아래 SQL을 **초기 마이그레이션에 포함해야만** L3가 성립한다.
 
-선행문서 3장의 하드 룰. **한 군데만 막으면 반드시 새는 지점이 생기므로 4중으로 건다.**
+```sql
+-- 1) 슬롯 인덱스는 0 또는 1만
+ALTER TABLE "Schedule"   ADD CONSTRAINT schedule_slot_index_range
+  CHECK ("slotIndex" IN (0, 1));
 
-| 층 | 위치 | 무엇을 막나 | 뚫렸을 때 |
-|---|---|---|---|
-| L1 | 예약 설정 화면 | 슬롯 3개째 추가 금지, 두 슬롯 간격 12시간 미만이면 저장 불가 | UI만 우회하면 뚫림 |
-| L2 | 잡 생성기(cron) | 슬롯 잡 생성 직전, 해당 블로그의 마지막 성공 발행(`VERIFIED`/`SUBMITTED`/`UNVERIFIED`)이 12시간 이내면 잡을 만들지 않고 `SKIPPED` 기록 | 동시 실행 시 경합 가능 |
-| L3 | **DB 유니크 제약** | `@@unique([blogId, slotDate, slotIndex])` + `slotIndex ∈ {0,1}` → 같은 날 3번째 잡이 물리적으로 INSERT 불가 | 뚫을 수 없음 |
-| L4 | 잡 수령(claim) 시점 | 에이전트가 가져가는 그 순간 12시간 재검사(잡 생성 후 사용자가 수동 발행을 끼워넣었을 수 있음) → 위반이면 잡을 내주지 않고 `SKIPPED` | — |
+-- 2) 발행 잡은 슬롯을 반드시 가지고(0|1), 검증 잡은 슬롯을 절대 안 가진다
+ALTER TABLE "PublishJob" ADD CONSTRAINT publish_job_slot_shape CHECK (
+  ("kind" = 'PUBLISH' AND "slotDate" IS NOT NULL AND "slotIndex" IN (0, 1))
+  OR
+  ("kind" = 'VERIFY'  AND "slotDate" IS NULL     AND "slotIndex" IS NULL)
+);
 
-### 3-1. 판정 규칙 (모호한 지점 명시)
-- **"하루"의 기준**: 블로그의 `timezone`(기본 Asia/Seoul) 기준 달력 날짜. UTC 아님.
-- **자정 경계**: 23:50 발행 후 다음날 00:10 발행은 날짜는 다르지만 간격이 20분이라 **12시간 룰에서 차단**된다. 두 룰은 OR가 아니라 **AND**로 검사한다.
-- **카운트 대상**: `VERIFIED` · `SUBMITTED` · `UNVERIFIED` (= 네이버에 글이 올라갔을 가능성이 있는 상태 전부). `FAILED`/`EXPIRED`는 카운트하지 않는다 — 안 올라갔으므로 쿼터를 소모시키면 안 된다.
-- **수동 발행("지금 발행")도 같은 룰을 받는다.** `origin=MANUAL` 잡도 슬롯을 차지한다. 그날 슬롯이 둘 다 소모됐으면 수동 발행 버튼이 비활성화되고 이유가 표시된다.
-- **재시도는 슬롯을 새로 먹지 않는다.** 같은 `(blogId, slotDate, slotIndex)` 잡의 `attempt`만 올린다.
+-- 3) 블로그 상한 3개 (Plan.blogQuota + extraBlogSlots <= 3)
+ALTER TABLE "Subscription" ADD CONSTRAINT subscription_extra_slots_range
+  CHECK ("extraBlogSlots" BETWEEN 0 AND 2);
 
-### 3-2. 중복 발행 방지 (원칙 3의 구현)
-- 결과 보고는 `idempotencyKey` 기준 **최초 1건만 반영**. 네트워크 재전송으로 같은 결과가 두 번 와도 두 번째는 무시하고 200을 돌려준다(에이전트가 재시도를 멈추도록).
-- `SUBMITTED` 이후에는 리스가 만료돼도 **다른 에이전트가 재클레임할 수 없다.** 발행 버튼을 이미 눌렀을 수 있기 때문.
-- `UNVERIFIED`는 서버가 에이전트에게 **검증 잡(VERIFY)** 을 내려 "블로그 최근 글 목록에서 제목·contentHash 일치 확인"을 시킨다. 확인되면 `VERIFIED`로 승격, 못 찾으면 사용자에게 "확인 필요"로 노출하고 **자동 재발행은 하지 않는다**.
+-- 4) 지터 상한 600초 — 3-2의 허용오차 계산이 이 상한에 의존한다
+ALTER TABLE "Blog" ADD CONSTRAINT blog_jitter_range
+  CHECK ("jitterSec" BETWEEN 0 AND 600);
 
----
-
-## 4. 웹 대시보드 화면 (11개)
-
-### 4-0. 화면 지도
+-- 5) 슬롯0은 오전(0~11시)만 — slot1 = slot0 + 12h가 같은 달력일에 들어오게(3-2)
+ALTER TABLE "Schedule" ADD CONSTRAINT schedule_hour_shape CHECK (
+  ("slotIndex" = 0 AND "hour" BETWEEN 0 AND 11) OR
+  ("slotIndex" = 1 AND "hour" BETWEEN 12 AND 23)
+);
 ```
-공개  ├ S1 랜딩/요금제
-      └ S2 로그인·가입
-로그인 ├ S3 온보딩 위저드 (최초 1회, 4스텝)
-      ├ S4 대시보드 홈
-      ├ S5 블로그 관리       ├ S8 예약 설정
-      ├ S6 에이전트 관리     ├ S9 발행 이력 / S9d 잡 상세
-      ├ S7 글감(시트)        ├ S10 요금제·결제
-      └ S11 계정 설정
-내부   └ A1 운영자 콘솔
+
+> `prisma migrate dev` 로 생성된 SQL 파일 끝에 위 5개를 손으로 덧붙이고, 이후 `prisma migrate diff` 로 드리프트가 안 나는지 확인한다. **CI에 "CHECK 제약 5개 존재 확인" 테스트를 넣는다** — 나중에 누가 마이그레이션을 재생성하면 조용히 사라지는 종류의 방어이기 때문이다.
+
+**검증 상태 (정직하게 구분)**
+- **[확인]** 위 SQL이 참조하는 테이블·컬럼 식별자는 `prisma migrate diff --from-empty --script`로 실제 DDL을 뽑아 대조했다. `"PublishJob"."kind"`는 `CREATE TYPE "JobKind" AS ENUM ('PUBLISH','VERIFY')` 타입이고, `"slotDate" DATE` / `"slotIndex" INTEGER`는 nullable, `"Schedule"."slotIndex"·"hour"`, `"Blog"."jitterSec"`, `"Subscription"."extraBlogSlots"` 모두 존재하며 대소문자 인용도 일치한다. `PublishJob_blogId_slotDate_slotIndex_key` 유니크 인덱스도 실제로 생성된다.
+- **[미검증]** 위 5개 `ALTER TABLE` 문을 **실제 Postgres에서 실행해 보지는 못했다.** 로컬에 Postgres 컨테이너·이미지가 없고 docker pull이 막혀 있다. 따라서 "3번째 잡 INSERT가 거부된다"는 것은 아직 **설계상 주장이지 실행 확인이 아니다.** 페이즈2 첫 마이그레이션에서 반드시 실측하고, 8장 테스트 목록의 D3 항목이 그 확인을 담당한다. (1차 설계에서 "물리적으로 안 생긴다"고 단정했다가 반려된 것과 같은 실수를 반복하지 않기 위해 명시한다.)
+
+---
+
+## 3. 발행 제약(하루 2회 · 최소 12시간)의 강제 — 재설계
+
+### 3-1. 4중 방어선 (각 층이 담당하는 타이밍)
+
+| 층 | 위치 | 담당 타이밍 | 무엇을 막나 |
+|---|---|---|---|
+| L1 | 예약 설정 화면(S8) | 사용자가 설정을 저장할 때 | 슬롯 3개째 추가 불가(UI에 버튼 없음), 슬롯1은 슬롯0+12h로 자동 고정되어 잘못된 간격을 애초에 못 만듦 |
+| L2 | 잡 생성기 `slot-planner`(5분마다) | **잡을 만드는 시점(예정 35분 전)에 이미 확정된 과거 발행** | 그 시점 기준 `lastPublishAttemptAt`이 12h 이내면 잡을 만들지 않고 `SKIPPED` 기록 |
+| L3 | **DB CHECK + UNIQUE** (2-4) | INSERT 순간 | `slotIndex ∈ {0,1}` + `@@unique(blogId, slotDate, slotIndex)` → 같은 날 3번째 PUBLISH 잡 INSERT 불가 |
+| L4 | 잡 수령(claim) 시점 | **잡 생성 이후~수령 직전에 새로 생긴 발행** (수동 발행 끼어들기, 직전 슬롯의 지연 발행) | 수령 순간 재검사 → 위반이면 잡을 내주지 않고 지연 흡수 또는 `SKIPPED` |
+
+> **1차 설계 정정**: 자정 경계 케이스(23:50 → 익일 00:10)를 "L2가 막는다"고 썼으나 부정확했다. 잡 생성은 예정 35분 전에 일어나므로 그 시점에 직전 발행이 아직 안 끝났으면 L2는 통과하고 **실제로는 L4가 막는다**. L2는 "이미 지나간 발행"만, L4는 "생성 후에 생긴 발행"만 본다. 두 층이 서로 다른 시간대를 담당하는 것이 4중 구성의 핵심이며, L4 없이는 이 케이스가 그대로 샌다.
+
+### 3-2. [D1] 하루 2회 + 12시간 + 지터가 서로 모순되던 문제 — 원인과 해결
+
+#### 문제 재현 (검수 지적이 맞다)
+
+매일 2회 발행을 반복하면 하루 24시간을 두 간격이 나눠 갖는다. 두 간격이 **모두** 12시간 이상이려면 `a ≥ 12 ∧ b ≥ 12 ∧ a + b = 24` → **`a = b = 12` 뿐이다. 여유(margin)가 수학적으로 0이다.** 여기에 ±10분 지터와 실행 지연을 얹으면 절반이 임계 아래로 내려간다.
+
+실측 시뮬레이션(20만일 × 2간격):
+
+| 구성 | 12h 미만 비율 | 최소 실측 간격 |
+|---|---|---|
+| 1차 설계(슬롯별 독립 지터, 허용오차 0) | **49.86%** | 11h 35.9m |
+| 하루 공통 지터, 허용오차 0 | **50.02%** | 11h 36.0m |
+| **하루 공통 지터 + 허용오차 45분 (채택)** | **0.00%** | 11h 35.5m |
+
+> 검수 지적대로 "하루 2회 상품을 팔고 실제 1.5회가 나가는" 상태였다. 그리고 **공통 지터만으로는 해결되지 않는다**(50.02%) — 최악값을 만드는 것은 날짜 경계 간격이고 지터 결합은 여기에 영향이 없기 때문이다. **실질적 해결책은 허용오차이고, 공통 지터는 같은 날 간격을 결정적(정확히 12h)으로 만드는 보조책이다.** 이건 시뮬레이션으로 확인한 값이지 추정이 아니다.
+
+#### 채택안 (4개 조치)
+
+**① 두 슬롯 간격을 "12시간 이상"이 아니라 "정확히 12시간"으로 고정한다.**
+S8에서 사용자는 슬롯0 시각만 고른다(0~11시). 슬롯1은 `slot0 + 12h`로 자동 산출되며 편집 불가. 13시간 같은 간격을 허용하면 날짜 경계 간격이 11시간이 되어 **매일 슬롯0이 죽는다** — 1차 설계의 "±12시간 구간 회색 처리(=13시간 허용)" UI는 이 함정을 그대로 갖고 있었으므로 폐기한다.
+
+**② 지터는 슬롯이 아니라 블로그·날짜 단위로 하나만 뽑는다.**
+`offset(blogId, slotDate) = PRNG(seed = hash(blogId + slotDate)) ∈ [−jitterSec, +jitterSec]`
+같은 날 두 슬롯에 같은 오프셋이 적용되므로 **같은 날 간격은 지터와 무관하게 항상 정확히 12시간**이다. 날짜 경계 간격만 `12h ± 20분` 범위로 흔들린다. (그래서 `jitterSec`을 `Schedule`이 아니라 `Blog`에 뒀다.)
+
+**③ 12시간 검사를 "계획 기준"과 "실측 기준" 둘로 나눈다.**
+
+| 규칙 | 기준 | 임계 | 목적 |
+|---|---|---|---|
+| **A (계획)** | `slotBaseAt` (지터 적용 전) | 정확히 12h | 설정이 애초에 유효한지. 스케줄이 12h 고정이므로 항상 통과. 수동 발행(`MANUAL`)은 요청 시각을 `slotBaseAt`으로 삼아 여기서 걸린다 |
+| **B (실측)** | `publishAttemptAt` (3-3) | **12h − 45분 = 11h 15분** | 실제로 너무 붙어 나가는 것을 막는 안전망 |
+
+허용오차 45분의 근거:
+
+```
+최악 실측 간격 = 12h − (지터 최대차 20분) − (실행지연 최대차 5분) = 11h 35분
+임계(11h 15분) 대비 여유 = 20분
+```
+지터 상한 600초는 DB CHECK로 고정했다(2-4 ④). 이 상한이 풀리면 계산이 깨지므로 스키마에 묶어 둔 것이다.
+
+**④ 지연 흡수(deferral) — 슬롯이 조용히 죽지 않게.**
+직전 발행이 크게 늦어져(PC를 늦게 켬 등) 다음 잡이 규칙B에 걸리면, 즉시 `SKIPPED`로 죽이지 않고 **목표시각을 `publishAttemptAt + 12h`로 밀고 `QUEUED`를 유지**한다(`JOB_DEFERRED` 이벤트, `deferCount` 상한 2). `expiresAt`(slotBaseAt + 3시간)을 넘기면 그때 `EXPIRED`로 종료하고 **사용자에게 사유를 알린다.**
+
+예: 21:00 예정 슬롯이 PC 지연으로 23:30에 발행 → 다음날 09:00 슬롯은 11:30으로 밀려 발행된다(만료 12:00 이내). **두 번째 발행이 살아남는다.**
+
+#### "두 번째 발행이 안 잘린다"는 근거 정리
+
+| 경로 | 결과 |
+|---|---|
+| 같은 날 슬롯0 → 슬롯1 | 공통 지터로 간격이 **항상 정확히 12h** → 규칙A·B 모두 통과 |
+| 날짜 경계 슬롯1 → 다음날 슬롯0 | 최악 11h35m > 임계 11h15m → 통과 (시뮬 20만일 위반 0건) |
+| 직전 발행이 지연됨 | 규칙B에 걸리지만 **④ 지연 흡수로 재예약** → 3시간 이내면 발행됨 |
+| 3시간 넘게 지연 | `EXPIRED` + **사용자 알림**. 조용히 사라지는 경로가 아니다 |
+| 사용자가 수동 발행을 끼워넣음 | 규칙A·B가 정상 차단(의도된 동작). S4에서 버튼 비활성 + 사유 표시 |
+
+> **[미검증]** 위 수치는 시뮬레이션과 산술 근거이며, 실제 네이버 계정에서 "12시간 간격 2회"가 저품질을 실제로 피하는지는 페이즈3 베타 실측 전까지 알 수 없다. 선행문서 10장 kill 기준 유지.
+
+### 3-3. [D2] 12시간을 재는 기준 컬럼 — `publishAttemptAt`
+
+1차 설계는 기준 컬럼을 정의하지 않았다. 순진하게 `postedAt`으로 구현하면 **`SUBMITTED`·`UNVERIFIED` 잡은 `postedAt`이 NULL이라 검사에서 통째로 사라지고**, "이미 올라갔을지 모르는 글" 위에 두 번째 글이 나간다 — 원칙3 정면 위반이다. 그래서 컬럼을 못 박는다.
+
+```sql
+-- ① 12시간 간격 검사 (규칙B) — 기준 컬럼은 publishAttemptAt 하나뿐
+SELECT MAX("publishAttemptAt") AS last_risk_at
+FROM "PublishJob"
+WHERE "blogId" = $1
+  AND "kind"   = 'PUBLISH'                              -- 검증 잡은 제외
+  AND "status" IN ('SUBMITTED', 'UNVERIFIED', 'VERIFIED');
+--  → last_risk_at 이 NULL이 아니고 now() - last_risk_at < interval '11 hours 15 minutes' 이면 차단
+
+-- ② 진행 중 잡 차단 (아직 버튼을 안 눌러 publishAttemptAt이 NULL인 구간)
+SELECT EXISTS(
+  SELECT 1 FROM "PublishJob"
+  WHERE "blogId" = $1 AND "kind" = 'PUBLISH'
+    AND "status" IN ('CLAIMED', 'RUNNING')
+);
+--  → true면 무조건 차단. 같은 블로그에 두 잡이 동시에 돌지 않는다
+
+-- ③ 하루 2회 카운트
+SELECT COUNT(*) FROM "PublishJob"
+WHERE "blogId" = $1 AND "kind" = 'PUBLISH' AND "slotDate" = $2
+  AND "status" IN ('SUBMITTED', 'UNVERIFIED', 'VERIFIED');
+--  → 2 이상이면 차단
+```
+
+**컬럼 규약**
+- `publishAttemptAt`은 서버가 `PUBLISH_SUBMITTED` 이벤트를 받는 순간 기록한다. 이벤트를 못 받고 `/result`만 도착한 경우 **결과 수신 시각으로 보정 기록**한다. 즉 `SUBMITTED`·`UNVERIFIED`·`VERIFIED` 상태에서 이 값이 NULL인 잡은 존재할 수 없다(정합성 점검 배치가 매일 검사).
+- **`postedAt`과 `finishedAt`은 화면 표시 전용이며 쿼터·간격 판정에 절대 쓰지 않는다.** 코드 리뷰 체크리스트 항목으로 고정하고, "쿼터 쿼리에 postedAt이 등장하면 실패"하는 테스트를 넣는다.
+- `FAILED`·`EXPIRED`·`SKIPPED`·`CANCELED`는 카운트하지 않는다(안 올라갔으므로 쿼터를 소모시키면 안 된다).
+
+### 3-4. [D4] UNVERIFIED 구제 — 검증 잡(VERIFY)
+
+1차 설계는 `nextAction: VERIFY_LATER`와 7장 표가 검증 잡에 의존하는데 **모델·API에 그 기능이 아예 없었다.** UNVERIFIED는 자동 재시도가 금지된 상태라 검증 잡이 유일한 구제 수단이므로, 없으면 그 잡은 영원히 사람이 손대야 한다. 아래를 추가한다.
+
+**생성**: `/result`가 `outcome=UNVERIFIED`로 오면 서버가 `kind=VERIFY`, `origin=VERIFY_FOLLOWUP`, `verifyTargetJobId=<대상>`, `scheduledAt=now()+60초` 잡을 만든다(`VERIFY_SCHEDULED`). **슬롯을 소비하지 않는다** — `slotDate`/`slotIndex`가 NULL이고, 3-3의 모든 쿼터 쿼리는 `kind='PUBLISH'`로 필터한다.
+
+**수행**: 에이전트가 대상 블로그의 최근 글 목록을 열어 `titleSnapshot` 완전일치 + 게시시각이 `publishAttemptAt ± 10분` 범위인 글을 찾는다.
+
+| 결과 | 대상 잡 처리 | 사용자에게 |
+|---|---|---|
+| `FOUND` | `VERIFIED`로 승격 + `postUrl` 기록 | 성공으로 표시 |
+| `NOT_FOUND` | `FAILED`(errorCode=`VERIFY_NOT_FOUND`) — 이제 안전하게 재시도 가능 | "발행 안 됨, 재시도" |
+| `INCONCLUSIVE` | `UNVERIFIED` 유지 | "직접 확인 필요" + 재발행은 명시 확인 후에만 |
+
+검증 잡이 3회 연속 `INCONCLUSIVE`면 중단하고 사람에게 넘긴다. **검증 잡은 절대 글을 쓰지 않는다** — 읽기 전용 동작만 하므로 중복 발행 위험이 구조적으로 없다.
+
+---
+
+## 4. 웹 대시보드 화면 (13개)
+
+```
+공개   ├ S1 랜딩/요금제
+       └ S2 로그인·가입
+로그인  ├ S3 온보딩 위저드(4스텝)   ├ S8 예약 설정
+       ├ S4 대시보드 홈            ├ S9 발행 이력
+       ├ S5 블로그 관리            ├ S9d 잡 상세
+       ├ S6 에이전트 관리          ├ S10 요금제·결제
+       ├ S7 글감(시트)             └ S11 계정 설정
+운영자  └ A1 운영자 콘솔  (User.role = ADMIN 만 접근)
 ```
 
 ### S1. 랜딩 / 요금제
 - 제품 설명, 플랜 비교표(기본 / +추가블로그 / +AI글감대행), FAQ.
-- **PC 설치형이라는 사실과 "PC가 켜져 있어야 발행된다"는 제약을 가입 전에 명시**한다. 이걸 숨기면 첫 달 이탈로 돌아온다.
-- "네이버 비밀번호를 요구하지 않습니다"를 셀링포인트로 전면 배치.
+- **PC 설치형이라는 사실과 "PC가 켜져 있어야 발행된다"를 가입 전에 명시**한다. 숨기면 첫 달 이탈로 돌아온다.
+- "네이버 비밀번호를 요구하지 않습니다"를 전면 배치.
 
 ### S2. 로그인 / 가입
-- NextAuth v5. 구글 OAuth + 이메일 매직링크. 비밀번호 방식은 두지 않음.
+- NextAuth v5. 구글 OAuth + 이메일 매직링크. 자체 비밀번호 없음.
 - 가입 즉시 `Subscription`을 `TRIALING`으로 생성.
 
-### S3. 온보딩 위저드 (4스텝 — 선행문서 3장 플로우 그대로)
+### S3. 온보딩 위저드 (4스텝 — 선행문서 3장 플로우)
 | 스텝 | 화면 | 완료 조건 |
 |---|---|---|
 | 1 | 블로그 연결 | `naverBlogId` 입력 → `Blog(PENDING_VERIFY)` 생성 |
-| 2 | 에이전트 설치·페어링 | 설치파일 다운로드 → 페어링 코드 표시(10분 카운트다운) → 에이전트가 붙으면 화면이 **폴링으로 자동 전환**. 이때 에이전트가 보고한 `knownBlogIds`와 스텝1의 블로그를 대조해 `ACTIVE`로 승격 |
-| 3 | 구글시트 연동 | 시트 템플릿 "복사하기" 버튼 → 연결 → 첫 동기화 성공(1행 이상) |
-| 4 | 예약 설정 | 슬롯 1~2개 저장(12시간 룰 검증 통과) |
-- 각 스텝은 이탈 후 재진입 가능(진행상태 저장). 스텝2에서 막히는 사용자가 가장 많을 것이므로 **"안 될 때" 체크리스트**(방화벽·크롬 미설치·네이버 미로그인)를 접이식으로 항상 노출.
+| 2 | 에이전트 설치·페어링 | 설치파일 다운로드 → 페어링 코드(10분 카운트다운) → 에이전트가 붙으면 폴링으로 자동 전환. 에이전트가 보고한 `knownBlogIds`와 스텝1 블로그를 대조해 `ACTIVE` 승격 |
+| 3 | 구글시트 연동 | 시트 템플릿 "복사하기" → 연결 → 첫 동기화 1행 이상 성공 |
+| 4 | 예약 설정 | **슬롯0 시각(0~11시) 선택 → 슬롯1 자동 확정** 후 저장 |
+- 각 스텝 이탈 후 재진입 가능. 스텝2에서 막히는 사용자가 가장 많을 것이므로 **"안 될 때" 체크리스트**(방화벽·크롬 미설치·네이버 미로그인)를 접이식으로 상시 노출.
 
 ### S4. 대시보드 홈
-- **오늘 발행 현황 카드**: 블로그별 슬롯 2칸을 타임라인으로 — `예정 09:00 ✓완료 / 예정 21:00 ⏳대기`.
-- **에이전트 상태 배너**: 오프라인이면 최상단에 빨간 배너 + "마지막 응답 N분 전" + "이대로면 오늘 21:00 발행이 안 됩니다" (선행문서 3장 요구).
-- **네이버 로그아웃 경고**: 에이전트는 켜져 있는데 `naverLoggedIn=false`면 별도 경고(발행 시점에야 실패하는 걸 미리 잡음).
-- 남은 글감 수 경고: 3건 미만이면 "글감이 곧 떨어집니다".
-- 최근 실패 3건 요약 + 각각 재시도 버튼.
+- **오늘 발행 현황**: 블로그별 슬롯 2칸 타임라인 — `09:00 ✓완료 / 21:00 ⏳대기`.
+- **에이전트 오프라인 배너**: "마지막 응답 N분 전 · 이대로면 오늘 21:00 발행이 안 됩니다".
+- **네이버 로그아웃 경고**: 에이전트는 살아있는데 `naverLoggedIn=false`면 별도 경고(발행 시점에야 실패하는 걸 미리 잡음).
+- 글감 3건 미만 경고 / 최근 실패 3건 + 재시도 버튼.
+- **수동 발행 버튼**: 오늘 슬롯이 소진됐거나 12시간 룰에 걸리면 비활성 + 사유·해제 예정시각 표시(3-3 쿼리 결과 그대로).
 
 ### S5. 블로그 관리
-- 목록(사용 2/3 형태로 쿼터 표시), 추가, 이름 변경, 일시중지/재개, 연결 해제.
-- 추가 시 쿼터 초과면 업셀 모달(추가 블로그 애드온). **하드캡 3개는 결제로도 못 넘음** — 초과 시도 시 "최대 3개" 안내.
-- 블로그별 발행 기본값(카테고리·공개범위·댓글 허용) 편집.
-- `PENDING_VERIFY` 상태면 "에이전트가 이 블로그의 로그인을 확인하지 못했습니다" 배지 + 해결 가이드.
+- 목록(`2/3` 쿼터 표시), 추가·이름변경·일시중지·연결해제.
+- 쿼터 초과 시 업셀 모달. **하드캡 3개는 결제로도 못 넘음**(`extraBlogSlots ≤ 2` CHECK).
+- 블로그별 발행 기본값(카테고리·공개범위·댓글) + **지터 폭**(0~10분) 편집.
+- `PENDING_VERIFY`면 "에이전트가 이 블로그의 로그인을 확인하지 못했습니다" + 해결 가이드.
 
 ### S6. 에이전트 관리
-- 기기 목록: 이름 · OS · 버전 · 온라인/오프라인 · 마지막 응답 시각 · 네이버 로그인 여부 · 인식된 블로그 목록.
-- **페어링 코드 발급** 버튼(10분 유효, 남은 시간 표시, 재발급 시 이전 코드 즉시 폐기).
-- 기기 연결 해제(토큰 revoke) — 즉시 반영, 다음 폴링에서 에이전트가 401 받고 스스로 정지.
-- 에이전트 버전이 구버전이면 업데이트 안내.
-- **한 사용자에 에이전트 여러 대 허용**(회사PC/집PC). 잡은 먼저 가져가는 쪽이 처리(리스 방식) — 다만 블로그별로 "선호 기기" 지정 옵션 제공(미지정이면 아무나).
+- 기기 목록: 이름·OS·버전·온라인여부·마지막 응답·네이버 로그인 여부·인식된 블로그.
+- **페어링 코드 발급**(10분, 남은 시간 표시, 재발급 시 이전 코드 즉시 폐기).
+- 기기 연결 해제(revoke) — 다음 폴링에서 에이전트가 401 받고 스스로 정지.
+- **[D5] 블로그별 선호 기기 지정** — `Blog.preferredAgentId`. 지정 시 그 기기만 해당 블로그 잡을 수령한다. 단 선호 기기가 **15분 이상 오프라인**이면 다른 기기가 대신 가져간다(폴백). 폴백이 없으면 "회사 PC를 선호로 지정 → 그날 회사 안 감 → 발행 0"이 되기 때문이다.
 
 ### S7. 글감 (구글시트)
-- 블로그별 시트 연결 상태 · 마지막 동기화 시각 · 동기화 오류 사유(권한 없음 / 헤더 불일치 / 시트 없음).
-- "지금 동기화" 버튼.
-- 글감 목록 테이블: 상태 · 희망일 · 제목 · 글자수 · 중복경고(같은 `contentHash` 존재 시).
-- 대시보드에서 직접 글감 추가/수정(`source=MANUAL`).
-- AI 글감 대행 사용자는 "생성 대기 N건 / 검토 대기 N건" 큐가 추가로 보임.
+- 연결 상태·마지막 동기화·오류 사유(권한없음/헤더불일치/시트없음), "지금 동기화".
+- 글감 테이블: 상태·희망일·제목·글자수·중복경고(같은 `contentHash`).
+- 대시보드 직접 추가/수정(`source=MANUAL`).
+- AI 글감 대행 사용자는 "생성 대기 N / 검토 대기 N" 큐 추가 표시.
 
 **시트 표준 헤더(고정)**: `상태 | 발행희망일 | 제목 | 본문 | 태그 | 카테고리 | 결과URL | 결과시각 | 실패사유`
-→ 앞 6열은 사용자가 채우는 입력, 뒤 3열은 우리가 되돌려 쓰는 출력(write-back).
+→ 앞 6열 = 사용자 입력, 뒤 3열 = 우리가 write-back 하는 출력.
 
-### S8. 예약 설정
-- 블로그별 슬롯 편집기. **슬롯은 최대 2칸으로 UI 자체가 고정**(3번째 추가 버튼이 없음).
-- 두 번째 슬롯 시각을 고르면 첫 슬롯 기준 ±12시간 구간이 **선택 불가로 회색 처리**되고, 이유를 문장으로 표시("네이버 저품질 위험을 줄이려고 12시간 간격을 강제합니다").
+### S8. 예약 설정 ★rev2에서 재설계
+- 블로그별 슬롯 편집기. **슬롯 칸은 2개 고정**(3번째 추가 버튼 없음).
+- **사용자는 슬롯0 시각만 고른다(00:00~11:59). 슬롯1은 `+12시간`으로 자동 표시되고 편집 불가.**
+  안내 문구: "네이버 저품질 위험을 줄이려고 하루 2회·12시간 간격을 고정합니다. 두 번째 시각은 첫 시각에 맞춰 자동으로 정해집니다."
+- 1차 설계의 "±12시간 회색 처리(13시간 등 허용)" 방식은 **날짜 경계 간격이 11시간이 되어 매일 한 번이 죽으므로 폐기**(3-2).
 - 요일 선택, 일시중지, 지터 안내("정확히 정각이 아니라 ±10분 안에서 자연스럽게 올립니다").
-- 미리보기: "다음 7일 발행 예정 시각" 리스트.
+- 미리보기: "다음 7일 발행 예정 시각" — **지터·지연 흡수 반영 후의 실제 예상 시각**을 보여준다.
 
 ### S9. 발행 이력
 - 필터(블로그·상태·기간), 상태 배지, `postUrl` 바로가기.
-- 실패 건은 사유 문구 + "재시도" / "수동 발행" 선택지 (선행문서 3장 요구).
+- 실패 건은 사유 + "재시도"/"수동 발행". **`SKIPPED` 건은 `skipReason`을 한국어 문장으로 풀어서 표시**(D8) — 조용히 사라진 것처럼 보이면 안 된다.
 
-### S9d. 잡 상세 ★
-- **단계 타임라인**: `JobEvent`를 세로로 — 요청됨 09:00:00 → 수령 09:00:12 → 로그인확인 09:00:15 → 에디터열림 09:00:31 → 작성완료 09:01:12 → 발행클릭 09:01:20 → 확인됨 09:01:34. 각 단계 소요시간(델타)도 표시.
-- 발행된 본문 스냅샷, 대상 블로그, 담당 에이전트.
-- `UNVERIFIED` 건은 **"이미 올라갔을 수 있으니 블로그를 먼저 확인하세요"** 경고와 함께 재발행 버튼을 기본 비활성화(체크박스로 명시 확인해야 활성).
+### S9d. 잡 상세
+- **단계 타임라인**: `JobEvent` 세로 배치 — 요청됨 09:00:00 → 수령 09:00:12 → 로그인확인 09:00:15 → 에디터열림 09:00:31 → 작성완료 09:01:12 → 발행클릭 09:01:20 → 확인됨 09:01:34. 단계별 소요시간(델타) 표시.
+- **[D5] 발행 본문 스냅샷**: `titleSnapshot` / `bodySnapshotHtml` / `tagsSnapshot`. 글감이 나중에 수정·삭제돼도 실제 올라간 내용을 보여준다.
+- 검증 잡이 붙은 경우 그 결과도 같은 타임라인에 이어서 표시(`verifyTargetJobId` 역참조).
+- `UNVERIFIED` 건은 **"이미 올라갔을 수 있으니 블로그를 먼저 확인하세요"** 경고 + 재발행 버튼 기본 비활성(체크박스 명시 확인 시 활성).
 
 ### S10. 요금제 · 결제
-- 현재 플랜, 애드온 토글(추가 블로그 수 / AI 글감 대행), 다음 결제일, 결제 이력, 해지.
-- 금액은 `Plan.priceKrw`에서 렌더 — **금액 미확정이므로 화면은 만들되 값은 형 결재 후 주입**.
+- 현재 플랜, 애드온 토글(추가 블로그 수 / AI 글감 대행), 다음 결제일, 해지.
+- **[D5] 결제 이력 테이블** — `Payment` 기준: 결제일·금액·기간·상태·영수증 링크.
+- 금액은 `Plan.priceKrw`에서 렌더 — 화면은 만들되 값은 9장 #2 결재 후 주입.
 
 ### S11. 계정 설정
-- 프로필, 타임존, 알림 설정(실패 알림·오프라인 알림), 데이터 내보내기, 탈퇴.
-- **"우리가 저장하지 않는 것" 고지 블록** 상시 노출(비번·세션쿠키) — 신뢰가 이 제품의 판매 포인트라 화면에 못 박아 둔다.
+- 프로필, 타임존, 알림 설정, 데이터 내보내기, 탈퇴.
+- **"우리가 저장하지 않는 것" 고지 블록** 상시 노출(비번·세션쿠키). 신뢰가 판매 포인트라 화면에 못 박는다.
 
-### A1. 운영자 콘솔 (내부)
-- 테넌트 목록, 잡 성공률/실패코드 분포, 에이전트 버전 분포, 오프라인 에이전트 비율.
-- **실패코드 분포가 가장 중요한 계기판** — `EDITOR_DOM_CHANGED`가 급증하면 네이버 에디터가 바뀐 것이고, 이건 전 고객 동시 장애다. 임계치 초과 시 즉시 경보.
+### A1. 운영자 콘솔 (내부) — **`User.role = ADMIN` 전용**
+- **[D5] 접근 제어**: 미들웨어에서 `role !== ADMIN`이면 `/admin/*`을 404로 응답(403이 아니라 404 — 존재 자체를 숨긴다). 진입 시도는 `AuditEvent`에 기록.
+- 테넌트 목록, 잡 성공률/실패코드 분포, 에이전트 버전 분포, 오프라인 비율, **`SKIPPED`/`DEFERRED` 발생률**(3-2 설계가 실제로 먹히는지 보는 계기판).
+- **실패코드 분포가 1순위 지표** — `EDITOR_DOM_CHANGED` 급증은 네이버 에디터 개편이고 전 고객 동시 장애다. 임계치 초과 시 즉시 경보.
 
 ---
 
 ## 5. PC 에이전트 ↔ 서버 인터페이스 스펙
 
-Base URL: `https://{app}/api/agent/v1` · 전부 HTTPS · JSON · 인증은 `Authorization: Bearer <agentToken>` (페어링 제외).
-공통 응답 헤더: `X-Server-Time`(RFC3339). **에이전트는 로컬 시계를 신뢰하지 않고 서버 시간을 기준으로 삼는다** (사용자 PC 시계가 틀어져 있으면 발행 시각이 통째로 어긋난다).
+Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization: Bearer <agentToken>`(페어링 제외).
+공통 응답 헤더 `X-Server-Time`(RFC3339). **에이전트는 로컬 시계를 신뢰하지 않고 서버 시간을 기준으로 삼는다** — 사용자 PC 시계가 틀어져 있으면 발행 시각이 통째로 어긋난다.
 
 ### 5-1. 페어링 프로토콜
 
@@ -643,13 +872,12 @@ Base URL: `https://{app}/api/agent/v1` · 전부 HTTPS · JSON · 인증은 `Aut
 [대시보드]                [서버]                     [PC 에이전트]
     │  코드 발급 요청 ──────▶│
     │◀── "K7Q2-M4XR" (10분) │  DB엔 sha256(코드)만 저장
-    │                        │
     │   사용자가 코드를 에이전트 창에 입력 ─────────────▶│
     │                        │◀── POST /pair {code, device, ver} ──│
     │                        │   코드해시 조회·만료·사용여부 검사   │
     │                        │── {agentId, agentToken, ...} ──────▶│
     │                        │   코드 usedAt 기록(1회용 소멸)      │
-    │◀── 화면 자동 전환(폴링) │                    토큰은 OS 자격증명 저장소에 보관
+    │◀── 화면 자동 전환(폴링) │            토큰은 OS 자격증명 저장소에 보관
 ```
 
 **`POST /pair`** (인증 불필요)
@@ -670,26 +898,26 @@ Base URL: `https://{app}/api/agent/v1` · 전부 HTTPS · JSON · 인증은 `Aut
 | 429 `TOO_MANY_ATTEMPTS` | IP당 분당 5회 / 코드당 누적 5회 실패 시 코드 즉시 폐기 |
 
 **설계 근거**
-- 코드는 혼동문자(I·L·O·U) 뺀 대문자·숫자 8자리 = 32⁸ ≈ 1.1조 조합. 10분 TTL + 5회 실패 폐기와 합치면 추측 공격이 성립하지 않는다.
-- 코드·토큰 모두 **평문 미저장**(sha256). DB가 통째로 유출돼도 남의 에이전트를 조종할 수 없다.
-- 토큰 유효기간 90일, 만료 30일 전부터 `POST /token/rotate`로 무중단 갱신. 사용자가 대시보드에서 해제하면 `revokedAt` 즉시 세팅 → 다음 요청부터 401.
-- 페어링에 **네이버 비번은 물론 사용자 이메일조차 필요 없다.** 코드 하나로 소유권을 옮긴다.
+- 코드는 혼동문자(I·L·O·U) 제외 대문자·숫자 8자리 = 32⁸ ≈ 1.1조 조합. 10분 TTL + 5회 실패 폐기와 합치면 추측 공격이 성립하지 않는다.
+- 코드·토큰 모두 **평문 미저장**(sha256). DB가 유출돼도 남의 에이전트를 조종할 수 없다.
+- 토큰 90일, 만료 30일 전부터 `/token/rotate`로 무중단 갱신. 대시보드에서 해제하면 `revokedAt` 즉시 세팅 → 다음 요청부터 401.
+- 페어링에 **네이버 비번은 물론 사용자 이메일조차 필요 없다.**
 
 ### 5-2. 하트비트 / 잡 수신 (폴링)
 
-**결정: WebSocket 상시연결이 아니라 폴링을 쓴다.** 사용자 PC는 NAT·기업방화벽 뒤에 있고 노트북은 절전·네트워크 전환이 잦아 상시연결 재접속 관리가 실패 원인이 된다. 발행 시각 정밀도는 분 단위면 충분하고(지터를 ±10분이나 주는 마당에 초 단위 정밀도는 무의미), 폴링이 방화벽을 가장 잘 통과한다.
+**결정: WebSocket 상시연결이 아니라 폴링.** 사용자 PC는 NAT·기업방화벽 뒤에 있고 노트북은 절전·네트워크 전환이 잦아 상시연결 재접속 관리가 그 자체로 실패 원인이 된다. 발행 시각 정밀도는 분 단위면 충분하고(±10분 지터를 주는 마당에 초 단위는 무의미), 폴링이 방화벽을 가장 잘 통과한다.
 
-**폴링 주기(제안)** — 값은 서버가 응답의 `nextPollSec`로 지시하고 **에이전트는 하드코딩하지 않는다**. 나중에 서버만 고쳐서 전체 조절할 수 있어야 한다.
+**폴링 주기(제안)** — 값은 서버가 `nextPollSec`로 지시하고 **에이전트는 하드코딩하지 않는다**(서버만 고쳐서 전체 조절 가능해야 한다).
 
 | 상황 | 주기 |
 |---|---|
-| 평시(다음 슬롯까지 여유) | **60초** |
+| 평시 | **60초** |
 | 슬롯 예정시각 T−5분 ~ T+30분 | **15초** |
-| 잡 실행 중 | 폴링 중단, 진행 이벤트 전송이 하트비트를 겸함(최소 30초마다 1회) |
+| 잡 실행 중 | 폴링 중단, 진행 이벤트가 하트비트를 겸함(최소 30초마다 1회) |
 | 서버 5xx/네트워크 오류 | 지수 백오프 30초→10분 상한, 지터 ±20% |
 | 401(revoked) | 폴링 영구 중단 + 트레이 알림 |
 
-트래픽 추정: 사용자 1명·평시 60초 폴링 = 하루 약 1,440 요청. 200명이면 약 29만 요청/일 — 응답 본문이 200바이트 수준이라 서버리스에서도 부담 없다.
+트래픽: 1명·평시 60초 = 하루 약 1,440 요청. 200명이면 약 29만 요청/일, 응답 본문 200바이트 수준. **[미검증 — 계산치, 베타에서 실측 필요]**
 
 **`POST /heartbeat`**
 ```jsonc
@@ -701,27 +929,49 @@ Base URL: `https://{app}/api/agent/v1` · 전부 HTTPS · JSON · 인증은 `Aut
 { "serverTime": "…", "nextPollSec": 60, "pendingJobs": 0,
   "commands": [ { "type": "UPDATE_AVAILABLE", "version": "1.1.0" } ] }
 ```
-- `commands` 로 서버가 에이전트를 조종한다: `REVOKE`(즉시 정지) / `UPDATE_AVAILABLE` / `RESYNC_BLOGS`(블로그 목록 재보고) / `PING_LOG`(진단 로그 업로드 요청).
-- **오프라인 판정**: `lastSeenAt + max(180초, 3 × nextPollSec)` 경과. 3배로 잡은 이유는 폴링 1~2회 유실을 오프라인으로 오인하지 않기 위해서다.
+- `commands`: `REVOKE` / `UPDATE_AVAILABLE` / `RESYNC_BLOGS` / `PING_LOG`.
+- **오프라인 판정**: `lastSeenAt + max(180초, 3 × nextPollSec)` 경과. 3배인 이유는 폴링 1~2회 유실을 오프라인으로 오인하지 않기 위해서다.
 
-**`POST /jobs/claim`** — 잡 수령(GET이 아닌 이유: 서버 상태를 바꾼다=리스를 건다)
+**`POST /jobs/claim`** — 잡 수령(GET이 아닌 이유: 리스를 거는 상태 변경)
 ```jsonc
 // 요청
 { "max": 1, "capabilities": { "editor": "se3", "browser": "chrome" } }
-// 200 — 잡 있음
-{ "jobs": [ {
-    "jobId": "cl…", "idempotencyKey": "…",
+
+// 200 — 발행 잡
+{ "serverTime": "2026-08-09T00:00:03Z",
+  "jobs": [ {
+    "jobId": "cl…", "kind": "PUBLISH", "idempotencyKey": "…",
     "blog": { "id": "cl…", "naverBlogId": "myshop2020" },
     "scheduledAt": "2026-08-09T00:00:00Z", "expiresAt": "2026-08-09T03:00:00Z",
     "leaseExpiresAt": "2026-08-09T00:15:00Z",
     "content": { "title": "…", "bodyHtml": "…", "tags": ["…"],
                  "categoryName": "일상", "openType": "PUBLIC", "allowComment": true }
-} ] }
-// 204 — 잡 없음 (본문 없음)
+  } ],
+  "skipped": [] }
+
+// 200 — [D4] 검증 잡
+{ "serverTime": "…",
+  "jobs": [ {
+    "jobId": "cl…", "kind": "VERIFY", "idempotencyKey": "…",
+    "blog": { "id": "cl…", "naverBlogId": "myshop2020" },
+    "leaseExpiresAt": "…",
+    "verify": { "targetJobId": "cl…", "expectedTitle": "…",
+                "contentHash": "sha256:…", "since": "2026-08-09T00:01:00Z",
+                "toleranceSec": 600 }
+  } ],
+  "skipped": [] }
+
+// 200 — [D8] 내줄 잡이 제약에 걸린 경우 (사유를 반드시 실어 보낸다)
+{ "serverTime": "…", "jobs": [],
+  "skipped": [ { "jobId": "cl…", "reason": "MIN_INTERVAL_12H",
+                 "detail": { "lastPublishAttemptAt": "…", "retryAfterSec": 4200 } } ] }
+
+// 204 — 내줄 것도 알릴 것도 없음 (본문 없음)
 ```
-- **리스(lease) 방식**: 수령 시 15분 임대. 진행 이벤트를 보내면 갱신된다. 에이전트가 죽으면 리스 만료 후 재수령 가능 — 단 `SUBMITTED` 이후는 재수령 금지(3-2).
-- 서버는 이 시점에 12시간 룰을 **재검사**한다(L4). 위반이면 잡 대신 `{"jobs":[],"skipped":[{"jobId":"…","reason":"MIN_INTERVAL_12H"}]}`.
-- 잡이 여러 개여도 `max`는 1을 권장 — 한 PC가 두 글을 동시에 쓰면 에디터 충돌이 난다.
+- **리스(lease)**: 수령 시 15분 임대, 진행 이벤트로 갱신. 에이전트가 죽으면 만료 후 재수령 — 단 `SUBMITTED` 이후는 재수령 금지(3-4).
+- 서버는 이 시점에 12시간 룰을 **재검사**하고(L4), 위반 시 지연 흡수 또는 `SKIPPED` 후 위 `skipped` 배열로 사유를 알린다.
+- `skipReason` 값: `MIN_INTERVAL_12H` / `DAILY_QUOTA` / `NO_CONTENT` / `BLOG_PAUSED` / `AGENT_NOT_PREFERRED`.
+- `max`는 1 권장 — 한 PC가 두 글을 동시에 쓰면 에디터가 충돌한다.
 
 **`POST /jobs/{jobId}/events`** — 진행 보고 (리스 갱신 겸용)
 ```jsonc
@@ -729,44 +979,54 @@ Base URL: `https://{app}/api/agent/v1` · 전부 HTTPS · JSON · 인증은 `Aut
   "renewLease": true }
 // 200 → { "leaseExpiresAt": "…", "abort": false }
 ```
-- 응답의 `abort:true`면 에이전트는 즉시 중단(사용자가 대시보드에서 취소한 경우).
+- `abort:true`면 에이전트 즉시 중단(사용자가 취소한 경우).
+- 서버는 `PUBLISH_SUBMITTED` 수신 시 **`publishAttemptAt`을 기록한다**(3-3).
 
 **`POST /jobs/{jobId}/result`** — 최종 결과
 ```jsonc
-{ "idempotencyKey": "…",
-  "outcome": "VERIFIED",              // VERIFIED | UNVERIFIED | FAILED
+// 발행 잡
+{ "idempotencyKey": "…", "kind": "PUBLISH",
+  "outcome": "VERIFIED",            // VERIFIED | UNVERIFIED | FAILED
   "postUrl": "https://blog.naver.com/myshop2020/223…",
-  "postedAt": "…",
-  "errorCode": null, "errorMessage": null }
+  "postedAt": "…", "errorCode": null, "errorMessage": null }
 // 200 → { "accepted": true, "duplicate": false, "nextAction": "IDLE" }
+
+// [D4] 검증 잡
+{ "idempotencyKey": "…", "kind": "VERIFY",
+  "outcome": "FOUND",               // FOUND | NOT_FOUND | INCONCLUSIVE
+  "postUrl": "https://blog.naver.com/myshop2020/223…",
+  "matchedAt": "…", "candidatesChecked": 12 }
+// 200 → { "accepted": true, "targetJobStatus": "VERIFIED" }
 ```
-- `idempotencyKey`가 이미 처리됐으면 `{"accepted":true,"duplicate":true}` + 200. **에러를 주지 않는다** — 에러를 주면 에이전트가 재시도를 반복하다 중복 발행으로 이어진다.
-- `nextAction`: `IDLE` | `VERIFY_LATER`(UNVERIFIED일 때 60초 후 검증 잡 지시) | `STOP`.
+- `idempotencyKey`가 이미 처리됐으면 `{"accepted":true,"duplicate":true}` + **200**. 에러를 주지 않는다 — 에러를 주면 에이전트가 재시도를 반복하다 중복 발행으로 이어진다.
+- `nextAction`: `IDLE` | `VERIFY_LATER`(UNVERIFIED → 60초 후 검증 잡) | `STOP`.
 
 **에이전트 실패코드 표준** (`errorCode`)
 | 코드 | 의미 | 서버 처리 |
 |---|---|---|
-| `NAVER_LOGGED_OUT` | 세션 없음/만료 | 재시도 안 함. 사용자에게 "네이버 로그인 필요" 알림 |
+| `NAVER_LOGGED_OUT` | 세션 없음/만료 | 재시도 안 함. "네이버 로그인 필요" 알림 |
 | `CAPTCHA_REQUIRED` | 캡차·추가인증 | 재시도 안 함. 사용자 개입 요청 |
-| `EDITOR_DOM_CHANGED` | 에디터 화면 구조 변경 | 재시도 안 함. **운영자 즉시 경보**(전체 장애 신호) |
+| `EDITOR_DOM_CHANGED` | 에디터 구조 변경 | 재시도 안 함. **운영자 즉시 경보**(전체 장애 신호) |
 | `BROWSER_UNAVAILABLE` | 크롬 없음/attach 실패 | 5분 후 1회 재시도 |
 | `NETWORK` | 네트워크 오류 | 백오프 재시도(최대 3) |
-| `NAVER_RATE_LIMITED` | 네이버가 제한 | 당일 해당 블로그 발행 중단 |
-| `CONTENT_REJECTED` | 본문 거부(길이·금칙어 등) | 재시도 안 함. 글감을 `FAILED`로 |
+| `NAVER_RATE_LIMITED` | 네이버 제한 | 당일 해당 블로그 발행 중단 |
+| `CONTENT_REJECTED` | 본문 거부(길이·금칙어) | 재시도 안 함. 글감 `FAILED` |
+| `VERIFY_NOT_FOUND` | [D4] 검증 결과 글 없음 | 대상 잡 `FAILED`, 재시도 허용 |
 | `UNKNOWN` | 그 외 | 1회 재시도 후 중단 |
 
-**`POST /token/rotate`** — 토큰 갱신 (구 토큰으로 인증, 신 토큰 발급, 구 토큰 5분 유예 후 폐기)
-**`GET /release/latest`** — 에이전트 자동 업데이트용 (버전·서명된 설치파일 URL·sha256)
+**`POST /token/rotate`** — 구 토큰으로 인증 → 신 토큰 발급, 구 토큰 5분 유예 후 폐기.
+**`GET /release/latest`** — 자동 업데이트용(버전·서명된 설치파일 URL·sha256).
 
 ### 5-3. 서버 내부 스케줄러 (cron)
 
 | 잡 | 주기 | 하는 일 |
 |---|---|---|
-| `slot-planner` | 5분 | 앞으로 35분 내 슬롯을 스캔해 `PublishJob` 생성(글감 바인딩·12시간 재검사·지터 확정). 미리 만들어야 에이전트가 15초 폴링으로 갈아탈 수 있다 |
-| `sheet-sync` | 15분 | 시트 → `ContentItem` 동기화 + 발행 결과 write-back |
-| `job-reaper` | 1분 | 리스 만료 회수 / `expiresAt` 지난 잡 `EXPIRED` 처리 + 알림 |
-| `agent-watch` | 1분 | 오프라인 전환 감지 → 알림(중복 알림은 6시간 쿨다운) |
+| `slot-planner` | 5분 | 앞으로 35분 내 슬롯 스캔 → `PublishJob` 생성(글감 바인딩 · 본문 스냅샷 확정 · 지터 확정 · L2 검사) |
+| `sheet-sync` | 15분 | 시트 → `ContentItem` 동기화 + 결과 write-back |
+| `job-reaper` | 1분 | 리스 만료 회수 / `expiresAt` 초과 잡 `EXPIRED` + 알림 / **지연 흡수 재예약 처리** |
+| `agent-watch` | 1분 | 오프라인 전환 감지 → 알림(6시간 쿨다운) |
 | `ai-draft` | 1시간 | 업셀 사용자 글감 부족분 로컬 LLM 배치 생성 |
+| `integrity-check` | 일 1회 | `SUBMITTED/UNVERIFIED/VERIFIED`인데 `publishAttemptAt`이 NULL인 잡 탐지(3-3 규약 위반) |
 | `retention` | 일 1회 | `JobEvent` 90일 / `AuditEvent` 365일 삭제 |
 
 ---
@@ -778,62 +1038,106 @@ Base URL: `https://{app}/api/agent/v1` · 전부 HTTPS · JSON · 인증은 `Aut
 | 네이버 비번·세션쿠키 | **수집·전송·저장 전부 안 함.** 에이전트→서버 페이로드에 쿠키 필드 자체가 없음 |
 | 에이전트 토큰 | 서버는 sha256만 보관 / PC는 OS 자격증명 저장소(Windows DPAPI)에 보관, 평문 파일 금지 |
 | 페어링 코드 | sha256 보관, 10분 TTL, 1회용, 5회 실패 폐기, IP 레이트리밋 |
-| 멀티테넌시 격리 | 모든 조회는 `userId` 스코프 필수. 에이전트 토큰도 `userId`에 묶여 남의 잡을 수령할 수 없음 |
-| 구글시트 | 사용자 구글 비번 미보유. 서비스계정 공유 또는 OAuth(9장 미결) |
-| 로그 | IP는 해시로만, 본문 스냅샷은 사용자 데이터로 취급해 탈퇴 시 삭제 |
-| 에이전트 배포 | 코드서명 필수(미서명이면 SmartScreen 경고로 설치 이탈 발생) — 9장 미결 |
+| 멀티테넌시 격리 | 모든 조회는 `userId` 스코프 필수. 에이전트 토큰도 `userId`에 묶여 남의 잡 수령 불가 |
+| **[D9] 구글 OAuth 토큰** | 9장 #3에서 ㉡(OAuth)를 택하면 `Account.refresh_token`에 장기 토큰이 들어온다. **DB 평문 저장 금지 — 앱 레벨 AES-256-GCM 암호화 후 저장**, 키는 `.env.local`의 `TOKEN_ENC_KEY`(32바이트)로만 주입하고 코드·vault·git에 넣지 않는다. 복호화는 시트 API 호출 직전 메모리에서만. ㉠(서비스계정)을 택하면 이 항목 자체가 사라지는데, **이것이 ㉠을 추천하는 두 번째 이유**다 |
+| **[D5] 운영자 권한** | `User.role = ADMIN` 만 `/admin/*` 접근. 미인가 접근은 404 응답 + `AuditEvent` 기록. 승격은 DB 직접 변경으로만(화면에 승격 기능 없음) |
+| 로그 | IP는 해시로만. 본문 스냅샷은 사용자 데이터로 취급해 탈퇴 시 삭제 |
+| 에이전트 배포 | 코드서명 필수(미서명이면 SmartScreen 경고로 설치 이탈) — 9장 #4 |
 
 ---
 
 ## 7. 실패 시나리오와 설계상의 답
 
-| 시나리오 | 설계상 처리 | 사용자에게 보이는 것 |
+| 시나리오 | 처리 | 사용자에게 보이는 것 |
 |---|---|---|
-| 발행 시각에 PC가 꺼져 있음 | 잡은 `QUEUED`로 대기, `expiresAt`(+3시간)까지 기다림 → 그래도 안 켜지면 `EXPIRED` | 홈 배너 "에이전트 오프라인 — 오늘 21:00 발행 못 함" + 만료 후 알림 |
+| 발행 시각에 PC가 꺼져 있음 | `QUEUED` 유지 → `expiresAt`(+3시간)까지 대기 → `EXPIRED` | 홈 배너 "에이전트 오프라인 — 오늘 21:00 발행 못 함" + 만료 알림 |
+| **직전 발행이 늦어져 12시간 룰에 걸림** | **[D1] 지연 흡수** — 목표시각을 `publishAttemptAt+12h`로 재예약(최대 2회) | "발행이 11:30으로 조정되었습니다" |
 | 네이버가 로그아웃됨 | `NAVER_LOGGED_OUT`, 재시도 안 함 | "네이버에 다시 로그인해 주세요" + 재시도 버튼 |
-| 발행 눌렀는데 응답이 끊김 | `UNVERIFIED` → 60초 후 검증 잡으로 최근 글 대조 | 확인되면 성공 처리 / 아니면 "확인 필요"(자동 재발행 없음) |
-| 네이버 에디터 개편 | `EDITOR_DOM_CHANGED` 급증 → 운영자 경보 | 전체 공지 + 에이전트 핫픽스 배포 |
-| 글감이 떨어짐 | 잡 생성 시 바인딩 실패 → 잡을 만들지 않음 | "글감 3건 미만" 사전 경고 |
-| 사용자가 PC 두 대에 설치 | 리스 방식으로 먼저 가져간 쪽이 처리 | 기기 목록에 2대 표시, 블로그별 선호 기기 지정 가능 |
+| 발행 눌렀는데 응답이 끊김 | `UNVERIFIED` → 60초 후 **검증 잡**(3-4) | 확인되면 성공 / 아니면 "확인 필요"(자동 재발행 없음) |
+| 네이버 에디터 개편 | `EDITOR_DOM_CHANGED` 급증 → 운영자 경보 | 전체 공지 + 에이전트 핫픽스 |
+| 글감이 떨어짐 | 잡 생성 시 바인딩 실패 → `skipReason=NO_CONTENT` | "글감 3건 미만" 사전 경고 + 이력에 사유 표시 |
+| PC 두 대에 설치 | 리스 방식으로 먼저 가져간 쪽이 처리. 선호 기기 지정 시 그 기기 우선, 15분 오프라인이면 폴백 | 기기 목록에 2대 + 블로그별 선호 기기 |
 | 시트 권한이 끊김 | `lastSyncStatus=PERMISSION_DENIED` | 글감 화면에 사유 + 재연결 버튼 |
 
 ---
 
 ## 8. 페이즈2(개발) 착수 전 준비물
 
-1. 신규 레포 `nblog-saas` (Next.js 16 + Prisma 6 + PostgreSQL/Neon), 개발 포트 **3002** — 3000(moa-studio)·3001(saju-studio)·8080(clo_studio)은 점유 정책상 회피.
-2. 마이그레이션 순서: `Plan` 시드 → NextAuth 테이블 → 나머지.
+1. 신규 레포 `nblog-saas` (Next.js 16 + Prisma 6 + PostgreSQL/Neon), 개발 포트 **3002** — 3000·3001·8080 회피.
+2. 마이그레이션 순서: NextAuth 테이블 → 도메인 테이블 → **2-4의 raw SQL CHECK 5개 수동 삽입** → `Plan` 시드.
 3. 테스트 우선순위(Vitest) — **하드 룰부터 테스트로 못 박는다**:
-   - 12시간 룰: 자정 경계(23:50 → 익일 00:10) 차단 검증
-   - 슬롯 유니크: 같은 날 3번째 잡 INSERT 실패 검증
+   - **[D1] 슬롯 간격**: 슬롯0=09:00 설정 시 슬롯1이 21:00으로 자동 확정되는지 / 지터를 적용해도 같은 날 간격이 정확히 12h인지 / 날짜 경계 최소 간격이 임계(11h15m) 이상인지 — **20만일 시뮬레이션을 회귀 테스트로 고정**
+   - **[D2] 기준 컬럼**: `SUBMITTED`·`UNVERIFIED` 잡이 12시간 검사에 실제로 잡히는지 / 쿼터 쿼리에 `postedAt`이 등장하면 실패하는 정적 검사
+   - **[D3] CHECK 제약**: `slotIndex=2` INSERT가 DB에서 거부되는지 / CHECK 5개 존재 확인
+   - **[D4] 검증 잡**: UNVERIFIED → VERIFY 생성 → FOUND 시 대상 잡 승격 / VERIFY 잡이 슬롯을 소비하지 않는지
    - 멱등성: 같은 `idempotencyKey` 2회 보고 시 부작용 0
-   - `SUBMITTED` 이후 재클레임 거부
-   - `UNVERIFIED` 자동 재시도 미발생
+   - `SUBMITTED` 이후 재클레임 거부 / `UNVERIFIED` 자동 재시도 미발생
 4. 에이전트 프로토타입은 발행 로직보다 **페어링·폴링·하트비트 골격을 먼저** 만든다(가장 많이 깨지는 곳이 발행이 아니라 연결이다).
 
 ---
 
-## 9. 형(CEO) 결재 필요 항목 — 페이즈1 완료 판정용
+## 9. 형(CEO) 결재 필요 항목
 
-| # | 항목 | 선택지 | 내 추천 |
+| # | 항목 | 상태 | 선택지 / 내 판단 |
 |---|---|---|---|
-| 1 | **화면·스키마·인터페이스 승인** | 2·4·5장 그대로 승인 / 수정 | 승인 (완료 판정 조건) |
-| 2 | **요금 금액** | 원가 재계산 후 확정 필요. 기본플랜/추가블로그/AI글감대행 3개 값 | 별도 원가 산정 후 재보고 **(내가 추천: 금액은 페이즈2 초반에 확정, 설계는 금액 미정으로도 진행 가능)** |
-| 3 | **구글시트 연결 방식** | ㉠ 서비스계정에 시트 공유 ㉡ 구글 OAuth 로그인 | **㉠ (내가 추천)** — OAuth는 민감범위 심사가 걸려 MVP를 늦춘다. ㉠은 사용자가 시트 공유 한 번만 하면 됨 |
-| 4 | **에이전트 배포·코드서명** | 코드서명 인증서 구매(연 20~40만원대) 여부 | 구매 필요 **(내가 추천)** — 미서명은 SmartScreen 경고로 설치 단계 이탈이 크다. 단 베타까지는 미서명+안내로 버틸 수 있음 |
-| 5 | **신규 레포/포트** | `nblog-saas` / 3002 | 승인 요청 |
+| 1 | **화면·스키마·인터페이스 승인** | 결재 대기 | 2·4·5장 승인 시 페이즈1 완료 판정 |
+| 2 | **요금 금액 확정** | ⚠️ **미이행 — 이월 승인 요청** | 선행 결정문서 3·7장은 "가격 세부안을 **페이즈1에서 확정**"으로 적혀 있는데, 이번 설계에서 **금액을 산출하지 못했다.** 원가(서버비·LLM 배치·고객지원 인건)를 실측 없이 추정하면 7B 모델이 냈던 48만원처럼 근거 없는 숫자가 또 나오기 때문이다. **요청: 금액 확정을 페이즈2 초반(개발 착수 후 2주 내, 인프라 실비가 나오는 시점)으로 이월하는 것을 승인해 주세요.** 스키마는 `Plan.priceKrw` nullable로 설계돼 있어 금액 없이도 개발 진행에 지장 없음 |
+| 3 | **구글시트 연결 방식** | 결재 대기 | ㉠ 서비스계정에 시트 공유 **(내가 추천)** — OAuth 민감범위 심사로 MVP가 늦고, ㉡을 택하면 refresh_token 암호화 설비까지 추가로 만들어야 한다(6장 D9) / ㉡ 구글 OAuth |
+| 4 | **에이전트 코드서명** | 결재 대기 | 인증서 구매 **(내가 추천)** — 미서명은 SmartScreen 경고로 설치 단계 이탈이 크다. 단 베타(페이즈3)까지는 미서명 + 안내로 버틸 수 있으므로 구매 시점은 페이즈3 직전으로 미뤄도 됨 |
+| 5 | **신규 레포/포트** | 결재 대기 | `nblog-saas` / 3002 |
 
 ---
 
-## 10. 잔존 리스크 (인지하고 진행)
+## 10. 잔존 리스크
 
-- **네이버 자동화 탐지**: 사용자 본인 세션·본인 PC라 서버 봇보다 훨씬 안전하지만 0은 아니다. 완화책 = 하루 2회·12시간·±10분 지터·사람 속도 입력. 실제 계정 실측은 페이즈3 베타에서만 가능 — 선행문서 10장 kill 기준 유지.
-- **에디터 개편 리스크**: 네이버가 에디터를 바꾸면 전 고객 동시 장애. 그래서 `EDITOR_DOM_CHANGED`를 별도 코드로 분리하고 운영자 콘솔 1순위 지표로 뒀다.
-- **설치 지원 부담**: PC 설치형의 최대 비용은 서버비가 아니라 고객지원이다. 온보딩 스텝2의 이탈률을 페이즈3의 핵심 측정치로 삼아야 한다.
-- **[미검증]** 이 문서의 폴링 주기·트래픽 추정은 실측이 아닌 계산치다. 베타에서 재측정 필요.
+- **네이버 자동화 탐지**: 사용자 본인 세션·본인 PC라 서버 봇보다 훨씬 안전하지만 0은 아니다. 완화책 = 하루 2회·12시간 고정·±10분 지터·사람 속도 입력. 실계정 실측은 페이즈3 베타에서만 가능 — 선행문서 10장 kill 기준 유지.
+- **에디터 개편 리스크**: 네이버가 에디터를 바꾸면 전 고객 동시 장애. `EDITOR_DOM_CHANGED`를 별도 코드로 분리하고 A1의 1순위 지표로 뒀다.
+- **설치 지원 부담**: PC 설치형의 최대 비용은 서버비가 아니라 고객지원이다. 온보딩 스텝2 이탈률을 페이즈3 핵심 측정치로.
+- **12시간 여유 0 구조**: 하루 2회를 유지하는 한 간격 여유는 구조적으로 0이고, 우리는 45분 허용오차로 이를 흡수하고 있다. 즉 **실제 발행 간격이 11시간대로 내려갈 수 있다**는 뜻이다. 저품질 관점에서 11h15m와 12h가 유의미하게 다른지는 [미검증]. 만약 베타에서 12시간 엄수가 필요하다고 판명되면 **하루 1회 상품으로 내리거나 지터를 0으로 두는 것**이 유일한 해법이다 — 이 트레이드오프를 지금 문서에 남겨 둔다.
+- **[미검증]** 폴링 주기·트래픽 추정은 계산치다. D1 시뮬레이션은 실행 검증된 값이지만, 그 입력(실행지연 최대 5분)은 가정이다. 베타에서 실측 필요.
+
+---
+
+## 부록 A. [D1] 근거 시뮬레이션 (재현용)
+
+3-2 표의 수치를 뽑은 스크립트 원문. `bun a.js` 또는 `node a.js`로 재현 가능하다.
+
+```js
+const H=3600, J=600, D=300;           // 지터 ±600초, 실행지연 0~300초
+function run(coupled, tolMin){
+  const tol=tolMin*60, N=200000; let viol=0, minGap=1e9;
+  let jPrev=(Math.random()*2-1)*J;
+  for(let d=0; d<N; d++){
+    const jCur=(Math.random()*2-1)*J;
+    const j0  = coupled ? jCur  : (Math.random()*2-1)*J;   // 오늘 슬롯0 지터
+    const j1  = coupled ? jCur  : (Math.random()*2-1)*J;   // 오늘 슬롯1 지터
+    const jP1 = coupled ? jPrev : (Math.random()*2-1)*J;   // 어제 슬롯1 지터
+    const gapCross = 12*H + (j0 - jP1) + (Math.random()*D - Math.random()*D); // 어제21시→오늘9시
+    const gapIntra = 12*H + (j1 - j0)  + (Math.random()*D - Math.random()*D); // 오늘9시→오늘21시
+    for(const g of [gapCross, gapIntra]){ if(g < 12*H - tol) viol++; minGap=Math.min(minGap,g); }
+    jPrev=jCur;
+  }
+  return { viol:(viol/(N*2)*100).toFixed(2)+'%', minGapH:(minGap/H).toFixed(4) };
+}
+console.log('1차설계(슬롯별 독립지터, 허용오차 0):', run(false, 0));
+console.log('공통지터만    (허용오차 0)         :', run(true,  0));
+console.log('채택안 공통지터+허용오차 45분      :', run(true,  45));
+```
+
+실행 결과(2026-08-08, 20만일 × 2간격 = 40만 표본):
+```
+1차설계(슬롯별 독립지터, 허용오차 0): { viol: '49.86%', minGapH: '11.5980' }
+공통지터만    (허용오차 0)         : { viol: '50.02%', minGapH: '11.6005' }
+채택안 공통지터+허용오차 45분      : { viol: '0.00%',  minGapH: '11.5923' }
+```
+
+**읽는 법**: 1행이 검수 지적("두 번째 발행의 50%가 SKIPPED")의 재현이다. 2행은 **지터를 공통으로 묶는 것만으로는 해결되지 않음**을 보여준다 — 최악값을 만드는 것은 날짜 경계 간격이고 거기엔 결합 효과가 없기 때문이다. 3행이 채택안이며, 최소 실측 간격 11.5923h(=11h35.5m)가 임계 11h15m보다 20분 위에 있어 위반이 0이다.
+
+**이 시뮬레이션의 한계**: 실행지연 상한 `D=300초`는 가정값이다. 실제 지연이 25분을 넘으면 위반이 다시 생긴다 — 그래서 그 경우를 ④ 지연 흡수(deferral)가 별도로 받아낸다. 지연 분포는 페이즈3 베타에서 실측해 이 값을 교정해야 한다.
 
 ---
 
 ## 관련
 - 선행 결정: [[2026-08-08_naver_blog_saas_plan]]
 - 원본 회의: `00_Raw/2026-08-08/run_20260808_105736_naver_blog_saas_네이버블로그자동화SaaS기획/`
+- rev1 커밋: `7024ce3` (검수 FAIL) · rev2: 본 문서
