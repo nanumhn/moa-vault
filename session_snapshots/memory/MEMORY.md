@@ -1,8 +1,10 @@
+- [★형 예정요청: 시스템 전체설명+정리 세션](project_full_system_review_pending_2026-08-08.md) — 형이 먼저 안 물어봐도 클로가 주기적으로 상기시켜야 함
+- [덱스·제나 공유채널 3개 용도구분](reference_dex_jena_shared_channels_2026-08-08.md) — 그들만의대화/회의/업무 ID. 정리물은 "업무" 채널에
+- [★★2026-08-08 04시 새벽저장 스냅샷](project_open_threads_2026-08-08_dawn_snapshot.md) — 열린작업: 아투06:00첫실전 확인·소스언어 추이관찰·립싱크뮤비 미완·조코딩영상 형응답대기
 - [★아투 GPT폴백=품질위험 신호](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — GPT실패시 로컬7B 폴백, 이 회차에 창작·오염 몰림. 진단시 폴백여부 1순위 확인
 - [★경로 텍스트≠첨부, files파라미터 필수](feedback_attach_files_dont_just_cite_path.md) — 경로만 적으면 형은 파일 못 받음. 발송후 +Natt 교차확인
 - [★SendMessage 우선순위 텍스트일뿐, 큐에 쌓임](reference_agent_mailbox_no_priority_preempt_2026-08-07.md) — "급한거 먼저"보내도 안 끼어듦. 착수여부 직접 재확인 필수
 - [★QA게이트 규칙역전 사각지대(아투+PPT 재발)](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md) — 금지규칙이 표기규칙으로 뒤집혀도 키워드검사론 못잡음. completion-gate 항목화 제안
-- [★2026-08-07 14시 오후저장 스냅샷](project_open_threads_2026-08-07_pm_snapshot.md) — 열린작업: 립싱크뮤비 재작업중(226s/141s컷+조립 미완)·조코딩영상 형응답대기
 - [★★아투 트럼프기사 인용왜곡 반려+게이트버그2개 확정](project_atz_reversed_quote_incident_2026-08-06.md) — 발언 뒤집힘 발행직전 저지. qa-gate.mjs 수리 위임중
 - [★덱스·제나 데몬 조용히 죽음, 감시사각지대](project_dex_jena_daemon_silent_death_2026-08-06.md) — 재기동만 함, 원인미확정+감시 없음
 - [★★옵시디언 팀뇌 개편 완료(2026-08-06)](project_obsidian_brain_overhaul_2026-08-06.md) — dataview 방식 채택, MOC6개+대시보드 완료. 형 GUI확인 대기
