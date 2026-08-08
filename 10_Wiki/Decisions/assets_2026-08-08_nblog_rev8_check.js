@@ -1,6 +1,7 @@
 // rev8 검증 — 베이스: qa7.js (검수자 원본).
-// ★원본에서 바꾼 곳은 단 1곳: SL4_SWEEP의 c3 (ACTIVE잡 축 -> 예약 소유권 축).
-//   그 외 SL2/SL3/SL4/TX/INSERT_JOB/판정식은 원본 그대로.
+// ★변경분 3영역: (1) 이 헤더 주석 (2) 엔진 SL4_SWEEP의 c3
+//   (ACTIVE잡 축 -> 예약 소유권 축) (3) 시나리오 드라이버 전면 재작성.
+// ★엔진부 SL2/SL3/SL4/TX/INSERT_JOB/판정식(INV4,G2)은 원본과 바이트 동일.
 const M=60; let now=0;
 const slot={id:'X', reservedByJobId:null, reservedUntil:null, consumedAt:null, consumedByJobId:null};
 let jobs=[];

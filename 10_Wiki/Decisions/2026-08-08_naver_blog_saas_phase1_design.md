@@ -1,10 +1,25 @@
 # 네이버 블로그 자동화 SaaS — 페이즈1 설계 (화면 · DB 스키마 · 인터페이스 스펙)
 
-작성: 윤서진(CTO) · 2026-08-08 · **rev8 (qa-lead-jian 7차 검수 FAIL 반영)**
+작성: 윤서진(CTO) · 2026-08-08 · **rev9 (qa-lead-jian 8차 검수 FAIL 반영 — 문서 서술만 수정)**
 선행 결정문서: [[2026-08-08_naver_blog_saas_plan]] (형 결재 완료 · 노선 ㉡ 사용자 PC 설치형 확정)
-상태: **설계 초안 rev8 — qa-lead-jian 8차 검수 대기**
+상태: **설계 초안 rev9 — qa-lead-jian 9차 검수 대기**
 
 > 결정문서 관례를 따라 전문용어에는 괄호로 짧은 한글 설명을 붙였다.
+
+---
+
+## rev9 변경 이력 (8차 검수 지적 4건 — 전부 문서 서술)
+
+8차에서 **`SL4-SWEEP` 가드축 수정이 8,704개 상태 전수탐색으로 통과**했고, 하네스 엔진부가 원본과 바이트 동일임도 확인됐다. **그래서 rev9는 SQL·로직을 한 글자도 건드리지 않았다**(전수탐색 통과분에 손대면 회귀 위험만 있다). 고친 것은 문서 서술 4곳뿐이다.
+
+| # | 지적 | 처리 |
+|---|---|---|
+| ① | `F6` 개수 자기모순 — 1050줄은 "9종"인데 **유일한 원본**인 1503줄은 "5종"(항목은 ①~⑨). 하필 "항목 원문은 8장 한 곳에만 두고 참조만 한다"는 장치를 세워놓고 그 원본이 틀렸다 | 원본을 **"슬롯 생명주기 9종"**으로 정정 |
+| ② | **"194·819줄 둘 다 정정"이 거짓 — 1건만 고침.** 819줄(현 834줄) 문말이 "제약 7이 없으면 성립하지 않았다"로 남아, 방금 고친 209줄과 **한 주장이 두 번호로 갈림**(고치면서 모순이 하나 늘었다) | 834줄도 **제약 8**로 정정 |
+| ③ | **D-0에서 세운 하네스 고지 규칙을 같은 제출물에서 재위반.** D-1에 "변경분 단 1곳"이라 썼지만 실제 diff는 헝크 3개이고 시나리오 드라이버가 전면 재작성됨(미고지 4건) | D-1을 **"엔진 1곳 + 드라이버 4건 + 헤더 주석"**으로 재작성하고 4건을 표로 전부 열거. **`diff` 원문을 D-1-1에 그대로 첨부.** 스크립트 상단 주석의 "단 1곳" 표기도 정정 |
+| ④ | 913줄이 "4개 시나리오 + 추가 2개를 **rev7** 규범으로 재실행"인데 부록 D는 이제 rev8 규범 4종 | 현행에 맞게 갱신 |
+
+> **패턴 자백**: ③은 **D-0에서 이 실수를 인정하고 재발 방지 규칙을 세운 바로 그 문서 안에서 같은 실수를 반복**한 것이다. 원인은 두 번 다 같다 — **`diff`를 뜨지 않고 "내가 바꾸려던 것"을 기억으로 적었다.** 규칙을 문장으로 적는 것만으로는 안 고쳐진다는 게 증명됐으므로, 절차를 바꾼다: **① 스크립트 제출 전 `diff` 먼저 실행 → ② 그 출력을 붙여넣고 → ③ 그걸 보면서 변경분 표를 작성**한다. 순서를 뒤집지 않는다.
 
 ---
 
@@ -831,7 +846,7 @@ CREATE UNIQUE INDEX publish_job_one_active_per_slot
 
 > **[E2] rev2에서 바뀐 점**: rev2의 CHECK#2는 `PublishJob`에 `slotDate`/`slotIndex`를 강제해 **블로그·날짜당 PUBLISH 행이 영구히 2개로 고정**됐고, `EXPIRED` 후 수동 발행·재시도가 unique violation으로 막혔다. rev4는 쿼터를 `PublishSlot`으로 옮겨 **자리는 2개로 유지되면서 시도는 여러 번 가능**하고, 제약 8로 **"자리당 실제 발행 1회"를 DB가 다시 보장**한다.
 
-> **[F4] 제약 8과 앱 로직의 역할 분담 (정직하게)**: 제약 8은 `publishAttemptAt`을 UPDATE하는 순간, 즉 **에이전트가 이미 발행 버튼을 누른 뒤에** 위반을 잡는다. 따라서 이건 *실시간 예방*이 아니라 **불변식 위반을 시끄럽게 터뜨리는 최후 방어선**이다. 실시간 예방은 3-A 규칙 `SL2`(예약)가 담당한다. 제약 8이 발동하면 그 자체가 `SL2`에 구멍이 있다는 뜻이므로 A1에 즉시 경보를 띄운다. rev3은 이 역할 분담을 안 밝히고 "중복 방어가 더 강해졌다"고만 썼는데, 그 주장은 제약 7이 없으면 성립하지 않았다.
+> **[F4] 제약 8과 앱 로직의 역할 분담 (정직하게)**: 제약 8은 `publishAttemptAt`을 UPDATE하는 순간, 즉 **에이전트가 이미 발행 버튼을 누른 뒤에** 위반을 잡는다. 따라서 이건 *실시간 예방*이 아니라 **불변식 위반을 시끄럽게 터뜨리는 최후 방어선**이다. 실시간 예방은 3-A 규칙 `SL2`(예약)가 담당한다. 제약 8이 발동하면 그 자체가 `SL2`에 구멍이 있다는 뜻이므로 A1에 즉시 경보를 띄운다. rev3은 이 역할 분담을 안 밝히고 "중복 방어가 더 강해졌다"고만 썼는데, 그 주장은 제약 8이 없으면 성립하지 않았다.
 
 > `prisma migrate dev` 로 생성된 SQL 파일 끝에 위 **9개(CHECK 7 + 부분 유니크 인덱스 2)** 를 손으로 덧붙이고, 이후 `prisma migrate diff` 로 드리프트가 안 나는지 확인한다. **CI에 "제약 9개 존재 확인" 테스트를 넣는다** — 나중에 누가 마이그레이션을 재생성하면 조용히 사라지는 종류의 방어이기 때문이다.
 
@@ -910,7 +925,7 @@ rev2는 스키마 주석(4개)과 5-2장(5개)에 따로 적어 불일치가 났
 >
 > **근본 원인**: rev6은 `SL4`에만 소유권 가드를 달고 `SL2`·`SL3`는 그대로 뒀다. 그래서 **"예약 만료만으로 남의 *활성* 잡 자리를 인수"하는 문**이 열려 있었다. 예약 만료는 "잡 A가 끝났다"는 뜻이 아닌데 `SL2`가 그렇게 취급한 것이다.
 > **수정**: `SL2`에 활성잡 배타 조건을 넣어 `INV5`를 세운다 — 그러면 위 인터리빙의 `t=15m10s` 창 자체가 닫힌다(B가 claim을 못 한다). 검수가 제시한 대안 ②(`SL3`에도 소유권 가드)는 **채택하지 않았다**: `SL3`가 조건부로 `consumedAt`을 안 찍으면 그게 곧 `INV4` 파괴라, 병을 다른 병으로 바꾸는 셈이기 때문이다.
-> **증명은 선언이 아니라 실행으로 남겼다** — 검수 스크립트의 4개 시나리오 + 추가 2개를 rev7 규범으로 재실행한 결과를 부록 D에 붙였다.
+> **증명은 선언이 아니라 실행으로 남겼다** — 검수 하네스를 rev8 규범으로 재실행한 결과(4종)를 부록 D에 raw 출력으로 붙였다.
 >
 > **★[4차 반려·치명] `INV4`를 신설한 이유.** rev4는 "`CONSUMED`는 되돌아오지 않는다(예외 `R1-c`)"라고 선언해놓고, 정작 `R1-c`가 부르는 `SL4`는 "`consumedAt`은 애초에 안 찍혔으므로 손대지 않는다"고 적혀 있었다. `R1-a`가 이미 `consumedAt`을 찍은 뒤라 그 전제가 거짓이 되는 경로(리스만료 → 검증 `NOT_FOUND`)에서 **자리가 영구 소각**됐다 — 재시도 버튼은 뜨는데 `SL2`가 잡을 안 내주는 먹통 버튼이 되고, `G2`는 실제 발행 0건인 자리를 계속 세서 "오늘 2회 다 썼다"고 표시한다. rev2 E2가 다른 경로로 부활한 것이고, **"정의가 두 곳으로 갈라져 어긋난다"는 병이 3-A 안에서 재발**한 것이다.
 >
@@ -1500,7 +1515,7 @@ Base URL `https://{app}/api/agent/v1` · HTTPS · JSON · 인증 `Authorization:
      · `L2`와 `L4`가 **같은 함수**를 인자만 바꿔 호출하는지(호출 그래프 검사)
      · 설계 문서에서 3-A **바깥**에 `GATE`·`11h15m`·`12h`·`publishAttemptAt` 같은 판정 리터럴이 새로 등장하면 경고
    - **[E1] L2·L4 임계 일치**: 두 층이 같은 상수(`GATE`)·같은 컬럼을 쓰는지 정적 검사 / **리드타임을 35·60분으로 바꿔도 스킵률이 0인지**(리드타임 의존성이 되살아나면 즉시 실패)
-   - **[F6 ★치명 회귀] 슬롯 생명주기 5종**(4·5차 검수 발견) — `R1-a` → `R1-c` 왕복과 예약 소유권:
+   - **[F6 ★치명 회귀] 슬롯 생명주기 9종**(4~7차 검수 발견) — `R1-a` → `R1-c` 왕복과 예약 소유권:
      · **① 재시도 잡이 실제로 `SL2`를 통과해 claim되는지**(먹통 재시도 버튼 회귀)
      · **② `G2`가 그 자리를 더 이상 세지 않는지**(실제 발행 0건인데 "오늘 2회 다 씀" 회귀)
      · ③ `INV4` 정합성 — 임의 경로 조합 후에도 `consumedAt IS NOT NULL` ⟺ 그 슬롯에 `publishAttemptAt` 있는 잡 존재
@@ -1692,24 +1707,120 @@ trace('rev3 개정 최악 드리프트3h', 5*MIN, 180*MIN);
 
 > **하네스 고지 규칙(이후 고정)**: 검수자 스크립트를 수정해 제출할 때는 **`diff`를 떠서 변경분을 빠짐없이 열거**한다. "원본 그대로"라는 말은 `diff`가 비어 있을 때만 쓴다.
 
-### D-1. 이번에 쓴 하네스와 변경분
+### D-1. 이번에 쓴 하네스와 변경분 — **`diff`를 먼저 뜨고 그 출력을 보고 적는다**
 
-- **베이스**: `qa7.js`(7차 검수자 원본). 하드코딩된 트리거를 규범 술어 `TX()`로 복원해 둔 판본이다.
-- **파일**: `rev8_check.js`
-- **원본 대비 변경분 — 단 1곳**:
+- **베이스**: `qa7.js`(7차 검수자 원본)
+- **파일**: `rev8_check.js` (vault 동봉: `assets_2026-08-08_nblog_rev8_check.js`)
+- **`diff --strip-trailing-cr qa7.js rev8_check.js` 헝크 3개** — `1c1,4` / `31c34,38` / `47,82c54,89`
+
+> **[8차 반려 ③ 정정]** rev8은 이 자리에 **"원본 대비 변경분 — 단 1곳"**이라고 적었다. **또 거짓이다.** 실제 diff는 헝크가 3개이고, 그중 세 번째 헝크는 **시나리오 드라이버 전면 재작성**이다. D-0에서 바로 이 실수를 인정하고 고지 규칙까지 세운 **같은 제출물 안에서 그 규칙을 다시 어겼다.** 원인은 동일하다 — `diff`를 뜨지 않고 "내가 바꾸려던 것"을 기억으로 적었다. rev9부터는 **제출 전에 `diff`를 먼저 실행하고, 그 출력을 보고 나서** 이 절을 쓴다.
+
+**변경분 전체 — 엔진 1곳 + 드라이버 4건 + 헤더 주석**
+
+| 헝크 | 구분 | 내용 |
+|---|---|---|
+| `31c34,38` | **엔진 1곳** | `SL4_SWEEP`의 `c3`: `ACTIVE` 잡 축 → **예약 소유권 축**. 이번 설계 수정의 실체이며, 엔진에서 바꾼 곳은 여기뿐이다 |
+| `47,82c54,89` | 드라이버 ① | **검증C**: `t=2m` / `t=60m` / `t=180m` 단계와 `R1-b(EXPIRED)` 경로를 **삭제**(rev8은 `t=1m`에 복구되므로 장기 관찰 구간이 불필요해짐). 원본이 증명하던 "3시간 걸림"을 rev8이 재현하지 않는다는 뜻이므로, **삭제 사실 자체가 결과의 일부** |
+| 〃 | 드라이버 ② | **검증D**: 3번째 케이스 **추가** — "살아있는 예약을 쥔 잡 + stale"에서 스윕이 0행인지(가드가 너무 관대해지지 않았는지 확인용) |
+| 〃 | 드라이버 ③ | **검증B**: 셋업 교체가 아니라 **통째 대체**. 원본은 "A·B 둘 다 `QUEUED` INSERT가 제약 9에 막히는가"만 봤고, rev8은 "A가 `TERMINAL`이 된 뒤 B 투입 → 5차 지적(예약 보존) + 동시발행 차단"까지 보는 다른 시나리오다 |
+| 〃 | 드라이버 ④ | **검증A**: 변수명 `A`→`E`, `TX` 인자 순서 변경, 블록 스코프 `{}` 제거, 출력 헬퍼 `line()` 도입 (동작 동일, 표기만 변경) |
+| `1c1,4` | 헤더 주석 | 파일 상단 설명 3줄 교체. **이 주석에도 "단 1곳"이라는 거짓 표기가 있었고 함께 정정했다** |
+
+**바뀌지 않은 것(엔진부)**: `SL2` · `SL3` · `SL4` · `TX` · `INSERT_JOB`(제약 9 강제) · 판정식 `INV4`/`G2`. 8차 검수가 이 부분이 원본과 **바이트 동일**임을 확인했다 — 즉 결과 조작은 없었고, 문제는 **서술**이었다.
+
+### D-1-1. `diff --strip-trailing-cr qa7.js rev8_check.js` 원문
 
 ```diff
- function SL4_SWEEP(){
-   const c1 = slot.consumedAt!==null;
-   const c2 = !jobs.some(j=>j.slotId==='X'&&j.publishAttemptAt!==null);
--  const c3 = !jobs.some(j=>j.slotId==='X'&&ACTIVE.has(j.status));   // rev7: ACTIVE 잡 축
-+  // rev8: 가드축을 "살아있는 남의 예약"(소유권)으로 교체
-+  const owner = jobs.find(j=>j.id===slot.reservedByJobId);
-+  const c3 = slot.reservedByJobId===null
-+          || (slot.reservedUntil!==null && slot.reservedUntil<=now)
-+          || !(owner && ACTIVE.has(owner.status));
+1c1,4
+< // QA 7차 독립 검증 — 문서 rev7 SQL(950-1003행)을 그대로 옮김. 하드코딩된 트리거를 술어로 복원.
+---
+> // rev8 검증 — 베이스: qa7.js (검수자 원본).
+> // ★변경분 3영역: (1) 이 헤더 주석 (2) 엔진 SL4_SWEEP의 c3
+> //   (ACTIVE잡 축 -> 예약 소유권 축) (3) 시나리오 드라이버 전면 재작성.
+> // ★엔진부 SL2/SL3/SL4/TX/INSERT_JOB/판정식(INV4,G2)은 원본과 바이트 동일.
+31c34,38
+<   const c3 = !jobs.some(j=>j.slotId==='X'&&ACTIVE.has(j.status));      // ★3번째 NOT EXISTS
+---
+>   // ★rev8 교체: 가드축 = "살아있는 남의 예약"(소유권). ACTIVE 잡 유무가 아니다.
+>   const owner = jobs.find(j=>j.id===slot.reservedByJobId);
+>   const c3 = slot.reservedByJobId===null
+>           || (slot.reservedUntil!==null && slot.reservedUntil<=now)
+>           || !(owner && ACTIVE.has(owner.status));
+47,82c54,89
+< console.log('\n=== [검증A] 시나리오4를 하드코딩 없이 규범 술어로 재실행 ===');
+< { reset(); const A=INSERT_JOB('A','CLAIMED'); now=0; A.claimedAt=0; SL2('A'); let n=0;
+<   now=16*M; let r=TX(A,{status:'UNVERIFIED',pubAttempt:A.claimedAt}); if(r.fired)n++;
+<   console.log(`  ACTIVE→UNVERIFIED: SL4 발동=${r.fired}(${r.by}) rows=${r.rows}`);
+<   now=18*M; r=TX(A,{status:'FAILED',pubAttempt:null}); if(r.fired)n++;
+<   console.log(`  UNVERIFIED→FAILED: SL4 발동=${r.fired}(${r.by}) rows=${r.rows}`);
+<   console.log(`  => 자리: ${slot.consumedAt!==null?'★영구소각':'해제됨'}  SL4 발동횟수=${n}  INV4=${INV4()?'OK':'★VIOLATED'} G2=${G2()}`);
+< }
+< 
+< console.log('\n=== [검증B] 제약9를 INSERT에 강제하면 부록D 시나리오1의 전제가 성립하는가 ===');
+< { reset(); try{ INSERT_JOB('A','QUEUED'); INSERT_JOB('B','QUEUED'); console.log('  A,B 둘 다 QUEUED 생성됨'); }
+<   catch(e){ console.log('  '+e.message+'  → 부록D 시나리오1의 초기상태는 제약9 하에서 구성 불가'); } }
+< 
+< console.log('\n=== [검증C] ★SL4-SWEEP이 ACTIVE 잡 1건에 무기한 차단되는가 (문서 1004행 "1분 안에 자동으로 낫는다") ===');
+< { reset();
+<   const A=INSERT_JOB('A','FAILED');                       // 이전 잡은 이미 TERMINAL
+<   now=0; slot.consumedAt=0; slot.consumedByJobId='A'; slot.reservedByJobId='A'; slot.reservedUntil=15*M; // 미지경로 stale
+<   console.log(`  stale 주입: INV4=${INV4()?'OK':'★VIOLATED'} G2=${G2()}`);
+<   now=0.5*M; const R=INSERT_JOB('R','QUEUED');            // 제약9 통과: ACTIVE 잡 0건이므로 INSERT 허용
+<   console.log('  재시도/스케줄 잡 R을 QUEUED로 INSERT → 제약9 통과(막지 않음)');
+<   now=1*M;  console.log(`  t=1m  job-reaper SL4-SWEEP rows=${SL4_SWEEP()}   (R이 ACTIVE라 3번째 NOT EXISTS 실패)`);
+<   console.log(`        R claim 시도 SL2 rows=${SL2('R')}   (consumedAt 잔존이라 실패)`);
+<   now=2*M;  console.log(`  t=2m  SWEEP rows=${SL4_SWEEP()}  SL2 rows=${SL2('R')}`);
+<   now=60*M; console.log(`  t=60m SWEEP rows=${SL4_SWEEP()}  SL2 rows=${SL2('R')}  INV4=${INV4()?'OK':'★VIOLATED'} G2=${G2()}`);
+<   now=180*M; const r=TX(R,{status:'EXPIRED'});            // expiresAt(SLOT_TTL 3h) 도달 → R1-b → SL4
+<   console.log(`  t=180m R1-b(EXPIRED)로 SL4 발동=${r.fired} rows=${r.rows}  ← 소유권가드가 A/미래예약이라 0행`);
+<   console.log(`  t=181m SWEEP rows=${SL4_SWEEP()}  → INV4=${INV4()?'OK':'★VIOLATED'} G2=${G2()}`);
+<   console.log('  ==> 실제 복구까지 걸린 시간: 1분이 아니라 R이 TERMINAL 될 때까지(최대 SLOT_TTL 3h)');
+< }
+< 
+< console.log('\n=== [검증D] SWEEP이 진행 중인 정상 잡을 건드리는가 ===');
+< { reset(); const B=INSERT_JOB('B','RUNNING'); now=0; B.claimedAt=0; SL2('B'); SL3(B,now); B.status='SUBMITTED';
+<   console.log(`  발행중 잡 B(publishAttemptAt 있음) SWEEP rows=${SL4_SWEEP()} (0이어야 정상) INV4=${INV4()?'OK':'★VIOLATED'}`);
+<   reset(); const C=INSERT_JOB('C','CLAIMED'); now=0; C.claimedAt=0; SL2('C');
+<   console.log(`  예약만 쥔 잡 C(consumedAt 없음)   SWEEP rows=${SL4_SWEEP()} (0이어야 정상) 예약주인=${slot.reservedByJobId}`);
+< }
+---
+> const line=(s)=>console.log(s);
+> line('=== [C-재검] SWEEP이 ACTIVE 잡에 막히는가 (rev7 중대1 재발 여부) ===');
+> reset(); INSERT_JOB('A','FAILED');
+> Object.assign(slot,{consumedAt:0,consumedByJobId:'A',reservedByJobId:'A',reservedUntil:15*M});
+> line('  stale 주입: INV4='+(INV4()?'OK':'★VIOLATED')+' G2='+G2());
+> INSERT_JOB('R','QUEUED'); line('  재시도 잡 R QUEUED INSERT (제약9 통과)');
+> now=1*M; line('  t=1m  SWEEP rows='+SL4_SWEEP()+'  INV4='+(INV4()?'OK':'★VIOLATED')+'  G2='+G2());
+> line('  t=1m  R claim SL2 rows='+SL2('R')+'  예약주인='+slot.reservedByJobId);
+> line('  ==> 1분 내 복구+claim? '+((INV4()&&slot.reservedByJobId==='R')?'YES':'★NO'));
+> line('');
+> line('=== [D-재검] SWEEP이 정상 진행 잡을 건드리는가 (회귀) ===');
+> reset(); now=0; const B=INSERT_JOB('B','RUNNING'); SL2('B'); SL3(B,now);
+> line('  발행중 잡 B(publishAttemptAt 있음)  SWEEP rows='+SL4_SWEEP()+' (0이어야 정상) INV4='+(INV4()?'OK':'★VIOLATED'));
+> reset(); now=0; INSERT_JOB('C','CLAIMED'); SL2('C');
+> line('  예약 쥔 활성 잡 C (stale 아님)      SWEEP rows='+SL4_SWEEP()+' (0이어야 정상) 예약주인='+slot.reservedByJobId);
+> reset(); now=0; INSERT_JOB('D','CLAIMED'); SL2('D'); Object.assign(slot,{consumedAt:0,consumedByJobId:'D'});
+> line('  살아있는 예약 쥔 D + stale          SWEEP rows='+SL4_SWEEP()+' (0이어야 정상=보호) 예약주인='+slot.reservedByJobId);
+> line('');
+> line('=== [A-재검] 시나리오4 — 트리거를 하드코딩 없이 규범 술어(TX)로 ===');
+> reset(); now=0; const E=INSERT_JOB('E','CLAIMED'); E.claimedAt=0; SL2('E');
+> now=16*M; let r=TX(E,{pubAttempt:E.claimedAt,status:'UNVERIFIED'});
+> line('  ACTIVE→UNVERIFIED: 발동='+r.fired+' '+(r.by||'')+' rows='+r.rows);
+> now=18*M; r=TX(E,{pubAttempt:null,status:'FAILED'});
+> line('  UNVERIFIED→FAILED: 발동='+r.fired+' '+(r.by||'')+' rows='+r.rows);
+> line('  => 자리: '+(slot.consumedAt!==null?'★영구소각':'해제됨')+'  INV4='+(INV4()?'OK':'★VIOLATED')+'  G2='+G2());
+> line('');
+> line('=== [B-재검] 부록D 시나리오1 — 제약9에 맞는 셋업으로 재구성 ===');
+> reset(); now=0; const A2=INSERT_JOB('A','CLAIMED'); A2.claimedAt=0; SL2('A');
+> line('  A claim: 예약주인='+slot.reservedByJobId+'/'+(slot.reservedUntil/M)+'m');
+> now=2*M; let r2=TX(A2,{status:'SKIPPED'}); line('  A→SKIPPED: SL4 발동='+r2.fired+' rows='+r2.rows);
+> now=3*M; const B2=INSERT_JOB('B','QUEUED'); B2.status='CLAIMED';
+> line('  (A가 TERMINAL 된 뒤에야) B INSERT+claim SL2 rows='+SL2('B')+'  예약주인='+slot.reservedByJobId);
+> now=4*M; line('  reaper가 종료된 A로 SL4 재실행 rows='+SL4('A')+' (0이어야 정상)');
+> line('  => B 예약 보존? '+(slot.reservedByJobId==='B'?'YES':'★NO'));
+> let blocked=false; try{ INSERT_JOB('C','QUEUED'); }catch(e){ blocked=true; line('  수동발행 C INSERT: '+e.message); }
+> line('  => C가 제약9로 막힘? '+(blocked?'YES(정상)':'★NO'));
 ```
-`SL2`·`SL3`·`SL4`·`TX`·`INSERT_JOB`(제약 9 강제)·판정식(`INV4`/`G2`)은 **원본 그대로**다. 시나리오는 검수 4종(A~D)을 그대로 쓰되 B는 D-3의 이유로 셋업을 교체했다.
 
 ### D-2. 실행 결과 (raw)
 
