@@ -1,5 +1,9 @@
+- [★네이버블로그 콘텐츠품질기준: 멀티미디어+SEO구조](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨, content-head에 향후 반영필요
+- [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 형지시, 프로젝트별 용어집 파일에 즉시기록
 - [★★★2026-08-09 14시 오후저장 스냅샷](project_open_threads_2026-08-09_afternoon_snapshot.md) — PC에이전트 형로그인대기·덱스Prisma잠금대기·재부팅워치독미착수
 - [★★★2026-08-09 04시 새벽저장 스냅샷](project_open_threads_2026-08-09_dawn_snapshot.md) — 1순위:cron/sheet-sync qa검수, 2순위:덱스응답확인, 3순위:PC에이전트착수
+- [★★★첫 실전자동발행 08-10 06:00 예정](project_naver_blog_first_autopublish_2026-08-10_0600.md) — 다음세션이 확인·발행직전 형확인 필요
+- [★★★네이버블로그SaaS 발행로직 완성+QA통과+push(2026-08-09)](project_naver_blog_saas_2026-08-09_publish_logic_done.md) — PC에이전트 핵심기능 완료, 다음=서버연동
 - [★★네이버블로그SaaS 진행중(2026-08-08)](project_naver_blog_saas_2026-08-08.md) — 페이즈2 백엔드 전부qa통과+push, GitHub연결완료
 - [★긴 루프는 라운드마다 보고](feedback_report_each_stage.md) — 형지시, 최종결과만 말고 매 라운드 짧게+이슈는 즉시
 - [★QA루프 속도>완벽주의](feedback_qa_loop_speed_over_exhaustiveness.md) — 치명/중대만 반려유지, 경미는 통과+권고로
