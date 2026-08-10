@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 47d49f4c-df05-48bf-bae0-08d1f5c6625f
-  modified: 2026-08-10T05:26:12.173Z
+  modified: 2026-08-10T07:24:53.803Z
 ---
 
 **세션리셋 시각**: 2026-08-10 14:25 KST 직전 저장(예약 13:55, 실측 지연).
@@ -18,12 +18,14 @@ metadata:
 
 **2. nblog-saas Lightsail 배포 — 형 액션 2개 대기 중, 덱스는 준비 완료 상태로 대기**
 - 덱스: SSH접속 성공, standalone빌드(64.9MB)+Prisma Linux엔진 커밋(`3a69b40`) 완료, 기존 pm2 3개(homepage-nanumn/suno-helper/toastdm-backend)+LAMP 안 건드림 확인.
-- 형이 할 일: ①neon.tech에서 무료 프로젝트 직접 생성(가입인증이라 AI가 대신 못함) → DATABASE_URL 2개를 `D:\Develop\nblog-saas\.scratch\keys\neon-production.env`에 저장(채팅 금지) ②DNS `nblog.toastdm.com A 3.37.24.58` 추가.
+- ★2026-08-10 갱신: 도메인이 `nblog.toastdm.com`→`nblog.nanumn.com`으로 변경 확정, DNS A레코드 형이 등록 완료(3.37.24.58 정상 조회 확인됨) — 상세는 [[project_nblog_saas_account_domain_decision_2026-08-10]]. 남은 형 액션: neon.tech에서 무료 프로젝트 직접 생성(가입인증이라 AI가 대신 못함) → DATABASE_URL 2개를 `D:\Develop\nblog-saas\.scratch\keys\neon-production.env`에 저장(채팅 금지).
 - 이 2개 되면 덱스가 마이그레이션→업로드→PM2→시스템cron→헬스체크 순서로 바로 이어감.
 
-**3. 구글시트(글감) 연동 — 형 액션 대기**
-- nblog-saas 글감연결이 구글 서비스계정 키 미설정으로 503. 기존 GCP 프로젝트(`advance-sonar-503415-u0`, 아투 Blogger API와 동일, 계정 info.nanumn@gmail.com) 재사용 절차 안내함: Sheets API 활성화→서비스계정 생성→JSON키 발급→클로에게 전달→시트를 서비스계정 이메일에 공유.
-- ★형이 명시적으로 "얼렁뚱땅 우회 말고 실제처럼 제대로 테스트하라"고 지시함 — DB에 테스트 글감 직접 넣는 임시방편 반려당함. 이 서비스계정 세팅이 끝나야 진짜 예약발행 테스트 가능.
+**3. 구글시트(글감) 연동 — ★2026-08-10 완료**
+- 계획 변경: 아투 프로젝트(info.nanumn@gmail.com) 재사용 대신, 형이 "다른 사용자 시트 유출 우려"로 nblog-saas 전용 신규 GCP 프로젝트(`nblog-saas-sheets`, 계정 nanumn.com@gmail.com)로 분리 확정. 시우(media-head-siwoo)가 프로젝트 생성→Sheets API 활성화→서비스계정 발급→`.env.local` 반영까지 완료, 로컬 검증 통과(토큰발급 성공 + sheet-sync API 503→200). 서비스계정 이메일: `nblog-saas-sheets-sync@nblog-saas-sheets.iam.gserviceaccount.com`.
+- neon.tech 프로덕션 DB도 형이 직접 생성(`nblog-saas-production`, PG17, Singapore) → Pooled/Unpooled 연결문자열 둘 다 클로가 검증(prisma db execute 접속 테스트 통과) 후 `.scratch\keys\neon-production.env`에 UTC 타임존 옵션 포함해 저장 완료.
+- 남은 것: 덱스가 Lightsail 배포 마무리 시 위 두 파일의 값을 production env에 반영(통지 완료, 2026-08-10). 아직 aiislife 실제 글감 스프레드시트를 이 서비스계정에 공유했는지는 미확인 — 다음 세션이 확인할 것.
+- ★형이 명시적으로 "얼렁뚱땅 우회 말고 실제처럼 제대로 테스트하라"고 지시했던 배경(DB에 테스트 글감 직접 넣는 임시방편 반려당함)은 이번 진짜 서비스계정 세팅으로 충족됨.
 
 **4. Google OAuth 클라이언트ID — 형 발급 대기**
 - 프로덕션 로그인 방식은 Google OAuth로 확정(SMTP 대신). 형이 구글 콘솔에서 클라이언트ID/시크릿 발급해야 함. 아직 안내 전.

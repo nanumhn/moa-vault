@@ -1,3 +1,7 @@
+- [★같은레포 병렬에이전트 git커밋 섞임](feedback_parallel_agents_same_repo_git_conflict.md) — 2026-08-10 실측, worktree격리나 순차커밋 고려할 것
+- [nblog-saas 병렬작업시 테스트DB 경합](reference_nblog_saas_shared_test_db_contention.md) — 에이전트3개 독립보고, 실패시 코드버그 단정말고 동시실행부터 의심
+- [★진행상황 표시 = 기능보다 우선](feedback_status_visibility_accuracy_first.md) — 형원칙 2026-08-10, 없거나 부정확하면 사용자 불편
+- [★nblog-saas 도메인·구글시트계정 확정](project_nblog_saas_account_domain_decision_2026-08-10.md) — nblog.nanumn.com + nanumn.com@gmail.com 신규 GCP프로젝트(아투와 분리)
 - [nblog-saas 가입정책: 초대장→이메일인증→3일체험](project_nblog_saas_signup_policy_2026-08-10.md) — 형확정 2026-08-10, 미구현(오픈가입 아님)
 - [★네이버블로그 콘텐츠품질기준: 멀티미디어+SEO구조](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨, content-head에 향후 반영필요
 - [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 형지시, 프로젝트별 용어집 파일에 즉시기록
