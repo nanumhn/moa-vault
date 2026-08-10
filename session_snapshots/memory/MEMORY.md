@@ -1,3 +1,4 @@
+- [nblog-saas 가입정책: 초대장→이메일인증→3일체험](project_nblog_saas_signup_policy_2026-08-10.md) — 형확정 2026-08-10, 미구현(오픈가입 아님)
 - [★네이버블로그 콘텐츠품질기준: 멀티미디어+SEO구조](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨, content-head에 향후 반영필요
 - [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 형지시, 프로젝트별 용어집 파일에 즉시기록
 - [★★★2026-08-09 14시 오후저장 스냅샷](project_open_threads_2026-08-09_afternoon_snapshot.md) — PC에이전트 형로그인대기·덱스Prisma잠금대기·재부팅워치독미착수
