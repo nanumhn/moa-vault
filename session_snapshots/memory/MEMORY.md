@@ -1,3 +1,4 @@
+- [★★★★★★2026-08-12 04시 새벽저장 스냅샷](project_open_threads_2026-08-12_dawn_snapshot.md) — nblog-agent 링크삽입버그 형결정대기(최우선), 나머지는 08-11파일 참고
 - [nblog-saas 개발용 GCP키 재발급 절차](reference_nblog_saas_dev_gcp_key_rotation_2026-08-11.md) — cto 트랜스크립트 유출로 형이 재발급 결정, 절차 기록
 - [★★★★★2026-08-11 14시 오후저장 스냅샷](project_open_threads_2026-08-11_afternoon_snapshot.md) — PC에이전트 0.1.5빌드중, 발행재시도 만료16:35KST, icacls결과 대기(최우선)
 - [★★★★2026-08-11 04시 새벽저장 스냅샷](project_open_threads_2026-08-11_dawn_snapshot.md) — PC에이전트 크래시대장정 시간순 상세이력(0.1.0~0.1.4), UX백로그13건
