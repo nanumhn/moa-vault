@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 40e8dc24-ed5f-4539-acc2-feab081b2c60
-  modified: 2026-07-28T23:10:20.241Z
+  modified: 2026-08-11T15:23:14.501Z
 ---
 
 **아투(american-todayz) 승인·보고 카드의 정상 목적지는 아투 채널 `1529814918658785350` 이다.** 형 DM 채널(`1501858476362829834`)이 아니다.
@@ -24,5 +24,8 @@ metadata:
 ## 교훈
 - **코드가 뱉은 경고도 "관측"이지 "사실"이 아니다.** 그 경고의 기준값을 누가 정했는지 확인하고 형에게 옮겨라. 내가 어제 박은 상수를 오늘 근거로 인용했다.
 - 채널 판정은 추측하지 말고 웹훅 메타 GET 으로 `channel_id` 를 찍어라.
+
+## 추가 확인(2026-08-11): "발행" 답장을 자동으로 받아 처리하는 리스너는 없다
+형이 "발행"이라고 답해도 그걸 감지해서 `publish.mjs`를 자동 호출하는 코드가 `discord.mjs`에 없다(2026-08-11 cto 확인). 카드는 아투채널(`reachedOwner:true`)에 정상 도달하지만, 그 뒤 공개 전환은 **사람(클로/cto)이 카드를 보고 `bun publish.mjs --live --video <id>`를 직접 실행**해야 하는 수동 구간이다. 형이 메인채널(형-클로 채널)에 "발행"이라 답해도 놓치는 게 아니라, 애초에 어느 채널에 답해도 자동 소비자가 없다. 반복되면 이 리스너 자동화가 다음 개선 대상.
 
 관련: [[feedback_verified_facts_only]] [[feedback_find_counterexample_first]] [[reference_moa_logs_and_ledgers]]
