@@ -1,4 +1,5 @@
-- [★★★★2026-08-11 04시 새벽저장 스냅샷](project_open_threads_2026-08-11_dawn_snapshot.md) — 최우선: PC에이전트 설치파일 공개위치(A서버직접/B공개레포) 형결정 대기
+- [★★★★2026-08-11 04시 새벽저장 스냅샷](project_open_threads_2026-08-11_dawn_snapshot.md) — PC에이전트 형실기테스트중 GPU크래시 발견→원인규명→v0.1.1수정완료, 형 재검증 대기
+- [에이전트 자기검증도 범위확인 필요](reference_agent_selfcheck_completeness_gap_2026-08-11.md) — "안전확인함" 보고받으면 검증범위(의도한 경로만 vs 전체) 되물을 것
 - [★같은레포 병렬에이전트 git커밋 섞임](feedback_parallel_agents_same_repo_git_conflict.md) — 2026-08-10 실측, worktree격리나 순차커밋 고려할 것
 - [nblog-saas 병렬작업시 테스트DB 경합](reference_nblog_saas_shared_test_db_contention.md) — 에이전트3개 독립보고, 실패시 코드버그 단정말고 동시실행부터 의심
 - [★진행상황 표시 = 기능보다 우선](feedback_status_visibility_accuracy_first.md) — 형원칙 2026-08-10, 없거나 부정확하면 사용자 불편
