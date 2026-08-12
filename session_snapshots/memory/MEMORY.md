@@ -1,3 +1,4 @@
+- [★★★★★★★★2026-08-13 04시 새벽저장 스냅샷](project_open_threads_2026-08-13_dawn_snapshot.md) — nblog-saas 11회배포+에이전트0.1.12승격 완료. 최우선=수익모델3안 재상기
 - [nblog-saas pm2 env 캐싱 함정](reference_nblog_saas_pm2_env_caching_2026-08-12.md) — .env.production만 고치면 AGENT_RELEASE_* 등 안 바뀜, export후 restart 필요
 - [nblog-saas 운영서버 SSH접근+초대코드 발급법](reference_nblog_saas_prod_admin_access_2026-08-12.md) — 키 ~/.ssh/lightsail/toastdm.pem, bun run admin:invite
 - [★★★★★★★2026-08-12 14시 오후저장 스냅샷](project_open_threads_2026-08-12_afternoon_snapshot.md) — 매우긴세션 전체요약. 최우선=nblog마무리확인→수익모델3안 재상기, 나머지는 이 파일 하나로 충분
