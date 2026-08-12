@@ -1,0 +1,28 @@
+{
+  "run": "run_20260812_130037",
+  "team": "revenue_model_redesign",
+  "team_name": "수익모델 재설계 회의 (3주 룰 발동 — 실제 7주)",
+  "topic": "수익모델 재설계 - 라인별 필요고객수 비교, 쇼츠 B2B 착수 여부, 객단가",
+  "artifacts": [
+    {
+      "agent_id": "narae",
+      "agent_name": "박나래",
+      "filename": "line_comparison_and_recommendation.md"
+    },
+    {
+      "agent_id": "jio",
+      "agent_name": "한지오",
+      "filename": "b2b_sales_path.md"
+    },
+    {
+      "agent_id": "jinwoo",
+      "agent_name": "박진우",
+      "filename": "pricing_redesign.md"
+    },
+    {
+      "agent_id": "siwoo",
+      "agent_name": "강시우",
+      "filename": "shorts_delivery_feasibility.md"
+    }
+  ]
+}
