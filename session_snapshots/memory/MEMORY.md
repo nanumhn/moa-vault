@@ -1,3 +1,12 @@
+- [★★★★실측매출0원+주간리뷰6주공백 발견](project_revenue_review_lapsed_2026-08-12.md) — CSO revenue-review 즉시재가동 형승인대기, 최우선
+- [★★★★수익모델재설계 최종3안 확정, 형승인3건대기](project_revenue_model_redesign_final_2026-08-12.md) — C:k-saju단건$29(최우선)/B:nblog-saas승격/A:쇼츠4주실험. 90일목표 300~700만원으로 재설정
+- [★★★k-saju Vercel이전계획(cto)+Pro업그레이드 형결정대기](project_ksaju_vercel_migration_plan_2026-08-12.md) — blog.k-saju.me도 위반, NeonDB Vercel종속 가능성
+- [★★k-saju SEO채널사망확정+CTA버그수리+형결정2건대기](project_ksaju_growth_channel_switch_2026-08-12.md) — Reddit게시·유료테스트승인 형답변대기
+- [회의엔진 2단계검증 절차 확정+반영](project_meeting_two_stage_review_2026-08-12.md) — 1차(7B)→2차(클로덱스제나검증)→형보고, meeting-runner 스킬 수정완료
+- [★★★덱스제나 반복다운 진짜원인=유휴킬 설정](reference_moa_scheduled_task_idle_kill_2026-08-12.md) — StopOnIdleEnd, Moa작업 18개 전부 수정완료(형승인)
+- [★★모아 시스템 전체리뷰 완료+인포그래픽](project_system_wide_review_2026-08-12.md) — MoaServerReboot삭제완료, 덱스제나원인은 별도메모리로 해결됨
+- [★nblog 링크버그 근본수정+0.1.8검증 진행](project_nblog_linkbug_and_backlog_2026-08-12.md) — 개발2 PC 0.1.8설치 필요(형액션), 덱스push인증막힘 클로가 대신push
+- [PC에이전트 keep-alive 7~8시간 검증됨](project_pc_agent_keepalive_validated_2026-08-12.md) — 0.1.7 공식승격 판단 긍정신호, 형 최종승격 지시 전까진 0.1.4 유지로 취급
 - [★★★★★★2026-08-12 04시 새벽저장 스냅샷](project_open_threads_2026-08-12_dawn_snapshot.md) — nblog-agent 링크삽입버그 형결정대기(최우선), 나머지는 08-11파일 참고
 - [nblog-saas 개발용 GCP키 재발급 절차](reference_nblog_saas_dev_gcp_key_rotation_2026-08-11.md) — cto 트랜스크립트 유출로 형이 재발급 결정, 절차 기록
 - [★★★★★2026-08-11 14시 오후저장 스냅샷](project_open_threads_2026-08-11_afternoon_snapshot.md) — PC에이전트 0.1.5빌드중, 발행재시도 만료16:35KST, icacls결과 대기(최우선)
