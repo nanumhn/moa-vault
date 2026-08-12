@@ -1,3 +1,4 @@
+- [★★★★★★★2026-08-12 14시 오후저장 스냅샷](project_open_threads_2026-08-12_afternoon_snapshot.md) — 매우긴세션 전체요약. 최우선=nblog마무리확인→수익모델3안 재상기, 나머지는 이 파일 하나로 충분
 - [★★★★실측매출0원+주간리뷰6주공백 발견](project_revenue_review_lapsed_2026-08-12.md) — CSO revenue-review 즉시재가동 형승인대기, 최우선
 - [★★★★수익모델재설계 최종3안 확정, 형승인3건대기](project_revenue_model_redesign_final_2026-08-12.md) — C:k-saju단건$29(최우선)/B:nblog-saas승격/A:쇼츠4주실험. 90일목표 300~700만원으로 재설정
 - [★★★k-saju Vercel이전계획(cto)+Pro업그레이드 형결정대기](project_ksaju_vercel_migration_plan_2026-08-12.md) — blog.k-saju.me도 위반, NeonDB Vercel종속 가능성
