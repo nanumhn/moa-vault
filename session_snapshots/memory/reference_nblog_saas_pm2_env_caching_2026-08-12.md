@@ -25,28 +25,3 @@ pm2 restart nblog-saas --update-env
 `.env.production` 파일도 같이 고쳐두는 게 맞다(다음에 진짜 처음부터 기동될 때 기준이 되므로) — 다만 **당장 반영되는 건 export+restart 쪽**이라는 걸 기억할 것.
 
 deploy/README.md에 원래 이 절차(export→restart)로 적혀 있었는데, `.env.production`만 고치면 될 거라고 착각해서 한 번 헤맴(2026-08-12, 0.1.9 승격 작업 중).
-
-## ★ 함정이 하나 더 있다 — `pm2 save` (2026-08-13 추가)
-
-export+restart로 **런타임**은 바뀌지만, 거기서 멈추면 **재부팅 때 옛 값으로 되돌아간다.**
-`pm2-bitnami.service`(systemd, enabled)가 부팅 시 `~/.pm2/dump.pm2`로 resurrect 하는데
-dump는 `pm2 save`를 해야 갱신되기 때문이다. 그래서 확인할 곳이 **세 군데**다:
-
-| 봐야 할 곳 | 확인 명령 | 빠뜨리면 |
-|---|---|---|
-| `shared/.env.production` | `grep '^AGENT_RELEASE'` | 처음부터 기동 시 옛 값 |
-| pm2 런타임 | `pm2 env <id> \| grep AGENT_RELEASE` | 지금 당장 반영 안 됨 |
-| `~/.pm2/dump.pm2` | `grep AGENT_RELEASE_VERSION` | **재부팅 시 롤백** |
-
-정석 3단계(파일 → 런타임 → 영속). 일부만 export 하면 나머지 env가 날아가니 파일을 통째로 싣는다:
-```
-cd /home/bitnami/apps/nblog-saas
-set -a; . shared/.env.production; set +a
-pm2 restart nblog-saas --update-env
-pm2 save && chmod 600 ~/.pm2/dump.pm2 ~/.pm2/dump.pm2.bak   # dump 기본 644라 비밀값 노출
-```
-pm2는 PATH에 없다 — `~/.nvm/versions/node/v24.11.1/bin/pm2`.
-
-이 함정이 실제로 터진 사례: 2026-08-12 낮 "0.1.12 승격 완료"라고 기록해뒀는데, 다음날 확인하니
-서버는 여전히 0.1.9였다. 승격이 **파일에도 dump에도 안 남고** 셸 export로만 떴다 사라진 것.
-2026-08-13 형 승인 후 위 3단계로 재작업해서 실제 반영 완료.

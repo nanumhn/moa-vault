@@ -1,3 +1,8 @@
+- [★★★nblog-saas 08-12밤~08-13새벽 마라톤 전체요약](project_nblog_saas_night_marathon_2026-08-13.md) — 12개 작업 순차완료. 형계정 오늘 만료예정(의도적 미연장, 건드리지말것)
+- [nblog-saas 정식 서비스명 = nBlog(엔블로그)](project_nblog_saas_brand_name_2026-08-12.md) — 형 확정, 메일·UI 전체반영 예정
+- [★nblog-saas 가입/로그인메일 완료](project_nblog_saas_email_smtp_missing_2026-08-12.md) — 배포+실메일 수신확인까지 끝남. 후속조치 불필요
+- [★★nblog-saas 재부팅시 DB비번 증발 잠복장애 수리](reference_nblog_saas_pm2_dump_missing_secrets_2026-08-12.md) — pm2 dump.pm2에 시크릿 누락, save로 수리. 다른 pm2서비스도 점검필요
+- [nblog-agent 0.1.12 서버반영 완료](project_nblog_agent_version_mismatch_2026-08-12.md) — 재부팅내성까지 확인, 종료. 현장PC는 각자 업데이트눌러야 갈아탐
 - [★★★★★★★★2026-08-13 04시 새벽저장 스냅샷](project_open_threads_2026-08-13_dawn_snapshot.md) — nblog-saas 11회배포+에이전트0.1.12승격 완료. 최우선=수익모델3안 재상기
 - [nblog-saas pm2 env 캐싱 함정](reference_nblog_saas_pm2_env_caching_2026-08-12.md) — .env.production만 고치면 AGENT_RELEASE_* 등 안 바뀜, export후 restart 필요
 - [nblog-saas 운영서버 SSH접근+초대코드 발급법](reference_nblog_saas_prod_admin_access_2026-08-12.md) — 키 ~/.ssh/lightsail/toastdm.pem, bun run admin:invite
