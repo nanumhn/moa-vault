@@ -1,3 +1,6 @@
+- [아투 게이트 인용오탐 3번째 재발+수리완료](reference_atz_gate_quote_falsepositive_3rd_recur_2026-08-13.md) — 재발행 성공(american-todayz LIVE), 후속조치 불필요
+- [★nBlog 굵게·색상 구현완료(라이브)](project_nblog_bold_color_feature_2026-08-13.md) — 0.1.14 승격+웹배포 끝남, 후속조치 불필요
+- [nBlog AI 본문+이미지 자동생성 신기능](project_nblog_ai_content_generation_2026-08-13.md) — 영상제외/Pexels우선/검토대기발행, cto 설계+견적 진행중
 - [nBlog 백로그4건 형결정](project_nblog_saas_backlog_decisions_2026-08-13.md) — 가격측정fake-door 미착수, 만료화면범위 형확인대기, 베타피드백 8/27체크
 - [★★★nblog-saas 08-12밤~08-13새벽 마라톤 전체요약](project_nblog_saas_night_marathon_2026-08-13.md) — 12개 작업 순차완료. 형계정 오늘 만료예정(의도적 미연장, 건드리지말것)
 - [nblog-saas 정식 서비스명 = nBlog(엔블로그)](project_nblog_saas_brand_name_2026-08-12.md) — 형 확정, 메일·UI 전체반영 예정
