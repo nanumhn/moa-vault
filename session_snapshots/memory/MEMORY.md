@@ -1,3 +1,4 @@
+- [nBlog 백로그4건 형결정](project_nblog_saas_backlog_decisions_2026-08-13.md) — 가격측정fake-door 미착수, 만료화면범위 형확인대기, 베타피드백 8/27체크
 - [★★★nblog-saas 08-12밤~08-13새벽 마라톤 전체요약](project_nblog_saas_night_marathon_2026-08-13.md) — 12개 작업 순차완료. 형계정 오늘 만료예정(의도적 미연장, 건드리지말것)
 - [nblog-saas 정식 서비스명 = nBlog(엔블로그)](project_nblog_saas_brand_name_2026-08-12.md) — 형 확정, 메일·UI 전체반영 예정
 - [★nblog-saas 가입/로그인메일 완료](project_nblog_saas_email_smtp_missing_2026-08-12.md) — 배포+실메일 수신확인까지 끝남. 후속조치 불필요
