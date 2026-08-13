@@ -1,3 +1,4 @@
+- [★★★★★★★★2026-08-14 04시 새벽저장 스냅샷](project_open_threads_2026-08-14_dawn_snapshot.md) — 최우선=k-saju Lightsail 형AWS액션5개 여전히 대기중
 - [아투 게이트 인용오탐 3번째 재발+수리완료](reference_atz_gate_quote_falsepositive_3rd_recur_2026-08-13.md) — 재발행 성공(american-todayz LIVE), 후속조치 불필요
 - [★nBlog 굵게·색상 구현완료(라이브)](project_nblog_bold_color_feature_2026-08-13.md) — 0.1.14 승격+웹배포 끝남, 후속조치 불필요
 - [nBlog AI 본문+이미지 자동생성 신기능](project_nblog_ai_content_generation_2026-08-13.md) — 영상제외/Pexels우선/검토대기발행, cto 설계+견적 진행중
