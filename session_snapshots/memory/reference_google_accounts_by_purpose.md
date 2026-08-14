@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 771e9b4c-1ade-4980-828c-f82c0b7d539a
-  modified: 2026-07-30T00:42:31.640Z
+  modified: 2026-08-14T14:29:23.905Z
 ---
 
 `C:\chrome-debug-profile` 안에 **크롬 프로필이 3개** 있고, 각각 다른 구글 계정이다 (2026-07-30 `Preferences` 전수 확인).
@@ -85,3 +85,5 @@ CDP에서는 Profile 1 창이 **별도 target**으로 잡히므로, 그 target�
 **형 손이 필요한 경우는 로그인 자체(세션 만료)뿐이다.** 세션이 살아 있으면 위 명령으로 내가 직접 연다.
 
 **How to apply:** 재부팅·세션 리셋 후 아투 브라우저 작업 전에 **어느 크롬 프로필 창인지부터 확인**한다. 위 `--profile-directory`로 띄우거나, 이미 떠 있으면 CDP target 목록에서 Profile 1 창을 골라 이동하면 된다. 판정법 — Blogger 홈 블로그 목록에 아투가 보이는가. 안 보이면 **authuser를 돌리지 말고 프로필을 바꿔라**(그 삽질이 원래 2시간의 정체다). 계정 로그인 자체가 필요하면 형에게 요청(직접 로그인 금지).
+
+**2026-08-14 형이 알려준 정보(미검증)**: "GPT 있는 프로필(형이 '프로필1'이라 부름)에 제미나이도 로그인돼있다"고 함. 실제 GPT는 이 메모 표에 따르면 **Default**(ssky.park)에 있고 "Profile 1"(Chrome 폴더명)은 info.nanumn 계정이라 — 형이 말한 "프로필1"이 Chrome의 실제 "Profile 1" 폴더를 가리키는 게 아니라 "GPT 쓰는 그 창"을 구어체로 부른 것일 가능성이 높다. 실제로 같은 창(Default)에 Gemini가 함께 로그인돼 있는지는 다음에 그 창을 열 때 직접 확인할 것 — 확인 전엔 이 정보로 자동화 스크립트를 짜지 말 것.

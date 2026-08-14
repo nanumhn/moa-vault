@@ -1,3 +1,5 @@
+- [★덱스 작업지시를 형채널로 오발송](feedback_dex_jena_task_wrong_channel_2026-08-14.md) — chat_id 재사용 실수, 덱스에 넘기는 reply는 항상 chat_id 재확인
+- [★프로세스 종료 전 활성 에이전트 확인](feedback_kill_process_check_active_agents_first_2026-08-14.md) — 3002서버 킬 당시 배경에이전트가 실사용중이었음, 운좋게 무사
 - [★★★★★★★★★2026-08-14 14시 오후저장 스냅샷](project_open_threads_2026-08-14_afternoon_snapshot.md) — 최우선=nBlog 만료제한기능 push결재대기, WhisperWriter결과 미확인
 - [★★★★★★★★2026-08-14 04시 새벽저장 스냅샷](project_open_threads_2026-08-14_dawn_snapshot.md) — 최우선=k-saju Lightsail 형AWS액션5개 여전히 대기중
 - [WhisperWriter PC1 설치 성공+함정정리](reference_whisperwriter_windows_setup_2026-08-14.md) — 3.11venv+원본버전+cleanup()패치 필수, 다른PC깔때 재사용
