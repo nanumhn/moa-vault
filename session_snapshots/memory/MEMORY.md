@@ -1,40 +1,33 @@
+- [★nBlog 이미지첨부 설계 확정(cto 독립검증)](reference_nblog_saas_image_attach_design_2026-08-15.md) — 드라이브링크+서버재호스팅+K열분리, 시트셀이미지객체는 API로 불가능 확인
+- [nBlog "재발행" 버튼 백로그(형제안)](project_nblog_saas_manual_retry_button_backlog_2026-08-15.md) — 다음슬롯충돌 체크 필요, 성수동 NAVER_LOGGED_OUT 수동복구하며 나온 아이디어
+- [★수집후 시트수정은 무시됨, DB직접수정으로 대응](reference_nblog_saas_sheet_edit_ignored_after_collection_2026-08-15.md) — 망원동/한남동 이미지추가 中 발견, contentHash 재수집위험 실제 발생함
+- [★"거의 다 됐다"던 작업이 끼어든 이슈에 밀려 미완료로 방치됨](feedback_task_dropped_on_interruption_2026-08-15.md) — 망원동/한남동 시트 write-back, cmd창·아투 알림에 밀려 안 끝남. 재확인 필요
+- [★확인작업을 형에게 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md) — "형이 스크롤해서 봐주세요"로 반발샀음, 도구한계는 인정하고 끝내되 떠넘기지 말것
+- [★★아투 보고채널 감시 자기참조 무한루프 발견+수리](project_atz_report_watchdog_self_loop_2026-08-15.md) — 자기알림을 자기가 재검출, 9회반복 후 우연히 멈췄던것. 필터추가로 수리완료, AM글 팩트체크는 이상없음
+- [★콘솔창 닫으면 프로세스도 죽을 수 있음](reference_console_window_close_kills_process_2026-08-15.md) — "빈창이라 닫아도 안전"이라 잘못 안내했다가 즉시 정정, DB·데몬 프로세스 주의
+- [dev서버 새로 띄우기전 기존것 확인](feedback_check_before_spawn_dev_server_2026-08-15.md) — 형이 cmd창 누적 지적, 죽이기 전 확인의 반대방향(띄우기 전 확인)
 - [★★★★★★★★★★2026-08-15 04시 새벽저장 스냅샷](project_open_threads_2026-08-15_dawn_snapshot.md) — 최우선=AI본문자동화 QA통과+배포대기(OpenAI키 필요)
 - [★덱스 작업지시를 형채널로 오발송](feedback_dex_jena_task_wrong_channel_2026-08-14.md) — chat_id 재사용 실수, 덱스에 넘기는 reply는 항상 chat_id 재확인
 - [★프로세스 종료 전 활성 에이전트 확인](feedback_kill_process_check_active_agents_first_2026-08-14.md) — 3002서버 킬 당시 배경에이전트가 실사용중이었음, 운좋게 무사
 - [★★★★★★★★★2026-08-14 14시 오후저장 스냅샷](project_open_threads_2026-08-14_afternoon_snapshot.md) — 최우선=nBlog 만료제한기능 push결재대기, WhisperWriter결과 미확인
-- [★★★★★★★★2026-08-14 04시 새벽저장 스냅샷](project_open_threads_2026-08-14_dawn_snapshot.md) — 최우선=k-saju Lightsail 형AWS액션5개 여전히 대기중
 - [WhisperWriter PC1 설치 성공+함정정리](reference_whisperwriter_windows_setup_2026-08-14.md) — 3.11venv+원본버전+cleanup()패치 필수, 다른PC깔때 재사용
 - [아투 게이트 gossip사전 substring오탐+근본수리](reference_atz_gate_substring_falsepositive_2026-08-14.md) — ko-match.mjs 신설, 재발행 성공, 유사패턴 2곳 미수리(급하지않음)
-- [아투 게이트 인용오탐 3번째 재발+수리완료](reference_atz_gate_quote_falsepositive_3rd_recur_2026-08-13.md) — 재발행 성공(american-todayz LIVE), 후속조치 불필요
-- [★nBlog 굵게·색상 구현완료(라이브)](project_nblog_bold_color_feature_2026-08-13.md) — 0.1.14 승격+웹배포 끝남, 후속조치 불필요
-- [nBlog AI 본문+이미지 자동생성 신기능](project_nblog_ai_content_generation_2026-08-13.md) — 영상제외/Pexels우선/검토대기발행, cto 설계+견적 진행중
 - [nBlog 백로그4건 형결정](project_nblog_saas_backlog_decisions_2026-08-13.md) — 가격측정fake-door 미착수, 만료화면범위 형확인대기, 베타피드백 8/27체크
 - [★★★nblog-saas 08-12밤~08-13새벽 마라톤 전체요약](project_nblog_saas_night_marathon_2026-08-13.md) — 12개 작업 순차완료. 형계정 오늘 만료예정(의도적 미연장, 건드리지말것)
 - [nblog-saas 정식 서비스명 = nBlog(엔블로그)](project_nblog_saas_brand_name_2026-08-12.md) — 형 확정, 메일·UI 전체반영 예정
-- [★nblog-saas 가입/로그인메일 완료](project_nblog_saas_email_smtp_missing_2026-08-12.md) — 배포+실메일 수신확인까지 끝남. 후속조치 불필요
 - [★★nblog-saas 재부팅시 DB비번 증발 잠복장애 수리](reference_nblog_saas_pm2_dump_missing_secrets_2026-08-12.md) — pm2 dump.pm2에 시크릿 누락, save로 수리. 다른 pm2서비스도 점검필요
-- [nblog-agent 0.1.12 서버반영 완료](project_nblog_agent_version_mismatch_2026-08-12.md) — 재부팅내성까지 확인, 종료. 현장PC는 각자 업데이트눌러야 갈아탐
-- [★★★★★★★★2026-08-13 04시 새벽저장 스냅샷](project_open_threads_2026-08-13_dawn_snapshot.md) — nblog-saas 11회배포+에이전트0.1.12승격 완료. 최우선=수익모델3안 재상기
 - [nblog-saas pm2 env 캐싱 함정](reference_nblog_saas_pm2_env_caching_2026-08-12.md) — .env.production만 고치면 AGENT_RELEASE_* 등 안 바뀜, export후 restart 필요
 - [nblog-saas 운영서버 SSH접근+초대코드 발급법](reference_nblog_saas_prod_admin_access_2026-08-12.md) — 키 ~/.ssh/lightsail/toastdm.pem, bun run admin:invite
-- [★★★★★★★2026-08-12 14시 오후저장 스냅샷](project_open_threads_2026-08-12_afternoon_snapshot.md) — 매우긴세션 전체요약. 최우선=nblog마무리확인→수익모델3안 재상기, 나머지는 이 파일 하나로 충분
 - [★★★★실측매출0원+주간리뷰6주공백 발견](project_revenue_review_lapsed_2026-08-12.md) — CSO revenue-review 즉시재가동 형승인대기, 최우선
 - [★★★★수익모델재설계 최종3안 확정, 형승인3건대기](project_revenue_model_redesign_final_2026-08-12.md) — C:k-saju단건$29(최우선)/B:nblog-saas승격/A:쇼츠4주실험. 90일목표 300~700만원으로 재설정
 - [★★★k-saju Vercel이전계획(cto)+Pro업그레이드 형결정대기](project_ksaju_vercel_migration_plan_2026-08-12.md) — blog.k-saju.me도 위반, NeonDB Vercel종속 가능성
 - [★★k-saju SEO채널사망확정+CTA버그수리+형결정2건대기](project_ksaju_growth_channel_switch_2026-08-12.md) — Reddit게시·유료테스트승인 형답변대기
-- [회의엔진 2단계검증 절차 확정+반영](project_meeting_two_stage_review_2026-08-12.md) — 1차(7B)→2차(클로덱스제나검증)→형보고, meeting-runner 스킬 수정완료
-- [★★★덱스제나 반복다운 진짜원인=유휴킬 설정](reference_moa_scheduled_task_idle_kill_2026-08-12.md) — StopOnIdleEnd, Moa작업 18개 전부 수정완료(형승인)
-- [★★모아 시스템 전체리뷰 완료+인포그래픽](project_system_wide_review_2026-08-12.md) — MoaServerReboot삭제완료, 덱스제나원인은 별도메모리로 해결됨
 - [★nblog 링크버그 근본수정+0.1.8검증 진행](project_nblog_linkbug_and_backlog_2026-08-12.md) — 개발2 PC 0.1.8설치 필요(형액션), 덱스push인증막힘 클로가 대신push
 - [PC에이전트 keep-alive 7~8시간 검증됨](project_pc_agent_keepalive_validated_2026-08-12.md) — 0.1.7 공식승격 판단 긍정신호, 형 최종승격 지시 전까진 0.1.4 유지로 취급
-- [★★★★★★2026-08-12 04시 새벽저장 스냅샷](project_open_threads_2026-08-12_dawn_snapshot.md) — nblog-agent 링크삽입버그 형결정대기(최우선), 나머지는 08-11파일 참고
-- [nblog-saas 개발용 GCP키 재발급 절차](reference_nblog_saas_dev_gcp_key_rotation_2026-08-11.md) — cto 트랜스크립트 유출로 형이 재발급 결정, 절차 기록
 - [에이전트 자기검증도 범위확인 필요](reference_agent_selfcheck_completeness_gap_2026-08-11.md) — "안전확인함" 보고받으면 검증범위(의도한 경로만 vs 전체) 되물을 것
 - [nblog-agent 테스트PC 호칭: 서버/개발1/개발2](reference_nblog_agent_test_pc_naming_2026-08-11.md) — 형이 확정한 3PC 구분, 헷갈리면 이거 참고
 - [★같은레포 병렬에이전트 git커밋 섞임](feedback_parallel_agents_same_repo_git_conflict.md) — 2026-08-10 실측, worktree격리나 순차커밋 고려할 것
-- [nblog-saas 병렬작업시 테스트DB 경합](reference_nblog_saas_shared_test_db_contention.md) — 에이전트3개 독립보고, 실패시 코드버그 단정말고 동시실행부터 의심
 - [★진행상황 표시 = 기능보다 우선](feedback_status_visibility_accuracy_first.md) — 형원칙 2026-08-10, 없거나 부정확하면 사용자 불편
-- [★nblog-saas 도메인·구글시트계정 확정](project_nblog_saas_account_domain_decision_2026-08-10.md) — nblog.nanumn.com + nanumn.com@gmail.com 신규 GCP프로젝트(아투와 분리)
 - [nblog-saas 가입정책: 초대장→이메일인증→3일체험](project_nblog_saas_signup_policy_2026-08-10.md) — 형확정 2026-08-10, 미구현(오픈가입 아님)
 - [★네이버블로그 콘텐츠품질기준: 멀티미디어+SEO구조](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨, content-head에 향후 반영필요
 - [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 형지시, 프로젝트별 용어집 파일에 즉시기록
@@ -44,7 +37,6 @@
 - [덱스 워크스페이스 범위+워치독함정](reference_dex_jena_workdir_scope_2026-08-08.md) — CODEX_WORKDIR을 D:\Develop전체로확장, kill시 중복프로세스주의
 - [★업무채널은 자동수신 안됨](reference_dex_jena_channel_no_live_push.md) — 형이 직접지적, fetch나 감시cron 필요
 - [★커밋≠푸시, 새레포는 원격부터](feedback_verify_push_not_just_commit.md) — nblog-saas 수시간분 로컬only였던 사고, 착수시 기본세팅으로 취급
-- [덱스 인코딩버그+엉뚱채널발송](reference_dex_encoding_bug_wrong_channel_2026-08-08.md) — "중국어"로 보인건 mojibake, 내용은 정상(파일유실없음 확인)
 - [★원안 이탈 금지](feedback_stick_to_original_product_definition.md) — 기술피벗보다 원래타깃 유지 우선, 형이 카페전환 반려하며 확정
 - [★형 예정요청: 시스템 전체설명+정리 세션](project_full_system_review_pending_2026-08-08.md) — 형이 먼저 안 물어봐도 클로가 주기적으로 상기시켜야 함
 - [덱스·제나 공유채널 3개 용도구분](reference_dex_jena_shared_channels_2026-08-08.md) — 그들만의대화/회의/업무 ID. 정리물은 "업무" 채널에
@@ -53,15 +45,12 @@
 - [★SendMessage 우선순위 텍스트일뿐, 큐에 쌓임](reference_agent_mailbox_no_priority_preempt_2026-08-07.md) — "급한거 먼저"보내도 안 끼어듦. 착수여부 직접 재확인 필수
 - [★QA게이트 규칙역전 사각지대(아투+PPT 재발)](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md) — 금지규칙이 표기규칙으로 뒤집혀도 키워드검사론 못잡음. completion-gate 항목화 제안
 - [★덱스·제나 데몬 조용히 죽음, 감시사각지대](project_dex_jena_daemon_silent_death_2026-08-06.md) — 재기동만 함, 원인미확정+감시 없음
-- [★★옵시디언 팀뇌 개편 완료(2026-08-06)](project_obsidian_brain_overhaul_2026-08-06.md) — dataview 방식 채택, MOC6개+대시보드 완료. 형 GUI확인 대기
 - [★덱스 git lock 근본원인=코덱스 의도적 DENY](project_dex_git_lock_root_cause_2026-08-06.md) — ACL 무관, 형 결정 대기(3옵션, 추천②)
 - [★회의 시작=멘션 필수](feedback_mention_on_meeting_start.md) — 멘션 없으면 형 알림 안 감. 회의소집·공지 시작점마다 멘션
-- [★★덱스·제나 멀티모델 워커 신설(2026-08-06)](project_dex_jena_multiagent_2026-08-06.md) — 코덱스·제미나이 디스코드봇, 윈도우네이티브 구축완료+실전투입
 - [★도구호출 쪼개면 그만큼 비쌈](feedback_batch_tool_calls_per_turn.md) — "체크" 한마디에 301만토큰(10회 분산호출). 간단한 확인은 묶어서 처리
 - [★외부 디스코드 감시 스크립트 신설+실측비교, 세션워치독은 형지시로 중단됨](project_discord_external_watchdog_2026-08-05.md) — 세션크론 삭제완료, MoaDiscordWatchdogExternal(5분,0토큰)로 대체
 - [★커밋은 바로바로](feedback_commit_promptly.md) — 형지시 2026-08-05. 완료보고 전 커밋부터, push는 별개 판단
 - [★★일지+세션저장 cron 구조 수리완료](project_journal_gap_2026-08-05.md) — flag대기 로직 삽입+5일치백필+진짜원인("위와동일" 빈프롬프트) 전부 수리. MoaServerReboot 중복만 형판단 대기
-- [★리셋=신호→완료확인→종료 구조로](feedback_reset_should_signal_and_wait.md) — 형제안 채택, 구현완료(2026-08-05)
 - [k-saju daily 보고채널 접근법](reference_ksaju_daily_report_channel_2026-08-05.md) — channel_id 1516986557968420864, 형이 /discord:access로 허용목록 등록완료
 - [아투 보고채널](reference_atz_report_channel_2026-08-05.md) — channel_id 1529814918658785350(웹훅ID 1529814961646338098과 혼동주의, 등록완료)
 - [★아투 게이트 앵커 한글음역 사각지대 2026-08-04](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) — 트럼프·엑손모빌처럼 한글음역 고유명사는 앵커로 못 잡아 매일 오탐 가능. 8/4건 직접검증 후 발행. cto 위임 필요
@@ -70,18 +59,15 @@
 - [★측정 도구부터 의심](feedback_verify_measurement_before_declaring_failure.md) — 293자만 읽고 "잘렸다" 오진(실제 1,475자). 원인 확정 전 되돌릴 수 없는 조치 제안 금지
 - [★GPT 브라우저 함정 8개](reference_gpt_browser_automation_pitfalls.md) — 실패 8건 중 7건이 내가 붙인 자동 장치가 원인. 검사를 붙일수록 새 실패 생김
 - [아투 광고밀도 = 애드센스 고급설정](reference_adsense_ad_density_controls.md) — 최대개수·최소간격(역방향)·전면광고. CSS로 숨기면 정책 위반
-- [★매일 04시 재부팅 + 워치독 분리](project_daily_reset_and_watchdog_2026-07-27.md) — 리셋=서버 재부팅(자체재시작은 귀닫힘). 워치독 낮5분/밤30분
 - [★한도는 주간이 먼저 참](reference_usage_limit_weekly_is_binding.md) — 세션2%/주간85%. 리셋해도 주간은 안 돌아옴. 무거운 건 fable 모델로
 - [조회됨 ≠ 소유권 (Blogger)](reference_blogger_getbyurl_is_not_ownership.md) — getByUrl은 공개면 남의 것도 조회됨. 소유판정=view:'ADMIN'(403=남의 것)
 - [★세션비용 = 워치독 재읽기](reference_session_cost_structure.md) — 긴세션×5분워치독이 주범(컨텍스트 재읽기 98.5%). 한도는 계정 공용
 - [빌드로그 파이프 SIGPIPE 함정](reference_build_pipe_sigpipe_trap.md) — `build \| head`가 빌드 중단시킴. 로그는 파일로 받고 grep
 - [★아투 환각구조 수리](project_atz_hallucination_fix_2026-07-27.md) — 원인=푸터를 원문으로 긁음. 게이트 4중 방어. 파이프라인 만질 때 이거부터
-- [아투 이미지 4축개편+Pexels](project_atz_image_overhaul_2026-07-26.md) — 원인=image.mjs 하드코딩 7분기. 4축배치·로고허용 확정
 - [★Kaggle 립싱크 성공 / LatentSync 선택기준](reference_colab_lipsync_feasibility_2026-07-31.md) — 코랩=정책위반, Kaggle 브라우저조종 성공. 정지이미지=SadTalker/영상=LatentSync
 - [Flux 이미지 파이프라인](reference_flux_image_pipeline_2026-07.md) — 로컬 ComfyUI Flux.1 Schnell Q4로 $0 양산. PPT임베드 크면 재압축(8MB한도)
 - [GPT 이미지 크롬 자동조종](reference_gpt_image_chrome_system.md) — chrome-devtools로 ChatGPT Projects 조종. Flux와 병렬 2트랙
 - [한글텍스트=HTML렌더, 그림감성=Flux/GPT](reference_image_tool_by_korean_text.md) — Flux는 한글 못씀. 형 확정
-- [모아 열린작업 2026-07-24](project_moa_open_threads_2026-07-24.md) — 아투뉴스자동화·쇼츠v2·로고4종·주간리포트. 형결정대기 3개
 - [추천옵션 마킹](feedback_recommendation_marker.md) — 선택지에 "(내가추천)"/"(I recommend)" 표시
 - [플러그인 소스수정은 세션재시작](feedback_plugin_reload.md) — /reload-plugins 아니라 세션 재시작
 - [Discord = reply 도구로만](feedback_discord_reply_tool.md) — transcript는 안 보임. AskUserQuestion 대신 reply 텍스트로 질문. sent(id) 확인, 의심시 fetch 교차확인
@@ -101,7 +87,6 @@
 - [보고 간격 3-tier](feedback_reporting_cadence.md) — 마일스톤마다+10분무음컷+이슈 즉시
 - [작업 중간 cancel 금지](feedback_no_mid_interrupt.md) — 시작한 회의/작업은 완료까지
 - [Google 로그인은 팝업으로](feedback_google_login_popup.md) — 메인창 리다이렉트 아니라 팝업
-- [미래기능 백로그](project_moa_phase_memo.md) — 카테고리별 묶음 릴리즈로 진행
 - [AI 자율회사 OS 비전](project_autonomous_org_vision.md) — 지시→할당→자율실행→비서보고→자기개선
 - [위임 규칙](feedback_autonomy_delegation.md) — "결정은 너가, 결과물만 결재" 모드. 추천안 자동채택
 - [프로젝트: 가족드라마 12부작](project_drama_12_family.md) — 페이즈1=기획MVP, 2=파일럿, 3=양산
@@ -111,7 +96,6 @@
 - [★역산 기획](feedback_design_from_endpoint.md) — 새 자산은 "수익화→합격기준→스펙→게이트" 순
 - [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴·공포마케팅 금지, "user가 뭐가 좋아지나" 먼저
 - [k-saju 라이브 배포](project_ksaju_live.md) — Vercel+Neon+PayPal. 자동배포 누락시 빈커밋 재트리거. 로컬LLM은 사전생성 필요
-- [harness 수익화 레이어](project_harness_revenue_layer.md) — CSO감독자+growth/sales/data-finance 4에이전트 구축완료
 - [git push wincredman→gh 우회](reference_owenlab_git_push_gh_credential.md) — `-c "credential.helper=!gh auth git-credential"`로 push
 - [Docker 자격증명 깨짐](reference_docker_cred_helper_broken.md) — pull은 형이 직접, ps/logs/exec는 내 셸 OK
 - [모아 헬스체크](reference_moa_healthcheck.md) — 작업스케줄러 하루3회. 사이트추가=config 한줄. PS5.1 UTF-8 BOM 필수
@@ -132,7 +116,6 @@
 - [부트스트랩 --channels 순서버그](reference_bootstrap_channels_arg_order.md) — 초기 프롬프트를 --channels 앞으로
 - [재부팅 복구 절차](project_reboot_recovery_live_test.md) — boot.flag확인→fetch_messages 회수→"복구 성공" 인사
 - [★Blogger update는 필드를 지움](reference_blogger_update_wipes_fields.md) — update=전체치환/patch=부분갱신. 수정 후 title·labels·status 재조회
-- [아투 유튜브 채널 경제성](reference_atz_youtube_channel_economics.md) — 광고수익 월5~33만원. 값어치=B2B쇼케이스
 - [★유튜브 Inauthentic정책=쇼츠파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 기사→TTS→스톡슬라이드가 수익배제 정의 부합. 회피축="고유관점"
 - [★포기 제안 금지](feedback_no_giving_up.md) — 막히면 다음 수를 들고 와라
 - [★거짓 금지+더블체크](feedback_no_falsehood_double_check.md) — 못 쓰면 비워라. 완료보고는 재조회 값으로만
@@ -140,8 +123,6 @@
 - [★답하기 전 로그·원장부터](reference_moa_logs_and_ledgers.md) — 순서=①우리기록 ②반례 ③단정
 - [★원인 전 반례부터](feedback_find_counterexample_first.md) — "A인데 안그런 경우"부터 찾아라. 표본으로 전체 말하지 말 것
 - [출처 첨부](feedback_cite_sources.md) — 웹검색·외부수치 보고엔 항상 링크
-- [인스타 캐러셀 자동화](project_insta_carousel_automation.md) — 9후킹공식 흡수완료. Higgsfield 테스트 대기
-- [Eco Sort 게임](project_eco_sort_game.md) — 프로토완성(bun serve 5178). 형 플레이피드백 대기
 - [검증은 싼 것부터](feedback_cheap_check_first.md) — 예/아니오를 비싼 실행으로 묻지 마라
 - [★검증된 사실만 보고](feedback_verified_facts_only.md) — [확인]/[추측] 표기. 로컬git≠라이브, 평균≠상한, 헤지는 검증 아님
 - [하네스 변경 원장](reference_harness_change_ledger.md) — 변경은 harness-pending.md에, 주간리포트가 점검
