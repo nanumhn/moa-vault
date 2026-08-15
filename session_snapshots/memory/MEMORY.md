@@ -1,3 +1,6 @@
+- [★형 "계속 한번에 성공을 못하네" 지적](feedback_session_reliability_friction_2026-08-15.md) — reply차단+타이밍크로스+스크롤요청 누적, 재촉시 짧게인정후 바로진행
+- [nblog-agent 탭누적 테스트 실패(기존버그)](reference_nblog_agent_naver_tab_leak_test_failure_2026-08-15.md) — 오늘밤 커밋과 무관 직접검증, 다음에 손볼 것
+- [★★운영DB 비밀번호 형 스크린샷으로 디스코드 유출](project_nblog_prod_db_secret_leaked_screenshot_2026-08-15.md) — 로테이션 권고함, 완료여부 확인필요. 시크릿 명령 위임 시 캡처 금지 미리 못박을 것
 - [★nBlog 이미지첨부 설계 확정(cto 독립검증)](reference_nblog_saas_image_attach_design_2026-08-15.md) — 드라이브링크+서버재호스팅+K열분리, 시트셀이미지객체는 API로 불가능 확인
 - [nBlog "재발행" 버튼 백로그(형제안)](project_nblog_saas_manual_retry_button_backlog_2026-08-15.md) — 다음슬롯충돌 체크 필요, 성수동 NAVER_LOGGED_OUT 수동복구하며 나온 아이디어
 - [★수집후 시트수정은 무시됨, DB직접수정으로 대응](reference_nblog_saas_sheet_edit_ignored_after_collection_2026-08-15.md) — 망원동/한남동 이미지추가 中 발견, contentHash 재수집위험 실제 발생함
