@@ -1,3 +1,6 @@
+- [★★★★★★★★★★2026-08-16 04시 새벽저장 스냅샷](project_open_threads_2026-08-16_dawn_snapshot.md) — 최우선=nblog-saas DB비번로테이션 후 pm2반영 미확인(앱다운가능), 웹배포 밀림
+- [★★★디스코드 회신 Stop훅 신설(19회 사고 해결)](feedback_acknowledge_first.md) — 하네스 강제, v1구멍→v2수정, 리로드없이 실전작동 확인
+- [8/15 오전 일지 통째로 누락](project_journal_morning_gap_2026-08-15.md) — 13:48 cron 미실행 추정, haru가 최소복원. 원인미확정
 - [★형 "계속 한번에 성공을 못하네" 지적](feedback_session_reliability_friction_2026-08-15.md) — reply차단+타이밍크로스+스크롤요청 누적, 재촉시 짧게인정후 바로진행
 - [nblog-agent 탭누적 테스트 실패(기존버그)](reference_nblog_agent_naver_tab_leak_test_failure_2026-08-15.md) — 오늘밤 커밋과 무관 직접검증, 다음에 손볼 것
 - [★★운영DB 비밀번호 형 스크린샷으로 디스코드 유출](project_nblog_prod_db_secret_leaked_screenshot_2026-08-15.md) — 로테이션 권고함, 완료여부 확인필요. 시크릿 명령 위임 시 캡처 금지 미리 못박을 것
