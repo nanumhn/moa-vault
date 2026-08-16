@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 8686b494-9004-44ad-b2e6-026b21be287b
-  modified: 2026-08-12T16:37:57.327Z
+  modified: 2026-08-15T23:38:57.485Z
 ---
 
 nblog-saas 프로덕션(Lightsail, pm2)에서 `AGENT_RELEASE_VERSION` 등 일부 값은 `shared/.env.production` 파일을 고쳐도 반영 안 됨.
@@ -25,3 +25,5 @@ pm2 restart nblog-saas --update-env
 `.env.production` 파일도 같이 고쳐두는 게 맞다(다음에 진짜 처음부터 기동될 때 기준이 되므로) — 다만 **당장 반영되는 건 export+restart 쪽**이라는 걸 기억할 것.
 
 deploy/README.md에 원래 이 절차(export→restart)로 적혀 있었는데, `.env.production`만 고치면 될 거라고 착각해서 한 번 헤맴(2026-08-12, 0.1.9 승격 작업 중).
+
+**★2026-08-16 추가 — `.env.production`에서 값을 grep+cut으로 뽑아 export할 때 따옴표 함정.** DB 비번 로테이션 후 앱이 "Authentication failed" → export+restart로 1차 시도했는데 이번엔 "the URL must start with the protocol postgresql://" 에러로 바뀜. 원인: 파일에 `DATABASE_URL="postgresql://..."`처럼 따옴표로 감싸져 있어서 `cut -d'=' -f2-`로 뽑으면 따옴표까지 값에 포함됨. `v="${v%\"}"; v="${v#\"}"`로 양끝 따옴표 제거 후 export해야 함. 비번 절대 출력 금지 원칙 지키면서 검증하려면 `${DATABASE_URL:0:11}`처럼 프로토콜 접두사만 부분 출력해서 `postgresql:`로 시작하는지 확인.

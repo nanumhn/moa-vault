@@ -4,14 +4,13 @@ description: "2026-08-16 04시 새벽저장 스냅샷 — 최우선=nblog-saas �
 metadata:
   type: project
   originSessionId: 99af3b4a-df80-4f19-9653-b29f3bce76ea
-  modified: 2026-08-15T19:26:00.876Z
+  modified: 2026-08-15T23:39:11.913Z
 ---
 
-**★★최우선 — nblog-saas 운영 DB 비밀번호 로테이션, pm2 반영 미확인(앱이 지금 다운돼있을 수 있음)**
-- 2026-08-15 밤 형이 Neon 콘솔에서 `neondb_owner` 비밀번호 재설정 완료. `.env.production` 파일도 수정하고 `pm2 restart nblog-saas`까지 함.
-- 근데 pm2가 예전 DATABASE_URL을 자기 내부에 캐싱해두는 기존 함정([[reference_nblog_saas_pm2_env_caching_2026-08-12]])이 재발 — 확인해보니 실제로 **"Authentication failed against database server" 에러로 앱이 죽어있었다**(pm2 로그 직접 확인함, 2026-08-16T01:58 KST 기준).
-- 클로가 `export DATABASE_URL=... && export DATABASE_URL_UNPOOLED=... && pm2 restart nblog-saas --update-env`를 SSH 세션에서 직접 실행하라고 안내함(형이 채팅에 값 안 붙이게, 형 터미널에서 직접). **형이 이걸 실행했는지 확인 응답이 없는 채로 세션 저장 시점 도달** — 다음 세션에서 제일 먼저 `pm2 logs nblog-saas --lines 20 --nostream`으로 확인할 것.
-- 같은 건으로 **운영 DB 비밀번호가 디스코드 채팅에 스크린샷+평문 텍스트로 2회 노출**된 사고 있었음([[project_nblog_prod_db_secret_leaked_screenshot_2026-08-15]]).
+**✅ 해결됨 — nblog-saas 운영 DB 비밀번호 로테이션 후 다운, 2026-08-16 08:37 KST 복구 완료**
+- 2026-08-16 새벽 세션이 뜨자마자 확인해보니 실제로 앱이 "Authentication failed against database server"로 죽어있었음(pm2 로그 확인). 형이 전날 밤 `.env.production` 수정+`pm2 restart`까지는 했지만 pm2 env 캐싱 함정([[reference_nblog_saas_pm2_env_caching_2026-08-12]])에 걸려 반영 안 됐던 것.
+- 형이 서버에 로그인한 상태에서 "빨리 검토해서 재시작해줘" 승인 → 클로가 export+`pm2 restart --update-env`로 직접 처리. 1차 시도는 `.env.production`의 따옴표가 값에 그대로 딸려와서 "URL must start with postgresql://" 에러로 실패 → 따옴표 제거 후 재시도, 08:37:47 정상 기동, 홈페이지 curl 200 확인, 에러 재발 없음. 세부 함정은 [[reference_nblog_saas_pm2_env_caching_2026-08-12]]에 추가 기록.
+- 같은 건으로 **운영 DB 비밀번호가 디스코드 채팅에 스크린샷+평문 텍스트로 2회 노출**된 사고가 있었음([[project_nblog_prod_db_secret_leaked_screenshot_2026-08-15]]) — 이건 별개로 로테이션 완료됐으니 종결.
 
 **웹서버 배포 밀림 — K열 이미지첨부 + 재발행 버튼이 origin/main엔 있지만 운영엔 아직 안 올라감**
 - 오늘 밤 완료된 기능 2개(재발행 버튼 `e09d7ba`, K열 이미지첨부 `ffabd39`, 935/935 테스트 통과)가 origin/main에 push는 됐지만, **운영서버 마지막 실제 배포는 release `20260814234444`(8/14 밤)로 확인됨** — 그 뒤로 배포 안 됨.

@@ -4,7 +4,7 @@ description: nBlog 사용자 이미지 첨부 기능 — 독립 기술검토 결
 metadata:
   type: reference
   originSessionId: 9aec50e3-ec92-4e7b-a0d6-3a64b520a762
-  modified: 2026-08-15T03:59:35.323Z
+  modified: 2026-08-16T00:32:08.777Z
 ---
 
 nBlog "A서비스"(AI본문자동화) 부가서비스에 사용자 본인 이미지를 첨부하게 하는 기능을 설계하며, 첫 검토(같은 세션의 fork)와 독립 재검토(cto-seojin) 두 라운드를 거쳤다. 첫 검토는 "드라이브 공유링크를 텍스트로"만 추천했는데, 독립 재검토가 그 안의 구체적 함정 두 개를 잡아냈다.
@@ -30,5 +30,11 @@ nBlog "A서비스"(AI본문자동화) 부가서비스에 사용자 본인 이미
 
 ## 견적
 (a)+서버 재호스팅 ≈ 1.5~2일. (c)는 +3일 이상.
+
+**★2026-08-16 추가 검증 — Apps Script 경로도 확인함(형 제안, 실물 테스트).** 형이 K5셀에 이미지를 직접 붙여넣고 클로가 셀을 열어 확인 — 수식입력줄이 완전히 빈 값(이미지는 셀 "위에 떠있는" 플로팅 객체, 셀 값 자체는 텍스트로 비어있음). 이어서 형이 "Apps Script면 읽을 수 있다는 얘기가 있다"고 제안 → 웹검색으로 확인:
+- Apps Script `CellImage.getContentUrl()`은 **"셀 안에 값으로" 삽입된 이미지만** 읽을 수 있음(플로팅 이미지는 대상 아님) — 두 삽입방식이 구글시트에 따로 있고, 사용자가 그냥 복사·붙여넣기하면 기본이 플로팅이라 이 기능 자체가 적용 안 됨.
+- 그마저도 원본 파일 URL이 아니라 구글이 재인코딩한 사본 주소를 주고, 커뮤니티 보고에 따르면 사용자가 붙여넣은 이미지엔 null을 반환하는 사례도 있어 안정성 불확실.
+- 구조적으로도 Apps Script는 사용자 시트마다 개별 승인·설치가 필요해 지금의 "서버가 서비스계정으로 조용히 읽는" 구조보다 훨씬 복잡해짐(가입 절차 추가).
+→ **결론 불변**: (a) 드라이브링크+재호스팅이 여전히 정답. Apps Script 경로는 이론적 가능성만 확인, 채택 안 함(백로그로만 남김). 출처: [Class CellImage](https://developers.google.com/apps-script/reference/spreadsheet/cell-image), [getUrl() null 사례](https://groups.google.com/g/google-apps-script-community/c/m1JvOKrpc0Y)
 
 관련: [[project_nblog_saas_manual_retry_button_backlog_2026-08-15]] [[reference_nblog_saas_sheet_edit_ignored_after_collection_2026-08-15]]

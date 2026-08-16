@@ -1,4 +1,6 @@
-- [★★★★★★★★★★2026-08-16 04시 새벽저장 스냅샷](project_open_threads_2026-08-16_dawn_snapshot.md) — 최우선=nblog-saas DB비번로테이션 후 pm2반영 미확인(앱다운가능), 웹배포 밀림
+- [★인포그래픽=이미지파일로, HTML링크 X](feedback_infographic_as_image_not_html_link.md) — file://로 렌더 후 캡처해서 Discord files로 첨부
+- [nblog AI초안 LLM키 결정 보류](project_nblog_saas_ai_draft_llm_key_deferred_2026-08-16.md) — 형이 서비스완성 시점으로 미룸, 먼저 꺼내지 말것
+- [★★★★★★★★★★2026-08-16 04시 새벽저장 스냅샷](project_open_threads_2026-08-16_dawn_snapshot.md) — nblog-saas DB인증장애 08:37 복구+웹배포 완료, K열이미지 AI_MEDIA_DIR 마무리중
 - [★★★디스코드 회신 Stop훅 신설(19회 사고 해결)](feedback_acknowledge_first.md) — 하네스 강제, v1구멍→v2수정, 리로드없이 실전작동 확인
 - [8/15 오전 일지 통째로 누락](project_journal_morning_gap_2026-08-15.md) — 13:48 cron 미실행 추정, haru가 최소복원. 원인미확정
 - [★형 "계속 한번에 성공을 못하네" 지적](feedback_session_reliability_friction_2026-08-15.md) — reply차단+타이밍크로스+스크롤요청 누적, 재촉시 짧게인정후 바로진행

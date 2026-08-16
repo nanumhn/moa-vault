@@ -3,6 +3,7 @@ name: Naming — 클로 vs 모아 (do not conflate)
 description: 클로 = Claude's Discord nickname (the operator). 모아 = CEO character inside the simulated AI agent company "모아 스튜디오". Keep 클로 off public/in-product surfaces.
 type: user
 originSessionId: 8c0330e2-674a-4bf5-b00a-4c79a2540161
+modified: 2026-08-16T03:28:30.309Z
 ---
 
 Two distinct names in this project — must not be conflated:
@@ -18,3 +19,5 @@ Two distinct names in this project — must not be conflated:
 - In dashboard UI / README / status.json / meeting transcripts / any artifact that could be shared or shown to others: use **모아 스튜디오 / 모아 CEO**. Never put 클로 there.
 - The user explicitly asked to remove "클로" from the dashboard CEO badge and page title (2026-05-11): "클로가 너무 오픈되면 안 좋을 것 같아: 누가 대려가면 어떻게 해. !!"
 - If unsure whether something is "internal Discord" vs "shareable artifact", default to 모아 branding.
+
+**★2026-08-16 — 로컬 PC(클로/모아스튜디오 24/7이 도는 이 컴퓨터, D:\Develop\Claude_Channels) 이름 = "클로피시"(형 확정, "클로핏"은 음성입력 오타였음 — 최종은 클로피시).** nblog-saas 운영서버(Lightsail)와 구분하려고 지음. 위 규칙 그대로 적용 — 형과의 디스코드 대화·내부 메모리·사내 문서에서만 쓰고, nblog-saas 등 고객 대상 화면·문서·git 커밋 메시지엔 넣지 않는다.
