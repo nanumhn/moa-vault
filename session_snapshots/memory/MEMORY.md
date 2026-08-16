@@ -1,3 +1,9 @@
+- [★그로스마케팅본부장 강나라→강윤슬 개명](project_growth_head_rename_yoonseul_2026-08-16.md) — agent slug는 growth-head-narae 유지, 표시이름만 교체
+- [★★K사주 인스타 조회수 0 실측](project_ksaju_instagram_zero_reach_2026-08-16.md) — 게시물7개 전부조회0~1, 캐러셀보다 오디언스0 문제가 근본
+- [★실측이 내 기획 전제를 깨면 방어말고 무효선언](feedback_invalidate_own_premise_when_data_contradicts.md) — 상위병목 재프레이밍+다음수 동반, 팀 명시승인
+- [★★k-saju 인스타 기준선 0 확진 + 캐러셀 기획](project_ksaju_instagram_carousel_2026-08-16.md) — 조회0~1로 배수목표 폐기. SEO에 이어 2번째 확진, 병목=콜드스타트 유통경로 부재
+- [★nblog-agent 한PC=네이버계정1개 제약](reference_nblog_agent_single_naver_session_per_profile_2026-08-16.md) — B서비스(블로그3개) 실사용엔 AGENT_INSTANCE 자동화 별도 필요
+- [nBlog "100억클럽" 파트너클럽 명명확정](project_100eok_club_naming_2026-08-16.md) — 통칭=클럽, glossary.md 신설. 자동 부가서비스 일괄부여는 미착수
 - [★인포그래픽=이미지파일로, HTML링크 X](feedback_infographic_as_image_not_html_link.md) — file://로 렌더 후 캡처해서 Discord files로 첨부
 - [nblog AI초안 LLM키 결정 보류](project_nblog_saas_ai_draft_llm_key_deferred_2026-08-16.md) — 형이 서비스완성 시점으로 미룸, 먼저 꺼내지 말것
 - [★Bash date 9시간 오프셋 버그](reference_bash_date_clock_offset_2026-08-16.md) — 시각 필요하면 PowerShell Get-Date 쓸 것

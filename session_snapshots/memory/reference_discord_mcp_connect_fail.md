@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: aaf63b6c-ab30-44e5-87e5-81502c625e07
-  modified: 2026-07-21T20:55:04.379Z
+  modified: 2026-08-16T18:16:10.556Z
 ---
 
 Discord 회신 도구(`mcp__plugin_discord_discord__*`)가 세션에 안 붙는 모드가 있다. **재부팅 직후 세션에서 반복 발생.**
@@ -58,3 +58,4 @@ UTF8 바이트 변환 없으면 한글이 깨지고 400이 난다.
 
 ## 재발 기록
 - 2026-07-22 04:03 (f8626cc9) 최초 관측 / 05:45 (d5a6c9f7) / 05:47 (aaf63b6c) — 전부 재부팅 직후. 3번째에서 근본 원인 확정.
+- **2026-08-17 00:24 — 자동 복구 체인 자체가 끊겨 2시간18분 세션 완전사망.** 이 근본원인(MCP 죽음)까지는 기존 자동화(`MoaMcpGuard` 10분 감시 + `moa_session_respawn.ps1`)가 정상 작동해 00:30·00:40 두 번 재시동을 시도했는데, **2번째 시도가 기존 claude.exe를 죽인 직후 prewarm(`bun install`)에서 타임아웃 없이 멈춰버림** → 그 뒤론 `MoaMcpGuard`가 "claude.exe 자체가 없으면 로그온작업 담당, 내 일 아님"이라는 설계로 조용히 손 뗌 → 로그온작업은 실제 재부팅 때 1회만 도는 트리거라 이후 재크래시는 아무도 감시 안 함. 형이 03:00에 직접 수동 재시작. 수정(같은 날 적용): ①`moa_common.ps1`에 `Invoke-MoaExternalWithTimeout` 신설, prewarm의 두 bun 호출 각각 30s/60s 하드 타임아웃 ②`moa_mcp_guard.ps1`에 nosession 전용 감지경로 신설(재부팅 후 8분 유예 → deaf 경로와 동일한 디바운스+쿨다운+에스컬레이션으로 자동 재시동). 상세 postmortem은 `harness-pending.md`(2026-08-17 항목).
