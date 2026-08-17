@@ -1,3 +1,4 @@
+- [★★★★★★★★★2026-08-17 14시 오후저장 스냅샷](project_open_threads_2026-08-17_afternoon_snapshot.md) — 최우선=n8n docker restart 형답변대기, Meta심사 계속대기
 - [★인스타 자동게시 원인 정정](project_ig_autopost_root_cause_correction_2026-08-17.md) — facebook호스트설이 오진, PNG포맷 새가설[미확인]. 8/16일지 정정필요
 - [LM Studio TTL미설정→VRAM충돌](reference_lmstudio_no_ttl_vram_contention_2026-08-17.md) — 구모델 gemma가 방치돼 ComfyUI 40분 멈춤 유발, TTL설정 미착수
 - [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인됨(서진 사례)
