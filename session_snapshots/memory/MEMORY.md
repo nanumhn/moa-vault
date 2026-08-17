@@ -1,6 +1,7 @@
+- [★★아투 이미지 무작위404 근본수리 완료](reference_atz_image_hosting_github_pages_2026-08-17.md) — raw.githubusercontent 핫링크가 원인, Pages이전+발행전 빌드확인가드로 해결(8/17)
 - [★★★★★★★★★2026-08-17 14시 오후저장 스냅샷](project_open_threads_2026-08-17_afternoon_snapshot.md) — 최우선=n8n docker restart 형답변대기, Meta심사 계속대기
 - [★인스타 자동게시 원인 정정](project_ig_autopost_root_cause_correction_2026-08-17.md) — facebook호스트설이 오진, PNG포맷 새가설[미확인]. 8/16일지 정정필요
-- [LM Studio TTL미설정→VRAM충돌](reference_lmstudio_no_ttl_vram_contention_2026-08-17.md) — 구모델 gemma가 방치돼 ComfyUI 40분 멈춤 유발, TTL설정 미착수
+- [★LM Studio VRAM충돌 해결됨](reference_lmstudio_no_ttl_vram_contention_2026-08-17.md) — 원인=ConnectAILab(미사용)의 gemma 하드코딩, 폴더 제거로 해결(8/17 오후)
 - [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인됨(서진 사례)
 - [★데이터 없는 자리를 추론으로 채우지 말 것](feedback_dont_fill_data_gaps_with_inference.md) — 2026-08-17 하루에 셋이 같은 실수(미측정값 보고/원인추측/오기억 단정)
 - [★검증3층위: 빌드/육안/클린클론](feedback_visual_output_needs_eyeball_check.md) — 캐러셀 작업 중 하룻밤 3회 발견, 신규파일 커밋은 클린클론 빌드까지
@@ -122,6 +123,7 @@
 - [부트스트랩 --channels 순서버그](reference_bootstrap_channels_arg_order.md) — 초기 프롬프트를 --channels 앞으로
 - [재부팅 복구 절차](project_reboot_recovery_live_test.md) — boot.flag확인→fetch_messages 회수→"복구 성공" 인사
 - [★Blogger update는 필드를 지움](reference_blogger_update_wipes_fields.md) — update=전체치환/patch=부분갱신. 수정 후 title·labels·status 재조회
+- [★쇼츠 설명란 URL은 클릭불가, 유일경로=프로필 첫링크](reference_youtube_shorts_link_click_constraints.md) — 쇼핑제휴는 구독1만 요건, 프로필링크는 API 불가라 스튜디오 수동
 - [★유튜브 Inauthentic정책=쇼츠파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 기사→TTS→스톡슬라이드가 수익배제 정의 부합. 회피축="고유관점"
 - [★포기 제안 금지](feedback_no_giving_up.md) — 막히면 다음 수를 들고 와라
 - [★거짓 금지+더블체크](feedback_no_falsehood_double_check.md) — 못 쓰면 비워라. 완료보고는 재조회 값으로만
