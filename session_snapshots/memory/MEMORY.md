@@ -1,6 +1,6 @@
 - [★★아투 이미지 무작위404 근본수리 완료](reference_atz_image_hosting_github_pages_2026-08-17.md) — raw.githubusercontent 핫링크가 원인, Pages이전+발행전 빌드확인가드로 해결(8/17)
 - [★★★★★★★★★2026-08-17 14시 오후저장 스냅샷](project_open_threads_2026-08-17_afternoon_snapshot.md) — 최우선=n8n docker restart 형답변대기, Meta심사 계속대기
-- [★인스타 자동게시 원인 정정](project_ig_autopost_root_cause_correction_2026-08-17.md) — facebook호스트설이 오진, PNG포맷 새가설[미확인]. 8/16일지 정정완료(83d5db2)
+- [★★인스타 자동게시 진짜원인 확정](project_ig_autopost_root_cause_correction_2026-08-17.md) — 워크플로 active=false가 원인, facebook호스트설·PNG설 둘다오진. 8/18 08:00 첫성공확인(8/18)
 - [★LM Studio VRAM충돌 해결됨](reference_lmstudio_no_ttl_vram_contention_2026-08-17.md) — 원인=ConnectAILab(미사용)의 gemma 하드코딩, 폴더 제거로 해결(8/17 오후)
 - [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인됨(서진 사례)
 - [★데이터 없는 자리를 추론으로 채우지 말 것](feedback_dont_fill_data_gaps_with_inference.md) — 2026-08-17 하루에 셋이 같은 실수(미측정값 보고/원인추측/오기억 단정)
