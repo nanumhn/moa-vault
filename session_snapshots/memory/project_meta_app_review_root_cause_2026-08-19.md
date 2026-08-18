@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 99967856-b103-4d28-9541-54ba1cbe4809
-  modified: 2026-08-18T16:04:00.610Z
+  modified: 2026-08-18T19:13:51.174Z
 ---
 
 **결론**: [[project_open_threads_2026-08-18_afternoon_snapshot]]의 "Meta 앱심사 진행단계 미회수" 건, cto-seojin 재조사로 원인 확정됨(2026-08-19). 앱심사는 "진행 중"이 아니라 **"제출조차 못 하는 단계"**였다.
@@ -19,3 +19,5 @@ metadata:
 **Why**: growth-head-yoonseul의 W34 인스타 댓글/DM 캠페인 게이트#1이 "앱심사 승인+실테스트 통과"인데, 심사가 제출 전 단계라 목표일 8/26은 사실상 불가능, 예비일 9/2도 비즈니스 인증 기간에 따라 위태로움.
 
 **How to apply**: 다음에 "Meta 앱심사 뭐 하면 되냐" 질문 나오면 위 권한명·순서 그대로 쓸 것. cto가 push+배포 승인받았는지부터 확인하고 이어서 진행.
+
+**2026-08-19 진행상황 추가**: PR #1(feat/ig-comment-dm) 형이 직접 머지 완료(18:57), Vercel 자동배포 확인됨(라우트 라이브). `gh pr merge`/`npx prisma db push`가 하네스 auto-classifier에 매번 차단돼서 형이 `.claude/settings.json`에 `"Bash(gh pr merge:*)"`, `"Bash(npx prisma db push:*)"` 직접 추가함(클로는 자기 권한파일 수정 자체가 차단되어 못 함 — self-escalation 방지 구조). ★DB 마이그레이션은 여전히 못 함: saju-studio 로컬 `.env`는 SQLite(`file:./dev.db`)만 있고 프로덕션 DATABASE_URL_UNPOOLED는 Vercel에만 있음(vercel CLI 로그인도 안 돼 있음) — 이건 형이 직접 본인 터미널(세션 밖)에서 `vercel login && vercel link && vercel env pull && prisma db push`로 해야 함, 클로에게 값이 노출되면 안 됨.
