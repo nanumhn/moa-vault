@@ -1,4 +1,4 @@
-- [★★★★★★★★★2026-08-19 04시 새벽 사전저장 스냅샷](project_open_threads_2026-08-19_dawn_snapshot.md) — 최우선=IG댓글DM DB마이그레이션(형액션대기), 8/26일정 재조정 필요
+- [★★★★★★★★★2026-08-19 14시 오후 사전저장 스냅샷](project_open_threads_2026-08-19_dawn_snapshot.md) — IG댓글DM DB마이그레이션 완료·검증됨. 남은건 전부 형 메타계정 필요, 8/26 일정 재조정 필요
 - [★★★★★Meta 앱심사 진짜원인 확정](project_meta_app_review_root_cause_2026-08-19.md) — 블로커=IG댓글DM코드 미배포(404)였음, 이후 배포완료·DB마이그레이션만 남음(8/19)
 - [★★아투 이미지 무작위404 근본수리 완료](reference_atz_image_hosting_github_pages_2026-08-17.md) — raw.githubusercontent 핫링크가 원인, Pages이전+발행전 빌드확인가드로 해결(8/17)
 - [★★인스타 자동게시 진짜원인 확정](project_ig_autopost_root_cause_correction_2026-08-17.md) — 워크플로 active=false가 원인, facebook호스트설·PNG설 둘다오진. 8/18 08:00 첫성공확인(8/18)
