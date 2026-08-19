@@ -1,3 +1,5 @@
+- [★★8/19 저녁 아투 글 발행대기(묵은뉴스, 폐기추천)](project_atz_pm_article_pending_2026-08-19.md) — 교정·검수12/12 끝, 형 발행명령 필요하나 하루지나 폐기가 나을수 있음
+- [★★아투 쇼츠 exit=0 조용한 유실(하루 2개 날아감)](reference_atz_shorts_silent_skip_2026-08-19.md) — 보류해제가 12분대기보다 늦으면 발생, exit0라 알림 안감. 수리완료(8/19)
 - [★★★★★★★★★2026-08-19 14시 오후 사전저장 스냅샷](project_open_threads_2026-08-19_dawn_snapshot.md) — IG댓글DM DB마이그레이션 완료·검증됨. 남은건 전부 형 메타계정 필요, 8/26 일정 재조정 필요
 - [★★★★★Meta 앱심사 진짜원인 확정](project_meta_app_review_root_cause_2026-08-19.md) — 블로커=IG댓글DM코드 미배포(404)였음, 이후 배포완료·DB마이그레이션만 남음(8/19)
 - [★★아투 이미지 무작위404 근본수리 완료](reference_atz_image_hosting_github_pages_2026-08-17.md) — raw.githubusercontent 핫링크가 원인, Pages이전+발행전 빌드확인가드로 해결(8/17)
