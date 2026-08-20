@@ -1,6 +1,8 @@
+- [★★★★★★★★★2026-08-20 14시 오후 스냅샷](project_open_threads_2026-08-20_afternoon_snapshot.md) — 사주엔진 절반만 수리(데일리카드 미완)·랩실 MOC 체계정비·형결재 6건 정체
+- [★★★사주 일진 2칸 오차(두 파일 복사)](reference_saju_engine_daypillar_offset_2026-08-20.md) — 매일 발행되는 데일리카드 경로는 아직 틀린 값
 - [★표준 용어는 원어 그대로(MOC 등)](feedback_keep_standard_terms_english.md) — 형이 적응하겠다고 확정. 우리만 쓰는 개념만 우리말(랩실·모아창고)
 - [★slide-master 설치완료(네이티브 편집되는 PPTX)](reference_slide_master_pptx_install.md) — D:\Develop\slide-master, Pretendard 설치함, 변환시 `--pptx-structure flat` 필수
-- [★★★★★★★★★2026-08-20 04시 재부팅전 스냅샷](project_open_threads_2026-08-20_dawn_snapshot.md) — 아투쇼츠 조용한유실 수리완료(8/20 06:30 실전검증), 저녁보류글 폐기결재 대기
+- [2026-08-20 04시 스냅샷(이전)](project_open_threads_2026-08-20_dawn_snapshot.md) — 아투쇼츠 수리검증 완료분. 최신은 afternoon 스냅샷
 - [★★8/19 저녁 아투 글 발행대기(묵은뉴스, 폐기추천)](project_atz_pm_article_pending_2026-08-19.md) — 교정·검수12/12 끝, 형 발행명령 필요하나 하루지나 폐기가 나을수 있음
 - [★★아투 쇼츠 exit=0 조용한 유실(하루 2개 날아감)](reference_atz_shorts_silent_skip_2026-08-19.md) — 보류해제가 12분대기보다 늦으면 발생, exit0라 알림 안감. 수리완료(8/19)
 - [2026-08-19 오후 스냅샷(이전)](project_open_threads_2026-08-19_dawn_snapshot.md) — IG댓글DM DB마이그레이션 완료·검증됨. 남은건 전부 형 메타계정 필요, 8/26 일정 재조정 필요
