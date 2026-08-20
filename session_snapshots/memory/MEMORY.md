@@ -1,3 +1,10 @@
+- [★메모리 110개가 인덱스 미등재(회상 안 됨)](project_memory_index_orphans_2026-08-20.md) — 267개 중 41%. feedback·reference부터 선별 복구 필요
+- [★k-saju 라이브 판정법(키 존재 vs 보간형)](reference_ksaju_live_verification_method.md) — 영어 원문 검색은 geo 때문에 못 씀, next-intl은 템플릿도 페이로드에 실림
+- [★헤드리스 스크린샷은 CDP 에뮬레이션 필요](reference_headless_screenshot_needs_cdp_emulation.md) — --window-size로는 멀쩡한 화면이 잘려 보여 오진 유발, Edge 사용
+- [★★★2026-08-20 k사주 하루 12건 배포](project_ksaju_menu_expansion_2026-08-20.md) — 일진수리·권한분리·궁합·운세·타로·DB분리. 메뉴화 완료, 남은건 가격
+- [★★실행중 화면 ≠ 커밋 상태](feedback_running_screen_is_not_commit_state.md) — 하루에 양방향 오판 2건. git show로 커밋부터 확인
+- [★★키츠네타로 벤치마크(형 참고자료)](reference_kitsune_tarot_benchmark_2026-08-20.md) — 롱테일 505페이지+llms.txt/MCP 에이전트 유입로. k사주 콜드스타트 병목의 힌트
+- [★★영어권 사주+타로 시장 이미 포화(idolsaju 2,588 URL)](reference_ksaju_english_market_saturated_2026-08-20.md) — 페이지양산=유입 전제의 반례. saju는 영어 헤드키워드 아님, 비어있는 슬롯은 스프레드·동양오행·버스카드
 - [★★★★★★★★★2026-08-20 14시 오후 스냅샷](project_open_threads_2026-08-20_afternoon_snapshot.md) — 사주엔진 절반만 수리(데일리카드 미완)·랩실 MOC 체계정비·형결재 6건 정체
 - [★★★사주 일진 2칸 오차(두 파일 복사)](reference_saju_engine_daypillar_offset_2026-08-20.md) — 매일 발행되는 데일리카드 경로는 아직 틀린 값
 - [★표준 용어는 원어 그대로(MOC 등)](feedback_keep_standard_terms_english.md) — 형이 적응하겠다고 확정. 우리만 쓰는 개념만 우리말(랩실·모아창고)
