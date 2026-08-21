@@ -1,10 +1,15 @@
+- [★★★★2026-08-21 저녁 스냅샷(최신)](project_open_threads_2026-08-21_evening_snapshot.md) — 하네스 관문·공통규칙·체크리스트 구축완료(넷 다 깨뜨려 검증). 타로 화풍 GPT 재시도중. 형결재 4건
+- [★형이 보낸 디스코드 첨부는 inbox 폴더에 있다](reference_discord_inbox_attachment_path.md) — Downloads 말고 .claude/channels/discord/inbox/. 사진 없다고 보고했다가 틀린 적 있음
+- [★★★덱스 AGENTS.md 2주간 구버전(수리완료)](reference_dex_agents_md_drift_2026-08-21.md) — 복사배포는 통지가 없어 조용히 어긋남. 덱스가 영상금지·커밋대행 규칙을 못 받고 있었음. 규칙 반복위반시 받았는지부터 확인
+- [★★★기술제약이 재검토 없는 설계규칙이 됨](feedback_constraint_became_unexamined_design_rule.md) — 타로22장 인물 0명 사고. "규칙 준수"와 "목적 달성"은 다른 검사층. 형이 두번 물으면 내 답이 좁았던 것
+- [2026-08-21 오후 스냅샷(이전)](project_open_threads_2026-08-21_afternoon_snapshot.md) — 배포완료·가격$29 반영중·별카드 교체중. ★타로22장은 완성됐지만 사이트 미배선, /tarot은 404가 정상(실주소 /spread/four-pillars)
 - [★★검사 보고엔 '본 것/안 본 것'을 나눠 적기](feedback_pass_count_must_state_scope.md) — 안 본 걸 적었더니 사고 2건이 막혔다(보고자 쪽, 도구 의심은 별건)
 - [★★생성이미지 결함 4종(문자·만자·서명·얼굴)](reference_image_gen_glyph_traps_2026-08-21.md) — 부정프롬프트 무효, 소재에서 '글자 쓸 표면'을 빼야. 검사구역 4개(귀퉁이·상하단·중앙·화풍대조)
 - [★★검사도구는 '전부 통과' 오진도 낸다](feedback_check_tool_can_false_pass.md) — 실패오진보다 위험(아무도 안 봄). 판정층 분리+일부러 틀린 입력으로 도구부터 검증
 - [★★★100% 완성된 것만 보고(클로 2차검수)](feedback_report_only_100_percent_done.md) — 검수실패는 형에게 안 감, 될때까지 루프. 예외=형결재·손해막는발견·진짜블로커
 - [★★k사주 입춘보정 회귀범위(1~2월생 연주+월간만)](reference_ksaju_lichun_regression_scope_2026-08-21.md) — 73,414일 전수대조, 3~12월 0건. 프리미엄 월주 칸도 바뀜
 - [★본부장 자기보고는 과소로도 틀린다](feedback_agent_may_undersell_own_work.md) — 서진 31→실제62개. 양방향 불일치+누락항목을 QA 지시에 명시
-- [★★★★2026-08-21 오전 스냅샷](project_open_threads_2026-08-21_dawn_snapshot.md) — 띠별운세+i18n 배포대기(검수완료). 형결재=머지·가격·별카드 3건
+- [2026-08-21 오전 스냅샷(이전)](project_open_threads_2026-08-21_dawn_snapshot.md) — 띠별운세+i18n 배포대기(검수완료). 형결재=머지·가격·별카드 3건
 - [★메모리 110개가 인덱스 미등재(회상 안 됨)](project_memory_index_orphans_2026-08-20.md) — 267개 중 41%. feedback·reference부터 선별 복구 필요
 - [★k-saju 라이브 판정법(키 존재 vs 보간형)](reference_ksaju_live_verification_method.md) — 영어 원문 검색은 geo 때문에 못 씀, next-intl은 템플릿도 페이로드에 실림
 - [★헤드리스 스크린샷은 CDP 에뮬레이션 필요](reference_headless_screenshot_needs_cdp_emulation.md) — --window-size로는 멀쩡한 화면이 잘려 보여 오진 유발, Edge 사용
