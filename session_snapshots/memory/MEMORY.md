@@ -1,4 +1,5 @@
-- [★★★★2026-08-21 저녁 스냅샷(최신)](project_open_threads_2026-08-21_evening_snapshot.md) — 하네스 관문·공통규칙·체크리스트 구축완료(넷 다 깨뜨려 검증). 타로 화풍 GPT 재시도중. 형결재 4건
+- [★★★★2026-08-22 오전 스냅샷(최신)](project_open_threads_2026-08-22_morning_snapshot.md) — 재부팅 복구 자동성공·예약7개 재등록. ★디스코드 회신도구 세션중 차단됨(웹훅 우회 중) · 형결재 4건 정체
+- [★★★★2026-08-21 저녁 스냅샷(이전)](project_open_threads_2026-08-21_evening_snapshot.md) — 하네스 관문·공통규칙·체크리스트 구축완료(넷 다 깨뜨려 검증). 타로 화풍 GPT 재시도중. 형결재 4건
 - [★형이 보낸 디스코드 첨부는 inbox 폴더에 있다](reference_discord_inbox_attachment_path.md) — Downloads 말고 .claude/channels/discord/inbox/. 사진 없다고 보고했다가 틀린 적 있음
 - [★★★덱스 AGENTS.md 2주간 구버전(수리완료)](reference_dex_agents_md_drift_2026-08-21.md) — 복사배포는 통지가 없어 조용히 어긋남. 덱스가 영상금지·커밋대행 규칙을 못 받고 있었음. 규칙 반복위반시 받았는지부터 확인
 - [★★★기술제약이 재검토 없는 설계규칙이 됨](feedback_constraint_became_unexamined_design_rule.md) — 타로22장 인물 0명 사고. "규칙 준수"와 "목적 달성"은 다른 검사층. 형이 두번 물으면 내 답이 좁았던 것
