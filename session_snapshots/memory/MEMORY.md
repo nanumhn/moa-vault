@@ -1,3 +1,6 @@
+- [★★★타로 22장 한지색 7장 완료·15장 남음](project_tarot_22_hanji_regen_2026-08-22.md) — ★화풍 확정(조선 관복·해태, GPT 기억에 저장). ★밤엔 40~50분/장으로 느려짐, 반드시 낮에 할 것
+- [★★★★인스타 캐러셀 v5 전환 완료](project_ig_carousel_v5_pending_switch_2026-08-22.md) — v5 ON(08:00) · v4 OFF. ★2026-08-23 08:00이 첫 실전, 결과 반드시 확인할 것. dry-run은 성공(자식5+부모 컨테이너 실제 생성)
+- [★★★MOC 검사는 이제 커밋 근거로 대조](reference_moc_staleness_evidence_contract_2026-08-22.md) — 손으로 적은 updated 날짜를 안 믿는다. ★새 MOC엔 evidence_git 필수(안 적으면 NOSOURCE=검사 안 됨)
 - [★★★★2026-08-22 오전 스냅샷(최신)](project_open_threads_2026-08-22_morning_snapshot.md) — 재부팅 복구 자동성공·예약7개 재등록. ★디스코드 회신도구 세션중 차단됨(웹훅 우회 중) · 형결재 4건 정체
 - [★★★★2026-08-21 저녁 스냅샷(이전)](project_open_threads_2026-08-21_evening_snapshot.md) — 하네스 관문·공통규칙·체크리스트 구축완료(넷 다 깨뜨려 검증). 타로 화풍 GPT 재시도중. 형결재 4건
 - [★형이 보낸 디스코드 첨부는 inbox 폴더에 있다](reference_discord_inbox_attachment_path.md) — Downloads 말고 .claude/channels/discord/inbox/. 사진 없다고 보고했다가 틀린 적 있음
