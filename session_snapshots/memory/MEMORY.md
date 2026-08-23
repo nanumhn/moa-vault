@@ -1,4 +1,11 @@
 - [★★★★★2026-08-23 오후 스냅샷(최신)](project_open_threads_2026-08-23_afternoon_snapshot.md) — ★형이 클로 절차위반 6회 지적한 날(원문 수록). 산출보다 이걸 먼저 읽을 것. 형결재 3건(달카드·캐러셀육안·덱스상자) · 미등록 관문 1개 · 제나 크롬 미해결
+- [★브랜치명 = 작업명-작업자명](feedback_branch_naming_task_worker.md) — 형 지시 2026-08-24. 같은 레포 동시커밋 섮임 방지. 문서 반영 대기
+- [★랩실 보고엔 보고자 이름 필수](feedback_lab_report_requires_author_name.md) — 형 지시 2026-08-24. 일지 cron엔 반영함, work-journal 스킬·haru 정의엔 미반영
+- [★★★★★2026-08-24 새벽 스냅샷(최신)](project_open_threads_2026-08-24_dawn_snapshot.md) — 덱스·제나 CLI 창 체제 완성(커밋 3개). ★형결재 2건(달카드·캐러셀) · AGENTS.md 규칙반영 미완 · G4 근거관문 신설
+- [★★★★[확인]/[추측] 나누고 추측엔 반증조건까지](feedback_mark_confirmed_vs_guess_with_falsifier.md) — 2026-08-23 하루에 설명 4번 바꿔 형 신뢰 긎음. 규칙은 있었는데 빨리 답하려고 건너뛴 것. ★일이 돼도 형이 다시 재야 하면 형 일이 늘어난다
+- [★★터미널 한글 입력 안 되면 창을 껌다 켜라](reference_wt_ime_stuck_restart_2026-08-23.md) — 18시간 떠 있던 WT가 IME 물림. 설정·키보드·코드 문제로 오진하기 쉬움(4가지 다 의심했다). ★가르는 법=같은 터미널의 맨 셸 탭에 쳐보기 · 부수:클로 기동작업만 RunLevel=Highest
+- [★★★★덱스·제나 CLI 창 + 디스코드 왕복 완성](project_dex_jena_cli_window_bridge_2026-08-23.md) — 맥/tmux 코드를 윈도우 콘솔 API로 이식(형 지시: 리눅스 금지). 함정 6개 수록. ★미해결=형이 창에 직접 한글 입력
+- [★★★덱스·제나 GUI 못 띄우던 진짜 이유 + 공용 실행기](reference_dex_jena_hidden_window_launcher_2026-08-23.md) — 창숨김이 손자까지 상속 + 턴 끝나면 동반사망. launch_visible.ps1(작업스케줄러 경유)로 해결. ★제나는 창 손잡이를 못 재서 "창 0개" 보고를 믿으면 안 된다 · 덱스는 상자 때문에 아직 불가(형 결정 대기)
 - [2026-08-23 새벽 스냅샷(이전)](project_open_threads_2026-08-23_dawn_snapshot.md) — ★아침 확인 3건(08:00 캐러셀 첫실전·06:00 아투 삽화·타로 미확인 2장). 형결재 4건 전부 소진 · 이전분: [8/22오전](project_open_threads_2026-08-22_morning_snapshot.md) [8/21저녁](project_open_threads_2026-08-21_evening_snapshot.md) [8/21오후](project_open_threads_2026-08-21_afternoon_snapshot.md) [8/21오전](project_open_threads_2026-08-21_dawn_snapshot.md) [8/20오후](project_open_threads_2026-08-20_afternoon_snapshot.md) [8/20새벽](project_open_threads_2026-08-20_dawn_snapshot.md) [8/19](project_open_threads_2026-08-19_dawn_snapshot.md)
 - [★★★타로 22장 진짜 완성(8/23 전수확인)](project_tarot_22_hanji_regen_2026-08-22.md) — ★8/22 밤 "22장 완료" 보고가 틀렸음(운명의수레 누락+은둔자 세로형). 화면 말고 대화데이터로 세서 잡음. 지금 22장·비정사각 0. ★달카드 밤/한지 형 택1 대기 · 배포 미착수
 - [★★★★인스타 캐러셀 v5 전환 완료](project_ig_carousel_v5_pending_switch_2026-08-22.md) — v5 ON(08:00) · v4 OFF. ★2026-08-23 08:00이 첫 실전, 결과 반드시 확인할 것. dry-run은 성공(자식5+부모 컨테이너 실제 생성)
