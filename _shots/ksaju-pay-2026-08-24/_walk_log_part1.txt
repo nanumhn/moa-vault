@@ -1,0 +1,30 @@
+STEP 1 landing: https://k-saju.me/
+  final url = https://k-saju.me/ko
+  title = 사주 스튜디오 — 동양의 별에 새겨진 당신의 운명
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/01_landing.png
+  landing CTA/links:
+    [A] "운세" -> /ko/fortune
+    [A] "띠별 운세" -> /ko/zodiac
+    [A] "타로" -> /ko/spread/four-pillars
+    [A] "궁합" -> /ko/compatibility
+    [BUTTON] "EN" -> 
+    [BUTTON] "KR" -> 
+    [A] "로그인" -> /ko/account
+    [A] "내 사주 네 기둥 보기 — 무료 →" -> /ko/input
+    [A] "우리 궁합 보기 — 무료 →" -> /ko/compatibility
+    [A] "7일 무료 체험 시작 →" -> /ko/pay/gate
+    [A] "내 사주 네 기둥 보기 — 무료 →" -> /ko/input
+    [A] "개인정보처리방침" -> /ko/privacy
+    [A] "이용약관" -> /ko/terms
+    [A] "문의" -> mailto:support@k-saju.me
+    [A] "인스타그램 데일리 카드" -> https://www.instagram.com/ksaju.daily/?utm_source=app&utm_medium=referral&utm_campaign=app_to_ig&utm_content=home_footer
+  price tokens on landing = ["$7.99","$4.99"]
+  landing text length = 1478
+STEP 2 input: /ko/input
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/02_input.png
+  selects = [{"name":"","opts":108},{"name":"","opts":13},{"name":"","opts":32},{"name":"","opts":25},{"name":"","opts":61}]
+  gender button clicked = 여성
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/02b_input_filled.png
+  submit = {"text":"풀이 시작하기 →","disabled":false}
+  after submit url = https://k-saju.me/discover/1?d=2016-11-11&t=10%3A10&g=f
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/03_after_submit.png

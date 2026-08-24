@@ -1,0 +1,8 @@
+11_en_landing: final=https://k-saju.me/ lang=en prices=["$7.99","$4.99"]
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/11_en_landing.png
+12_en_pay_gate: final=https://k-saju.me/pay/gate lang=en prices=["$4.99","$7.99"]
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/12_en_pay_gate.png
+13_en_report: final=https://k-saju.me/report?d=1990-05-05&t=09%3A30&g=f lang=en prices=["$4.99","$7.99"]
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/13_en_report.png
+EN pay gate buttons: ["EN","KR","Sign in to start free trial"]
+EN pay gate text: Fortune Zodiac Tarot Compatibility EN KR Sign in SUBSCRIBE Continue the journey. Keep discovering, one quiet insight at a time. Single reading One-time deep insight $4.99 Monthly subscription Unlimited daily mood cards + premium analysis $7.99 7-day free trial Then $7.99/mo · cancel anytime before it ends and you won't be charged. Sign in to start your 7-day free trial. We link your subscription to your account so yo

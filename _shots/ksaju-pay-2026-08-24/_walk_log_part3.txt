@@ -1,0 +1,10 @@
+[2차/모바일] landing url=https://k-saju.me/ko
+  landing 유료 CTA href = /ko/pay/gate
+  paygate(mobile) url=https://k-saju.me/ko/pay/gate
+  CTA 클릭 후 창 2 -> 3
+    [0] about:blank
+    [1] https://k-saju.me/ko/pay/gate
+    [2] https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S-904853377%3A1787529302084018&client_id=9
+  2차 결과: 구글 로그인 벽 = 재현됨(YES)
+  shot -> 10_mobile_google_wall.png
+  ※ 여기서 정지 — 구글 계정/카드 정보 입력 안 함

@@ -1,0 +1,30 @@
+warmup url=https://k-saju.me/ko lang=ko
+discover/1: url=https://k-saju.me/discover/1?d=1990-05-05&t=09%3A30&g=f lang=en
+   text: Fortune Zodiac Tarot Compatibility EN KR Sign in STEP 1 / 3 · INPUT & CONNECTION Collecting your moment in time. Gatheri
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/04_discover_1.png
+discover/2: url=https://k-saju.me/discover/2?d=1990-05-05&t=09%3A30&g=f lang=en
+   text: Fortune Zodiac Tarot Compatibility EN KR Sign in STEP 2 / 3 · PROCESSING & TRANSFORMATION Patterns converge into a singl
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/04_discover_2.png
+discover/3: url=https://k-saju.me/discover/3?d=1990-05-05&t=09%3A30&g=f lang=en
+   text: Fortune Zodiac Tarot Compatibility EN KR Sign in STEP 3 / 3 · REVELATION & CARD REVEAL Your mood card is rising. The rea
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/04_discover_3.png
+discover/3 links: [{"t":"Fortune","h":"/fortune"},{"t":"Zodiac","h":"/zodiac"},{"t":"Tarot","h":"/spread/four-pillars"},{"t":"Compatibility","h":"/compatibility"},{"t":"EN","h":""},{"t":"KR","h":""},{"t":"Sign in","h":"/account"},{"t":"Reveal the card →","h":"/report?d=1990-05-05&t=09%3A30&g=f"}]
+report: req=https://k-saju.me/ko/report final=https://k-saju.me/ko/report lang=ko status-title="사주 스튜디오 — 동양의 별에 새겨진 당신의 운명"
+   len=271 prices=["$4.99","$7.99"]
+   upsell CTAs=[{"t":"네 기둥 전체 분석 열기 →","h":"/ko/pay/gate"}]
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/05_report_ko.png
+report: req=https://k-saju.me/report final=https://k-saju.me/report lang=en status-title="Saju Studio — Your destiny, written in the stars of the East"
+   len=423 prices=["$4.99","$7.99"]
+   upsell CTAs=[{"t":"Unlock your full Four Pillars analysis →","h":"/pay/gate"}]
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/05_report_default.png
+paygate: url=https://k-saju.me/ko/pay/gate lang=ko
+   text: 운세 띠별 운세 타로 궁합 EN KR 로그인 구독 여정을 계속 이어가세요. 하루 하나의 조용한 통찰을, 매일 발견해 보세요. 단건 풀이 한 번의 깊은 통찰 $4.99 월 구독 데일리 무드 카드 무제한 + 프리미엄 분석 $7.99 7일 무료 체험 이후 월 $7.99 · 체험 종료 전 언제든 해지하시면 요금이 청구되지 않습니다. 로그인하고 7일 무료 체험을 시작하세요. 구독은 계정과 연결되어 언제든 직접 관리하거나 해지하실 수 있습니다. 로그인하고 무료 체험 시작하기 ← 다음에 할게요 체험은 오늘 시작됩니다. 7일이 끝날 때 비로소 $7.99가 청구되며, 마이페이지에서 언제든 별다른 절차 없이 해지하실 수 있어요.
+   buttons: [{"t":"운세","h":"/ko/fortune","dis":false},{"t":"띠별 운세","h":"/ko/zodiac","dis":false},{"t":"타로","h":"/ko/spread/four-pillars","dis":false},{"t":"궁합","h":"/ko/compatibility","dis":false},{"t":"EN","h":"","dis":false},{"t":"KR","h":"","dis":false},{"t":"로그인","h":"/ko/account","dis":false},{"t":"로그인하고 무료 체험 시작하기","h":"","dis":false},{"t":"← 다음에 할게요","h":"/","dis":false}]
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/06_pay_gate.png
+   clicked CTA = 로그인하고 무료 체험 시작하기
+   open pages after click = 3
+     [0] about:blank
+     [1] https://k-saju.me/ko/pay/gate
+     [2] https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S1664960947%3A1787529225042923&client_id=906055789613-n86ja2i8hca8edit0r
+  shot -> D:/Develop/moa-vault/_shots/ksaju-pay-2026-08-24/07_after_cta_click.png
+  shot popup -> 07b_popup.png (https://accounts.google.com/v3/signin/identifier?opparams=%253F&dsh=S1664960947%3A1787529225042923&client_id=906055789613-n86ja2i8hca8edit0r)

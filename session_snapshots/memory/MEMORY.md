@@ -1,3 +1,11 @@
+- [★★★덱스·제나 창은 moa_cli_window.ps1 로만 띄운다](reference_cli_window_launch_must_use_script_2026-08-24.md) — .cmd 직접 호출하면 권한 등급이 달라 중계기가 못 붙음(err=5). pid만 고치는 건 반쪽 수리. ★검수는 내 도구 말고 **실제 소비자(중계기)**로 재라
+- [★★★★지침 파일 고쳐도 살아있는 창은 안 문다](reference_agents_md_only_injected_at_session_start_2026-08-24.md) — 주입은 세션시작·compaction 때뿐. 에러도 통지도 없다. ★8/21 덱스 2주 표류에 이 겹이 더 있었다 · 도달 판정=world_state 길이(BOM도 1글자로 셈)
+- [★★★★PS5.1이 BOM 없는 한글 파일을 CP949로 깨뜨린다](reference_ps51_cp949_breaks_korean_files_2026-08-24.md) — 덱스가 규칙을 깨진 채 읽고도 "적용됐습니다"라고 답한 원인. ★vault .md 631개가 BOM 없음(안 고침) · .moa .ps1 7개 잠재위험 · 한글이 리터럴 안이면 실행 자체가 실패
+- [★★★★★"피노키오 클로" — 확인 안 하고 단정 금지](feedback_pinocchio_clo_dont_assert_without_checking.md) — 형 지시 2026-08-24. 하루에 형에게만 5번 틀림(안 나온다→없다 / 글자 하나→있다 / 날짜만 보고 / 파일 안 열고 구조 상상). ★안 돌려봤으면 [확인] 붙이지 마라, 모르면 "모릅니다"
+- [★★★형이 쓰는 걸 고칠 땐 사전에 양해부터](feedback_ask_before_touching_what_hyung_uses.md) — 형 지시 2026-08-24. 새벽에 중계기 말없이 6번 고쳤다가 형 DM 도배. ★"형 편하시라고" 하는 개선일수록 더 물어라
+- [★★★★★W35: k사주 GA4 전면 미측정 확진 + 유튜브 템플릿분류 해당](project_w35_measurement_and_premise_failures_2026-08-24.md) — ★"유입 0"은 측정실패였음(GSC는 90일 클릭 10) · 쇼츠 6장면 38편 전부 동일포맷 · TaskCreate/TaskUpdate 존재하지 않음(정의 12개가 죽은 선언) · 아투 스코프건은 하면 발행 멈출 뻔
+- [★★★★★2026-08-24 아침 스냅샷(최신)](project_open_threads_2026-08-24_morning_snapshot.md) — 중계기 6수리 완료 · nblog 검수 진행중 · ★형결재 4건(달카드·캐러셀·미커밋6개·빌드찌꺼기) · 내가 틀린 것 4개 수록
+- [★★★★덱스·제나 중계기 조용한 유실 4종(수리완료)](reference_dex_jena_bridge_silent_loss_2026-08-24.md) — 승인요청이 형에게 안 감 · codex 승인문구 미탐(명령이 확인없이 실행될 뻔) · ★4분 넘는 작업 답 통째 유실(덱스 18분 보고서 날아감) · 재시작 중 메시지 유실. ★함정=Stop-ScheduledTask는 자식 node를 안 죽인다
 - [★★★★★2026-08-23 오후 스냅샷(최신)](project_open_threads_2026-08-23_afternoon_snapshot.md) — ★형이 클로 절차위반 6회 지적한 날(원문 수록). 산출보다 이걸 먼저 읽을 것. 형결재 3건(달카드·캐러셀육안·덱스상자) · 미등록 관문 1개 · 제나 크롬 미해결
 - [★브랜치명 = 작업명-작업자명](feedback_branch_naming_task_worker.md) — 형 지시 2026-08-24. 같은 레포 동시커밋 섮임 방지. 문서 반영 대기
 - [★랩실 보고엔 보고자 이름 필수](feedback_lab_report_requires_author_name.md) — 형 지시 2026-08-24. 일지 cron엔 반영함, work-journal 스킬·haru 정의엔 미반영
@@ -142,3 +150,9 @@
 - [아투 고유관점 게이트+유튜브정책](project_atz_originality_policy_2026-07-28.md) — 5검사·15/15. 전환조건=통과율 3회연속100%
 - [★테스트 실행이 형에게 새면 안 됨](feedback_test_runs_must_not_reach_user.md) — 차단은 목킹 아닌 구조로. 억제 증명은 "안 불렀다"가 아니라 "원장 증가 0"
 - [쇼츠는 블로그 창작을 물려받음](reference_atz_shorts_inherit_blog_fabrication.md) · [승인카드=아투채널](reference_atz_shorts_approval_channel.md) — 자막-본문 대조론 창작 통과, 기준=out/*_sources.txt. 승인카드는 형DM 아니라 아투채널
+- [★검색지표는 별도 서비스계정 — blogger OAuth 스코프 추가 금지](reference_gsc_service_account_separate_from_blogger_oauth.md) — 재인증하면 아투 발행이 invalid_grant로 멈춘다. W34 문서가 이걸 "권장 액션"으로 올려둬서 또 집힌다(8/24 실제 재발). 쿼리단 조회는 gsc_query_report.mjs
+- [★★Reddit 사주 서브레딧 실측 — 종결](reference_reddit_saju_subreddits_closed_2026-08-24.md) — r/Bazi·r/Saju는 밴(없어짐), 살아있는 두 곳은 링크 게시 자체가 규칙 위반. 블로커는 계정연령·카르마가 아님. ★부수: 규칙은 뷰포트 1600 안 주면 사이드바가 안 뜬다(조회실패를 부재로 읽을 뻔)
+- [★★★"Saju Studio"는 우리 고유 브랜드가 아님](reference_ksaju_brand_name_not_unique_2026-08-24.md) — 동명 실체 5곳+(카카오채널·sajustudios.com·SAZU Studio). GSC 브랜드쿼리 노출을 인지도로 읽어 형께 오보 올라감(8/24). ★해석 전에 SERP를 열어볼 것 · 부수:k-saju에 canonical/hreflang/JSON-LD 전부 0건
+- [★★GA4는 헤드리스 UA를 204로 받고 리포트에서 뺀다](reference_ga4_excludes_headless_ua_2026-08-24.md) — 전송 성공인데 판독 영원히 실패(통과 오진). 유입 검증은 반드시 일반 UA로. 부수:라이브 GA4 사망 원인=dataLayer에 배열 push(gtag는 arguments만 소비)
+- [★★★형 확정: k-saju 타깃=외국인, 부=한국인/한국어 아는 외국인](project_ksaju_target_confirmed_foreigners_2026-08-24.md) — 2026-08-24 09:26 형 직접지시, 방향전환 논의 종료. ★판독 축은 접속국가 주/언어 보조(한글 검색≠한국 거주). GA4 죽어도 국가축은 GSC로 잰다
+- [★★★k-saju 국가축 실측 — 클릭은 순위가 가른다](reference_ksaju_gsc_country_axis_2026-08-24.md) — 본체 노출 94%가 한국(미국 5건). 클릭난 곳은 전부 1페이지권, 클릭0인 40개국은 46~78위. ★"노출 늘리자"는 무효 · 미국검색 폐기권고 · 실마리=per/jpn은 이미 1페이지 · GSC 노출총합은 컷간 비교금지(클릭만 안전)
