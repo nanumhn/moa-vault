@@ -1,6 +1,6 @@
 ---
 name: feedback_mark_confirmed_vs_guess_with_falsifier
-description: 원인·완료를 말할 땐 [확인]/[추측]을 나눠 적고, 추측에는 "이러면 내가 틀린 것" 조건을 먼저 붙인다 — 2026-08-23 하루에 설명을 네 번 뒤집어 형 신뢰를 깎은 뒤 확정
+description: 원인·완료를 말할 땐 [확인]/[추측]을 나눠 적고 추측엔 반증 조건을 붙인다 — ★반증 시험이 통과해도 교란변수가 있으면 증명이 아니다(2026-08-25 형 지적)
 metadata:
   type: feedback
 ---
@@ -32,4 +32,26 @@ metadata:
 3. **못 잰 건 "확인 못 함"이라고 적는다.** 그럴듯한 걸로 빈칸을 메우지 않는다([[feedback_dont_fill_data_gaps_with_inference]]).
 4. 표본이 1건이면 **"실패 사례 1건"이라고 크기를 밝힌다.** 작은 표본으로 단정하지 않는다.
 
-관련: [[feedback_verified_facts_only]] · [[feedback_verify_measurement_before_declaring_failure]] · [[feedback_find_counterexample_first]] · [[feedback_negative_exaggeration_is_also_falsehood]]
+## ★반증 시험이 통과해도 증명이 아니다 — 교란변수 (2026-08-25 형 지적)
+
+**형 질문**: *"→ 제 추측이 맞았습니다 … 이건 어떻게 증명할 수 있지?"*
+
+브리지 답 유실 건에서 나는 `[추측]`에 반증 조건까지 제대로 붙였고(규칙 2 이행), **형이 그 시험을 실제로 돌려줬고, 통과했다.** 그래서 *"제 추측이 맞았습니다"* 라고 단정했다 — **여기서 틀렸다.**
+
+**두 변수가 붙어 다녔다:**
+
+| | 승인 | 걸린 시간 | 결과 |
+|---|---|---|---|
+| 온 답 | 없음 | 16초 | 도착 |
+| 안 온 답 | 있음 | 한참 | 유실 |
+
+→ 범인이 **승인**인지 **늦게 나온 것**인지 **가릴 수 없다.** 나는 한쪽만 골라 말했다. 게다가 덱스의 코드 근거(*"일반 요청 경로도 한 번만 기다린다"*)대로면 **승인 없이도 늦으면 유실**돼야 하므로, 내 문장은 **범위를 좁게 잘못 잡은 것**이다.
+
+**가르려면 2×2의 빈 칸을 채워야 한다** — 승인 없음+오래 / 승인 있음+즉시. **성공 1건은 어느 것도 못 가린다.**
+
+### How to apply (규칙 5로 추가)
+
+5. **반증 시험이 통과해도 "맞았다"고 하지 말 것.** 먼저 묻는다 — **"같이 움직인 다른 변수가 있나?"** 있으면 그 변수를 고정한 시험을 하나 더 설계해야 증명이다. 통과한 시험은 *"이 설명과 어긋나지 않았다"* 까지만 말한다.
+6. 원인을 좁게 특정하기 전에 **다른 이가 준 코드·문서 근거가 내 주장보다 넓은지** 대조한다. 넓으면 **내 주장이 좁아서 틀린 것**이다.
+
+관련: [[feedback_verified_facts_only]] · [[feedback_verify_measurement_before_declaring_failure]] · [[feedback_find_counterexample_first]] · [[feedback_negative_exaggeration_is_also_falsehood]] · [[feedback_pinocchio_clo_dont_assert_without_checking]] · [[reference_dex_jena_bridge_silent_loss_2026-08-24]]
