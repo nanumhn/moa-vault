@@ -1,10 +1,11 @@
+- [★★★★봇이 쓴 디스코드 글은 내 세션에 절대 안 온다](reference_discord_bot_messages_never_reach_session_2026-08-25.md) — server.ts 887행이 gate()보다 먼저 버린다. 멘션·허용목록·@everyone 다 무효. ★웹훅 워치독도 봇이라 나를 못 깨운다(형께 알림만) · 덱스 방은 답하기 전 반드시 fetch
 - [★★★덱스·제나 창은 moa_cli_window.ps1 로만 띄운다](reference_cli_window_launch_must_use_script_2026-08-24.md) — .cmd 직접 호출하면 권한 등급이 달라 중계기가 못 붙음(err=5). pid만 고치는 건 반쪽 수리. ★검수는 내 도구 말고 **실제 소비자(중계기)**로 재라
 - [★★★★지침 파일 고쳐도 살아있는 창은 안 문다](reference_agents_md_only_injected_at_session_start_2026-08-24.md) — 주입은 세션시작·compaction 때뿐. 에러도 통지도 없다. ★8/21 덱스 2주 표류에 이 겹이 더 있었다 · 도달 판정=world_state 길이(BOM도 1글자로 셈)
 - [★★★★PS5.1이 BOM 없는 한글 파일을 CP949로 깨뜨린다](reference_ps51_cp949_breaks_korean_files_2026-08-24.md) — 덱스가 규칙을 깨진 채 읽고도 "적용됐습니다"라고 답한 원인. ★vault .md 631개가 BOM 없음(안 고침) · .moa .ps1 7개 잠재위험 · 한글이 리터럴 안이면 실행 자체가 실패
 - [★★★★★"피노키오 클로" — 확인 안 하고 단정 금지](feedback_pinocchio_clo_dont_assert_without_checking.md) — 형 지시 2026-08-24. 하루에 형에게만 5번 틀림(안 나온다→없다 / 글자 하나→있다 / 날짜만 보고 / 파일 안 열고 구조 상상). ★안 돌려봤으면 [확인] 붙이지 마라, 모르면 "모릅니다"
 - [★★★형이 쓰는 걸 고칠 땐 사전에 양해부터](feedback_ask_before_touching_what_hyung_uses.md) — 형 지시 2026-08-24. 새벽에 중계기 말없이 6번 고쳤다가 형 DM 도배. ★"형 편하시라고" 하는 개선일수록 더 물어라
 - [★★★★★W35: k사주 GA4 전면 미측정 확진 + 유튜브 템플릿분류 해당](project_w35_measurement_and_premise_failures_2026-08-24.md) — ★"유입 0"은 측정실패였음(GSC는 90일 클릭 10) · 쇼츠 6장면 38편 전부 동일포맷 · TaskCreate/TaskUpdate 존재하지 않음(정의 12개가 죽은 선언) · 아투 스코프건은 하면 발행 멈출 뻔
-- [★★★★★2026-08-25 새벽 스냅샷(최신)](project_open_threads_2026-08-25_dawn_snapshot.md) — 브리지 답 잘림 수리(덱스 검수 대기) · ★덱스가 클로 권한정지 제안(형 결정 대기) · DM 차단 원인 확정(메모리맵, 7/31이후 195건) · ★클로가 하루에 8번 확인없이 단정해 전부 틀림
+- [★★★★★2026-08-25 새벽 스냅샷(최신)](project_open_threads_2026-08-25_dawn_snapshot.md) — 브리지 답 잘림 수리(8/25 병합·재시작 완료) · ★덱스가 클로 권한정지 제안(형 결정 대기) · ★DM 차단 "원인 확정(메모리맵)"은 8/25 반례 2개로 무너짐 — 원인 미상 · ★클로가 하루에 8번 확인없이 단정해 전부 틀림
 - [★★★★★2026-08-24 오후 스냅샷(이전)](project_open_threads_2026-08-24_afternoon_snapshot.md) — 규칙 3층 재편·덱스 인코딩 수리·브리지 마커 사고. ★형결재 4건(브리지 재시작·덱스 새대화·B1~B3 자리·게스트체크아웃) · 내가 틀린 것 7개 수록
 - [2026-08-24 아침 스냅샷(이전)](project_open_threads_2026-08-24_morning_snapshot.md) — 중계기 6수리 완료 · nblog 검수 진행중 · ★형결재 4건(달카드·캐러셀·미커밋6개·빌드찌꺼기) · 내가 틀린 것 4개 수록
 - [★★★★덱스·제나 중계기 조용한 유실 4종(수리완료)](reference_dex_jena_bridge_silent_loss_2026-08-24.md) — 승인요청이 형에게 안 감 · codex 승인문구 미탐(명령이 확인없이 실행될 뻔) · ★4분 넘는 작업 답 통째 유실(덱스 18분 보고서 날아감) · 재시작 중 메시지 유실. ★함정=Stop-ScheduledTask는 자식 node를 안 죽인다
