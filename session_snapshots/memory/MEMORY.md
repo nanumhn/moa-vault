@@ -1,5 +1,6 @@
 - [★★★★★클로 권한 축소(당분간 읽기·검수만)](feedback_temporary_restricted_authority_2026-08-28.md) — 형 승인 08-28 13:07, 상태변경은 형 승인 후에만·중요판단은 덱스·제나 독립대조 후
 - [★★★★★"못 한다" 전에 메모리·.moa부터 검색](feedback_search_before_declaring_incapable.md) — 08-28 "스레드 생성 기능 없다"고 단정, 실은 moa_forum_thread.mjs 있었음
+- [★★★★★2026-08-29 새벽 스냅샷(최신)](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인) · 브리지 이슈 002 완전 해결·실물시험 성공 · 새 결재카드 형식 확정 · 클로 오류 3건
 - [★워커 병렬작업 브랜치·워크트리 규칙](reference_worker_branch_worktree_convention_2026-08-28.md) — 덱스 제안·형 승인 08-28, clo/jena 브랜치 접두사+통합은 덱스 담당
 - [★★★★★클로는 자신을 직접 멘션한 메시지에만 반응](feedback_respond_only_when_mentioned.md) — 형 지시 2026-08-28 07:43 "멘션에만 반응하도록해", 훅 차단보다 이 규칙 우선
 - [★★★★★덱스 상태보고마다 확인 달지 않기](feedback_dont_ack_every_dex_status.md) — 덱스 지적 2026-08-28 "하나하나 보고하는 구조 아님", 검수 요청 시에만 개입
@@ -72,8 +73,7 @@
 - [★진행상황 표시 = 기능보다 우선](feedback_status_visibility_accuracy_first.md) — 형원칙 2026-08-10, 없거나 부정확하면 사용자 불편
 - [★네이버블로그 콘텐츠품질기준: 멀티미디어+SEO구조](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨, content-head에 향후 반영필요
 - [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 형지시, 프로젝트별 용어집 파일에 즉시기록
-- [★긴 루프는 라운드마다 보고](feedback_report_each_stage.md) · [보고 간격 3-tier](feedback_reporting_cadence.md) — 최종결과만 말고 매 라운드 짧게. 마일스톤마다+10분무음컷+이슈 즉시
-- [★QA루프 속도>완벽주의](feedback_qa_loop_speed_over_exhaustiveness.md) — 치명/중대만 반려유지, 경미는 통과+권고로
+- [★긴 루프는 라운드마다 보고](feedback_report_each_stage.md) · [보고 간격 3-tier](feedback_reporting_cadence.md) — 최종결과만 말고 매 라운드 짧게
 - [★덱스·제나 적극병렬배분](feedback_delegate_to_dex_jena_proactively.md) — 형 명시지시(반복), cto한명에게만 몰지말것
 - [덱스 워크스페이스 범위](reference_dex_jena_workdir_scope_2026-08-08.md) · [업무채널 자동수신 안됨](reference_dex_jena_channel_no_live_push.md) — CODEX_WORKDIR을 D:\Develop전체로확장, kill시 중복프로세스주의. 업무채널은 fetch나 감시가 필요(형이 직접지적)
 - [★커밋≠푸시, 새레포는 원격부터](feedback_verify_push_not_just_commit.md) — nblog-saas 수시간분 로컬only였던 사고, 착수시 기본세팅으로 취급
