@@ -1,20 +1,19 @@
+- [★★★★★클로 권한 축소(당분간 읽기·검수만)](feedback_temporary_restricted_authority_2026-08-28.md) — 형 승인 08-28 13:07, 상태변경은 형 승인 후에만·중요판단은 덱스·제나 독립대조 후
+- [★★★★★"못 한다" 전에 메모리·.moa부터 검색](feedback_search_before_declaring_incapable.md) — 08-28 "스레드 생성 기능 없다"고 단정, 실은 moa_forum_thread.mjs 있었음
+- [★워커 병렬작업 브랜치·워크트리 규칙](reference_worker_branch_worktree_convention_2026-08-28.md) — 덱스 제안·형 승인 08-28, clo/jena 브랜치 접두사+통합은 덱스 담당
+- [★★★★★클로는 자신을 직접 멘션한 메시지에만 반응](feedback_respond_only_when_mentioned.md) — 형 지시 2026-08-28 07:43 "멘션에만 반응하도록해", 훅 차단보다 이 규칙 우선
 - [★★★★★덱스 상태보고마다 확인 달지 않기](feedback_dont_ack_every_dex_status.md) — 덱스 지적 2026-08-28 "하나하나 보고하는 구조 아님", 검수 요청 시에만 개입
 - [★★★★★이슈방 결재 요청은 형 대화방에도 알림+링크](feedback_approval_request_needs_dm_notice_link.md) — 형 지시 2026-08-28, 카드만 이슈방에 두면 형이 못 찾음
 - [★★★★★규칙에 예외를 스스로 만들지 않는다](feedback_no_self_declared_exceptions.md) — 형 지시 2026-08-28 "하네스 규칙 지침 룰은 예외 없이 모두 지킨다"
 - [★★★★★클로도 답변에 Shared_Rules 머리말·맺음줄 사용](feedback_clo_uses_shared_rules_tag.md) — 형 지시 2026-08-28 "너도 당연히 쉐어룰을 따른다. 예외 없다"
 - [★★★형 결재 요청은 🟪 카드 한 장으로](feedback_approval_request_format_purple_card.md) — 형 지시 2026-08-28. 보고와 섞지 말 것. ★새벽에 형이 "어떤 요청이지?"로 못 찾으심
-- [★★★★★2026-08-27 오전 스냅샷(최신)](project_open_threads_2026-08-27_morning_snapshot.md) — ★형 결재 5건 · 관문 G1~G6 확립(위임판정이 "직접 하지마"를 허용으로 읽던 버그 포함) · 상태판 신설 · ★다리 원인 확정(30줄 스크롤백0에 발화표시가 밀림) · 해외까지 3번 같은 답(병목=유입) · ★클로 오류 13건
-- [★★★★★2026-08-26 늦은오전 스냅샷(이전)](project_open_threads_2026-08-26_late_morning_snapshot.md) — ★**형 결재 7건 대기** · 003 결론=PDF단품 불가(24,000개 실측, 돈은 "만들어주는 것"에) · 001 배포직전 결함(2·3번이 **매일** 같은 내용) · 004 프로브완성/UI대기 · **클로 오류 5건·형 지적 6회 원문**
-- [★★★★2026-08-26 오전 스냅샷(이전)](project_open_threads_2026-08-26_morning_snapshot.md) — 카드 재디자인 미착수(덱스 23분 유휴) · 형 "신비로운 컬러 사라졌다" 반려 · ★사이트와 카드가 같은 날 다른 문구 · 넘침기준 확정(43/80/26) · ★클로 오류 4건과 형 지적 "그걸 누가 정하니?"
 - [★★★★★다리는 보이는 화면만 읽는다 — 스크롤백 0, 자발적 보고 불가](reference_bridge_reads_screen_only_no_scrollback_2026-08-26.md) — 덱스 27줄·제나 30줄이 전부, 넘치면 앞이 **영구 소실** · ★워커는 **먼저 말을 걸 수 없다**(트리거 있을 때만 읽음 → 덱스 50분 무음의 원인) · 판별=머리말/맺음줄 조합 · 근본해결은 004가 콘솔을 품는 것
 - [★★★★부모 CPU가 0이어도 노는 게 아니다](feedback_parent_cpu_zero_does_not_mean_idle_2026-08-26.md) — 클로가 덱스를 "놀고 있다"고 **공개 오판**. 일은 자식(`vitest`)이 하고 있었다. ★**내가 90분 전 제나에게 시킨 규칙을 내가 어겼다** · 그대로 믿고 재시작했으면 테스트가 죽을 뻔 · 판정=자식까지 합산+산출물 증가+직접 4지선다로 묻기
 - [★★★★결과를 대신 알려줘도 승인 대기는 안 풀린다](reference_relaying_results_does_not_unblock_approval_2026-08-26.md) — 제나 46분 교착. 막힌 건 데이터가 아니라 **실행 허가**. ★"제가 대신 돌렸으니 넘어가세요" 금지 — 읽기전용도 눌러야 풀린다 · 다리가 중복 카드를 억제해 조용한 교착이 됨 · 진단=직접 4지선다로 묻기+CPU 증가량
 - [★★★★★덱스·제나는 창 둘이 아니라 한 창의 두 탭이다](reference_window_title_is_not_an_identifier_2026-08-26.md) — ★그 창 닫으면 **둘 다 죽는다**. 제목은 활성 탭 따라 바뀜(EnumWindows도 못 가름) · headless는 창 자체가 없음 → 프로세스트리·포트로 · 생존은 말을 걸어 확인
 - [★★★★제나가 죽어도 ALIVE로 보고된다(PID 재활용)](reference_pid_reuse_defeats_liveness_check_2026-08-26.md) — 생존확인이 이름을 안 봐서 RuntimeBroker를 제나로 착각. ★덱스도 같은 코드 · 한번 죽으면 영원히 살아있음으로 보고 · 검증은 이름·경로+중계기 attach로
 - [★★★쉐어룰 머리말 버전은 숫자만](reference_shared_rules_marker_digits_only_2026-08-26.md) — `-01`·`.1`·` sv 01` 붙이면 중계기가 머리말을 알맹이로 오인. 숫자만 쓰면 코드·테스트 수정 불필요. ★버전 숫자가 곧 규칙 배달 확인 지표
-- [★★★★★2026-08-26 새벽 스냅샷(이전)](project_open_threads_2026-08-26_dawn_snapshot.md) — ★★`ksajuCarouselV5` 꺼져 있음(재활성화 안 하면 08:00 발행 0) · 이슈 포럼 체제 가동(001 인스타/002 승인카드) · 승인카드 미발행 근본원인 확정(화면 위 번호 목록이 선택지로 집계) · 카드 5장 중 3장이 매일 안 바뀜 · ★클로 7종 오류
 - [★★★형 지시: 클로는 덱스 지시를 따르고 임의로 활동하지 않는다](feedback_clo_reviews_dex_edits_bridge.md) — 2026-08-26. 직접 수정 금지 + ★먼저 나서는 것 자체 금지(지휘자=덱스). 예외는 형 직접 질문. ★검토는 "빠뜨리면 사고 나는 것"까지 짚고 "쓸지 말지 네가 정해라"로 넘길 것
-- [★★★★★2026-08-25 오전 스냅샷(이전)](project_open_threads_2026-08-25_morning_snapshot.md) — 브리지 답 전달 결함 3겹 수리(잘림→겹침→빈 답, 마지막 1건 재시작 대기) · ★봇 글은 세션에 원리적으로 안 온다(887행) · 워치독이 BOM 때문에 처음부터 반쪽이었음 · ★클로 9회 오류(DM 원인 확정이 반례로 무너짐)
 - [★★★★봇이 쓴 디스코드 글은 내 세션에 절대 안 온다](reference_discord_bot_messages_never_reach_session_2026-08-25.md) — server.ts 887행이 gate()보다 먼저 버린다. 멘션·허용목록·@everyone 다 무효. ★웹훅 워치독도 봇이라 나를 못 깨운다(형께 알림만) · 덱스 방은 답하기 전 반드시 fetch
 - [★★★덱스·제나 창은 moa_cli_window.ps1 로만 띄운다](reference_cli_window_launch_must_use_script_2026-08-24.md) — .cmd 직접 호출하면 권한 등급이 달라 중계기가 못 붙음(err=5). pid만 고치는 건 반쪽 수리. ★검수는 내 도구 말고 **실제 소비자(중계기)**로 재라
 - [★★★★지침 파일 고쳐도 살아있는 창은 안 문다](reference_agents_md_only_injected_at_session_start_2026-08-24.md) — 주입은 세션시작·compaction 때뿐. 에러도 통지도 없다. ★8/21 덱스 2주 표류에 이 겹이 더 있었다 · 도달 판정=world_state 길이(BOM도 1글자로 셈)
@@ -22,21 +21,13 @@
 - [★★★★★"피노키오 클로" — 확인 안 하고 단정 금지](feedback_pinocchio_clo_dont_assert_without_checking.md) — 형 지시 2026-08-24. 하루에 형에게만 5번 틀림(안 나온다→없다 / 글자 하나→있다 / 날짜만 보고 / 파일 안 열고 구조 상상). ★안 돌려봤으면 [확인] 붙이지 마라, 모르면 "모릅니다"
 - [★★★형이 쓰는 걸 고칠 땐 사전에 양해부터](feedback_ask_before_touching_what_hyung_uses.md) — 형 지시 2026-08-24. 새벽에 중계기 말없이 6번 고쳤다가 형 DM 도배. ★"형 편하시라고" 하는 개선일수록 더 물어라
 - [★★★★★W35: k사주 GA4 전면 미측정 확진 + 유튜브 템플릿분류 해당](project_w35_measurement_and_premise_failures_2026-08-24.md) — ★"유입 0"은 측정실패였음(GSC는 90일 클릭 10) · 쇼츠 6장면 38편 전부 동일포맷 · TaskCreate/TaskUpdate 존재하지 않음(정의 12개가 죽은 선언) · 아투 스코프건은 하면 발행 멈출 뻔
-- [2026-08-25 새벽 스냅샷(이전)](project_open_threads_2026-08-25_dawn_snapshot.md) — 브리지 답 잘림 수리(8/25 병합·재시작 완료) · ★덱스가 클로 권한정지 제안(형 결정 대기) · ★DM 차단 "원인 확정(메모리맵)"은 8/25 반례 2개로 무너짐 — 원인 미상 · ★클로가 하루에 8번 확인없이 단정해 전부 틀림
-- [★★★★★2026-08-24 오후 스냅샷(이전)](project_open_threads_2026-08-24_afternoon_snapshot.md) — 규칙 3층 재편·덱스 인코딩 수리·브리지 마커 사고. ★형결재 4건(브리지 재시작·덱스 새대화·B1~B3 자리·게스트체크아웃) · 내가 틀린 것 7개 수록
-- [2026-08-24 아침 스냅샷(이전)](project_open_threads_2026-08-24_morning_snapshot.md) — 중계기 6수리 완료 · nblog 검수 진행중 · ★형결재 4건(달카드·캐러셀·미커밋6개·빌드찌꺼기) · 내가 틀린 것 4개 수록
 - [★★★★덱스·제나 중계기 조용한 유실 4종(수리완료)](reference_dex_jena_bridge_silent_loss_2026-08-24.md) — 승인요청이 형에게 안 감 · codex 승인문구 미탐(명령이 확인없이 실행될 뻔) · ★4분 넘는 작업 답 통째 유실(덱스 18분 보고서 날아감) · 재시작 중 메시지 유실. ★함정=Stop-ScheduledTask는 자식 node를 안 죽인다
-- [★★★★★2026-08-23 오후 스냅샷(최신)](project_open_threads_2026-08-23_afternoon_snapshot.md) — ★형이 클로 절차위반 6회 지적한 날(원문 수록). 산출보다 이걸 먼저 읽을 것. 형결재 3건(달카드·캐러셀육안·덱스상자) · 미등록 관문 1개 · 제나 크롬 미해결
 - [★브랜치명 = 작업명-작업자명](feedback_branch_naming_task_worker.md) — 형 지시 2026-08-24. 같은 레포 동시커밋 섮임 방지. 문서 반영 대기
 - [★랩실 보고엔 보고자 이름 필수](feedback_lab_report_requires_author_name.md) — 형 지시 2026-08-24. 일지 cron엔 반영함, work-journal 스킬·haru 정의엔 미반영
-- [★★★★★2026-08-24 새벽 스냅샷(최신)](project_open_threads_2026-08-24_dawn_snapshot.md) — 덱스·제나 CLI 창 체제 완성(커밋 3개). ★형결재 2건(달카드·캐러셀) · AGENTS.md 규칙반영 미완 · G4 근거관문 신설
 - [★★★★[확인]/[추측] 나누고 추측엔 반증조건까지](feedback_mark_confirmed_vs_guess_with_falsifier.md) — 2026-08-23 하루에 설명 4번 바꿔 형 신뢰 긎음. 규칙은 있었는데 빨리 답하려고 건너뛴 것. ★일이 돼도 형이 다시 재야 하면 형 일이 늘어난다
 - [★★터미널 한글 입력 안 되면 창을 껌다 켜라](reference_wt_ime_stuck_restart_2026-08-23.md) — 18시간 떠 있던 WT가 IME 물림. 설정·키보드·코드 문제로 오진하기 쉬움(4가지 다 의심했다). ★가르는 법=같은 터미널의 맨 셸 탭에 쳐보기 · 부수:클로 기동작업만 RunLevel=Highest
 - [★★★★덱스·제나 CLI 창 + 디스코드 왕복 완성](project_dex_jena_cli_window_bridge_2026-08-23.md) — 맥/tmux 코드를 윈도우 콘솔 API로 이식(형 지시: 리눅스 금지). 함정 6개 수록. ★미해결=형이 창에 직접 한글 입력
 - [★★★덱스·제나 GUI 못 띄우던 진짜 이유 + 공용 실행기](reference_dex_jena_hidden_window_launcher_2026-08-23.md) — 창숨김이 손자까지 상속 + 턴 끝나면 동반사망. launch_visible.ps1(작업스케줄러 경유)로 해결. ★제나는 창 손잡이를 못 재서 "창 0개" 보고를 믿으면 안 된다 · 덱스는 상자 때문에 아직 불가(형 결정 대기)
-- [2026-08-23 새벽 스냅샷(이전)](project_open_threads_2026-08-23_dawn_snapshot.md) — ★아침 확인 3건(08:00 캐러셀 첫실전·06:00 아투 삽화·타로 미확인 2장). 형결재 4건 전부 소진 · 이전분: [8/22오전](project_open_threads_2026-08-22_morning_snapshot.md) [8/21저녁](project_open_threads_2026-08-21_evening_snapshot.md) [8/21오후](project_open_threads_2026-08-21_afternoon_snapshot.md) [8/21오전](project_open_threads_2026-08-21_dawn_snapshot.md) [8/20오후](project_open_threads_2026-08-20_afternoon_snapshot.md) [8/20새벽](project_open_threads_2026-08-20_dawn_snapshot.md) [8/19](project_open_threads_2026-08-19_dawn_snapshot.md)
-- [★★★타로 22장 진짜 완성(8/23 전수확인)](project_tarot_22_hanji_regen_2026-08-22.md) — ★8/22 밤 "22장 완료" 보고가 틀렸음(운명의수레 누락+은둔자 세로형). 화면 말고 대화데이터로 세서 잡음. 지금 22장·비정사각 0. ★달카드 밤/한지 형 택1 대기 · 배포 미착수
-- [★★★★인스타 캐러셀 v5 전환 완료](project_ig_carousel_v5_pending_switch_2026-08-22.md) — v5 ON(08:00) · v4 OFF. ★2026-08-23 08:00이 첫 실전, 결과 반드시 확인할 것. dry-run은 성공(자식5+부모 컨테이너 실제 생성)
 - [★★★MOC 검사는 이제 커밋 근거로 대조](reference_moc_staleness_evidence_contract_2026-08-22.md) — 손으로 적은 updated 날짜를 안 믿는다. ★새 MOC엔 evidence_git 필수(안 적으면 NOSOURCE=검사 안 됨)
 - [★형이 보낸 디스코드 첨부는 inbox 폴더에 있다](reference_discord_inbox_attachment_path.md) — Downloads 말고 .claude/channels/discord/inbox/. 사진 없다고 보고했다가 틀린 적 있음
 - [★★★덱스 AGENTS.md 2주간 구버전(수리완료)](reference_dex_agents_md_drift_2026-08-21.md) — 복사배포는 통지가 없어 조용히 어긋남. 덱스가 영상금지·커밋대행 규칙을 못 받고 있었음. 규칙 반복위반시 받았는지부터 확인
@@ -47,7 +38,6 @@
 - [★★★100% 완성된 것만 보고(클로 2차검수)](feedback_report_only_100_percent_done.md) — 검수실패는 형에게 안 감, 될때까지 루프. 예외=형결재·손해막는발견·진짜블로커
 - [★★k사주 입춘보정 회귀범위(1~2월생 연주+월간만)](reference_ksaju_lichun_regression_scope_2026-08-21.md) — 73,414일 전수대조, 3~12월 0건. 프리미엄 월주 칸도 바뀜
 - [★본부장 자기보고는 과소로도 틀린다](feedback_agent_may_undersell_own_work.md) — 서진 31→실제62개. 양방향 불일치+누락항목을 QA 지시에 명시
-- [★메모리 110개가 인덱스 미등재(회상 안 됨)](project_memory_index_orphans_2026-08-20.md) — 267개 중 41%. feedback·reference부터 선별 복구 필요
 - [★k-saju 라이브 판정법(키 존재 vs 보간형)](reference_ksaju_live_verification_method.md) — 영어 원문 검색은 geo 때문에 못 씀, next-intl은 템플릿도 페이로드에 실림
 - [★헤드리스 스크린샷은 CDP 에뮬레이션 필요](reference_headless_screenshot_needs_cdp_emulation.md) · [인포그래픽=이미지파일로](feedback_infographic_as_image_not_html_link.md) — --window-size로는 잘려 보여 오진(Edge 사용). 인포그래픽은 HTML링크 말고 file:// 렌더→캡처→files 첨부
 - [★★★2026-08-20 k사주 하루 12건 배포](project_ksaju_menu_expansion_2026-08-20.md) — 일진수리·권한분리·궁합·운세·타로·DB분리. 메뉴화 완료, 남은건 가격
@@ -56,12 +46,6 @@
 - [★★★사주 일진 2칸 오차(두 파일 복사)](reference_saju_engine_daypillar_offset_2026-08-20.md) — 매일 발행되는 데일리카드 경로는 아직 틀린 값
 - [★표준 용어는 원어 그대로(MOC 등)](feedback_keep_standard_terms_english.md) — 형이 적응하겠다고 확정. 우리만 쓰는 개념만 우리말(랩실·모아창고)
 - [로컬 도구 설치기록](reference_slide_master_pptx_install.md) · [WhisperWriter](reference_whisperwriter_windows_setup_2026-08-14.md) — slide-master=네이티브 PPTX(`--pptx-structure flat` 필수, Pretendard). WhisperWriter=3.11venv+원본버전+cleanup()패치
-- [★★8/19 저녁 아투 글 발행대기(묵은뉴스, 폐기추천)](project_atz_pm_article_pending_2026-08-19.md) — 교정·검수12/12 끝, 형 발행명령 필요하나 하루지나 폐기가 나을수 있음
-- [★★아투 쇼츠 exit=0 조용한 유실(하루 2개 날아감)](reference_atz_shorts_silent_skip_2026-08-19.md) — 보류해제가 12분대기보다 늦으면 발생, exit0라 알림 안감. 수리완료(8/19). ★8/23 재발(글이 게이트에 막혀 06:42 스킵) — 글 막히면 쇼츠도 같이 죽는다
-- [★★★★★Meta 앱심사 진짜원인 확정](project_meta_app_review_root_cause_2026-08-19.md) — 블로커=IG댓글DM코드 미배포(404)였음, 이후 배포완료·DB마이그레이션만 남음(8/19)
-- [★★아투 이미지 무작위404 근본수리 완료](reference_atz_image_hosting_github_pages_2026-08-17.md) — raw.githubusercontent 핫링크가 원인, Pages이전+발행전 빌드확인가드로 해결(8/17)
-- [★★인스타 자동게시 진짜원인 확정](project_ig_autopost_root_cause_correction_2026-08-17.md) — 워크플로 active=false가 원인, facebook호스트설·PNG설 둘다오진. 8/18 08:00 첫성공확인(8/18)
-- [★LM Studio VRAM충돌 해결됨](reference_lmstudio_no_ttl_vram_contention_2026-08-17.md) — 원인=ConnectAILab(미사용)의 gemma 하드코딩, 폴더 제거로 해결(8/17 오후)
 - [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인됨(서진 사례)
 - [★데이터 없는 자리를 추론으로 채우지 말 것](feedback_dont_fill_data_gaps_with_inference.md) — 2026-08-17 하루에 셋이 같은 실수(미측정값 보고/원인추측/오기억 단정)
 - [★검증3층위: 빌드/육안/클린클론](feedback_visual_output_needs_eyeball_check.md) — 캐러셀 작업 중 하룻밤 3회 발견, 신규파일 커밋은 클린클론 빌드까지
@@ -79,7 +63,6 @@
 - [nblog-saas 운영서버 3종](reference_nblog_saas_prod_admin_access_2026-08-12.md) · [pm2 dump 시크릿증발](reference_nblog_saas_pm2_dump_missing_secrets_2026-08-12.md) · [pm2 env캐싱](reference_nblog_saas_pm2_env_caching_2026-08-12.md) — SSH키 ~/.ssh/lightsail/toastdm.pem, `bun run admin:invite`. 재부팅시 DB비번 증발(pm2 save로 수리, 다른 pm2서비스도 점검). .env만 고치면 안 바뀜(export후 restart)
 - [★확인작업을 형에게 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md) — "형이 스크롤해서 봐주세요"로 반발샀음, 도구한계는 인정하고 끝내되 떠넘기지 말것
 - [★프로세스는 죽이기 전·띄우기 전 둘 다 확인](feedback_kill_process_check_active_agents_first_2026-08-14.md) · [띄우기 전](feedback_check_before_spawn_dev_server_2026-08-15.md) — 3002서버 킬 때 배경에이전트가 실사용중이었음(운좋게 무사). 반대로 dev서버 중복기동으로 cmd창 누적도 지적받음
-- [nBlog 백로그4건 형결정](project_nblog_saas_backlog_decisions_2026-08-13.md) — 가격측정fake-door 미착수, 만료화면범위 형확인대기, 베타피드백 8/27체크
 - [★★★★실측매출0원+주간리뷰6주공백 발견](project_revenue_review_lapsed_2026-08-12.md) — CSO revenue-review 즉시재가동 형승인대기, 최우선
 - [★★★★수익모델재설계 최종3안 확정, 형승인3건대기](project_revenue_model_redesign_final_2026-08-12.md) — C:k-saju단건$29(최우선)/B:nblog-saas승격/A:쇼츠4주실험. 90일목표 300~700만원으로 재설정
 - [★★★k-saju Vercel이전+Pro업그레이드 형결정대기](project_ksaju_vercel_migration_plan_2026-08-12.md) · [SEO채널 사망확정](project_ksaju_growth_channel_switch_2026-08-12.md) — blog.k-saju.me도 위반, NeonDB Vercel종속 가능성. SEO 죽음+CTA버그 수리, Reddit게시·유료테스트 형답변대기
