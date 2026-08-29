@@ -2,7 +2,8 @@
 - [★★★★★이슈방 메시지엔 항상 수신대상 멘션 붙이기](feedback_always_mention_target_in_shared_threads.md) — 형 지시 2026-08-29, 대상없는 상태보고·상호확인 메시지 금지(덱스 강화)
 - [★★★★실행 안 한 단계를 실행한 것처럼 묶어 보고 금지](feedback_dont_bundle_unexecuted_steps_as_done.md) — 덱스 지적 2026-08-29, git add 막혀 commit은 시도도 안 했는데 "둘 다 거부" 오기
 - [★★★★★"못 한다" 전에 메모리·.moa부터 검색](feedback_search_before_declaring_incapable.md) — 08-28 "스레드 생성 기능 없다"고 단정, 실은 moa_forum_thread.mjs 있었음
-- [★★★★★2026-08-29 새벽 스냅샷(최신)](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인) · 브리지 이슈 002 완전 해결·실물시험 성공 · 새 결재카드 형식 확정 · 클로 오류 3건
+- [★★★★★2026-08-29 오후 스냅샷(최신)](project_open_threads_2026-08-29_afternoon_snapshot.md) — G7/G8 라이브배포·검증티켓 3290b25 병합·메인채널 not allowlisted 미해결·덱스CLI 재시작 2회
+- [2026-08-29 새벽 스냅샷](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인) · 브리지 이슈 002 완전 해결·실물시험 성공 · 새 결재카드 형식 확정 · 클로 오류 3건
 - [★워커 병렬작업 브랜치·워크트리 규칙](reference_worker_branch_worktree_convention_2026-08-28.md) — 덱스 제안·형 승인 08-28, clo/jena 브랜치 접두사+통합은 덱스 담당
 - [★★★★★클로는 자신을 직접 멘션한 메시지에만 반응](feedback_respond_only_when_mentioned.md) — 형 지시 2026-08-28 07:43 "멘션에만 반응하도록해", 훅 차단보다 이 규칙 우선
 - [★★★★★덱스 상태보고마다 확인 달지 않기](feedback_dont_ack_every_dex_status.md) — 덱스 지적 2026-08-28 "하나하나 보고하는 구조 아님", 검수 요청 시에만 개입
