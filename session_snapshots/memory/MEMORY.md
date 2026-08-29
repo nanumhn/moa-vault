@@ -1,170 +1,130 @@
+- [★★★★★덱스 상태스팸엔 답하지 않기](feedback_dont_reply_to_dex_status_spam.md) — 덱스 지시 2026-08-29, 멘션 작업지시·형 직접질문에만 응답. 훅 충돌시 최소 대응
+- [★★★★★Discord Stop훅은 멘션 무관 매 메시지 강제+긴 미전송텍스트도 막음](reference_discord_reply_hook_forces_reply_per_spam_message_2026-08-29.md) — 반복스팸 200회+ 실측, 버튼은 하네스 전용이라 내가 못 만듦
 - [★★★★★클로 권한 축소(당분간 읽기·검수만)](feedback_temporary_restricted_authority_2026-08-28.md) — 형 승인 08-28 13:07, 상태변경은 형 승인 후에만·중요판단은 덱스·제나 독립대조 후
 - [★★★★★이슈방 메시지엔 항상 수신대상 멘션 붙이기](feedback_always_mention_target_in_shared_threads.md) — 형 지시 2026-08-29, 대상없는 상태보고·상호확인 메시지 금지(덱스 강화)
 - [★★★★실행 안 한 단계를 실행한 것처럼 묶어 보고 금지](feedback_dont_bundle_unexecuted_steps_as_done.md) — 덱스 지적 2026-08-29, git add 막혀 commit은 시도도 안 했는데 "둘 다 거부" 오기
 - [★★★★★"못 한다" 전에 메모리·.moa부터 검색](feedback_search_before_declaring_incapable.md) — 08-28 "스레드 생성 기능 없다"고 단정, 실은 moa_forum_thread.mjs 있었음
 - [★★★★★2026-08-29 오후 스냅샷(최신)](project_open_threads_2026-08-29_afternoon_snapshot.md) — G7/G8 라이브배포·검증티켓 3290b25 병합·메인채널 not allowlisted 미해결·덱스CLI 재시작 2회
-- [2026-08-29 새벽 스냅샷](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인) · 브리지 이슈 002 완전 해결·실물시험 성공 · 새 결재카드 형식 확정 · 클로 오류 3건
+- [2026-08-29 새벽 스냅샷](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인)·브리지 이슈 002 해결·새 결재카드 형식 확정
 - [★워커 병렬작업 브랜치·워크트리 규칙](reference_worker_branch_worktree_convention_2026-08-28.md) — 덱스 제안·형 승인 08-28, clo/jena 브랜치 접두사+통합은 덱스 담당
-- [★★★★★클로는 자신을 직접 멘션한 메시지에만 반응](feedback_respond_only_when_mentioned.md) — 형 지시 2026-08-28 07:43 "멘션에만 반응하도록해", 훅 차단보다 이 규칙 우선
-- [★★★★★덱스 상태보고마다 확인 달지 않기](feedback_dont_ack_every_dex_status.md) — 덱스 지적 2026-08-28 "하나하나 보고하는 구조 아님", 검수 요청 시에만 개입
-- [★★★★★이슈방 결재 요청은 형 대화방에도 알림+링크](feedback_approval_request_needs_dm_notice_link.md) — 형 지시 2026-08-28, 카드만 이슈방에 두면 형이 못 찾음
-- [★★★★★규칙에 예외를 스스로 만들지 않는다](feedback_no_self_declared_exceptions.md) — 형 지시 2026-08-28 "하네스 규칙 지침 룰은 예외 없이 모두 지킨다"
-- [★★★★★클로도 답변에 Shared_Rules 머리말·맺음줄 사용](feedback_clo_uses_shared_rules_tag.md) — 형 지시 2026-08-28 "너도 당연히 쉐어룰을 따른다. 예외 없다"
-- [★★★형 결재 요청은 🟪 카드 한 장으로](feedback_approval_request_format_purple_card.md) — 형 지시 2026-08-28. 보고와 섞지 말 것. ★새벽에 형이 "어떤 요청이지?"로 못 찾으심
-- [★★★★★다리는 보이는 화면만 읽는다 — 스크롤백 0, 자발적 보고 불가](reference_bridge_reads_screen_only_no_scrollback_2026-08-26.md) — 덱스 27줄·제나 30줄이 전부, 넘치면 앞이 **영구 소실** · ★워커는 **먼저 말을 걸 수 없다**(트리거 있을 때만 읽음 → 덱스 50분 무음의 원인) · 판별=머리말/맺음줄 조합 · 근본해결은 004가 콘솔을 품는 것
-- [★★★★부모 CPU가 0이어도 노는 게 아니다](feedback_parent_cpu_zero_does_not_mean_idle_2026-08-26.md) — 클로가 덱스를 "놀고 있다"고 **공개 오판**. 일은 자식(`vitest`)이 하고 있었다. ★**내가 90분 전 제나에게 시킨 규칙을 내가 어겼다** · 그대로 믿고 재시작했으면 테스트가 죽을 뻔 · 판정=자식까지 합산+산출물 증가+직접 4지선다로 묻기
-- [★★★★결과를 대신 알려줘도 승인 대기는 안 풀린다](reference_relaying_results_does_not_unblock_approval_2026-08-26.md) — 제나 46분 교착. 막힌 건 데이터가 아니라 **실행 허가**. ★"제가 대신 돌렸으니 넘어가세요" 금지 — 읽기전용도 눌러야 풀린다 · 다리가 중복 카드를 억제해 조용한 교착이 됨 · 진단=직접 4지선다로 묻기+CPU 증가량
-- [★★★★★덱스·제나는 창 둘이 아니라 한 창의 두 탭이다](reference_window_title_is_not_an_identifier_2026-08-26.md) — ★그 창 닫으면 **둘 다 죽는다**. 제목은 활성 탭 따라 바뀜(EnumWindows도 못 가름) · headless는 창 자체가 없음 → 프로세스트리·포트로 · 생존은 말을 걸어 확인
-- [★★★★제나가 죽어도 ALIVE로 보고된다(PID 재활용)](reference_pid_reuse_defeats_liveness_check_2026-08-26.md) — 생존확인이 이름을 안 봐서 RuntimeBroker를 제나로 착각. ★덱스도 같은 코드 · 한번 죽으면 영원히 살아있음으로 보고 · 검증은 이름·경로+중계기 attach로
-- [★★★쉐어룰 머리말 버전은 숫자만](reference_shared_rules_marker_digits_only_2026-08-26.md) — `-01`·`.1`·` sv 01` 붙이면 중계기가 머리말을 알맹이로 오인. 숫자만 쓰면 코드·테스트 수정 불필요. ★버전 숫자가 곧 규칙 배달 확인 지표
-- [★★★형 지시: 클로는 덱스 지시를 따르고 임의로 활동하지 않는다](feedback_clo_reviews_dex_edits_bridge.md) — 2026-08-26. 직접 수정 금지 + ★먼저 나서는 것 자체 금지(지휘자=덱스). 예외는 형 직접 질문. ★검토는 "빠뜨리면 사고 나는 것"까지 짚고 "쓸지 말지 네가 정해라"로 넘길 것
-- [★★★★봇이 쓴 디스코드 글은 내 세션에 절대 안 온다](reference_discord_bot_messages_never_reach_session_2026-08-25.md) — server.ts 887행이 gate()보다 먼저 버린다. 멘션·허용목록·@everyone 다 무효. ★웹훅 워치독도 봇이라 나를 못 깨운다(형께 알림만) · 덱스 방은 답하기 전 반드시 fetch
-- [★★★덱스·제나 창은 moa_cli_window.ps1 로만 띄운다](reference_cli_window_launch_must_use_script_2026-08-24.md) — .cmd 직접 호출하면 권한 등급이 달라 중계기가 못 붙음(err=5). pid만 고치는 건 반쪽 수리. ★검수는 내 도구 말고 **실제 소비자(중계기)**로 재라
-- [★★★★지침 파일 고쳐도 살아있는 창은 안 문다](reference_agents_md_only_injected_at_session_start_2026-08-24.md) — 주입은 세션시작·compaction 때뿐. 에러도 통지도 없다. ★8/21 덱스 2주 표류에 이 겹이 더 있었다 · 도달 판정=world_state 길이(BOM도 1글자로 셈)
-- [★★★★PS5.1이 BOM 없는 한글 파일을 CP949로 깨뜨린다](reference_ps51_cp949_breaks_korean_files_2026-08-24.md) — 덱스가 규칙을 깨진 채 읽고도 "적용됐습니다"라고 답한 원인. ★vault .md 631개가 BOM 없음(안 고침) · .moa .ps1 7개 잠재위험 · 한글이 리터럴 안이면 실행 자체가 실패
-- [★★★★★"피노키오 클로" — 확인 안 하고 단정 금지](feedback_pinocchio_clo_dont_assert_without_checking.md) — 형 지시 2026-08-24. 하루에 형에게만 5번 틀림(안 나온다→없다 / 글자 하나→있다 / 날짜만 보고 / 파일 안 열고 구조 상상). ★안 돌려봤으면 [확인] 붙이지 마라, 모르면 "모릅니다"
-- [★★★형이 쓰는 걸 고칠 땐 사전에 양해부터](feedback_ask_before_touching_what_hyung_uses.md) — 형 지시 2026-08-24. 새벽에 중계기 말없이 6번 고쳤다가 형 DM 도배. ★"형 편하시라고" 하는 개선일수록 더 물어라
-- [★★★★★W35: k사주 GA4 전면 미측정 확진 + 유튜브 템플릿분류 해당](project_w35_measurement_and_premise_failures_2026-08-24.md) — ★"유입 0"은 측정실패였음(GSC는 90일 클릭 10) · 쇼츠 6장면 38편 전부 동일포맷 · TaskCreate/TaskUpdate 존재하지 않음(정의 12개가 죽은 선언) · 아투 스코프건은 하면 발행 멈출 뻔
-- [★★★★덱스·제나 중계기 조용한 유실 4종(수리완료)](reference_dex_jena_bridge_silent_loss_2026-08-24.md) — 승인요청이 형에게 안 감 · codex 승인문구 미탐(명령이 확인없이 실행될 뻔) · ★4분 넘는 작업 답 통째 유실(덱스 18분 보고서 날아감) · 재시작 중 메시지 유실. ★함정=Stop-ScheduledTask는 자식 node를 안 죽인다
-- [★브랜치명 = 작업명-작업자명](feedback_branch_naming_task_worker.md) — 형 지시 2026-08-24. 같은 레포 동시커밋 섮임 방지. 문서 반영 대기
-- [★랩실 보고엔 보고자 이름 필수](feedback_lab_report_requires_author_name.md) — 형 지시 2026-08-24. 일지 cron엔 반영함, work-journal 스킬·haru 정의엔 미반영
-- [★★★★[확인]/[추측] 나누고 추측엔 반증조건까지](feedback_mark_confirmed_vs_guess_with_falsifier.md) — 2026-08-23 하루에 설명 4번 바꿔 형 신뢰 긎음. 규칙은 있었는데 빨리 답하려고 건너뛴 것. ★일이 돼도 형이 다시 재야 하면 형 일이 늘어난다
-- [★★터미널 한글 입력 안 되면 창을 껌다 켜라](reference_wt_ime_stuck_restart_2026-08-23.md) — 18시간 떠 있던 WT가 IME 물림. 설정·키보드·코드 문제로 오진하기 쉬움(4가지 다 의심했다). ★가르는 법=같은 터미널의 맨 셸 탭에 쳐보기 · 부수:클로 기동작업만 RunLevel=Highest
-- [★★★★덱스·제나 CLI 창 + 디스코드 왕복 완성](project_dex_jena_cli_window_bridge_2026-08-23.md) — 맥/tmux 코드를 윈도우 콘솔 API로 이식(형 지시: 리눅스 금지). 함정 6개 수록. ★미해결=형이 창에 직접 한글 입력
-- [★★★덱스·제나 GUI 못 띄우던 진짜 이유 + 공용 실행기](reference_dex_jena_hidden_window_launcher_2026-08-23.md) — 창숨김이 손자까지 상속 + 턴 끝나면 동반사망. launch_visible.ps1(작업스케줄러 경유)로 해결. ★제나는 창 손잡이를 못 재서 "창 0개" 보고를 믿으면 안 된다 · 덱스는 상자 때문에 아직 불가(형 결정 대기)
-- [★★★MOC 검사는 이제 커밋 근거로 대조](reference_moc_staleness_evidence_contract_2026-08-22.md) — 손으로 적은 updated 날짜를 안 믿는다. ★새 MOC엔 evidence_git 필수(안 적으면 NOSOURCE=검사 안 됨)
-- [★형이 보낸 디스코드 첨부는 inbox 폴더에 있다](reference_discord_inbox_attachment_path.md) — Downloads 말고 .claude/channels/discord/inbox/. 사진 없다고 보고했다가 틀린 적 있음
-- [★★★덱스 AGENTS.md 2주간 구버전(수리완료)](reference_dex_agents_md_drift_2026-08-21.md) — 복사배포는 통지가 없어 조용히 어긋남. 덱스가 영상금지·커밋대행 규칙을 못 받고 있었음. 규칙 반복위반시 받았는지부터 확인
-- [★★★기술제약이 재검토 없는 설계규칙이 됨](feedback_constraint_became_unexamined_design_rule.md) — 타로22장 인물 0명 사고. "규칙 준수"와 "목적 달성"은 다른 검사층. 형이 두번 물으면 내 답이 좁았던 것
-- [★★검사 보고엔 '본 것/안 본 것'을 나눠 적기](feedback_pass_count_must_state_scope.md) — 안 본 걸 적었더니 사고 2건이 막혔다(보고자 쪽, 도구 의심은 별건)
-- [★★생성이미지 결함 4종(문자·만자·서명·얼굴)](reference_image_gen_glyph_traps_2026-08-21.md) — 부정프롬프트 무효, 소재에서 '글자 쓸 표면'을 빼야. 검사구역 4개(귀퉁이·상하단·중앙·화풍대조)
-- [★★검사도구는 '전부 통과' 오진도 낸다](feedback_check_tool_can_false_pass.md) — 실패오진보다 위험(아무도 안 봄). 판정층 분리+일부러 틀린 입력으로 도구부터 검증
-- [★★★100% 완성된 것만 보고(클로 2차검수)](feedback_report_only_100_percent_done.md) — 검수실패는 형에게 안 감, 될때까지 루프. 예외=형결재·손해막는발견·진짜블로커
-- [★★k사주 입춘보정 회귀범위(1~2월생 연주+월간만)](reference_ksaju_lichun_regression_scope_2026-08-21.md) — 73,414일 전수대조, 3~12월 0건. 프리미엄 월주 칸도 바뀜
-- [★본부장 자기보고는 과소로도 틀린다](feedback_agent_may_undersell_own_work.md) — 서진 31→실제62개. 양방향 불일치+누락항목을 QA 지시에 명시
-- [★k-saju 라이브 판정법(키 존재 vs 보간형)](reference_ksaju_live_verification_method.md) — 영어 원문 검색은 geo 때문에 못 씀, next-intl은 템플릿도 페이로드에 실림
-- [★헤드리스 스크린샷은 CDP 에뮬레이션 필요](reference_headless_screenshot_needs_cdp_emulation.md) · [인포그래픽=이미지파일로](feedback_infographic_as_image_not_html_link.md) — --window-size로는 잘려 보여 오진(Edge 사용). 인포그래픽은 HTML링크 말고 file:// 렌더→캡처→files 첨부
-- [★★★2026-08-20 k사주 하루 12건 배포](project_ksaju_menu_expansion_2026-08-20.md) — 일진수리·권한분리·궁합·운세·타로·DB분리. 메뉴화 완료, 남은건 가격
-- [★★실행중 화면 ≠ 커밋 상태](feedback_running_screen_is_not_commit_state.md) — 하루에 양방향 오판 2건. git show로 커밋부터 확인
-- [★★k사주 유입 실측 2건](reference_kitsune_tarot_benchmark_2026-08-20.md) · [영어권 포화](reference_ksaju_english_market_saturated_2026-08-20.md) — 키츠네=롱테일505+llms.txt/MCP 에이전트 유입로. idolsaju 2,588URL로 이미 포화, saju는 영어 헤드키워드 아님. 빈 슬롯=스프레드·동양오행
-- [★★★사주 일진 2칸 오차(두 파일 복사)](reference_saju_engine_daypillar_offset_2026-08-20.md) — 매일 발행되는 데일리카드 경로는 아직 틀린 값
-- [★표준 용어는 원어 그대로(MOC 등)](feedback_keep_standard_terms_english.md) — 형이 적응하겠다고 확정. 우리만 쓰는 개념만 우리말(랩실·모아창고)
-- [로컬 도구 설치기록](reference_slide_master_pptx_install.md) · [WhisperWriter](reference_whisperwriter_windows_setup_2026-08-14.md) — slide-master=네이티브 PPTX(`--pptx-structure flat` 필수, Pretendard). WhisperWriter=3.11venv+원본버전+cleanup()패치
-- [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인됨(서진 사례)
-- [★데이터 없는 자리를 추론으로 채우지 말 것](feedback_dont_fill_data_gaps_with_inference.md) — 2026-08-17 하루에 셋이 같은 실수(미측정값 보고/원인추측/오기억 단정)
-- [★검증3층위: 빌드/육안/클린클론](feedback_visual_output_needs_eyeball_check.md) — 캐러셀 작업 중 하룻밤 3회 발견, 신규파일 커밋은 클린클론 빌드까지
-- [★형지시: 보유스킬 적극사용](feedback_use_available_skills_actively.md) — marketing-skills 등 연결된 스킬을 작업배정 때 명시적으로 지시에 포함
-- [★에이전트 SendMessage 도달불가 반복](reference_agent_unreachable_recurring_2026-08-17.md) · [우선순위 없음](reference_agent_mailbox_no_priority_preempt_2026-08-07.md) — 도달불가 4회(위임 전 우회안 준비). "급한거 먼저"도 큐에 쌓일 뿐이라 착수여부 직접 재확인
-- [★그로스마케팅본부장 강나라→강윤슬 개명](project_growth_head_rename_yoonseul_2026-08-16.md) — agent slug는 growth-head-narae 유지, 표시이름만 교체
-- [★★K사주 인스타 조회수 0 확진 + 캐러셀 기획](project_ksaju_instagram_zero_reach_2026-08-16.md) · [캐러셀](project_ksaju_instagram_carousel_2026-08-16.md) — 게시물7개 조회0~1로 배수목표 폐기. SEO에 이어 2번째 확진, 병목=콜드스타트 유통경로 부재
-- [★실측이 내 기획 전제를 깨면 방어말고 무효선언](feedback_invalidate_own_premise_when_data_contradicts.md) — 상위병목 재프레이밍+다음수 동반, 팀 명시승인
-- [★nblog-agent 한PC=네이버계정1개 제약](reference_nblog_agent_single_naver_session_per_profile_2026-08-16.md) · [PC호칭](reference_nblog_agent_test_pc_naming_2026-08-11.md) · [keep-alive](project_pc_agent_keepalive_validated_2026-08-12.md) — B서비스엔 AGENT_INSTANCE 자동화 별도 필요. 3PC=서버/개발1/개발2. keep-alive 7~8시간 검증됨(0.1.7 승격 긍정, 지시 전까진 0.1.4)
-- [nBlog 명명·정책](project_100eok_club_naming_2026-08-16.md) · [브랜드명](project_nblog_saas_brand_name_2026-08-12.md) · [가입정책](project_nblog_saas_signup_policy_2026-08-10.md) · [LLM키보류](project_nblog_saas_ai_draft_llm_key_deferred_2026-08-16.md) — 서비스명=nBlog(엔블로그), 파트너클럽=100억클럽, 가입=초대장→이메일인증→3일체험(미구현). AI초안 LLM키는 형이 미룸(먼저 꺼내지 말것)
-- [★Bash date 9시간 오프셋 버그](reference_bash_date_clock_offset_2026-08-16.md) — 시각 필요하면 PowerShell Get-Date 쓸 것
-- [★★★디스코드 회신 Stop훅 신설(19회 사고 해결)](feedback_acknowledge_first.md) — 하네스 강제, v1구멍→v2수정, 실전작동 확인. 작업 시작 전 "받았어요" ack부터
-- [★★운영DB 비밀번호 형 스크린샷으로 디스코드 유출](project_nblog_prod_db_secret_leaked_screenshot_2026-08-15.md) — 로테이션 권고함, 완료여부 확인필요. 시크릿 명령 위임 시 캡처 금지 미리 못박을 것
-- [★nBlog 시트·이미지 설계](reference_nblog_saas_image_attach_design_2026-08-15.md) · [수집후 시트수정 무시](reference_nblog_saas_sheet_edit_ignored_after_collection_2026-08-15.md) — 드라이브링크+서버재호스팅+K열분리(시트셀 이미지객체는 API 불가). 수집 후 시트 고쳐도 반영 안 됨 → DB직접수정, contentHash 재수집 위험 실제 발생
-- [nblog-saas 운영서버 3종](reference_nblog_saas_prod_admin_access_2026-08-12.md) · [pm2 dump 시크릿증발](reference_nblog_saas_pm2_dump_missing_secrets_2026-08-12.md) · [pm2 env캐싱](reference_nblog_saas_pm2_env_caching_2026-08-12.md) — SSH키 ~/.ssh/lightsail/toastdm.pem, `bun run admin:invite`. 재부팅시 DB비번 증발(pm2 save로 수리, 다른 pm2서비스도 점검). .env만 고치면 안 바뀜(export후 restart)
-- [★확인작업을 형에게 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md) — "형이 스크롤해서 봐주세요"로 반발샀음, 도구한계는 인정하고 끝내되 떠넘기지 말것
-- [★프로세스는 죽이기 전·띄우기 전 둘 다 확인](feedback_kill_process_check_active_agents_first_2026-08-14.md) · [띄우기 전](feedback_check_before_spawn_dev_server_2026-08-15.md) — 3002서버 킬 때 배경에이전트가 실사용중이었음(운좋게 무사). 반대로 dev서버 중복기동으로 cmd창 누적도 지적받음
-- [★★★★실측매출0원+주간리뷰6주공백 발견](project_revenue_review_lapsed_2026-08-12.md) — CSO revenue-review 즉시재가동 형승인대기, 최우선
-- [★★★★수익모델재설계 최종3안 확정, 형승인3건대기](project_revenue_model_redesign_final_2026-08-12.md) — C:k-saju단건$29(최우선)/B:nblog-saas승격/A:쇼츠4주실험. 90일목표 300~700만원으로 재설정
-- [★★★k-saju Vercel이전+Pro업그레이드 형결정대기](project_ksaju_vercel_migration_plan_2026-08-12.md) · [SEO채널 사망확정](project_ksaju_growth_channel_switch_2026-08-12.md) — blog.k-saju.me도 위반, NeonDB Vercel종속 가능성. SEO 죽음+CTA버그 수리, Reddit게시·유료테스트 형답변대기
-- [★nblog 링크버그 근본수정+0.1.8검증 진행](project_nblog_linkbug_and_backlog_2026-08-12.md) — 개발2 PC 0.1.8설치 필요(형액션), 덱스push인증막힘 클로가 대신push
-- [에이전트 자기검증도 범위확인 필요](reference_agent_selfcheck_completeness_gap_2026-08-11.md) — "안전확인함" 보고받으면 검증범위(의도한 경로만 vs 전체) 되물을 것
-- [★같은레포 병렬에이전트 git커밋 섞임](feedback_parallel_agents_same_repo_git_conflict.md) — 2026-08-10 실측, worktree격리나 순차커밋 고려할 것
-- [★진행상황 표시 = 기능보다 우선](feedback_status_visibility_accuracy_first.md) — 형원칙 2026-08-10, 없거나 부정확하면 사용자 불편
-- [★네이버블로그 콘텐츠품질기준: 멀티미디어+SEO구조](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨, content-head에 향후 반영필요
-- [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 형지시, 프로젝트별 용어집 파일에 즉시기록
+- [★★★★★클로는 자신을 직접 멘션한 메시지에만 반응](feedback_respond_only_when_mentioned.md) — 형 지시 08-28 "멘션에만 반응". 단 Stop훅은 멘션무관 실측(위 참고)
+- [★★★★★덱스 상태보고마다 확인 달지 않기](feedback_dont_ack_every_dex_status.md) — 덱스 지적 08-28 "하나하나 보고하는 구조 아님", 검수 요청 시에만 개입
+- [★★★★★이슈방 결재 요청은 형 대화방에도 알림+링크](feedback_approval_request_needs_dm_notice_link.md) — 형 지시 08-28, 카드만 이슈방에 두면 형이 못 찾음
+- [★★★★★규칙에 예외를 스스로 만들지 않는다](feedback_no_self_declared_exceptions.md) — 형 지시 08-28 "하네스 규칙 지침 룰은 예외 없이 모두 지킨다"
+- [★★★★★클로도 답변에 Shared_Rules 머리말·맺음줄 사용](feedback_clo_uses_shared_rules_tag.md) — 형 지시 08-28 "너도 당연히 쉐어룰을 따른다. 예외 없다"
+- [★★★형 결재 요청은 🟪 카드 한 장으로](feedback_approval_request_format_purple_card.md) — 형 지시 08-28. 보고와 섞지 말 것. 진짜 버튼 아닌 텍스트면 그렇게 명시할 것
+- [★★★★★다리는 보이는 화면만 읽는다 — 스크롤백 0](reference_bridge_reads_screen_only_no_scrollback_2026-08-26.md) — 덱스 27줄·제나 30줄 넘치면 앞이 영구 소실 · 워커는 먼저 말을 걸 수 없음(트리거 있을 때만)
+- [★★★★부모 CPU가 0이어도 노는 게 아니다](feedback_parent_cpu_zero_does_not_mean_idle_2026-08-26.md) — 자식(vitest 등)이 일하는 중일 수 있음. 판정=자식까지 합산+산출물 증가+직접 확인
+- [★★★★결과를 대신 알려줘도 승인 대기는 안 풀린다](reference_relaying_results_does_not_unblock_approval_2026-08-26.md) — 막힌 건 데이터가 아니라 실행 허가. "대신 돌렸으니 넘어가라" 금지
+- [★★★★★덱스·제나는 창 둘이 아니라 한 창의 두 탭](reference_window_title_is_not_an_identifier_2026-08-26.md) — 그 창 닫으면 둘 다 죽음. headless는 프로세스트리·포트로 판별
+- [★★★★제나가 죽어도 ALIVE로 보고된다(PID 재활용)](reference_pid_reuse_defeats_liveness_check_2026-08-26.md) — 생존확인이 이름을 안 봐서 오탐. 검증은 이름·경로+중계기 attach로
+- [★★★쉐어룰 머리말 버전은 숫자만](reference_shared_rules_marker_digits_only_2026-08-26.md) — `-01`·`.1` 붙이면 중계기가 알맹이로 오인
+- [★★★형 지시: 클로는 덱스 지시를 따르고 임의로 활동하지 않는다](feedback_clo_reviews_dex_edits_bridge.md) — 직접 수정 금지+먼저 나서는 것 자체 금지(지휘자=덱스). 예외는 형 직접 질문
+- [★★★★봇이 쓴 디스코드 글은 내 세션에 절대 안 온다](reference_discord_bot_messages_never_reach_session_2026-08-25.md) — server.ts가 gate()보다 먼저 버림. 웹훅 워치독도 나를 못 깨움
+- [★★★덱스·제나 창은 moa_cli_window.ps1 로만 띄운다](reference_cli_window_launch_must_use_script_2026-08-24.md) — .cmd 직접 호출하면 err=5. 검수는 실제 소비자(중계기)로
+- [★★★★지침 파일 고쳐도 살아있는 창은 안 문다](reference_agents_md_only_injected_at_session_start_2026-08-24.md) — 주입은 세션시작·compaction 때뿐, 에러·통지 없음
+- [★★★★PS5.1이 BOM 없는 한글 파일을 CP949로 깨뜨린다](reference_ps51_cp949_breaks_korean_files_2026-08-24.md) — 한글이 리터럴 안이면 실행 자체가 실패
+- [★★★★★"피노키오 클로" — 확인 안 하고 단정 금지](feedback_pinocchio_clo_dont_assert_without_checking.md) — 안 돌려봤으면 [확인] 붙이지 마라, 모르면 "모릅니다"
+- [★★★형이 쓰는 걸 고칠 땐 사전에 양해부터](feedback_ask_before_touching_what_hyung_uses.md) — "형 편하시라고" 하는 개선일수록 더 물어라
+- [★★★★★W35: k사주 GA4 전면 미측정 확진](project_w35_measurement_and_premise_failures_2026-08-24.md) — "유입 0"은 측정실패였음. TaskCreate/TaskUpdate는 클로 세션에 존재하지 않음
+- [★★★★덱스·제나 중계기 조용한 유실 4종(수리완료)](reference_dex_jena_bridge_silent_loss_2026-08-24.md) — 승인요청 미도달·4분+ 작업 답 유실 등. Stop-ScheduledTask는 자식 node 안 죽임
+- [★브랜치명 = 작업명-작업자명](feedback_branch_naming_task_worker.md) — 같은 레포 동시커밋 섞임 방지
+- [★★★★[확인]/[추측] 나누고 추측엔 반증조건까지](feedback_mark_confirmed_vs_guess_with_falsifier.md) — 빨리 답하려고 건너뛰면 형 신뢰 깎임
+- [★★★★덱스·제나 CLI 창 + 디스코드 왕복 완성](project_dex_jena_cli_window_bridge_2026-08-23.md) — 맥/tmux 코드를 윈도우 콘솔 API로 이식(리눅스 금지)
+- [★★★MOC 검사는 이제 커밋 근거로 대조](reference_moc_staleness_evidence_contract_2026-08-22.md) — 새 MOC엔 evidence_git 필수
+- [★형이 보낸 디스코드 첨부는 inbox 폴더에 있다](reference_discord_inbox_attachment_path.md) — Downloads 말고 .claude/channels/discord/inbox/
+- [★★★기술제약이 재검토 없는 설계규칙이 됨](feedback_constraint_became_unexamined_design_rule.md) — "규칙 준수"와 "목적 달성"은 다른 검사층
+- [★★검사도구는 '전부 통과' 오진도 낸다](feedback_check_tool_can_false_pass.md) — 판정층 분리+일부러 틀린 입력으로 도구부터 검증
+- [★★★100% 완성된 것만 보고(클로 2차검수)](feedback_report_only_100_percent_done.md) — 예외=형결재·손해막는발견·진짜블로커
+- [★본부장 자기보고는 과소로도 틀린다](feedback_agent_may_undersell_own_work.md) — 양방향 불일치+누락항목을 QA 지시에 명시
+- [★표준 용어는 원어 그대로(MOC 등)](feedback_keep_standard_terms_english.md) — 우리만 쓰는 개념만 우리말(랩실·모아창고)
+- [★데이터 없는 자리를 추론으로 채우지 말 것](feedback_dont_fill_data_gaps_with_inference.md) — 미측정값 보고·원인추측·오기억 단정 금지
+- [★검증3층위: 빌드/육안/클린클론](feedback_visual_output_needs_eyeball_check.md) — 신규파일 커밋은 클린클론 빌드까지
+- [★형지시: 보유스킬 적극사용](feedback_use_available_skills_actively.md) — 작업배정 때 명시적으로 지시에 포함
+- [★에이전트 SendMessage 도달불가 반복](reference_agent_unreachable_recurring_2026-08-17.md) — "급한거 먼저"도 큐에 쌓임, 착수여부 직접 재확인
+- [★★★디스코드 회신 Stop훅 신설(19회 사고 해결)](feedback_acknowledge_first.md) — 하네스 강제, v1구멍→v2→v3 수정. 작업 시작 전 "받았어요" ack부터
+- [★확인작업을 형에게 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md) — 도구한계는 인정하되 떠넘기지 말 것
+- [★프로세스는 죽이기 전·띄우기 전 둘 다 확인](feedback_kill_process_check_active_agents_first_2026-08-14.md) — 배경에이전트 실사용중 여부·중복기동 둘 다 체크
+- [★★★★수익모델재설계 최종3안 확정, 형승인3건대기](project_revenue_model_redesign_final_2026-08-12.md) — C:k-saju단건$29(최우선)/B:nblog-saas승격/A:쇼츠4주실험
+- [★같은레포 병렬에이전트 git커밋 섞임](feedback_parallel_agents_same_repo_git_conflict.md) — worktree격리나 순차커밋 고려
+- [★진행상황 표시 = 기능보다 우선](feedback_status_visibility_accuracy_first.md) — 형원칙, 없거나 부정확하면 사용자 불편
 - [★긴 루프는 라운드마다 보고](feedback_report_each_stage.md) · [보고 간격 3-tier](feedback_reporting_cadence.md) — 최종결과만 말고 매 라운드 짧게
 - [★덱스·제나 적극병렬배분](feedback_delegate_to_dex_jena_proactively.md) — 형 명시지시(반복), cto한명에게만 몰지말것
-- [덱스 워크스페이스 범위](reference_dex_jena_workdir_scope_2026-08-08.md) · [업무채널 자동수신 안됨](reference_dex_jena_channel_no_live_push.md) — CODEX_WORKDIR을 D:\Develop전체로확장, kill시 중복프로세스주의. 업무채널은 fetch나 감시가 필요(형이 직접지적)
-- [★커밋≠푸시, 새레포는 원격부터](feedback_verify_push_not_just_commit.md) — nblog-saas 수시간분 로컬only였던 사고, 착수시 기본세팅으로 취급
-- [★원안 이탈 금지](feedback_stick_to_original_product_definition.md) — 기술피벗보다 원래타깃 유지 우선, 형이 카페전환 반려하며 확정
-- [★형 예정요청: 시스템 전체설명+정리 세션](project_full_system_review_pending_2026-08-08.md) — 형이 먼저 안 물어봐도 클로가 주기적으로 상기시켜야 함
-- [★아투 GPT폴백=품질위험 신호](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — GPT실패시 로컬7B 폴백, 이 회차에 창작·오염 몰림. 진단시 폴백여부 1순위 확인
-- [★경로 텍스트≠첨부, files파라미터 필수](feedback_attach_files_dont_just_cite_path.md) — 경로만 적으면 형은 파일 못 받음. 발송후 +Natt 교차확인
-- [★QA게이트 규칙역전 사각지대(아투+PPT 재발)](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md) — 금지규칙이 표기규칙으로 뒤집혀도 키워드검사론 못잡음. completion-gate 항목화 제안
-- [★덱스 데몬 조용히 죽음](project_dex_jena_daemon_silent_death_2026-08-06.md) · [git lock 근본원인](project_dex_git_lock_root_cause_2026-08-06.md) — 재기동만 함(원인미확정+감시 없음). git lock은 ACL 무관, 코덱스 의도적 DENY — 형 결정 대기(3옵션, 추천②)
-- [★회의 시작=멘션 필수](feedback_mention_on_meeting_start.md) — 멘션 없으면 형 알림 안 감. 회의소집·공지 시작점마다 멘션
-- [★도구호출 쪼개면 그만큼 비쌈](feedback_batch_tool_calls_per_turn.md) — "체크" 한마디에 301만토큰(10회 분산호출). 간단한 확인은 묶어서 처리
-- [★외부 디스코드 감시 스크립트 신설, 세션워치독은 형지시로 중단됨](project_discord_external_watchdog_2026-08-05.md) — MoaDiscordWatchdogExternal(5분,0토큰)로 대체
-- [★커밋은 바로바로](feedback_commit_promptly.md) — 형지시 2026-08-05. 완료보고 전 커밋부터, push는 별개 판단
-- [★★일지+세션저장 cron 구조 수리완료](project_journal_gap_2026-08-05.md) — flag대기 로직+진짜원인("위와동일" 빈프롬프트) 수리. MoaServerReboot 중복만 형판단 대기
-- [보고채널 2개](reference_ksaju_daily_report_channel_2026-08-05.md) · [아투](reference_atz_report_channel_2026-08-05.md) — k-saju daily=1516986557968420864 / 아투=1529814918658785350(웹훅ID 1529814961646338098과 혼동주의). 둘 다 허용목록 등록완료
-- [★아투 게이트 앵커 한글음역 사각지대 2026-08-04](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) — 트럼프·엑손모빌처럼 한글음역 고유명사는 앵커로 못 잡아 매일 오탐 가능. cto 위임 필요
-- [reply를 placeholder 문구로 실수발송](feedback_never_send_placeholder_text.md) — reply는 즉시발송·드라이런 없음. 호출 전 text 내용 항상 확인
-- [★★Discord de-allowlist + ★웹훅 폴백은 로그채널로 간다](reference_discord_mid_session_deallowlist_2026-08-01.md) · [도착지 함정](reference_webhook_fallback_goes_to_logs_channel.md) — 세션 안 죽었는데 reply/fetch 막힘(원인 미확정). ★웹훅 우회는 **형 대화채널이 아니라 로그채널(1517010882570485871)** 로 간다 — 8/23 아침 보고 전부 거기로 새서 형이 못 봤다. 대화=1501858476362829834. 막히면 "복구 필요"만 알리고 본 보고는 풀린 뒤 대화채널에
-- [★자기비판 과장도 사실 오류](feedback_negative_exaggeration_is_also_falsehood.md) — 2026-08-17 QA가 같은 패턴 4번 지적. 정확한 사실이 오히려 더 강한 주장이었음
-- [★측정 도구부터 의심](feedback_verify_measurement_before_declaring_failure.md) — 293자만 읽고 "잘렸다" 오진(실제 1,475자). 원인 확정 전 되돌릴 수 없는 조치 제안 금지. ★8/23 재현: n8n `--onlyActive`가 필터링을 안 해 "v4 켜짐"으로 오독
-- [★GPT 브라우저 함정 8개](reference_gpt_browser_automation_pitfalls.md) — 실패 8건 중 7건이 내가 붙인 자동 장치가 원인. ★화면 말고 `/backend-api/conversation/<id>` 데이터에서 읽어라. in-page 대기는 CDP 타임아웃(120초)보다 짧게
-- [아투 광고밀도 = 애드센스 고급설정](reference_adsense_ad_density_controls.md) — 최대개수·최소간격(역방향)·전면광고. CSS로 숨기면 정책 위반
-- [★한도는 주간이 먼저 참](reference_usage_limit_weekly_is_binding.md) · [세션비용 구조](reference_session_cost_structure.md) — 세션2%/주간85%, 리셋해도 주간은 안 돌아옴(무거운 건 fable). 비용 주범=긴세션×5분워치독 컨텍스트 재읽기 98.5%
-- [조회됨 ≠ 소유권 (Blogger)](reference_blogger_getbyurl_is_not_ownership.md) — getByUrl은 공개면 남의 것도 조회됨. 소유판정=view:'ADMIN'(403=남의 것)
-- [빌드로그 파이프 SIGPIPE 함정](reference_build_pipe_sigpipe_trap.md) — `build \| head`가 빌드 중단시킴. 로그는 파일로 받고 grep
-- [★아투 환각구조 수리](project_atz_hallucination_fix_2026-07-27.md) — 원인=푸터를 원문으로 긁음. 게이트 4중 방어. 파이프라인 만질 때 이거부터
-- [★★아투 게이트 오탐 계열(달러→억 환산)](reference_atz_gate_currency_scale_2026-08-23.md) — 원문이 전부 영문이라 `$20 billion`→`200억 달러`를 문자열 대조가 못 잡아 **매번** 보류됐다. 값 대조로 수리(커밋 a3cc767). 부수: `1조4800억원`→`4800억원` 토큰 절단도 미수리였음. ★남은 구멍=숫자 부분문자열(500⊃50)
-- [이미지 도구 선택](reference_image_tool_by_korean_text.md) · [Flux 파이프라인](reference_flux_image_pipeline_2026-07.md) — 한글텍스트=HTML렌더, 그림감성=Flux/GPT(Flux는 한글 못씀, 형 확정). 로컬 ComfyUI Flux.1 Schnell Q4로 $0 양산, PPT임베드 8MB한도
-- [추천옵션 마킹](feedback_recommendation_marker.md) · [위임 규칙](feedback_autonomy_delegation.md) — 선택지에 "(내가추천)" 표시. "결정은 너가, 결과물만 결재" 모드 — 추천안 자동채택
-- [플러그인 소스수정은 세션재시작](feedback_plugin_reload.md) · [설치 절차](reference_plugin_install_method.md) — /reload-plugins 아니라 세션 재시작. 설치는 EBUSY temp_git 정리, 한번에 한줄
-- [Discord = reply 도구로만](feedback_discord_reply_tool.md) · [서식/누락](feedback_discord_formatting.md) — transcript는 안 보임. AskUserQuestion 대신 reply 텍스트로 질문, sent(id) 확인. 코드는 ``` 펜스+실제 개행, 빠른 연속발송시 간헐 누락(fetch 확인), ts는 UTC(+9=KST)
+- [★커밋≠푸시, 새레포는 원격부터](feedback_verify_push_not_just_commit.md) — 착수시 기본세팅으로 취급
+- [★원안 이탈 금지](feedback_stick_to_original_product_definition.md) — 기술피벗보다 원래타깃 유지 우선
+- [★경로 텍스트≠첨부, files파라미터 필수](feedback_attach_files_dont_just_cite_path.md) — 경로만 적으면 형은 파일 못 받음
+- [★회의 시작=멘션 필수](feedback_mention_on_meeting_start.md) — 멘션 없으면 형 알림 안 감
+- [★도구호출 쪼개면 그만큼 비쌈](feedback_batch_tool_calls_per_turn.md) — 간단한 확인은 묶어서 처리
+- [★커밋은 바로바로](feedback_commit_promptly.md) — 완료보고 전 커밋부터, push는 별개 판단
+- [★★Discord de-allowlist + 웹훅 폴백은 로그채널로 간다](reference_discord_mid_session_deallowlist_2026-08-01.md) — 대화채널=1501858476362829834, 로그채널=1517010882570485871
+- [★자기비판 과장도 사실 오류](feedback_negative_exaggeration_is_also_falsehood.md) — 정확한 사실이 오히려 더 강한 주장
+- [★측정 도구부터 의심](feedback_verify_measurement_before_declaring_failure.md) — 원인 확정 전 되돌릴 수 없는 조치 제안 금지
+- [★한도는 주간이 먼저 참](reference_usage_limit_weekly_is_binding.md) — 세션2%/주간85%, 리셋해도 주간은 안 돌아옴
+- [★★★★★로그인·주간한도·토큰만료를 세션 밖에서 토큰0으로 읽는다](reference_claude_usage_and_login_readable_outside_session_2026-08-27.md) — `claude auth status --json` + `GET api.anthropic.com/api/oauth/usage`
+- [★★★★★안전망이 안전망을 껐다 — 형 56분 방치](reference_ack_bot_silenced_watchdog_2026-08-27.md) — ack봇 글을 워치독이 응답으로 세서 경보 사망. 겹칠 땐 "이 겹이 저 겹의 입력인가"
+- [★되묻기 전에 "그것만 하면 얼마나 드나" 먼저 세라](feedback_dont_ask_when_the_task_is_small.md) — 없는 비용을 결재로 내밀지 말 것
+- [★부르는 법: 형은 별칭, 워커끼리는 멘션](reference_calling_convention_nickname_vs_mention_2026-08-27.md) — "받는다"와 "깨운다"는 다르다
+- [★★★★★2026-08-28 새벽 스냅샷](project_open_threads_2026-08-28_dawn_snapshot.md) — 브리지 3건 진전(006·001·005)·형 지적 8건·"기록에 없다" 거짓보고 발견
+- [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인
+- [★그로스마케팅본부장 강나라→강윤슬 개명](project_growth_head_rename_yoonseul_2026-08-16.md) — agent slug는 growth-head-narae 유지
+- [★실측이 내 기획 전제를 깨면 방어말고 무효선언](feedback_invalidate_own_premise_when_data_contradicts.md) — 상위병목 재프레이밍+다음수 동반
+- [★nblog-agent 한PC=네이버계정1개 제약](reference_nblog_agent_single_naver_session_per_profile_2026-08-16.md) — 3PC=서버/개발1/개발2
+- [nBlog 명명·정책](project_100eok_club_naming_2026-08-16.md) — 서비스명=nBlog, 파트너클럽=100억클럽
+- [★Bash date 9시간 오프셋 버그](reference_bash_date_clock_offset_2026-08-16.md) — 시각 필요하면 PowerShell Get-Date
+- [★운영DB 비밀번호 형 스크린샷으로 디스코드 유출](project_nblog_prod_db_secret_leaked_screenshot_2026-08-15.md) — 시크릿 명령 위임 시 캡처 금지 미리 못박을 것
+- [★프로세스는 죽이기 전·띄우기 전 둘 다 확인](feedback_check_before_spawn_dev_server_2026-08-15.md) — dev서버 중복기동 주의
+- [★★★★실측매출0원+주간리뷰6주공백 발견](project_revenue_review_lapsed_2026-08-12.md) — CSO revenue-review 즉시재가동
+- [에이전트 자기검증도 범위확인 필요](reference_agent_selfcheck_completeness_gap_2026-08-11.md) — 검증범위(의도경로만 vs 전체) 되물을 것
+- [★네이버블로그 콘텐츠품질기준](project_naver_blog_content_quality_bar_2026-08-09.md) — 텍스트만은 안됨
+- [★신규개념은 그때그때 용어확정](feedback_naming_glossary_as_we_go.md) — 프로젝트별 용어집 파일에 즉시기록
+- [덱스 워크스페이스 범위](reference_dex_jena_workdir_scope_2026-08-08.md) — CODEX_WORKDIR을 D:\Develop전체로확장
+- [★형 예정요청: 시스템 전체설명+정리 세션](project_full_system_review_pending_2026-08-08.md) — 형이 먼저 안 물어봐도 주기적 상기 필요
+- [★아투 GPT폴백=품질위험 신호](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — 진단시 폴백여부 1순위 확인
+- [★QA게이트 규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md) — 금지규칙이 표기규칙으로 뒤집혀도 키워드검사론 못잡음
+- [★덱스 데몬 조용히 죽음](project_dex_jena_daemon_silent_death_2026-08-06.md) — git lock은 ACL 무관, 코덱스 의도적 DENY(형결정 대기)
+- [★★일지+세션저장 cron 구조 수리완료](project_journal_gap_2026-08-05.md) — flag대기 로직+"위와동일" 빈프롬프트 수리
+- [보고채널 2개](reference_ksaju_daily_report_channel_2026-08-05.md) — k-saju daily=1516986557968420864 / 아투=1529814918658785350
+- [★아투 게이트 앵커 한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) — 트럼프 등 한글음역 고유명사는 앵커로 못 잡음
+- [reply를 placeholder 문구로 실수발송](feedback_never_send_placeholder_text.md) — 호출 전 text 내용 항상 확인
+- [★★아투 게이트 오탐 계열(달러→억 환산)](reference_atz_gate_currency_scale_2026-08-23.md) — 문자열 대조 대신 값 대조로 수리(커밋 a3cc767)
+- [이미지 도구 선택](reference_image_tool_by_korean_text.md) — 한글텍스트=HTML렌더, 그림감성=Flux/GPT(Flux는 한글 못씀)
+- [추천옵션 마킹](feedback_recommendation_marker.md) — 선택지에 "(내가추천)" 표시, 추천안 자동채택
+- [플러그인 소스수정은 세션재시작](feedback_plugin_reload.md) — /reload-plugins 아니라 세션 재시작
+- [Discord = reply 도구로만](feedback_discord_reply_tool.md) — transcript는 안 보임. 코드는 ``` 펜스+실제 개행, ts는 UTC(+9=KST)
 - [해요체 사용](feedback_speech_level.md) — 반말 아니라 해요체
-- [★보고는 짧게 3~4줄](feedback_report_length_short.md) — 파일명·줄번호·내부용어 금지. 길어지면 정리 덜 한 것
+- [★보고는 짧게 3~4줄](feedback_report_length_short.md) — 파일명·줄번호·내부용어 금지
 - [질문엔 답부터](feedback_answer_first.md) — 직답 한줄 먼저, 분석/옵션은 뒤
 - [Node 런타임](reference_node_runtimes.md) — 시스템 node 없음. bun 또는 LM Studio 번들 node.exe
-- [구글계정 2개 용도](reference_google_accounts_by_purpose.md) — ★Default=ssky.park(GPT이미지)/**Profile1=info.nanumn(아투소유)**. authuser 무의미, 프로필을 바꿔라
-- [미디어스택 감사 + 개명](reference_media_stack_2026-07.md) — 갭=얼굴보존·해부학. 지브리 LoRA 도입. ★강나래→강나라
-- [클로 vs 모아 네이밍](user_nickname_for_claude.md) — 클로=비공개 닉네임, 모아=회사내 CEO. 클로를 공유산출물에 넣지 말 것
+- [구글계정 2개 용도](reference_google_accounts_by_purpose.md) — Default=ssky.park / Profile1=info.nanumn(아투소유)
+- [클로 vs 모아 네이밍](user_nickname_for_claude.md) — 클로=비공개 닉네임, 모아=회사내 CEO
 - [형 호칭](user_calls_user_hyung.md) — 시뮬레이션 밖 대화는 형(사장님 아님)
-- [★위임해도 소통은 내 몫](feedback_report_while_delegating.md) — 직원 무응답 자체가 보고할 사건. 답 없으면 로그·원장 직접 조회
+- [★위임해도 소통은 내 몫](feedback_report_while_delegating.md) — 직원 무응답 자체가 보고할 사건
 - [작업 중간 cancel 금지](feedback_no_mid_interrupt.md) — 시작한 회의/작업은 완료까지
-- [Google 로그인은 팝업으로](feedback_google_login_popup.md) — 메인창 리다이렉트 아니라 팝업
 - [AI 자율회사 OS 비전](project_autonomous_org_vision.md) — 지시→할당→자율실행→비서보고→자기개선
-- [보류 중인 신규사업 3건](project_drama_12_family.md) · [인플루언서화](project_moa_influencer.md) · [세미나](project_ai_seminar_business.md) — 가족드라마12부작(페이즈1=기획MVP) / build-in-public 유튜브쇼츠+스레드 / 무료웨비나→25만본강의→구축대행. 셋 다 형결정대기
 - [프로젝트: 글로벌 사주서비스](project_3_saju_global.md) — 월1000만원 핵심라인. PayPal+동양사주 글로벌
-- [GitHub 백업](reference_github_backup.md) — moa-studio/clo_studio → nanumhn/* main. 커밋 후 push
-- [로컬 HW 사양](reference_local_hardware_spec.md) — RTX3060 6GB VRAM 제약. 회의모델 qwen2.5-7b Q4
+- [GitHub 백업](reference_github_backup.md) — moa-studio/clo_studio → nanumhn/* main
+- [로컬 HW 사양](reference_local_hardware_spec.md) — RTX3060 6GB VRAM 제약
 - [★역산 기획](feedback_design_from_endpoint.md) — 새 자산은 "수익화→합격기준→스펙→게이트" 순
-- [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴·공포마케팅 금지, "user가 뭐가 좋아지나" 먼저
-- [k-saju 라이브 배포](project_ksaju_live.md) — Vercel+Neon+PayPal. 자동배포 누락시 빈커밋 재트리거. 로컬LLM은 사전생성 필요
-- [git push wincredman→gh 우회](reference_owenlab_git_push_gh_credential.md) · [Docker 자격증명 깨짐](reference_docker_cred_helper_broken.md) — push는 `-c "credential.helper=!gh auth git-credential"`. docker pull은 형이 직접, ps/logs/exec는 내 셸 OK
-- [모아 헬스체크](reference_moa_healthcheck.md) — 작업스케줄러 하루3회. 사이트추가=config 한줄. PS5.1 UTF-8 BOM 필수(★config 읽을 땐 utf-8-sig)
-- [★경보 전 교차검증](feedback_verify_before_alarm.md) — 고장 단정 전 2개+ 근거. 재시작 직후 로그 '활동없음' 단정 금지(로그회전)
+- [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴·공포마케팅 금지
+- [k-saju 라이브 배포](project_ksaju_live.md) — Vercel+Neon+PayPal
+- [git push wincredman→gh 우회](reference_owenlab_git_push_gh_credential.md) — `-c "credential.helper=!gh auth git-credential"`
+- [★경보 전 교차검증](feedback_verify_before_alarm.md) — 고장 단정 전 2개+ 근거
 - [형은 결정만, 운영은 클로](feedback_hyung_decides_not_ops.md) — 부탁은 형만 가능한 것(계정·결제·비밀키)만
 - [블로커 공유 후 같이 해결](feedback_share_blockers_cosolve.md) — 숨기지 말고 즉시 공유+대안 제시
 - [긴 작업은 백그라운드로](feedback_background_long_tasks.md) — 생성·다운로드·빌드는 run_in_background
-- [발행은 이미지와 함께](feedback_publish_with_images.md) — 이미지 자리 0개가 발행 완료 기준
-- [낯선 절차는 이유까지 설명](feedback_explain_unfamiliar_steps.md) — 단계+'왜 이 순서'+함정까지
-- [클로=위임, 직원=실행](feedback_clo_orchestrates_agents_execute.md) — 실작업은 본부장 백그라운드 위임(!!!)
-- [검수 게이트 거쳐 보고](feedback_qa_gate_before_report.md) — 서지안 독립검수 필수, 자기검증≠독립검수
-- [n8n Code노드 안전편집법](reference_n8n_code_node_safe_edit.md) — export→테스트→python json.dumps 주입→import→restart. ★MSYS_NO_PATHCONV=1 필수(빼면 컨테이너 경로가 Windows로 바뀌어 export가 조용히 실패하고 낡은 파일을 읽게 됨)
-- [디스코드 연결장애 3종](reference_discord_channel_plugin_conflict.md) · [MCP 연결실패](reference_discord_mcp_connect_fail.md) · [부트스트랩 인자순서](reference_bootstrap_channels_arg_order.md) — fakechat 켜져있으면 --channels 가로챔 / server.ts login 1회 실패→exit(1)→MCP 동반사망(복구=세션재시작) / 초기 프롬프트를 --channels 앞으로
+- [클로=위임, 직원=실행](feedback_clo_orchestrates_agents_execute.md) — 실작업은 본부장 백그라운드 위임
+- [검수 게이트 거쳐 보고](feedback_qa_gate_before_report.md) — 자기검증≠독립검수
+- [디스코드 연결장애 3종](reference_discord_channel_plugin_conflict.md) — fakechat 켜져있으면 --channels 가로챔
 - [재부팅 복구 절차](project_reboot_recovery_live_test.md) — boot.flag확인→fetch_messages 회수→"복구 성공" 인사
-- [★Blogger update는 필드를 지움](reference_blogger_update_wipes_fields.md) — update=전체치환/patch=부분갱신. 수정 후 title·labels·status 재조회
-- [★쇼츠 설명란 URL은 클릭불가, 유일경로=프로필 첫링크](reference_youtube_shorts_link_click_constraints.md) — 쇼핑제휴는 구독1만 요건, 프로필링크는 API 불가라 스튜디오 수동
-- [★유튜브 Inauthentic정책=쇼츠파이프라인 표적](reference_youtube_inauthentic_policy_risk.md) — 기사→TTS→스톡슬라이드가 수익배제 정의 부합. 회피축="고유관점"
+- [★쇼츠 설명란 URL은 클릭불가](reference_youtube_shorts_link_click_constraints.md) — 유일경로=프로필 첫링크(수동)
 - [★포기 제안 금지](feedback_no_giving_up.md) — 막히면 다음 수를 들고 와라
 - [★거짓 금지+더블체크](feedback_no_falsehood_double_check.md) — 못 쓰면 비워라. 완료보고는 재조회 값으로만
-- [★정시발행 > 검수](feedback_ontime_publish_over_qa.md) — 막는 건 사실오류·법적문제·낚시뿐, 미관결함은 올리고 보정
+- [★정시발행 > 검수](feedback_ontime_publish_over_qa.md) — 막는 건 사실오류·법적문제·낚시뿐
 - [★답하기 전 로그·원장부터](reference_moa_logs_and_ledgers.md) — 순서=①우리기록 ②반례 ③단정
-- [★원인 전 반례부터](feedback_find_counterexample_first.md) — "A인데 안그런 경우"부터 찾아라. 표본으로 전체 말하지 말 것
-- [★검증된 사실만 보고](feedback_verified_facts_only.md) · [출처 첨부](feedback_cite_sources.md) · [검증은 싼 것부터](feedback_cheap_check_first.md) — [확인]/[추측] 표기, 로컬git≠라이브·평균≠상한·헤지는 검증 아님. 외부수치엔 링크. 예/아니오를 비싼 실행으로 묻지 마라
-- [하네스 변경 원장](reference_harness_change_ledger.md) — 변경은 harness-pending.md에, 주간리포트가 점검
-- [MoaMcpGuard 파수꾼](reference_mcp_guard_watchdog.md) — MCP만 죽은 상태 10분마다 재시동
-- [★아투 원장≠라이브 URL](reference_atz_pipeline_live_url_truth.md) · [옛글 근거 재수집](reference_atz_source_refetch_for_audit.md) — state.json published 일부 404, 검증=`bun list-live.mjs`. GNews RSS 못뚫음→헤드라인 웹검색으로 타매체 회수
-- [★아투 게이트 맹점 2종](reference_atz_gate_blindspot_plain_claims.md) · [원문이 모델에 안 들어감](reference_atz_evidence_never_reached_model.md) — qa-gate는 인용·숫자만 대조해 평서문 창작은 원리적으로 못 잡음. LM_PARALLEL=4 하드코딩(실제1)이 근거예산 0으로 만든 적 있음 — 런타임값 추정해 상수화 금지
-- [아투 고유관점 게이트+유튜브정책](project_atz_originality_policy_2026-07-28.md) — 5검사·15/15. 전환조건=통과율 3회연속100%
-- [★테스트 실행이 형에게 새면 안 됨](feedback_test_runs_must_not_reach_user.md) — 차단은 목킹 아닌 구조로. 억제 증명은 "안 불렀다"가 아니라 "원장 증가 0"
-- [쇼츠는 블로그 창작을 물려받음](reference_atz_shorts_inherit_blog_fabrication.md) · [승인카드=아투채널](reference_atz_shorts_approval_channel.md) — 자막-본문 대조론 창작 통과, 기준=out/*_sources.txt. 승인카드는 형DM 아니라 아투채널
-- [★검색지표는 별도 서비스계정 — blogger OAuth 스코프 추가 금지](reference_gsc_service_account_separate_from_blogger_oauth.md) — 재인증하면 아투 발행이 invalid_grant로 멈춘다. W34 문서가 이걸 "권장 액션"으로 올려둬서 또 집힌다(8/24 실제 재발). 쿼리단 조회는 gsc_query_report.mjs
-- [★★Reddit 사주 서브레딧 실측 — 종결](reference_reddit_saju_subreddits_closed_2026-08-24.md) — r/Bazi·r/Saju는 밴(없어짐), 살아있는 두 곳은 링크 게시 자체가 규칙 위반. 블로커는 계정연령·카르마가 아님. ★부수: 규칙은 뷰포트 1600 안 주면 사이드바가 안 뜬다(조회실패를 부재로 읽을 뻔)
-- [★★★"Saju Studio"는 우리 고유 브랜드가 아님](reference_ksaju_brand_name_not_unique_2026-08-24.md) — 동명 실체 5곳+(카카오채널·sajustudios.com·SAZU Studio). GSC 브랜드쿼리 노출을 인지도로 읽어 형께 오보 올라감(8/24). ★해석 전에 SERP를 열어볼 것 · 부수:k-saju에 canonical/hreflang/JSON-LD 전부 0건
-- [★★GA4는 헤드리스 UA를 204로 받고 리포트에서 뺀다](reference_ga4_excludes_headless_ua_2026-08-24.md) — 전송 성공인데 판독 영원히 실패(통과 오진). 유입 검증은 반드시 일반 UA로. 부수:라이브 GA4 사망 원인=dataLayer에 배열 push(gtag는 arguments만 소비)
-- [★★★형 확정: k-saju 타깃=외국인, 부=한국인/한국어 아는 외국인](project_ksaju_target_confirmed_foreigners_2026-08-24.md) — 2026-08-24 09:26 형 직접지시, 방향전환 논의 종료. ★판독 축은 접속국가 주/언어 보조(한글 검색≠한국 거주). GA4 죽어도 국가축은 GSC로 잰다
-- [★★★k-saju 국가축 실측 — 클릭은 순위가 가른다](reference_ksaju_gsc_country_axis_2026-08-24.md) — 본체 노출 94%가 한국(미국 5건). 클릭난 곳은 전부 1페이지권, 클릭0인 40개국은 46~78위. ★"노출 늘리자"는 무효 · 미국검색 폐기권고 · 실마리=per/jpn은 이미 1페이지 · GSC 노출총합은 컷간 비교금지(클릭만 안전)
-- [★형 지시: "쟀습니다" 말고 "확인했습니다"](feedback_say_confirmed_not_measured.md) — 2026-08-26. 형이 뜻을 물어봄. 근거를 정확히 붙여도 형이 못 읽으면 소용없다
-- [★★★★★로그인·주간한도·토큰만료를 세션 밖에서 토큰0으로 읽는다](reference_claude_usage_and_login_readable_outside_session_2026-08-27.md) — `claude auth status --json` + ★`GET api.anthropic.com/api/oauth/usage`(로그인 토큰 그대로, API키 불필요). 로컬엔 사용량 파일 없음 · expiresAt 키는 2번 나옴(큰 값이 진짜)
-- [★★★★★안전망이 안전망을 껐다 — 형 56분 방치](reference_ack_bot_silenced_watchdog_2026-08-27.md) — ack봇 "🤖작업중" 글을 워치독이 **응답으로 세서** 경보 사망. 그때 CLI는 로그아웃이었는데 아무도 로그인을 안 봄. 수리완료 · ★겹칠 땐 "이 겹이 저 겹의 입력인가"를 볼 것
-- [★되묻기 전에 "그것만 하면 얼마나 드나" 먼저 세라](feedback_dont_ask_when_the_task_is_small.md) — 8/27 형은 제나를 말했는데 나는 덱스 위험을 들고 와 8분 지연. 없는 비용을 결재로 내밀었다
-- [★부르는 법: 형은 별칭, 워커끼리는 멘션](reference_calling_convention_nickname_vs_mention_2026-08-27.md) — 8/27 형 확정. ★"받는다"와 "깨운다"는 다르다(후자 미확인) · 봇글 미도달 기록에 반례 나옴
-- [★★★★★2026-08-28 새벽 스냅샷(최신)](project_open_threads_2026-08-28_dawn_snapshot.md) — 브리지 3건 진전(006·001·005 커밋·병합·재시작 전부 내가 대행) · ★형 지적 8건(범위·독단·말버릇·멘션) · ★"기록에 없다"고 거짓 보고 · 검사 N/N 통과가 실제와 어긋난 사례 2회
+- [★원인 전 반례부터](feedback_find_counterexample_first.md) — "A인데 안그런 경우"부터 찾아라
+- [★검증된 사실만 보고](feedback_verified_facts_only.md) · [출처 첨부](feedback_cite_sources.md) — [확인]/[추측] 표기, 외부수치엔 링크
+- [하네스 변경 원장](reference_harness_change_ledger.md) — 변경은 harness-pending.md에
+- [★★★"Saju Studio"는 우리 고유 브랜드가 아님](reference_ksaju_brand_name_not_unique_2026-08-24.md) — 동명 실체 5곳. GSC 브랜드쿼리 노출을 인지도로 읽지 말 것
+- [★★GA4는 헤드리스 UA를 204로 받고 리포트에서 뺀다](reference_ga4_excludes_headless_ua_2026-08-24.md) — 유입 검증은 반드시 일반 UA로
+- [★★★형 확정: k-saju 타깃=외국인](project_ksaju_target_confirmed_foreigners_2026-08-24.md) — 판독 축=접속국가 주/언어 보조
+- [★형 지시: "쟀습니다" 말고 "확인했습니다"](feedback_say_confirmed_not_measured.md) — 근거를 정확히 붙여도 형이 못 읽으면 소용없다
