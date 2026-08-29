@@ -1,4 +1,6 @@
 - [★★★★★클로 권한 축소(당분간 읽기·검수만)](feedback_temporary_restricted_authority_2026-08-28.md) — 형 승인 08-28 13:07, 상태변경은 형 승인 후에만·중요판단은 덱스·제나 독립대조 후
+- [★★★★★이슈방 메시지엔 항상 수신대상 멘션 붙이기](feedback_always_mention_target_in_shared_threads.md) — 형 지시 2026-08-29, 대상없는 상태보고·상호확인 메시지 금지(덱스 강화)
+- [★★★★실행 안 한 단계를 실행한 것처럼 묶어 보고 금지](feedback_dont_bundle_unexecuted_steps_as_done.md) — 덱스 지적 2026-08-29, git add 막혀 commit은 시도도 안 했는데 "둘 다 거부" 오기
 - [★★★★★"못 한다" 전에 메모리·.moa부터 검색](feedback_search_before_declaring_incapable.md) — 08-28 "스레드 생성 기능 없다"고 단정, 실은 moa_forum_thread.mjs 있었음
 - [★★★★★2026-08-29 새벽 스냅샷(최신)](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인) · 브리지 이슈 002 완전 해결·실물시험 성공 · 새 결재카드 형식 확정 · 클로 오류 3건
 - [★워커 병렬작업 브랜치·워크트리 규칙](reference_worker_branch_worktree_convention_2026-08-28.md) — 덱스 제안·형 승인 08-28, clo/jena 브랜치 접두사+통합은 덱스 담당
