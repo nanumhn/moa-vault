@@ -1,4 +1,9 @@
-- [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 캐러셀 9004 조사중·블로그 Vercel 장애·access.json 미반영, 이슈스레드 이어서 열 것
+- [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 9004: 정적성공·동적HIT실패로 원인2개 압축, 다음시험 설계중. 블로그 Vercel장애 미해결
+- [★★★★codex config.toml은 전역파일, 외부시스템접근엔 자동승인 효과없음](reference_codex_config_toml_global_scope_2026-08-30.md) — 덱스뿐 아니라 제나도 적용, SSH등 외부접근은 여전히 승인 필요
+- [★★★MOA관리자API(3888)로 덱스·제나 브리지 관리, 개별스케줄러 직접실행 금지](reference_moa_manager_api_2026-08-30.md) — /stop 128에러 버그, 강제재시작 안 됨(형 결재 필요)
+- [★★★덱스·제나 CLI 재시작 시 상태파일 락·Enter 미제출 함정](reference_dex_jena_cli_window_restart_gotchas_2026-08-30.md) — EnterOnly는 클로 세션에서 분류기 차단됨, 형이 직접 Enter 눌러야 함
+- [★★★승인권한 확대 요청엔 적용범위·실제해소여부부터 확인](feedback_flag_scope_before_loosening_approval_2026-08-30.md) — 08-30 확인됨, 손대기 전에 먼저 말할 것
+- [★★★★★승인된 작업의 실행방법이 불명확하면 먼저 확인](feedback_confirm_execution_method_when_ambiguous.md) — n8n import 사고(2026-08-30), 상태변경 소지 있으면 방법부터 컨펌
 - [★★★★★형이 감시 프로그램들을 통합 콘솔로 마이그레이션 중](project_unified_console_monitor_migration_2026-08-30.md) — 08-30 새벽 감시5종 태스크 형이 직접 disable, 재활성화 금지
 - [★★★★★덱스 CLI가 재부팅복구 직후 다시 죽음](project_dex_cli_died_shortly_after_boot_2026-08-30.md) — 08-30 05:43 ALIVE 확인 후 곧 프로세스 소실, 원인미확인, 재시작 여부 형 결재 대기
 - [★★★★★가드 통과용 "매직 문구" 코칭도 우회다](feedback_dont_coach_magic_phrase_past_guard.md) — 클로 지적 08-30, 승인이 실재해도 금지. 위임 관문이 워커 세션에도 걸리는 결함 기록 포함
@@ -16,7 +21,7 @@
 - [★★★★★이슈방 결재 요청은 형 대화방에도 알림+링크](feedback_approval_request_needs_dm_notice_link.md) — 형 지시 08-28, 카드만 이슈방에 두면 형이 못 찾음
 - [★★★★★규칙에 예외를 스스로 만들지 않는다](feedback_no_self_declared_exceptions.md) — 형 지시 08-28 "하네스 규칙 지침 룰은 예외 없이 모두 지킨다"
 - [★★★★★클로도 답변에 Shared_Rules 머리말·맺음줄 사용](feedback_clo_uses_shared_rules_tag.md) — 형 지시 08-28 "너도 당연히 쉐어룰을 따른다. 예외 없다"
-- [★★★형 결재 요청은 🟪 카드 한 장으로](feedback_approval_request_format_purple_card.md) — 형 지시 08-28. 보고와 섞지 말 것. 진짜 버튼 아닌 텍스트면 그렇게 명시할 것
+- [★★★★★형 결재 요청 최종양식: 5이모지+송장ID](feedback_approval_request_format_purple_card.md) — 08-30 확정, 🟪🟪🟪🟪🟪+REQ-YYYYMMDD-코드-순번. 보고와 섞지 말 것
 - [★★★★★다리는 보이는 화면만 읽는다 — 스크롤백 0](reference_bridge_reads_screen_only_no_scrollback_2026-08-26.md) — 덱스 27줄·제나 30줄 넘치면 앞이 영구 소실 · 워커는 먼저 말을 걸 수 없음(트리거 있을 때만)
 - [★★★★부모 CPU가 0이어도 노는 게 아니다](feedback_parent_cpu_zero_does_not_mean_idle_2026-08-26.md) — 자식(vitest 등)이 일하는 중일 수 있음. 판정=자식까지 합산+산출물 증가+직접 확인
 - [★★★★결과를 대신 알려줘도 승인 대기는 안 풀린다](reference_relaying_results_does_not_unblock_approval_2026-08-26.md) — 막힌 건 데이터가 아니라 실행 허가. "대신 돌렸으니 넘어가라" 금지
