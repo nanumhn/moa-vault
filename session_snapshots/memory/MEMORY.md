@@ -1,3 +1,4 @@
+- [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 캐러셀 9004 조사중·블로그 Vercel 장애·access.json 미반영, 이슈스레드 이어서 열 것
 - [★★★★★형이 감시 프로그램들을 통합 콘솔로 마이그레이션 중](project_unified_console_monitor_migration_2026-08-30.md) — 08-30 새벽 감시5종 태스크 형이 직접 disable, 재활성화 금지
 - [★★★★★덱스 CLI가 재부팅복구 직후 다시 죽음](project_dex_cli_died_shortly_after_boot_2026-08-30.md) — 08-30 05:43 ALIVE 확인 후 곧 프로세스 소실, 원인미확인, 재시작 여부 형 결재 대기
 - [★★★★★가드 통과용 "매직 문구" 코칭도 우회다](feedback_dont_coach_magic_phrase_past_guard.md) — 클로 지적 08-30, 승인이 실재해도 금지. 위임 관문이 워커 세션에도 걸리는 결함 기록 포함
