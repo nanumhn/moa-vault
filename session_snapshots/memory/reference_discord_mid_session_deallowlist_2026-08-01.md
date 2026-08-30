@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: a5faaf90-9bc4-408d-9eba-7ef115b04f4c
-  modified: 2026-08-15T05:38:36.057Z
+  modified: 2026-08-29T20:47:05.719Z
 ---
 
 2026-08-01 새벽 워치독 cron 도중 발생. 그 직전까지(같은 세션 안에서) `mcp__plugin_discord_discord__reply`·`fetch_messages`가 정상 동작해 여러 번 성공적으로 발송/조회했는데, 이후 호출부터 **세션 재시작 없이** 아래 에러로 막힘:
@@ -62,3 +62,6 @@ curl -H "Authorization: Bot $TOKEN" "https://discord.com/api/v10/channels/<chann
 
 ## 재발 2026-08-15 (14:00 세션리셋 직후, 부트스트랩 인사 발송 시도)
 `MoaSessionRestartDay`(14:00 세션만 재시작, 재부팅 아님) 직후 뜬 새 세션에서, 부트스트랩 절차 중 "복구 완료" 인사를 보내려는 첫 reply부터 즉시 막힘. 이번엔 **fetch_messages는 정상 동작**(최근 15개 정상 조회, 형 미응답 메시지 없음 확인)했고 **reply만** 막혔다 — 8/1(읽기만 막힘)·8/3(둘 다 막힘)과 또 다른 조합, 매번 막히는 조합이 다르다. 재시도 2회(문구 동일/문구 살짝 수정) 모두 동일 에러. `moa_webhook_send.ps1 -Path`로 SystemLogs 채널 폴백 발송 성공(`sent 1 chunk(s)`). 방금 재시작된 새 세션의 첫 호출부터 막힌 사례가 다시 나와 "세션 재시작=확정 복구법"이 아니라는 08-05 결론이 재확인됨. 근본원인 계속 미확정 — 원인 조사(access.json 외 런타임 소스 존재 여부)는 형 계정 접근이 필요해 보류 중.
+
+## 재발 2026-08-30 (04:00 재부팅 직후 새 세션, 부트스트랩 복구인사 발송 시도)
+재부팅 복구 세션의 부트스트랩 절차 중, 처음엔 `fetch_messages`가 정상 동작(최근 15개 정상 조회, 형 미응답 메시지 없음 확인)해서 그걸로 다운타임 유실 여부까지 확인했는데, 그 직후 "복구 완료" `reply`부터 즉시 막힘(재시도 1회도 동일). 이어서 `fetch_messages`도 재조회해보니 그새 **같이 막힘** — 8/29 오후 스냅샷([[project_open_threads_2026-08-29_afternoon_snapshot]])에 이미 "메인채널 not allowlisted 미해결"로 기록돼 있던 것과 동일 증상이 리셋을 넘어 계속 이어지는 것으로 보임(세션 재시작이 이번엔 복구를 안 시킴). `moa_webhook_send.ps1 -Path`로 SystemLogs 채널 폴백 발송 성공. **이 세션 저장 시점까지도 미해결** — 다음 세션은 재시도부터 해볼 것.

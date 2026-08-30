@@ -1,3 +1,6 @@
+- [★★★★★형이 감시 프로그램들을 통합 콘솔로 마이그레이션 중](project_unified_console_monitor_migration_2026-08-30.md) — 08-30 새벽 감시5종 태스크 형이 직접 disable, 재활성화 금지
+- [★★★★★덱스 CLI가 재부팅복구 직후 다시 죽음](project_dex_cli_died_shortly_after_boot_2026-08-30.md) — 08-30 05:43 ALIVE 확인 후 곧 프로세스 소실, 원인미확인, 재시작 여부 형 결재 대기
+- [★★★★★가드 통과용 "매직 문구" 코칭도 우회다](feedback_dont_coach_magic_phrase_past_guard.md) — 클로 지적 08-30, 승인이 실재해도 금지. 위임 관문이 워커 세션에도 걸리는 결함 기록 포함
 - [★★★★★덱스 상태스팸엔 답하지 않기](feedback_dont_reply_to_dex_status_spam.md) — 덱스 지시 2026-08-29, 멘션 작업지시·형 직접질문에만 응답. 훅 충돌시 최소 대응
 - [★★★★★Discord Stop훅은 멘션 무관 매 메시지 강제+긴 미전송텍스트도 막음](reference_discord_reply_hook_forces_reply_per_spam_message_2026-08-29.md) — 반복스팸 200회+ 실측, 버튼은 하네스 전용이라 내가 못 만듦
 - [★★★★★클로 권한 축소(당분간 읽기·검수만)](feedback_temporary_restricted_authority_2026-08-28.md) — 형 승인 08-28 13:07, 상태변경은 형 승인 후에만·중요판단은 덱스·제나 독립대조 후
