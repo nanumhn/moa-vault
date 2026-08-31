@@ -4,7 +4,7 @@ description: 2026-08-31 14:00 세션 리셋 직전 스냅샷 — IG 캐러셀 �
 metadata:
   type: project
   originSessionId: 1c673286-4329-4b1e-bbb7-136408636181
-  modified: 2026-08-31T05:25:50.736Z
+  modified: 2026-08-31T05:28:30.858Z
 ---
 
 **세션 종료 시점(2026-08-31 14:0x KST) 상태**
@@ -29,6 +29,9 @@ metadata:
 - `ksajuCarouselV5` 운영 반영 승인 — 도메인+credential 교체(오늘 실측 완료, 미반영)
 - nblog-saas `lint-fix-dex` → `main` 병합·배포 승인
 - 수익모델 3안 승인(08-12부터, 장기 이월)
+
+## ⚠️ 시급 — 내일 08:00 정기발행 재실패 위험
+- haru가 일지 작성 중 지적: `ksajuCarouselV5`가 옛 설정(도메인+구토큰) 그대로라 **내일 08:00 KST 정기 캐러셀 발행이 같은 원인으로 또 실패할 수 있음.** 형 결재 한 번(도메인+credential 교체)이면 풀림 — 다음 세션 최우선 확인 항목.
 
 ## 참고
 - 워치독 Monitor(`br9ewc27w`, 덱스·제나·아투 로그 ALERT/ERROR 감시)는 이 세션 한정이라 리셋되면 사라짐 — 다음 세션에서 재등록 필요(세션 시작 체크리스트 항목).
