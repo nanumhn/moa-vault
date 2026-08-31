@@ -6,7 +6,7 @@
 - [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 9004: 정적성공·동적HIT실패로 원인2개 압축, 다음시험 설계중. 블로그 Vercel장애 미해결
 - [★★★★codex config.toml은 전역파일, 외부시스템접근엔 자동승인 효과없음](reference_codex_config_toml_global_scope_2026-08-30.md) — 덱스뿐 아니라 제나도 적용, SSH등 외부접근은 여전히 승인 필요
 - [★★★★검색리포트 "노출페이지"는 색인수가 아니다](reference_gsc_report_pagecount_is_not_indexed_2026-08-31.md) — 하루치 노출URL수일 뿐. 아투 실제 색인 231/250(92%), 문제는 색인 아닌 랭킹
-- [★★★MOA관리자API(3888)로 덱스·제나 브리지 관리, 개별스케줄러 직접실행 금지](reference_moa_manager_api_2026-08-30.md) — /stop 128에러 버그, 강제재시작 안 됨(형 결재 필요)
+- [★★★MOA관리자API(3888)로 덱스·제나 브리지 관리, 개별스케줄러 직접실행 금지](reference_moa_manager_api_2026-08-30.md) — 2026-08-31 /restart 엔드포인트 생김(형 안내, 클로 미실측)
 - [★★★덱스·제나 CLI 재시작 시 상태파일 락·Enter 미제출 함정](reference_dex_jena_cli_window_restart_gotchas_2026-08-30.md) — EnterOnly는 클로 세션에서 분류기 차단됨, 형이 직접 Enter 눌러야 함
 - [★★★승인권한 확대 요청엔 적용범위·실제해소여부부터 확인](feedback_flag_scope_before_loosening_approval_2026-08-30.md) — 08-30 확인됨, 손대기 전에 먼저 말할 것
 - [★★★★★승인된 작업의 실행방법이 불명확하면 먼저 확인](feedback_confirm_execution_method_when_ambiguous.md) — n8n import 사고(2026-08-30), 상태변경 소지 있으면 방법부터 컨펌
