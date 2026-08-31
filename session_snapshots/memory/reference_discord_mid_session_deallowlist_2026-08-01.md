@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: a5faaf90-9bc4-408d-9eba-7ef115b04f4c
-  modified: 2026-08-29T20:47:05.719Z
+  modified: 2026-08-30T22:51:03.124Z
 ---
 
 2026-08-01 새벽 워치독 cron 도중 발생. 그 직전까지(같은 세션 안에서) `mcp__plugin_discord_discord__reply`·`fetch_messages`가 정상 동작해 여러 번 성공적으로 발송/조회했는데, 이후 호출부터 **세션 재시작 없이** 아래 에러로 막힘:
@@ -65,3 +65,6 @@ curl -H "Authorization: Bot $TOKEN" "https://discord.com/api/v10/channels/<chann
 
 ## 재발 2026-08-30 (04:00 재부팅 직후 새 세션, 부트스트랩 복구인사 발송 시도)
 재부팅 복구 세션의 부트스트랩 절차 중, 처음엔 `fetch_messages`가 정상 동작(최근 15개 정상 조회, 형 미응답 메시지 없음 확인)해서 그걸로 다운타임 유실 여부까지 확인했는데, 그 직후 "복구 완료" `reply`부터 즉시 막힘(재시도 1회도 동일). 이어서 `fetch_messages`도 재조회해보니 그새 **같이 막힘** — 8/29 오후 스냅샷([[project_open_threads_2026-08-29_afternoon_snapshot]])에 이미 "메인채널 not allowlisted 미해결"로 기록돼 있던 것과 동일 증상이 리셋을 넘어 계속 이어지는 것으로 보임(세션 재시작이 이번엔 복구를 안 시킴). `moa_webhook_send.ps1 -Path`로 SystemLogs 채널 폴백 발송 성공. **이 세션 저장 시점까지도 미해결** — 다음 세션은 재시도부터 해볼 것.
+
+## 재발 2026-08-31 (04:00 재부팅 직후 새 세션, 몇 차례 정상 발송 이후 도중 재차단)
+같은 재부팅 복구 세션 안에서 이번엔 **처음엔 정상 동작했다** — 부트스트랩 복구인사 reply 1건, 이슈스레드 확인 관련 reply 2건, 아투 보류큐 진행상황 reply 1건까지 전부 `sent (id: ...)`로 성공. 그런데 그 직후 아투 보류큐 최종 처리결과 reply부터 즉시 `channel ... is not allowlisted`로 막힘(동일 문구 재시도 1회도 동일). 곧바로 `fetch_messages`도 재조회하니 **같이 막힘**. 즉 "이 세션은 한 번도 성공한 적 없이 막혔는지"가 아니라 **정상 동작하다가 세션 도중에 갑자기 막히는 패턴**이 이번에도 재확인됨(=08-05 이전 관찰과 동일 계열, 재부팅 직후라고 예외 아님). `moa_webhook_send.ps1 -Path`로 SystemLogs 채널 폴백 발송 성공. 근본원인 여전히 미확정 — 이번에도 세션 재시작(다음 정기 리셋) 전 자연복구되는지 다음 사이클에서 재시도해 기록할 것.

@@ -1,12 +1,17 @@
+- [★★★★★W36 수익리뷰: 66일무매출 원인=게스트체크아웃 7일간 미병합](project_revenue_review_w36_2026-08-31.md) — 유입/전환아님·배포누락. 액션3개 실배분완료(9/2·9/3·9/4 검증)
+- [★★★★★IG카드5장 발행 성공(해결)](project_ig_carousel_observe_next_run_2026-08-31.md) — 원인=graph.instagram.com+구토큰. graph.facebook.com+새토큰으로 실게시 확인. 운영 미반영
+- [★★★★★이슈 종료 표시 형식](feedback_issue_closure_marker_format.md) — 형 지시 08-31, 🟩🟧🟥 이슈 종료 🟥🟧🟩 헤더 사용
+- [★★★★★W36 주간리포트: OAuth항목전제무효+SendMessage는배분도구아님](project_weekly_report_w36_2026-08-31.md) — 08-31, 색인진단으로교체·revenue-review재등록·GA4 1단계복구
 - [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 9004: 정적성공·동적HIT실패로 원인2개 압축, 다음시험 설계중. 블로그 Vercel장애 미해결
 - [★★★★codex config.toml은 전역파일, 외부시스템접근엔 자동승인 효과없음](reference_codex_config_toml_global_scope_2026-08-30.md) — 덱스뿐 아니라 제나도 적용, SSH등 외부접근은 여전히 승인 필요
+- [★★★★검색리포트 "노출페이지"는 색인수가 아니다](reference_gsc_report_pagecount_is_not_indexed_2026-08-31.md) — 하루치 노출URL수일 뿐. 아투 실제 색인 231/250(92%), 문제는 색인 아닌 랭킹
 - [★★★MOA관리자API(3888)로 덱스·제나 브리지 관리, 개별스케줄러 직접실행 금지](reference_moa_manager_api_2026-08-30.md) — /stop 128에러 버그, 강제재시작 안 됨(형 결재 필요)
 - [★★★덱스·제나 CLI 재시작 시 상태파일 락·Enter 미제출 함정](reference_dex_jena_cli_window_restart_gotchas_2026-08-30.md) — EnterOnly는 클로 세션에서 분류기 차단됨, 형이 직접 Enter 눌러야 함
 - [★★★승인권한 확대 요청엔 적용범위·실제해소여부부터 확인](feedback_flag_scope_before_loosening_approval_2026-08-30.md) — 08-30 확인됨, 손대기 전에 먼저 말할 것
 - [★★★★★승인된 작업의 실행방법이 불명확하면 먼저 확인](feedback_confirm_execution_method_when_ambiguous.md) — n8n import 사고(2026-08-30), 상태변경 소지 있으면 방법부터 컨펌
 - [★★★★★형이 감시 프로그램들을 통합 콘솔로 마이그레이션 중](project_unified_console_monitor_migration_2026-08-30.md) — 08-30 새벽 감시5종 태스크 형이 직접 disable, 재활성화 금지
 - [★★★★★덱스 CLI가 재부팅복구 직후 다시 죽음](project_dex_cli_died_shortly_after_boot_2026-08-30.md) — 08-30 05:43 ALIVE 확인 후 곧 프로세스 소실, 원인미확인, 재시작 여부 형 결재 대기
-- [★★★★★가드 통과용 "매직 문구" 코칭도 우회다](feedback_dont_coach_magic_phrase_past_guard.md) — 클로 지적 08-30, 승인이 실재해도 금지. 위임 관문이 워커 세션에도 걸리는 결함 기록 포함
+- [★★★★★가드 통과용 "매직 문구" 코칭도 우회다](feedback_dont_coach_magic_phrase_past_guard.md) — 08-31 확장: 위임관문이 워커뿐 아니라 오케스트레이터(main)도 cron턴에서 막음(코드 line 572-617), 위임해도 안 풀림
 - [★★★★★덱스 상태스팸엔 답하지 않기](feedback_dont_reply_to_dex_status_spam.md) — 덱스 지시 2026-08-29, 멘션 작업지시·형 직접질문에만 응답. 훅 충돌시 최소 대응
 - [★★★★★Discord Stop훅은 멘션 무관 매 메시지 강제+긴 미전송텍스트도 막음](reference_discord_reply_hook_forces_reply_per_spam_message_2026-08-29.md) — 반복스팸 200회+ 실측, 버튼은 하네스 전용이라 내가 못 만듦
 - [★★★★★클로 권한 축소(당분간 읽기·검수만)](feedback_temporary_restricted_authority_2026-08-28.md) — 형 승인 08-28 13:07, 상태변경은 형 승인 후에만·중요판단은 덱스·제나 독립대조 후
@@ -116,6 +121,7 @@
 - [★역산 기획](feedback_design_from_endpoint.md) — 새 자산은 "수익화→합격기준→스펙→게이트" 순
 - [사용자 가치 최우선](feedback_user_value_first.md) — 다크패턴·공포마케팅 금지
 - [k-saju 라이브 배포](project_ksaju_live.md) — Vercel+Neon+PayPal
+- [★★k-saju 가격은 코드가 아니라 Gumroad 상품 설정에 있다](reference_ksaju_price_lives_in_gumroad_not_code_2026-08-31.md) — 가격 A/B는 Gumroad 상품 생성이 선행, 코드 분기만으론 안 바뀜
 - [git push wincredman→gh 우회](reference_owenlab_git_push_gh_credential.md) — `-c "credential.helper=!gh auth git-credential"`
 - [★경보 전 교차검증](feedback_verify_before_alarm.md) — 고장 단정 전 2개+ 근거
 - [형은 결정만, 운영은 클로](feedback_hyung_decides_not_ops.md) — 부탁은 형만 가능한 것(계정·결제·비밀키)만
