@@ -1,6 +1,7 @@
 - [★★★★★W36 수익리뷰: 66일무매출 원인=게스트체크아웃 7일간 미병합](project_revenue_review_w36_2026-08-31.md) — 유입/전환아님·배포누락. 액션3개 실배분완료(9/2·9/3·9/4 검증)
 - [★★★★★IG카드5장 발행 성공(해결)](project_ig_carousel_observe_next_run_2026-08-31.md) — 원인=graph.instagram.com+구토큰. graph.facebook.com+새토큰으로 실게시 확인. 운영 미반영
 - [★★★★★이슈 종료 표시 형식](feedback_issue_closure_marker_format.md) — 형 지시 08-31, 🟩🟧🟥 이슈 종료 🟥🟧🟩 헤더 사용
+- [★★★★★2026-08-31 14:00 세션종료 스냅샷](project_open_threads_2026-08-31_midday_snapshot.md) — IG해결·nblog-saas main미병합 발견(lint-fix-dex에만 3커밋)·haru일지 완료미확인
 - [★★★★★W36 주간리포트: OAuth항목전제무효+SendMessage는배분도구아님](project_weekly_report_w36_2026-08-31.md) — 08-31, 색인진단으로교체·revenue-review재등록·GA4 1단계복구
 - [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 9004: 정적성공·동적HIT실패로 원인2개 압축, 다음시험 설계중. 블로그 Vercel장애 미해결
 - [★★★★codex config.toml은 전역파일, 외부시스템접근엔 자동승인 효과없음](reference_codex_config_toml_global_scope_2026-08-30.md) — 덱스뿐 아니라 제나도 적용, SSH등 외부접근은 여전히 승인 필요
