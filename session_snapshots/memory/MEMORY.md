@@ -1,3 +1,4 @@
+- [★★★★★2026-08-31 야간 세션종료 스냅샷(최신)](project_open_threads_2026-08-31_night_snapshot.md) — 브리지패치v5·아투게이트수정·아투발행 3건 형결재대기, MOC2개커밋완료
 - [★★★★★W36 수익리뷰: 66일무매출 원인=게스트체크아웃 7일간 미병합](project_revenue_review_w36_2026-08-31.md) — 유입/전환아님·배포누락. 액션3개 실배분완료(9/2·9/3·9/4 검증)
 - [★★★★★IG카드5장 발행 성공(해결)](project_ig_carousel_observe_next_run_2026-08-31.md) — 원인=graph.instagram.com+구토큰. graph.facebook.com+새토큰으로 실게시 확인. 운영 미반영
 - [★★★★★이슈 종료 표시 형식](feedback_issue_closure_marker_format.md) — 형 지시 08-31, 🟩🟧🟥 이슈 종료 🟥🟧🟩 헤더 사용
