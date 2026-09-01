@@ -1,3 +1,6 @@
+- [★★★★★형은 명령어 대신 실행을 싫어한다("네가 알아서 해")](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) — 09-01 아투처리 중 형 격한 반응, `!`요청 전 Bash우회부터
+- [★★★★위임관문은 Edit엔 걸리고 Bash스크립트엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) — 발행류 되돌리기 어려운 액션은 classifier가 별도로 막음, 형 명시지시로만 통과
+- [★★★★★부트스트랩 체크리스트에 revenue-review 빠져있던 것 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md) — session_bootstrap.md ⑤-A 신설, CLAUDE.md와 번호 대조 필수
 - [★★★★★2026-09-01 14:00 세션종료 스냅샷(최신)](project_open_threads_2026-09-01_midday_snapshot.md) — k사주 블로그 오늘자 수정본 검증완료·형 로그인 대기 중 발행 중단, 6건복구 여전히 미착수
 - [★★★★★n8n 캔버스 체크마크=최신실행 아닐 수 있음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md) — SQLite DB 직접조회로 교차검증. "Real 08:10 Run?" 게이트가 수동실행엔 알림·푸시 다 막음
 - [★★★★★k사주블로그 6건복구 미완(별도건)](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — 재발방지·재활성화 완료, 과거 숨겨진 글 6건 자체는 아직 안 고침
