@@ -1,3 +1,4 @@
+- [★★★★★2026-09-02 04:25 세션저장 스냅샷(최신)](project_open_threads_2026-09-02_dawn_snapshot.md) — 아투3건 처리완료·MOC4건 갱신, haru일지 완료확인 안 된 채 세션종료
 - [★★★★★형은 명령어 대신 실행을 싫어한다("네가 알아서 해")](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) — 09-01 아투처리 중 형 격한 반응, `!`요청 전 Bash우회부터
 - [★★★★위임관문은 Edit엔 걸리고 Bash스크립트엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) — 발행류 되돌리기 어려운 액션은 classifier가 별도로 막음, 형 명시지시로만 통과
 - [★★★★★부트스트랩 체크리스트에 revenue-review 빠져있던 것 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md) — session_bootstrap.md ⑤-A 신설, CLAUDE.md와 번호 대조 필수
