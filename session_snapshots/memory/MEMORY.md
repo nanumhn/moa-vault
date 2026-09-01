@@ -1,3 +1,4 @@
+- [★★★★★2026-09-01 14:00 세션종료 스냅샷(최신)](project_open_threads_2026-09-01_midday_snapshot.md) — k사주 블로그 오늘자 수정본 검증완료·형 로그인 대기 중 발행 중단, 6건복구 여전히 미착수
 - [★★★★★n8n 캔버스 체크마크=최신실행 아닐 수 있음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md) — SQLite DB 직접조회로 교차검증. "Real 08:10 Run?" 게이트가 수동실행엔 알림·푸시 다 막음
 - [★★★★★k사주블로그 6건복구 미완(별도건)](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — 재발방지·재활성화 완료, 과거 숨겨진 글 6건 자체는 아직 안 고침
 - [★★★★★2026-08-31 야간 세션종료 스냅샷(최신)](project_open_threads_2026-08-31_night_snapshot.md) — 브리지패치v5·아투게이트수정·아투발행 3건 형결재대기, MOC2개커밋완료
