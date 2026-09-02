@@ -4,7 +4,8 @@
 - [★★★★★케이사주 IG캐러셀 진짜 원인=토큰무효화(도메인아님)](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) — 장기토큰 교체로 수리완료, 자동갱신스크립트는 여전히 구credential 대상
 - [★★★★로그인화면 떠도 바로 "안된다" 하지 말고 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) — 형 지시 09-02, n8n localhost vs 127.0.0.1 세션 스코프 달랐음
 - [★★★★무응답관문은 서브에이전트도 막지만 해소수단은 메인뿐](reference_silence_gate_blocks_subagents_no_relief_2026-09-02.md) — haru 코드조회 확정, 막히면 디스코드 한줄+재개지시
-- [★★★★★2026-09-02 14:00 세션종료 스냅샷(최신)](project_open_threads_2026-09-02_midday_snapshot.md) — nblog간격6h 운영적용완료·아투/IG발행 수리완료·랩실커밋 미완(haru대기)
+- [★★★★★2026-09-03 새벽 세션종료 스냅샷(최신)](project_open_threads_2026-09-03_dawn_snapshot.md) — 엔블005-02 8h→6h 운영배포완료, AI is Life~! 블로그 개별값 반영 미확인(덱스CLI정체)
+- [2026-09-02 14:00 세션종료 스냅샷(구)](project_open_threads_2026-09-02_midday_snapshot.md) — nblog간격6h 운영적용완료·아투/IG발행 수리완료·랩실커밋 미완(haru대기)
 - [★★★★★형은 명령어 대신 실행을 싫어한다("네가 알아서 해")](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) — 09-01 아투처리 중 형 격한 반응, `!`요청 전 Bash우회부터
 - [★★★★위임관문은 Edit엔 걸리고 Bash스크립트엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) — 발행류 되돌리기 어려운 액션은 classifier가 별도로 막음, 형 명시지시로만 통과
 - [★★★★★부트스트랩 체크리스트에 revenue-review 빠져있던 것 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md) — session_bootstrap.md ⑤-A 신설, CLAUDE.md와 번호 대조 필수
