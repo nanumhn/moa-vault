@@ -1,4 +1,9 @@
-- [★★★★★2026-09-02 04:25 세션저장 스냅샷(최신)](project_open_threads_2026-09-02_dawn_snapshot.md) — 아투3건 처리완료·MOC4건 갱신, haru일지 완료확인 안 된 채 세션종료
+- [★★★★★워커(덱스·제나) 부를 땐 이름텍스트 말고 실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) — 형 지시 09-02, "덱스,"처럼 이름만 쓰고 멘션태그 빠뜨린 실수 지적받음
+- [★★★★★토큰 발급 시 만료시간·장기여부까지 확인 후 완료선언](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) — 형 지시 09-02, 단기토큰만 넣고 "고쳤다"고 했다가 지적받음
+- [★★★★★케이사주 IG캐러셀 진짜 원인=토큰무효화(도메인아님)](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) — 장기토큰 교체로 수리완료, 자동갱신스크립트는 여전히 구credential 대상
+- [★★★★로그인화면 떠도 바로 "안된다" 하지 말고 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) — 형 지시 09-02, n8n localhost vs 127.0.0.1 세션 스코프 달랐음
+- [★★★★무응답관문은 서브에이전트도 막지만 해소수단은 메인뿐](reference_silence_gate_blocks_subagents_no_relief_2026-09-02.md) — haru 코드조회 확정, 막히면 디스코드 한줄+재개지시
+- [★★★★★2026-09-02 04:25 세션저장 스냅샷(최신, 완료됨)](project_open_threads_2026-09-02_dawn_snapshot.md) — 아투3건 처리완료·MOC4건 갱신·haru일지 완료·랩실/모아창고 커밋푸시 전부 완료
 - [★★★★★형은 명령어 대신 실행을 싫어한다("네가 알아서 해")](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) — 09-01 아투처리 중 형 격한 반응, `!`요청 전 Bash우회부터
 - [★★★★위임관문은 Edit엔 걸리고 Bash스크립트엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) — 발행류 되돌리기 어려운 액션은 classifier가 별도로 막음, 형 명시지시로만 통과
 - [★★★★★부트스트랩 체크리스트에 revenue-review 빠져있던 것 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md) — session_bootstrap.md ⑤-A 신설, CLAUDE.md와 번호 대조 필수
