@@ -1,22 +1,18 @@
+- [★★★★★덱스·제나 정확한 디스코드ID(오타 3연발 방지)](reference_dex_jena_discord_ids_2026-09-02.md) — 덱스=...069599855, 이 파일에서 복붙할 것
 - [★★★★★워커(덱스·제나) 부를 땐 이름텍스트 말고 실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) — 형 지시 09-02, "덱스,"처럼 이름만 쓰고 멘션태그 빠뜨린 실수 지적받음
 - [★★★★★토큰 발급 시 만료시간·장기여부까지 확인 후 완료선언](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) — 형 지시 09-02, 단기토큰만 넣고 "고쳤다"고 했다가 지적받음
 - [★★★★★케이사주 IG캐러셀 진짜 원인=토큰무효화(도메인아님)](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) — 장기토큰 교체로 수리완료, 자동갱신스크립트는 여전히 구credential 대상
 - [★★★★로그인화면 떠도 바로 "안된다" 하지 말고 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) — 형 지시 09-02, n8n localhost vs 127.0.0.1 세션 스코프 달랐음
 - [★★★★무응답관문은 서브에이전트도 막지만 해소수단은 메인뿐](reference_silence_gate_blocks_subagents_no_relief_2026-09-02.md) — haru 코드조회 확정, 막히면 디스코드 한줄+재개지시
-- [★★★★★2026-09-02 04:25 세션저장 스냅샷(최신, 완료됨)](project_open_threads_2026-09-02_dawn_snapshot.md) — 아투3건 처리완료·MOC4건 갱신·haru일지 완료·랩실/모아창고 커밋푸시 전부 완료
+- [★★★★★2026-09-02 14:00 세션종료 스냅샷(최신)](project_open_threads_2026-09-02_midday_snapshot.md) — nblog간격6h 운영적용완료·아투/IG발행 수리완료·랩실커밋 미완(haru대기)
 - [★★★★★형은 명령어 대신 실행을 싫어한다("네가 알아서 해")](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) — 09-01 아투처리 중 형 격한 반응, `!`요청 전 Bash우회부터
 - [★★★★위임관문은 Edit엔 걸리고 Bash스크립트엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) — 발행류 되돌리기 어려운 액션은 classifier가 별도로 막음, 형 명시지시로만 통과
 - [★★★★★부트스트랩 체크리스트에 revenue-review 빠져있던 것 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md) — session_bootstrap.md ⑤-A 신설, CLAUDE.md와 번호 대조 필수
-- [★★★★★2026-09-01 14:00 세션종료 스냅샷(최신)](project_open_threads_2026-09-01_midday_snapshot.md) — k사주 블로그 오늘자 수정본 검증완료·형 로그인 대기 중 발행 중단, 6건복구 여전히 미착수
 - [★★★★★n8n 캔버스 체크마크=최신실행 아닐 수 있음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md) — SQLite DB 직접조회로 교차검증. "Real 08:10 Run?" 게이트가 수동실행엔 알림·푸시 다 막음
 - [★★★★★k사주블로그 6건복구 미완(별도건)](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — 재발방지·재활성화 완료, 과거 숨겨진 글 6건 자체는 아직 안 고침
-- [★★★★★2026-08-31 야간 세션종료 스냅샷(최신)](project_open_threads_2026-08-31_night_snapshot.md) — 브리지패치v5·아투게이트수정·아투발행 3건 형결재대기, MOC2개커밋완료
 - [★★★★★W36 수익리뷰: 66일무매출 원인=게스트체크아웃 7일간 미병합](project_revenue_review_w36_2026-08-31.md) — 유입/전환아님·배포누락. 액션3개 실배분완료(9/2·9/3·9/4 검증)
-- [★★★★★IG카드5장 발행 성공(해결)](project_ig_carousel_observe_next_run_2026-08-31.md) — 원인=graph.instagram.com+구토큰. graph.facebook.com+새토큰으로 실게시 확인. 운영 미반영
 - [★★★★★이슈 종료 표시 형식](feedback_issue_closure_marker_format.md) — 형 지시 08-31, 🟩🟧🟥 이슈 종료 🟥🟧🟩 헤더 사용
-- [★★★★★2026-08-31 14:00 세션종료 스냅샷](project_open_threads_2026-08-31_midday_snapshot.md) — IG해결·nblog-saas main미병합 발견(lint-fix-dex에만 3커밋)·haru일지 완료미확인
 - [★★★★★W36 주간리포트: OAuth항목전제무효+SendMessage는배분도구아님](project_weekly_report_w36_2026-08-31.md) — 08-31, 색인진단으로교체·revenue-review재등록·GA4 1단계복구
-- [★★★★★2026-08-30 오후 스냅샷(최신)](project_open_threads_2026-08-30_afternoon_snapshot.md) — 인스타 9004: 정적성공·동적HIT실패로 원인2개 압축, 다음시험 설계중. 블로그 Vercel장애 미해결
 - [★★★★codex config.toml은 전역파일, 외부시스템접근엔 자동승인 효과없음](reference_codex_config_toml_global_scope_2026-08-30.md) — 덱스뿐 아니라 제나도 적용, SSH등 외부접근은 여전히 승인 필요
 - [★★★★검색리포트 "노출페이지"는 색인수가 아니다](reference_gsc_report_pagecount_is_not_indexed_2026-08-31.md) — 하루치 노출URL수일 뿐. 아투 실제 색인 231/250(92%), 문제는 색인 아닌 랭킹
 - [★★★MOA관리자API(3888)로 덱스·제나 브리지 관리, 개별스케줄러 직접실행 금지](reference_moa_manager_api_2026-08-30.md) — 2026-08-31 /restart 엔드포인트 생김(형 안내, 클로 미실측)
@@ -32,8 +28,6 @@
 - [★★★★★이슈방 메시지엔 항상 수신대상 멘션 붙이기](feedback_always_mention_target_in_shared_threads.md) — 형 지시 2026-08-29, 대상없는 상태보고·상호확인 메시지 금지(덱스 강화)
 - [★★★★실행 안 한 단계를 실행한 것처럼 묶어 보고 금지](feedback_dont_bundle_unexecuted_steps_as_done.md) — 덱스 지적 2026-08-29, git add 막혀 commit은 시도도 안 했는데 "둘 다 거부" 오기
 - [★★★★★"못 한다" 전에 메모리·.moa부터 검색](feedback_search_before_declaring_incapable.md) — 08-28 "스레드 생성 기능 없다"고 단정, 실은 moa_forum_thread.mjs 있었음
-- [★★★★★2026-08-29 오후 스냅샷(최신)](project_open_threads_2026-08-29_afternoon_snapshot.md) — G7/G8 라이브배포·검증티켓 3290b25 병합·메인채널 not allowlisted 미해결·덱스CLI 재시작 2회
-- [2026-08-29 새벽 스냅샷](project_open_threads_2026-08-29_dawn_snapshot.md) — 클로 권한 축소(형 승인)·브리지 이슈 002 해결·새 결재카드 형식 확정
 - [★워커 병렬작업 브랜치·워크트리 규칙](reference_worker_branch_worktree_convention_2026-08-28.md) — 덱스 제안·형 승인 08-28, clo/jena 브랜치 접두사+통합은 덱스 담당
 - [★★★★★클로는 자신을 직접 멘션한 메시지에만 반응](feedback_respond_only_when_mentioned.md) — 형 지시 08-28 "멘션에만 반응". 단 Stop훅은 멘션무관 실측(위 참고)
 - [★★★★★덱스 상태보고마다 확인 달지 않기](feedback_dont_ack_every_dex_status.md) — 덱스 지적 08-28 "하나하나 보고하는 구조 아님", 검수 요청 시에만 개입
@@ -92,12 +86,9 @@
 - [★★★★★안전망이 안전망을 껐다 — 형 56분 방치](reference_ack_bot_silenced_watchdog_2026-08-27.md) — ack봇 글을 워치독이 응답으로 세서 경보 사망. 겹칠 땐 "이 겹이 저 겹의 입력인가"
 - [★되묻기 전에 "그것만 하면 얼마나 드나" 먼저 세라](feedback_dont_ask_when_the_task_is_small.md) — 없는 비용을 결재로 내밀지 말 것
 - [★부르는 법: 형은 별칭, 워커끼리는 멘션](reference_calling_convention_nickname_vs_mention_2026-08-27.md) — "받는다"와 "깨운다"는 다르다
-- [★★★★★2026-08-28 새벽 스냅샷](project_open_threads_2026-08-28_dawn_snapshot.md) — 브리지 3건 진전(006·001·005)·형 지적 8건·"기록에 없다" 거짓보고 발견
 - [★작업배정시 지시출처 명시](feedback_label_instruction_source_when_delegating.md) — 형직접지시 vs 팀제안 구분 안하면 판단 오인
-- [★그로스마케팅본부장 강나라→강윤슬 개명](project_growth_head_rename_yoonseul_2026-08-16.md) — agent slug는 growth-head-narae 유지
 - [★실측이 내 기획 전제를 깨면 방어말고 무효선언](feedback_invalidate_own_premise_when_data_contradicts.md) — 상위병목 재프레이밍+다음수 동반
 - [★nblog-agent 한PC=네이버계정1개 제약](reference_nblog_agent_single_naver_session_per_profile_2026-08-16.md) — 3PC=서버/개발1/개발2
-- [nBlog 명명·정책](project_100eok_club_naming_2026-08-16.md) — 서비스명=nBlog, 파트너클럽=100억클럽
 - [★Bash date 9시간 오프셋 버그](reference_bash_date_clock_offset_2026-08-16.md) — 시각 필요하면 PowerShell Get-Date
 - [★운영DB 비밀번호 형 스크린샷으로 디스코드 유출](project_nblog_prod_db_secret_leaked_screenshot_2026-08-15.md) — 시크릿 명령 위임 시 캡처 금지 미리 못박을 것
 - [★프로세스는 죽이기 전·띄우기 전 둘 다 확인](feedback_check_before_spawn_dev_server_2026-08-15.md) — dev서버 중복기동 주의
