@@ -1,3 +1,4 @@
+- [★★★★★남의 hedge된 보고에 내 추측 결론을 얹어 확정처럼 전달 금지](feedback_dont_stack_own_inference_on_others_hedge_2026-09-03.md) — 형 지적 09-03, 덱스 "가능성" 보고에 "그러니 DB이전 필요없다" 덧붙였다 지적받음
 - [★★★★★2026-09-03 14:00 오후 세션종료 스냅샷(최신)](project_open_threads_2026-09-03_afternoon_snapshot.md) — MOC5개 갱신·커밋·푸시 완료, haru 오전일지 미완료(agentId addcdcbdc4d7d2ae7)로 세션 끝남
 - [★★★★★형이 09-04 08:10 케이사주 블로그 발행결과 직접확인 요청](project_ksaju_blog_0810_check_request_2026-09-03.md) — frontmatter버그 패치 후 다음날 정기실행 검증, 실패시원인까지
 - [★★★★★덱스·제나 정확한 디스코드ID(오타 3연발 방지)](reference_dex_jena_discord_ids_2026-09-02.md) — 덱스=...069599855, 이 파일에서 복붙할 것
