@@ -1,3 +1,4 @@
+- [★★★★★형이 09-04 08:10 케이사주 블로그 발행결과 직접확인 요청](project_ksaju_blog_0810_check_request_2026-09-03.md) — frontmatter버그 패치 후 다음날 정기실행 검증, 실패시원인까지
 - [★★★★★덱스·제나 정확한 디스코드ID(오타 3연발 방지)](reference_dex_jena_discord_ids_2026-09-02.md) — 덱스=...069599855, 이 파일에서 복붙할 것
 - [★★★★★워커(덱스·제나) 부를 땐 이름텍스트 말고 실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) — 형 지시 09-02, "덱스,"처럼 이름만 쓰고 멘션태그 빠뜨린 실수 지적받음
 - [★★★★★토큰 발급 시 만료시간·장기여부까지 확인 후 완료선언](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) — 형 지시 09-02, 단기토큰만 넣고 "고쳤다"고 했다가 지적받음
@@ -10,6 +11,7 @@
 - [★★★★위임관문은 Edit엔 걸리고 Bash스크립트엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) — 발행류 되돌리기 어려운 액션은 classifier가 별도로 막음, 형 명시지시로만 통과
 - [★★★★★부트스트랩 체크리스트에 revenue-review 빠져있던 것 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md) — session_bootstrap.md ⑤-A 신설, CLAUDE.md와 번호 대조 필수
 - [★★★★★n8n 캔버스 체크마크=최신실행 아닐 수 있음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md) — SQLite DB 직접조회로 교차검증. "Real 08:10 Run?" 게이트가 수동실행엔 알림·푸시 다 막음
+- [★★★★★k사주 발행 파이프라인 2건 수리완료(간지오행 자동교정+프론트매터 이중펜스)](project_ksaju_blog_publish_pipeline_hardened_2026-09-03.md) — 09-03 완료. ★구현 전 산출물 read-path 추적 교훈
 - [★★★★★k사주블로그 6건복구 미완(별도건)](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — 재발방지·재활성화 완료, 과거 숨겨진 글 6건 자체는 아직 안 고침
 - [★★★★★W36 수익리뷰: 66일무매출 원인=게스트체크아웃 7일간 미병합](project_revenue_review_w36_2026-08-31.md) — 유입/전환아님·배포누락. 액션3개 실배분완료(9/2·9/3·9/4 검증)
 - [★★★★★이슈 종료 표시 형식](feedback_issue_closure_marker_format.md) — 형 지시 08-31, 🟩🟧🟥 이슈 종료 🟥🟧🟩 헤더 사용
