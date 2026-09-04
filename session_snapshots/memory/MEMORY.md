@@ -1,7 +1,8 @@
-- [★★★★★2026-09-04 새벽 세션종료 스냅샷(최신)](project_open_threads_2026-09-04_dawn_snapshot.md) — [엔블005-01]커밋대기·nblog DB이전 진행중·하루일지 미완료로 세션 끝남
+- [★★★★★2026-09-04 14:00 오후 세션종료 스냅샷(최신)](project_open_threads_2026-09-04_afternoon_snapshot.md) — 블로그08:10미실행 발견(원인미확인)·IG캐러셀사고 수리완료·엔블005-01 원인확정·클로 커밋승인 대기중 세션끝남
+- [★★★★★블로그 08:10 자동발행이 09-04 아예 실행 자체가 안 됨](project_open_threads_2026-09-04_afternoon_snapshot.md) — n8n 실행기록에 트리거 흔적 자체가 없음(IG처럼 실패도 아님), 원인 미확인, 다음 세션 최우선
+- [2026-09-04 새벽 세션종료 스냅샷(구)](project_open_threads_2026-09-04_dawn_snapshot.md) — [엔블005-01]커밋대기·nblog DB이전 진행중·하루일지 미완료로 세션 끝남
 - [★★★★★남의 hedge된 보고에 내 추측 결론을 얹어 확정처럼 전달 금지](feedback_dont_stack_own_inference_on_others_hedge_2026-09-03.md) — 형 지적 09-03, 덱스 "가능성" 보고에 "그러니 DB이전 필요없다" 덧붙였다 지적받음
-- [★★★★★2026-09-03 14:00 오후 세션종료 스냅샷(최신)](project_open_threads_2026-09-03_afternoon_snapshot.md) — MOC5개 갱신·커밋·푸시 완료, haru 오전일지 미완료(agentId addcdcbdc4d7d2ae7)로 세션 끝남
-- [★★★★★형이 09-04 08:10 케이사주 블로그 발행결과 직접확인 요청](project_ksaju_blog_0810_check_request_2026-09-03.md) — frontmatter버그 패치 후 다음날 정기실행 검증, 실패시원인까지
+- [2026-09-03 14:00 오후 세션종료 스냅샷(구)](project_open_threads_2026-09-03_afternoon_snapshot.md) — MOC5개 갱신·커밋·푸시 완료, haru 오전일지 미완료(agentId addcdcbdc4d7d2ae7)로 세션 끝남
 - [★★★★★덱스·제나 정확한 디스코드ID(오타 3연발 방지)](reference_dex_jena_discord_ids_2026-09-02.md) — 덱스=...069599855, 이 파일에서 복붙할 것
 - [★★★★★워커(덱스·제나) 부를 땐 이름텍스트 말고 실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) — 형 지시 09-02, "덱스,"처럼 이름만 쓰고 멘션태그 빠뜨린 실수 지적받음
 - [★★★★★토큰 발급 시 만료시간·장기여부까지 확인 후 완료선언](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) — 형 지시 09-02, 단기토큰만 넣고 "고쳤다"고 했다가 지적받음
