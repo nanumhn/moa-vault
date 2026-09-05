@@ -1,3 +1,5 @@
+- [★★★★★제나 무응답 원인=CLI 아니라 다리 주입 차단(직접 타이핑은 정상)](project_jena_bridge_injection_blocked_2026-09-06.md) — 프로세스 생존만 보고 판정 말 것, 다리 index.mjs 판정로직 미확인
+- [★★★★★규칙 지적해놓고 형이 약식승인하면 나도 그 규칙 지켜야](feedback_dont_flag_rule_then_break_it_2026-09-05.md) — D4 미달 지적 후 "승인"만 받고 바로 커밋, 형이 "우리는 규칙이 없어?"라고 지적
 - [★★★★★시각 보고는 항상 UTC+9(KST)로 변환해서 말할 것](feedback_always_report_time_in_kst_2026-09-05.md) — 디스코드 ts는 UTC, 그대로 말하면 형과 9시간 어긋남
 - [★★★★★분류기가 운영배포 등 막으면 형께 CLI실행 반복요청 말고 덱스에게 위임](feedback_delegate_to_dex_when_classifier_blocks_2026-09-05.md) — 형 지시 09-05
 - [★★★★★위임관문은 형 문구가 '새 턴'으로 와야 인식(도구호출 중엔 tool_result로 감싸져 못읽음)](reference_delegation_gate_needs_fresh_turn_2026-09-05.md) — 막히면 도구호출 멈추고 턴 끝낸 뒤 재시도, 오류보고엔 형이 칠 정확한 문구를 인용구로 박을 것
