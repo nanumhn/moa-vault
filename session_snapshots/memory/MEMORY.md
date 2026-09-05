@@ -1,3 +1,6 @@
+- [★★★★★형 지시: 클로에겐 코드 수정 배정 금지 — 클로=테스트·검수, 제나=코드](feedback_clo_tests_jena_codes_2026-09-06.md) — 09-06 03:53, 진단·검증은 계속 클로 몫이나 구현은 제나에게 넘길 것
+- [★★★★★워커 멘션 무응답은 받는 쪽 아니라 보내는 쪽 allowedMentions부터](reference_worker_mention_needs_allowedmentions_2026-09-06.md) — <@숫자ID>가 허용목록에 없으면 message.mentions에 안 담겨 verdict=context로 죽음, 커밋 b81c705로 수리
+- [★★★★세션 시작 직후 guard-report G6이 모든 [확인:] 표기를 오탐 반려](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) — 세션 .jsonl 미생성 탓, G4와 물림. 괄호 근거로 우회
 - [★★★★★제나 무응답 원인=CLI 아니라 다리 주입 차단(직접 타이핑은 정상)](project_jena_bridge_injection_blocked_2026-09-06.md) — 프로세스 생존만 보고 판정 말 것, 다리 index.mjs 판정로직 미확인
 - [★★★★★규칙 지적해놓고 형이 약식승인하면 나도 그 규칙 지켜야](feedback_dont_flag_rule_then_break_it_2026-09-05.md) — D4 미달 지적 후 "승인"만 받고 바로 커밋, 형이 "우리는 규칙이 없어?"라고 지적
 - [★★★★★시각 보고는 항상 UTC+9(KST)로 변환해서 말할 것](feedback_always_report_time_in_kst_2026-09-05.md) — 디스코드 ts는 UTC, 그대로 말하면 형과 9시간 어긋남
