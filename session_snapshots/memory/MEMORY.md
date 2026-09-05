@@ -1,4 +1,8 @@
-- [★★★★★[엔블 005-05] 형 확정 가격정책 전문(월39000원 등) — 다음세션 최우선](project_enbl00505_pricing_policy_2026-09-05.md) — VAT포함·원단위절삭 확정, 잔여 4항목만 재질문
+- [★★★★★시각 보고는 항상 UTC+9(KST)로 변환해서 말할 것](feedback_always_report_time_in_kst_2026-09-05.md) — 디스코드 ts는 UTC, 그대로 말하면 형과 9시간 어긋남
+- [★★★★★분류기가 운영배포 등 막으면 형께 CLI실행 반복요청 말고 덱스에게 위임](feedback_delegate_to_dex_when_classifier_blocks_2026-09-05.md) — 형 지시 09-05
+- [★★★★★위임관문은 형 문구가 '새 턴'으로 와야 인식(도구호출 중엔 tool_result로 감싸져 못읽음)](reference_delegation_gate_needs_fresh_turn_2026-09-05.md) — 막히면 도구호출 멈추고 턴 끝낸 뒤 재시도, 오류보고엔 형이 칠 정확한 문구를 인용구로 박을 것
+- [★★★★사전저장cron이 등록돼도 실제 flag는 안 만들 수 있음](reference_presave_cron_flag_missed_2026-09-05.md) — 스레드 폭주 중 04시 근처면 session_saved.flag 직접 확인할 것
+- [★★★★★[엔블 005-05] 형 확정 가격정책 전문(월39000원 등) — 다음세션 최우선](project_enbl00505_pricing_policy_2026-09-05.md) — ★천원단위절삭(100원 아님, 형 예시로 정정됨)·VAT포함 확정, 잔여 3항목만 재질문
 - [★★★★★완료보고는 클로→덱스, 형께는 덱스가 최종보고](feedback_reporting_chain_via_dex_2026-09-05.md) — 형 지시 09-05, 매단계 형이 직접 챙기게 하지 말 것
 - [★★★★★육안확인 요청은 ✅✅✅✅✅ 확인 요청(Ctrl+F5) ✅✅✅✅✅ 헤더로](feedback_visual_check_marker_format_2026-09-05.md) — 🟪결재/🟥위임관문오류와 세번째 짝
 - [★★★★★위임관문 오류는 🟥🟥🟥🟥🟥 위임 관문 오류 🟥🟥🟥🟥🟥 헤더로](feedback_delegation_gate_error_marker_format_2026-09-05.md) — 형 지시 09-05, 바쁜 스레드에서 안 묻히게
