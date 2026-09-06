@@ -1,3 +1,6 @@
+- [★★★★★배포는 제나 담당, 클로는 테스트·검수만 (위험작업 금지)](feedback_clo_no_deploy_owner_is_jena_2026-09-06.md) — 09-06 형 지시, 분류기 막히면 형께 문구 요청 말고 제나·덱스에게 넘길 것
+- [★★★★★이슈 진행보고는 이슈 스레드에만, 형 대화방 금지](feedback_issue_reports_stay_in_issue_thread_2026-09-06.md) — 09-06 형 2회 지적, 대화방엔 형 질문 답변·결재 알림링크만
+- [★★★★★덱스·제나 CLI 화면은 읽기전용 조회 가능 + cli_windows.json pid는 어긋날 수 있음](reference_dex_jena_cli_screen_read_and_pid_mismatch_2026-09-06.md) — 09-06 덱스가 코덱스 업데이트 모달에 멈춰 무응답, 세션시작 시 화면 확인 절차 필요
 - [★★★★★형 지시: 클로에겐 코드 수정 배정 금지 — 클로=테스트·검수, 제나=코드](feedback_clo_tests_jena_codes_2026-09-06.md) — 09-06 03:53, 진단·검증은 계속 클로 몫이나 구현은 제나에게 넘길 것
 - [★★★★★워커 멘션 무응답은 받는 쪽 아니라 보내는 쪽 allowedMentions부터](reference_worker_mention_needs_allowedmentions_2026-09-06.md) — <@숫자ID>가 허용목록에 없으면 message.mentions에 안 담겨 verdict=context로 죽음, 커밋 b81c705로 수리
 - [★★★★세션 시작 직후 guard-report G6이 모든 [확인:] 표기를 오탐 반려](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) — 세션 .jsonl 미생성 탓, G4와 물림. 괄호 근거로 우회
