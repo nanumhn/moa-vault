@@ -1,4 +1,10 @@
-- [★★★★★2026-09-06 14:00 오전 세션종료 스냅샷(최신)](project_open_threads_2026-09-06_morning_snapshot.md) — 엔블005-06 배포완료·아투 보류3건 나흘째·쇼츠 4슬롯 결번·역할 재배정
+- [★★★★★다른 워커에게 지시·통제 금지 — 자료와 검수결과만 준다](feedback_dont_command_other_workers_2026-09-06.md) — 09-06 형 지적. 제외된 상태에서도 제나에게 계속 명령했음. 재촉도 지시다
+- [★★★★★"돌긴 하는데 세어지지 않는" 병 — 하루에 네 곳에서 나옴](reference_runs_but_not_counted_pattern_2026-09-06.md) — skipped=true·출력형식 불일치·러너 0건. 통과 옆의 상태 플래그를 같이 볼 것
+- [★★★★★확인 전에 입 열지 말 것 — 내 추측 한 줄이 세 사람을 움직인다](feedback_dont_churn_team_with_unverified_claims_2026-09-06.md) — 09-06 형 지적. [추측] 딱지는 나를 면책할 뿐 팀을 멈추지 않음
+- [★★★★★기록이 없는 것 ≠ 문제가 없는 것 · 진단을 성과로 내밀지 말 것](feedback_absence_of_record_is_not_absence_of_problem_2026-09-06.md) — 09-06 형 지적, 쇼츠원장만 보고 6주간 아투 정상 오보. 성공판정=공개URL 200 육안확인
+- [★★★★★아투 매일 결번의 진짜 원인=게이트 이중경로 판정불일치(미수리)](project_atz_gate_dual_path_disparity_2026-09-06.md) — 발행땐 bodyMd·재검수땐 html 로 평문화가 갈려 통과할 글이 막힘. 증거 .moa/evidence/atu001_20260906
+- [★★★★★2026-09-06 20:10 오후 세션 스냅샷(최신) · 아투 발행 성공](project_open_threads_2026-09-06_afternoon_snapshot.md) — 결재 2건 형 승인대기·쉐어룰 원복상태·아투 보류는 3건 아니라 1건
+- [★★★★★2026-09-06 14:00 오전 세션종료 스냅샷](project_open_threads_2026-09-06_morning_snapshot.md) — 엔블005-06 배포완료·아투 보류3건 나흘째·쇼츠 4슬롯 결번·역할 재배정
 - [★★★★★중간 결재건은 덱스에게 위임, 형께는 마감 보고만](feedback_interim_approvals_delegated_to_dex_2026-09-06.md) — 09-06 형 지시 "나는 필요 없는 존재야" 직후, 형께 승인 요청 금지
 - [★★★★★배포는 제나 담당, 클로는 테스트·검수만 (위험작업 금지)](feedback_clo_no_deploy_owner_is_jena_2026-09-06.md) — 09-06 형 지시, 분류기 막히면 형께 문구 요청 말고 제나·덱스에게 넘길 것
 - [★★★★★이슈 진행보고는 이슈 스레드에만, 형 대화방 금지](feedback_issue_reports_stay_in_issue_thread_2026-09-06.md) — 09-06 형 2회 지적, 대화방엔 형 질문 답변·결재 알림링크만
