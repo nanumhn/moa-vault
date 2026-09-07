@@ -1,3 +1,6 @@
+- [★★★일 끝난 서브에이전트는 그 자리에서 정리한다](feedback_stop_finished_subagents_2026-09-07.md) — 09-07 7명이 5~6시간 idle 방치. 리셋으로 사라지는 건 치운 게 아님. 정리 전 산출물 파일 확인 필수
+- ["대기해, 말 걸지 마"를 하네스가 실행 불가능하게 만든다](reference_harness_forces_speech_when_told_to_wait_2026-09-07.md) — Stop훅이 침묵을 차단. 그 방 말고 다른 방으로 회신 돌리는 게 현재 최선. 같은 계열 결함 3개
+- [★★★★★제외된 이슈엔 "자료만"·"상시 몫" 명분으로도 다시 들어가지 않는다](feedback_dont_reenter_after_being_excluded_2026-09-07.md) — 09-07 형 화내심. 덱스가 3번 빠지라 했는데 재진입. ★배포사고를 막았어도 정당화 안 됨
 - [★★★★★2026-09-07 14:00 리셋 직전 스냅샷(최신)](project_open_threads_2026-09-07_afternoon_snapshot.md) — 예약4건완료·미수리4건(전부 제나몫)·형결재2건·형대화방 송신막힘(이슈방은 정상)·엔블005-07은 클로 제외
 - [★★★★★매출·고정비 원장 상충 2건 종결 — SSOT=Gumroad /v2/sales, 무매출 기준일 07-03](project_ksaju_ledger_ssot_resolved_2026-09-07.md) — ksaju_ledger_snapshot.mjs:74 날짜버그 미수리(매일 오차 누적). W36 "66일"과 오늘 66일은 우연히 같은 숫자
 - [★★★★★다른 워커에게 지시·통제 금지 — 자료와 검수결과만 준다](feedback_dont_command_other_workers_2026-09-06.md) — 09-06 형 지적. 제외된 상태에서도 제나에게 계속 명령했음. 재촉도 지시다
