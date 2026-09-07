@@ -1,3 +1,6 @@
+- [★★★★★스케줄러에서 Disabled 인 작업은 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) — 형 지시 09-07. 브리지는 관리자API만. 실행하면 정본과 중복돼 메시지 2번 전달됨
+- [★★★★★reply의 chat_id에 받은 방 번호를 그대로 넣지 말 것](feedback_reply_chatid_must_be_hyung_room_not_inbound_2026-09-07.md) — 09-07 제외된 005-07 스레드에 직접 글 올린 사고. 형 방은 항상 1501858476362829834
+- [★★★★★재부팅 후 덱스 브리지 2개 뜨는지 반드시 재확인](project_dex_bridge_duplicate_recheck_after_reboot_2026-09-07.md) — 형 지시 09-07. 예약작업 Disable만으론 안 끝남(이미 뜬 프로세스는 안 죽음)·파일명은 밑줄/job id는 하이픈·브리지는 2단(껍데기+node)
 - [★★★일 끝난 서브에이전트는 그 자리에서 정리한다](feedback_stop_finished_subagents_2026-09-07.md) — 09-07 7명이 5~6시간 idle 방치. 리셋으로 사라지는 건 치운 게 아님. 정리 전 산출물 파일 확인 필수
 - ["대기해, 말 걸지 마"를 하네스가 실행 불가능하게 만든다](reference_harness_forces_speech_when_told_to_wait_2026-09-07.md) — Stop훅이 침묵을 차단. 그 방 말고 다른 방으로 회신 돌리는 게 현재 최선. 같은 계열 결함 3개
 - [★★★★★제외된 이슈엔 "자료만"·"상시 몫" 명분으로도 다시 들어가지 않는다](feedback_dont_reenter_after_being_excluded_2026-09-07.md) — 09-07 형 화내심. 덱스가 3번 빠지라 했는데 재진입. ★배포사고를 막았어도 정당화 안 됨
