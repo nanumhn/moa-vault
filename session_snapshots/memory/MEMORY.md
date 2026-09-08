@@ -1,3 +1,7 @@
+- [★★★★★세션이 유휴 중에 조용히 죽어 30~40분마다 재생성되는 루프(진행중)](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 가드·한도·로그인·크래시 전부 아님. 원인 미확정, 창 닫힘 가설 미검증
+- [★★★★Monitor 필터에 엔블 005-07 제외 추가(내 판단, 형 보고 대기)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md) — 덱스가 그 방에서 일하며 워치독 도배(7.5h 18건 전부 그 방). 클로는 제외된 방이라 처리 불가 경보
+- [★★★★★워커 첨부는 그 워커 턴이 돌 때 저장된다 — 직후 부재를 고장으로 읽지 말 것](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 09-08 내가 1분반 보고 "제나 첨부 고장" 오보, 실제론 4분 뒤 정상 저장. 덱스도 같은 날 rg 앵커로 같은 실수
+- [★★★★★형 DM방 송신차단 원인 확정 — 형이 그 방에 한 줄 보내면 복구](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — DM은 groups 아니라 allowFrom 판정. dmChannelUsers 맵이 세션마다 비어서 생김. access.json 손대지 말 것
 - [★★★★★2026-09-08 14:00 리셋 직전 스냅샷(최신)](project_open_threads_2026-09-08_afternoon_snapshot.md) — 형대화방 송신차단(원인미확인·내 첫진단 틀림)·인스타 게시여부 미판정·아투보류3건 전부 게이트오탐·클로 허가외 방 재발위반
 - [★★★★★2026-09-08 04:00 재부팅 직전 스냅샷](project_open_threads_2026-09-07_night_snapshot.md) — 형대화방 차단 지속·클로 도배사고로 형 격노(추방 검토)·덱스브리지 중복 재발확인 필요·엔블006 DB이전 신설
 - [★★★★★스케줄러에서 Disabled 인 작업은 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) — 형 지시 09-07. 브리지는 관리자API만. 실행하면 정본과 중복돼 메시지 2번 전달됨
