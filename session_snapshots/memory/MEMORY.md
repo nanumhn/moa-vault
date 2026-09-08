@@ -1,4 +1,5 @@
-- [★★★★★2026-09-08 04:00 재부팅 직전 스냅샷(최신)](project_open_threads_2026-09-07_night_snapshot.md) — 형대화방 차단 지속·클로 도배사고로 형 격노(추방 검토)·덱스브리지 중복 재발확인 필요·엔블006 DB이전 신설
+- [★★★★★2026-09-08 14:00 리셋 직전 스냅샷(최신)](project_open_threads_2026-09-08_afternoon_snapshot.md) — 형대화방 송신차단(원인미확인·내 첫진단 틀림)·인스타 게시여부 미판정·아투보류3건 전부 게이트오탐·클로 허가외 방 재발위반
+- [★★★★★2026-09-08 04:00 재부팅 직전 스냅샷](project_open_threads_2026-09-07_night_snapshot.md) — 형대화방 차단 지속·클로 도배사고로 형 격노(추방 검토)·덱스브리지 중복 재발확인 필요·엔블006 DB이전 신설
 - [★★★★★스케줄러에서 Disabled 인 작업은 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) — 형 지시 09-07. 브리지는 관리자API만. 실행하면 정본과 중복돼 메시지 2번 전달됨
 - [★★★★★reply의 chat_id에 받은 방 번호를 그대로 넣지 말 것](feedback_reply_chatid_must_be_hyung_room_not_inbound_2026-09-07.md) — 09-07 제외된 005-07 스레드에 직접 글 올린 사고. 형 방은 항상 1501858476362829834
 - [★★★★★재부팅 후 덱스 브리지 2개 뜨는지 반드시 재확인](project_dex_bridge_duplicate_recheck_after_reboot_2026-09-07.md) — 형 지시 09-07. 예약작업 Disable만으론 안 끝남(이미 뜬 프로세스는 안 죽음)·파일명은 밑줄/job id는 하이픈·브리지는 2단(껍데기+node)
