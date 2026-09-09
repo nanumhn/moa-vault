@@ -57,3 +57,13 @@ metadata:
 - 디버그 크롬에 탭을 여러 번 열어 형 화면에 창이 튀어나오게 했다.
 
 관련: [[project_atz_gpt_project_home_broken_2026-09-09]] · [[project_atz_qwen_fallback_hold_blocked_blog_2026-09-09]] · [[project_atz_gate_dual_path_disparity_2026-09-06]]
+
+---
+
+## 13:47~13:55 세션마감분 추가 (리셋 직전 최종)
+
+- **일지·MOC 완료** — 랩실 커밋 `a5dcfe2` 푸시 완료.
+  일지 `70 Record/2026/09/2026-09-09.md`(73줄, 하루 작성) · MOC 3건 갱신(아메리칸 투데이·쇼츠 자동화·하네스 운영).
+- **손대지 않은 MOC 3건**: 모아 스튜디오 · k-saju · 네이버 블로그 SaaS.
+  신선도 검사에는 걸렸지만 **내가 직접 확인한 근거가 없어** 추측으로 채우지 않았다. 다음 세션이 근거를 갖고 갱신할 것.
+- **모아 스튜디오 레포 커밋 2건**(`45e8120`·`ea2b2ed`)은 브랜치 `feat/youtube-publish-wiring` 에 푸시돼 있다. main 아님.
