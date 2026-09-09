@@ -85,3 +85,35 @@ HEAD 코드를 임시 폴더에 복사해 돌려도 **16 passed / 0 failed**. �
 **보류 파일의 `status` 필드는 현재 상태가 아니라 보류된 시점의 상태다.** 발행 여부는 `state.json`의 `published` 제목 대조 + 공개 URL 200으로만 판정할 것. 결재 `REQ-20260907-ATZHELD-01` 로 형께 상정함.
 
 관련 [[reference_atz_gpt_fallback_quality_risk_2026-08-07]] [[reference_qa_gate_rule_inversion_blindspot_2026-08-07]] [[feedback_check_tool_can_false_pass]]
+
+---
+
+## 2026-09-09 07:5x — 원인 확정. 2줄이고, 아직 미커밋이다.
+
+`git diff tools/atz-pipeline/qa-gate.mjs` 직접 열람 결과 **작업트리에만 있는 2줄 수리**가 그것이었다(커밋 안 됨, `git status` = `M`):
+
+```diff
+-  const plainText = bodyMd ? bodyMd.replace(/\s+/g, ' ') : htmlToPlain(html);
++  const plainText = htmlToPlain(html);
+```
+
+**왜 두 경로가 갈렸나 — 이게 정확한 기전이다.**
+`qaGate({ ..., bodyMd })` 에서
+- **생성 경로**(`runGenerate`)는 `bodyMd` 를 넘긴다 → 옛 코드가 `bodyMd.replace(/\s+/g,' ')` 를 쓴다 →
+  **소제목 경계 처리가 없다** → 소제목이 다음 문단 첫 문장에 붙는다.
+- **재발행 경로**(`runFromPayload`)는 `bodyMd: ''` 를 넘긴다 → `htmlToPlain(html)` 로 떨어진다 →
+  소제목 경계가 살아 있다 → 통과.
+
+즉 "같은 원고, 같은 근거, 다른 판정"의 원인은 게이트 로직이 아니라 **호출자가 넘기는 인자**였다.
+
+**실측 증거 1건**: `out/2026-09-06T09-45-10_pm_payload.json` (제목 "트럼프의 AI 붐…").
+09-06 19:03 생성 경로에서 `기관 행위 주장 근거` FAIL — 사유 `원문에 없는 기관 행위 주장 1건: "확인 관세청"`.
+본문 실제 문구는 `📰 사실 확인` (h3) + `관세청은 올해 누적 수출액이…` 이고, **"관세청"은 원문에도 있다**(`grep -c` = 1).
+소제목 꼬리 `확인` + 다음 문장 머리 `관세청` 을 이어 읽어 없는 기관을 만들어낸 것.
+**payload 파일은 손대지 않았는데**(mtime 09-06 19:03, result.json과 동일 · `.orig-held.json` 없음)
+09-09 `--from --dry` 로 돌리면 **12/12 통과**한다.
+
+**★위험**: 이 2줄이 커밋되지 않은 채로 있어서 누가 `git checkout`/`git restore` 한 번만 하면 오탐이 되살아난다.
+회귀시험 픽스처가 `미국 관세청` 이라 자기면역인 문제도 그대로다 — 실제 문구 `관세청` 으로 바꿔야 실패한다.
+**형 결재 올림**: `REQ-20260909-ATZHOLD-01` (09-09 07:5x, 메시지 `1547017862617632871`). 담당 = 제나.
+관련: [[project_atz_qwen_fallback_hold_blocked_blog_2026-09-09]]

@@ -1,3 +1,7 @@
+- [★★★★★2026-09-09 14:00 리셋 직전 스냅샷(최신)](project_open_threads_2026-09-09_afternoon_snapshot.md) — ★19:30이 아투 GPT 수리 후 첫 실전 회차, 다음 세션이 결과 확인할 것. 미해결 7건·내 오류 6건
+- [★★★★★아투 GPT 작성 실패의 진짜 원인 — 프로젝트 홈은 메인 경유로만 열린다 (해결·커밋 ea2b2ed)](project_atz_gpt_project_home_broken_2026-09-09.md) — "로그인 안 됨"은 거짓 이름표였다. 출력 형식이 ChatGPT 프로젝트 지침에만 있던 것도 같이 수리
+- [★★★★★2026-09-09 아투 결번 — ChatGPT 로그인 끊김→qwen 폴백→보류. 그 보류가 오보를 막았다](project_atz_qwen_fallback_hold_blocked_blog_2026-09-09.md) — 게이트 12/12 통과한 원고가 호르무즈를 "팔라만트 제도"로 7회 창작. 지명환각·오역 검사 자체가 없음
+- [★★★★guard-report G4는 백틱 안의 [확인: 근거]를 지우고 검사한다](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) — 근거 하나는 반드시 평문으로. G8(경로 인용 거부)과 서로 물림
 - [★★★★★2026-09-09 04:00 재부팅 직전 스냅샷(최신)](project_open_threads_2026-09-09_dawn_snapshot.md) — 세션 유휴사망 루프(원인미확정)·블로그PM 09-07이후 중단·MOC 3건 미갱신·클로 오류2건
 - [★★★★★세션이 유휴 중에 조용히 죽어 30~40분마다 재생성되는 루프(진행중)](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 가드·한도·로그인·크래시 전부 아님. 원인 미확정, 창 닫힘 가설 미검증
 - [★★★★Monitor 필터에 엔블 005-07 제외 추가(내 판단, 형 보고 대기)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md) — 덱스가 그 방에서 일하며 워치독 도배(7.5h 18건 전부 그 방). 클로는 제외된 방이라 처리 불가 경보
