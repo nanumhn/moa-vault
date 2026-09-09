@@ -1,5 +1,6 @@
+- [★★★★★2026-09-10 04:00 재부팅 직전 스냅샷(최신)](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건 형판단대기·덱스 결재 22:53부터 멈춤·예약이 세션과 함께 죽어 실제 손실
 - [★★★★★2026-09-09 19:30 아투 PM — GPT 수리 통함, 대신 결함 3건](project_atz_pm_20260909_gpt_ok_but_three_defects.md) — 미국기사에 서울사진 2장·분량미달인데 공개(gate.ok는 판정에 안 들어감)·라벨대조 오탐. 전부 제나 몫
-- [★★★★★2026-09-09 14:00 리셋 직전 스냅샷(최신)](project_open_threads_2026-09-09_afternoon_snapshot.md) — ★19:30이 아투 GPT 수리 후 첫 실전 회차, 다음 세션이 결과 확인할 것. 미해결 7건·내 오류 6건
+- [★★★★★2026-09-09 14:00 리셋 직전 스냅샷](project_open_threads_2026-09-09_afternoon_snapshot.md) — ★19:30이 아투 GPT 수리 후 첫 실전 회차, 다음 세션이 결과 확인할 것. 미해결 7건·내 오류 6건
 - [★★★★★아투 GPT 작성 실패의 진짜 원인 — 프로젝트 홈은 메인 경유로만 열린다 (해결·커밋 ea2b2ed)](project_atz_gpt_project_home_broken_2026-09-09.md) — "로그인 안 됨"은 거짓 이름표였다. 출력 형식이 ChatGPT 프로젝트 지침에만 있던 것도 같이 수리
 - [★★★★★2026-09-09 아투 결번 — ChatGPT 로그인 끊김→qwen 폴백→보류. 그 보류가 오보를 막았다](project_atz_qwen_fallback_hold_blocked_blog_2026-09-09.md) — 게이트 12/12 통과한 원고가 호르무즈를 "팔라만트 제도"로 7회 창작. 지명환각·오역 검사 자체가 없음
 - [★★★★guard-report G4는 백틱 안의 [확인: 근거]를 지우고 검사한다](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) — 근거 하나는 반드시 평문으로. G8(경로 인용 거부)과 서로 물림
