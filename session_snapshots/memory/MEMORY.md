@@ -187,3 +187,4 @@
 - [★★★"Saju Studio"는 우리 고유 브랜드가 아님](reference_ksaju_brand_name_not_unique_2026-08-24.md) — 동명 실체 5곳. GSC 브랜드쿼리 노출을 인지도로 읽지 말 것
 - [★★GA4는 헤드리스 UA를 204로 받고 리포트에서 뺀다](reference_ga4_excludes_headless_ua_2026-08-24.md) — 유입 검증은 반드시 일반 UA로
 - [★★★형 확정: k-saju 타깃=외국인](project_ksaju_target_confirmed_foreigners_2026-08-24.md) — 판독 축=접속국가 주/언어 보조
+- [★★★★케이사주 인스타는 매일 성공1+실패2로 끝난다 — 카드는 정상, 감시가 무의미](reference_ksaju_ig_daily_two_failed_execs_2026-09-10.md) — ig_token.txt는 죽은 값(38자), 살아있는 토큰은 n8n 자격증명 VCULFgF3wJiZOpmu(208자)

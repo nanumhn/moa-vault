@@ -36,3 +36,25 @@ sec1(`promptSource:"fallback"`)·sec3 프롬프트에 `seoul han river skyline`,
 
 **부수 확인**: `originality.pass:false` — 수치 0/1k(기준 3↑), 헤지 9.1/1k(기준 3↓), 계측기 코멘트 "주장 없이 '~수 있다'로만 채움".
 AM 슬롯은 이날 정시 결번([[project_atz_qwen_fallback_hold_blocked_blog_2026-09-09]]), 09:27 dry-run만 있음 → am 쇼츠 `skipped`.
+
+---
+
+**★2026-09-10 04:4x — ①의 원인 확정. 위에 적은 "중복 회피 재생성" 가설은 틀렸다.**
+
+[확인: `out/2026-09-09T10-30-12_pm_result.json` 직접 조회 + `scene-prompt.mjs` `subjectsForArticle` 코드 직접 조회]
+
+- 결과파일 `regenerated` 는 **false**. 재생성 경로가 아니었다. (위 본문의 `dupNote` 추정은 폐기)
+- 실제 배정: HERO `policy/us(llm)` · SEC1 `place/korea(fallback)` · SEC2 `place/us(llm)` · SEC3 `policy/korea(llm)`.
+  소제목 3개는 전부 미국 국내 정치(댈러스 전당대회 / 트럼프·사회주의 / 우편투표·선거구).
+- **korea 2자리는 버그가 아니라 규칙대로 간 것이다.** `subjectsForArticle` 의 두 줄이 각각 하나씩 준다 —
+  `if (secondary) push(...)`(2등 나라 자리 **보장**) → SEC1, `if (secondary) for (const id of ['place','policy']) push(...)`(남은 자리) → SEC3.
+- 08-22에 넣은 `SECONDARY_MIN_RATIO = 0.3` 문턱은 **작동했고 korea 가 통과했다.** 문턱이 안 걸린 게 아니다.
+
+**[추정] 구조적 원인**: 아투는 "미국 뉴스를 한국 독자에게" 블로그라 거의 모든 기사에 한국 언급이 붙어 korea 가 늘 0.3을 넘는다.
+2등 나라 자리 보장 규칙은 미·이란 같은 **진짜 2개국 기사**용으로 만든 것인데(주석에 그렇게 적혀 있다),
+아투에서는 2등 나라가 기사가 아니라 **블로그 자체의 성격**에서 나온다. 그래서 미국 국내 기사도 그림 절반이 서울이 된다.
+**반증조건**: korea/us 점수비가 0.3 미만인데도 korea 슬롯이 배정된 회차가 있으면 이 해석은 틀림.
+
+**곁가지**: SEC1 은 `promptSource:"fallback"` — LLM 프롬프트 생성 실패로 `entities.mjs` korea `placeScene` 하드코딩 문장이 그대로 쓰였다.
+
+**처리**: 09-10 04:4x 그들만의업무 방에 덱스·제나 멘션으로 자료 전달(메시지 `1547330371283329074`). 수정은 두 사람 몫 — 클로는 코드 안 건드린다([[feedback_clo_tests_jena_codes_2026-09-06]]).
