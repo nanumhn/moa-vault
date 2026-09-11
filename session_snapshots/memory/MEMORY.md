@@ -1,4 +1,6 @@
-- [★★★★★2026-09-11 04:26 재부팅 직전 스냅샷(최신)](project_open_threads_2026-09-11_dawn_snapshot.md) — 덱스 24시간 정지(형 선택 1회)·형채널+로그채널 동시차단·14:35 킬이 커밋까지 샯킴
+- [★★★★★2026-09-11 재부팅 스냅샷 + 오전 세션마감(최신)](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자(3888) 잠금오판·아투 am 결번·결재 2건 형 무응답·랩실 1ac3eb2·19:30 전 ComfyUI 확인할 것
+- [★★★★★재부팅 후 MOA 관리자(3888) 기동실패 — 낡은 manager.lock PID가 시스템 프로세스로 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-11 다리·워치독 전부 정지. EPERM을 살아있음으로 판정, 락 삭제+MoaManager 재실행(형 승인)
+- [★★★★★09-11 아투 06:00 발행이 첫 단계에서 멈춤 — 발행 도중 ComfyUI를 새로 띄운 첫 사례](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 원리 추정단계(핸들상속), 결재 REQ-20260911-ATZ001-01 대기, 07:00 강제종료 예정
 - [★★★★★2026-09-10 14:36 오후 세션 시작 스냅샷](project_open_threads_2026-09-10_afternoon_snapshot.md) — 14:00 저장예약이 못 돌아 사후 복원. 덱스 폴더선택창에 또 멈춤·아투결함③ 추측단계·매출 측정실패
 - [★★★★★2026-09-10 04:00 재부팅 직전 스냅샷](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건 형판단대기·덱스 결재 22:53부터 멈춤·예약이 세션과 함께 죽어 실제 손실
 - [★★★★★2026-09-09 19:30 아투 PM — GPT 수리 통함, 대신 결함 3건](project_atz_pm_20260909_gpt_ok_but_three_defects.md) — 미국기사에 서울사진 2장·분량미달인데 공개(gate.ok는 판정에 안 들어감)·라벨대조 오탐. 전부 제나 몫
