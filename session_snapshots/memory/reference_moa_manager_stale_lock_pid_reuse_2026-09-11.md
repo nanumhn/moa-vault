@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 020131be-1ce0-4c5b-b0d5-362e34bde274
-  modified: 2026-09-10T19:35:47.690Z
+  modified: 2026-09-11T19:23:45.136Z
 ---
 
 2026-09-11 04:28 재부팅 후 MOA 관리자(:3888)가 기동 직후 죽었다. 그 여파로 덱스·제나 다리와 외부 워치독 전부 멈춤(워치독 로그가 04:28 이후 0줄).
@@ -19,3 +19,5 @@ metadata:
 **증상으로 알아보는 법**: 3888 접속 거부 + 다리 node 프로세스 없음 + 워치독 로그 무증가. 배경감시의 `[감시고장]` 줄(20분 무증가)이 이걸 잡는다.
 **응급 해소**: `manager.lock` 삭제 후 `MoaManager` 예약작업(Ready 상태) 재실행. 상태변경이라 형 승인 필요([[feedback_temporary_restricted_authority_2026-08-28]]).
 **근본 수리**: 락에 PID와 함께 프로세스 이름·시작시각을 넣어 대조하도록 코드 수정. 코드라 제나 몫([[feedback_clo_tests_jena_codes_2026-09-06]]).
+
+**09-12 경과**: 결재 MGR001은 형 무응답인 채로 09-11 하루 종일 꺼져 있다가, 09-12 04:18 재부팅 후 **저절로 떴다**(04:2x 3888 HTTP 200, `MoaManager` LastRunTime 04:19:28 결과 0). 이번엔 옛 PID가 산 프로세스에 안 걸린 것으로 보인다[추측 — manager.lock·launch.log는 안 열어봤다]. **근본 수리는 여전히 안 됐다** — 다음 재부팅에서 재발할 수 있다.
