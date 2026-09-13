@@ -1,4 +1,5 @@
-- [★최신 스냅샷 09-13 04:20](project_open_threads_2026-09-13_dawn_snapshot.md) — 사흘간 제품 커밋 0건·IG토큰 10-22 만료·nblog 09-11 24시간 정지
+- [★최신 스냅샷 09-13 14:2x](project_open_threads_2026-09-13_afternoon_snapshot.md) — 관리자락 재발·아투am/인스타 결번·결재3건 무응답
+- [지난 스냅샷 09-13 04:20](project_open_threads_2026-09-13_dawn_snapshot.md) — 사흘간 제품 커밋 0건·IG토큰 10-22 만료·nblog 09-11 24시간 정지
 - [지난 스냅샷 09-11~09-12 04:20](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자 3888 재부팅으로 복구·형방 송신 재개·덱스 결재카드·ComfyUI 꺼짐
 - [지난 스냅샷 09-10 오후](project_open_threads_2026-09-10_afternoon_snapshot.md) · [09-10 새벽](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건·덱스 멈춤·예약 유실
 - [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안 됨
