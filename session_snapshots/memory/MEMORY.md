@@ -1,4 +1,5 @@
-- [★최신 스냅샷 09-14 04:1x](project_open_threads_2026-09-14_dawn_snapshot.md) — 3888 무응답 계속·형DM 회신차단 20:17~·결재3건 무응답
+- [★최신 스냅샷 09-14 14:2x](project_open_threads_2026-09-14_afternoon_snapshot.md) — STRW38-01 형답 기한 09-16·W38 산출물 임시폴더에만·아투am 보류
+- [지난 스냅샷 09-14 04:1x](project_open_threads_2026-09-14_dawn_snapshot.md) — 3888 무응답 계속·형DM 회신차단 20:17~·결재3건 무응답
 - [지난 스냅샷 09-13 14:2x](project_open_threads_2026-09-13_afternoon_snapshot.md) — 관리자락 재발·아투am/인스타 결번
 - [지난 스냅샷 09-13 04:20](project_open_threads_2026-09-13_dawn_snapshot.md) — 사흘간 제품 커밋 0건·IG토큰 10-22 만료·nblog 09-11 24시간 정지
 - [지난 스냅샷 09-11~09-12 04:20](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자 3888 재부팅으로 복구·형방 송신 재개·덱스 결재카드·ComfyUI 꺼짐
