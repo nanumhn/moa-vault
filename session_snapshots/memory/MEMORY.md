@@ -1,4 +1,5 @@
-- [★최신 스냅샷 09-16 14:0x](project_open_threads_2026-09-16_afternoon_snapshot.md) — 형방 차단 07:1x~·아투 보류글 폐기 결재 REQ-20260916-ATZ-01·09-15 pm 쇼츠 미재시도
+- [★최신 스냅샷 09-17 03:5x](project_open_threads_2026-09-17_dawn_snapshot.md) — 형방 차단 해제·결재 6건 무응답·일지/저장 예약 또 미발동·관문 150초 정정
+- [지난 스냅샷 09-16 14:0x](project_open_threads_2026-09-16_afternoon_snapshot.md) — 형방 차단 07:1x~·아투 보류글 폐기 결재 REQ-20260916-ATZ-01·09-15 pm 쇼츠 미재시도
 - [지난 스냅샷 09-16 04:2x](project_open_threads_2026-09-16_dawn_snapshot.md) — 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패
 - [지난 스냅샷 09-15 14:0x](project_open_threads_2026-09-15_afternoon_snapshot.md) — 형 무응답 계속·Monitor 30분 상한→형방 반복보고·포럼 503 하루 6회
 - [지난 스냅샷 09-15 04:2x](project_open_threads_2026-09-15_dawn_snapshot.md) — 형 무응답 계속·아투 09-14am 보류(날짜 넘어감)·감시기 503 2회
@@ -47,6 +48,7 @@
 - [★IG캐러셀 원인=토큰무효화](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) · [토큰 만료까지 확인](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) · [인스타 성공1+실패2 정상](reference_ksaju_ig_daily_two_failed_execs_2026-09-10.md)
 - [로그인화면이면 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) · [n8n 캔버스 체크마크 낡음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md)
 - [무응답관문은 서브에이전트도 막음](reference_silence_gate_blocks_subagents_no_relief_2026-09-02.md)
+- [★무응답관문 기준=150초(30분 아님)](reference_silence_gate_threshold_is_150s_2026-09-17.md) — 도구 쓸 때마다 검사, 두 세션이 30분으로 오독
 - [★명령어 넘기지 말고 실행](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) · [확인작업 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md)
 - [★부트스트랩 revenue-review 누락 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md)
 - k사주 블로그: [파이프라인 2건 수리](project_ksaju_blog_publish_pipeline_hardened_2026-09-03.md) · [6건 복구 미완](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md)
