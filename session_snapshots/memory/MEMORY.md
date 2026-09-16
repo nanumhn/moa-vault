@@ -1,4 +1,5 @@
-- [★최신 스냅샷 09-16 04:2x](project_open_threads_2026-09-16_dawn_snapshot.md) — 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패
+- [★최신 스냅샷 09-16 14:0x](project_open_threads_2026-09-16_afternoon_snapshot.md) — 형방 차단 07:1x~·아투 보류글 폐기 결재 REQ-20260916-ATZ-01·09-15 pm 쇼츠 미재시도
+- [지난 스냅샷 09-16 04:2x](project_open_threads_2026-09-16_dawn_snapshot.md) — 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패
 - [지난 스냅샷 09-15 14:0x](project_open_threads_2026-09-15_afternoon_snapshot.md) — 형 무응답 계속·Monitor 30분 상한→형방 반복보고·포럼 503 하루 6회
 - [지난 스냅샷 09-15 04:2x](project_open_threads_2026-09-15_dawn_snapshot.md) — 형 무응답 계속·아투 09-14am 보류(날짜 넘어감)·감시기 503 2회
 - [지난 스냅샷 09-14 14:2x](project_open_threads_2026-09-14_afternoon_snapshot.md) — STRW38-01 형답 기한 09-16·W38 산출물 임시폴더에만·아투am 보류
