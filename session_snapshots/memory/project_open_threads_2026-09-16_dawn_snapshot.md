@@ -1,14 +1,18 @@
 ---
 name: project_open_threads_2026-09-16_dawn_snapshot
-description: "09-16 04:2x 열린작업 스냅샷 — 23:00 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패·포럼 5xx 6회"
-metadata:
+description: 09-16 04:2x 열린작업 스냅샷 — 23:00 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패·포럼 5xx 6회
+metadata: 
+  node_type: memory
   type: project
+  originSessionId: 634a8e47-68f0-4d13-a104-ca38675664b0
+  modified: 2026-09-15T19:31:04.431Z
 ---
 
 **세션:** 09-15 23:02 재부팅 복귀 ~ 09-16 04:2x (04:00 리셋 대기 중 저장).
 
 **열린 것**
-- 🔴 **형 방(DM 1501858476362829834) reply 차단 23:56~** — "not allowlisted". 형이 DM에 한 줄 보내면 풀림 [[reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08]]. 로그채널 웹훅으로 2회 폴백(23:5x 차단 알림, 04:1x 일지 완료). 다음 세션: 첫 reply가 되는지부터 확인
+- ✅ 09-16 04:3x 재부팅 후 새 세션 첫 reply 성공(id 1549502784959684792) — 형 인바운드 없이도 재부팅으로 풀림. 크론 8개·Monitor bjvj1go62 재무장, boot.flag 삭제
+- (해소) **형 방(DM 1501858476362829834) reply 차단 23:56~** — "not allowlisted". 형이 DM에 한 줄 보내면 풀림 [[reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08]]. 로그채널 웹훅으로 2회 폴백(23:5x 차단 알림, 04:1x 일지 완료). 다음 세션: 첫 reply가 되는지부터 확인
 - 🔴 **09-15 pm 쇼츠 실패** — publish_ledger 20:01 failed(bun exit 1), 쇼츠봇 "대본 검수 단계·시도 4회", postId 3084156034808394617. 재실행 기록 없음. 클로 권한 밖(제나 몫)
 - 🟠 **23:00 재부팅 원인=윈도우 업데이트** (System 1074 TrustedInstaller "업그레이드(계획됨)"). 업데이트 재부팅 정책 미확인 — 발행 슬롯과 겹치면 결번 위험
 - 🟡 이슈처리 포럼 감시 5xx 6회(23:42~23:55 500 연속, 00:01·02:04·03:16 504, 03:01·03:10 503) 모두 자체 복구. 디스코드 장애 "Session Unavailability" 23:26 KST~ (https://stspg.io/d5h0d8347s4l)
