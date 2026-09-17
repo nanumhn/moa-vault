@@ -1,4 +1,6 @@
-- [★최신 스냅샷 09-17 03:5x~04:4x](project_open_threads_2026-09-17_dawn_snapshot.md) — 결재 6건 무응답·MOC 6개 갱신 완료·nBlog 24시간 정지 발견·관문 150초 정정
+- [★최신 스냅샷 09-17 14:0x~](project_open_threads_2026-09-17_afternoon_snapshot.md) — 아투 하루 0건·형 DM 전채널 송신차단·결재 11건·게이트 괄호인용 사각지대
+- [지난 스냅샷 09-17 03:5x~04:4x](project_open_threads_2026-09-17_dawn_snapshot.md) — 결재 6건 무응답·MOC 6개 갱신 완료·nBlog 24시간 정지 발견·관문 150초 정정
+- [★★보고 전에 내 기록부터 펴볼 것](feedback_read_own_records_before_reporting_as_new_2026-09-17.md) — 09-17에 "또 터졌다"·"원인 찾았다" 오보 2건, 둘 다 이미 적혀 있던 것
 - [★★"커밋 0건" 말하기 전 git fetch](feedback_git_fetch_before_declaring_repo_idle_2026-09-17.md) — k-saju 블로그 '2주 정지'는 낡은 클론이 만든 오보였다
 - [★nBlog 스케줄러 24시간 무틱 재발](project_nblog_cron_tick_24h_outage_recurring_2026-09-17.md) — 09-11·09-13 두 번, 둘 다 사후 발견·원인 미규명
 - [★포럼 429/503은 재부팅 전후에 몰림](reference_issue_forum_http_errors_cluster_near_reboot_2026-09-17.md) — 감소 추세 아님, 세션마다 새로 조사하지 말 것
@@ -16,6 +18,7 @@
 - [★★아투 멈춤 원인 확정 = PS 출력캡처 파이프](project_atz_publish_hang_root_cause_powershell_output_capture_2026-09-17.md) — `$st = & powershell` 제거가 수리, chrome·shorts 줄도 동일
 - [★아투 06:00 발행 중 ComfyUI 기동 시 멈춤](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 발행 전 8188 확인 (09-17 3번째 재발, 원인은 위 메모리로)
 - [★아투 09-09 PM 결함 3건](project_atz_pm_20260909_gpt_ok_but_three_defects.md) · [GPT 실패=프로젝트 홈 경로](project_atz_gpt_project_home_broken_2026-09-09.md) — 제나 몫 / ea2b2ed
+- [★09-15pm 쇼츠 실패=qwen 폴백이 대본 0건](project_shorts_20260915_pm_qwen_fallback_produced_no_script.md) — 폴백 위험은 품질뿐 아니라 '산출물 0'도 있다
 - [★아투 qwen 폴백 보류가 오보 막음](project_atz_qwen_fallback_hold_blocked_blog_2026-09-09.md) · [GPT폴백=품질위험](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — 지명환각 검사 없음
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
 - guard-report: [G4 백틱 안 근거 지움](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) · [G6 세션시작 오탐](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) · [G8 경로 인용 거부](reference_guard_report_g8_path_citation_bug_2026-09-05.md) — 근거 하나는 평문 괄호로
@@ -99,6 +102,7 @@
 - [★안전망이 안전망을 끔](reference_ack_bot_silenced_watchdog_2026-08-27.md)
 - [되묻기 전에 비용부터 세라](feedback_dont_ask_when_the_task_is_small.md)
 - [실측이 전제를 깨면 무효선언](feedback_invalidate_own_premise_when_data_contradicts.md)
+- [★nblog는 Vercel이 아니라 로컬 서비스](reference_nblog_runs_local_not_vercel_2026-09-17.md) — 운영본=nblog-saas-dex-ops-baseline+3002, prod 브랜치는 무관
 - [nblog 한PC=네이버계정 1개](reference_nblog_agent_single_naver_session_per_profile_2026-08-16.md)
 - [네이버블로그 품질기준](project_naver_blog_content_quality_bar_2026-08-09.md) · [덱스 워크스페이스](reference_dex_jena_workdir_scope_2026-08-08.md)
 - [형 예정요청: 시스템 전체설명 세션](project_full_system_review_pending_2026-08-08.md)
