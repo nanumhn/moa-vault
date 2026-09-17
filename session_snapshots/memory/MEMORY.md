@@ -1,4 +1,7 @@
-- [★최신 스냅샷 09-17 03:5x](project_open_threads_2026-09-17_dawn_snapshot.md) — 형방 차단 해제·결재 6건 무응답·일지/저장 예약 또 미발동·관문 150초 정정
+- [★최신 스냅샷 09-17 03:5x~04:4x](project_open_threads_2026-09-17_dawn_snapshot.md) — 결재 6건 무응답·MOC 6개 갱신 완료·nBlog 24시간 정지 발견·관문 150초 정정
+- [★★"커밋 0건" 말하기 전 git fetch](feedback_git_fetch_before_declaring_repo_idle_2026-09-17.md) — k-saju 블로그 '2주 정지'는 낡은 클론이 만든 오보였다
+- [★nBlog 스케줄러 24시간 무틱 재발](project_nblog_cron_tick_24h_outage_recurring_2026-09-17.md) — 09-11·09-13 두 번, 둘 다 사후 발견·원인 미규명
+- [★포럼 429/503은 재부팅 전후에 몰림](reference_issue_forum_http_errors_cluster_near_reboot_2026-09-17.md) — 감소 추세 아님, 세션마다 새로 조사하지 말 것
 - [지난 스냅샷 09-16 14:0x](project_open_threads_2026-09-16_afternoon_snapshot.md) — 형방 차단 07:1x~·아투 보류글 폐기 결재 REQ-20260916-ATZ-01·09-15 pm 쇼츠 미재시도
 - [지난 스냅샷 09-16 04:2x](project_open_threads_2026-09-16_dawn_snapshot.md) — 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패
 - [지난 스냅샷 09-15 14:0x](project_open_threads_2026-09-15_afternoon_snapshot.md) — 형 무응답 계속·Monitor 30분 상한→형방 반복보고·포럼 503 하루 6회
@@ -10,7 +13,8 @@
 - [지난 스냅샷 09-11~09-12 04:20](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자 3888 재부팅으로 복구·형방 송신 재개·덱스 결재카드·ComfyUI 꺼짐
 - [지난 스냅샷 09-10 오후](project_open_threads_2026-09-10_afternoon_snapshot.md) · [09-10 새벽](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건·덱스 멈춤·예약 유실
 - [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안 됨
-- [★아투 06:00 발행 중 ComfyUI 기동 시 멈춤](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 발행 전 8188 확인
+- [★★아투 멈춤 원인 확정 = PS 출력캡처 파이프](project_atz_publish_hang_root_cause_powershell_output_capture_2026-09-17.md) — `$st = & powershell` 제거가 수리, chrome·shorts 줄도 동일
+- [★아투 06:00 발행 중 ComfyUI 기동 시 멈춤](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 발행 전 8188 확인 (09-17 3번째 재발, 원인은 위 메모리로)
 - [★아투 09-09 PM 결함 3건](project_atz_pm_20260909_gpt_ok_but_three_defects.md) · [GPT 실패=프로젝트 홈 경로](project_atz_gpt_project_home_broken_2026-09-09.md) — 제나 몫 / ea2b2ed
 - [★아투 qwen 폴백 보류가 오보 막음](project_atz_qwen_fallback_hold_blocked_blog_2026-09-09.md) · [GPT폴백=품질위험](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — 지명환각 검사 없음
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
@@ -45,13 +49,14 @@
 - [★형은 클로 CLI 직접 접근 가능](reference_hyung_has_direct_cli_access_2026-09-05.md)
 - [엔블005-01 스레드 ID](reference_enbl00501_thread_channel_id_2026-09-04.md) · [005-03 원인 td→dialog](project_enbl00503_deployed_2026-09-04.md)
 - 멘션: [덱스·제나 ID](reference_dex_jena_discord_ids_2026-09-02.md) · [실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) · [이슈방 수신대상 멘션](feedback_always_mention_target_in_shared_threads.md) · [직접 멘션에만 반응](feedback_respond_only_when_mentioned.md) · [형은 별칭](reference_calling_convention_nickname_vs_mention_2026-08-27.md)
+- [★IG 토큰은 n8n export:credentials로 읽는다](reference_ig_token_readable_via_n8n_export_credentials_2026-09-17.md) — Graph 재조회 가능, timestamp는 UTC라 +9h 환산
 - [★IG캐러셀 원인=토큰무효화](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) · [토큰 만료까지 확인](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) · [인스타 성공1+실패2 정상](reference_ksaju_ig_daily_two_failed_execs_2026-09-10.md)
 - [로그인화면이면 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) · [n8n 캔버스 체크마크 낡음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md)
 - [무응답관문은 서브에이전트도 막음](reference_silence_gate_blocks_subagents_no_relief_2026-09-02.md)
 - [★무응답관문 기준=150초(30분 아님)](reference_silence_gate_threshold_is_150s_2026-09-17.md) — 도구 쓸 때마다 검사, 두 세션이 30분으로 오독
 - [★명령어 넘기지 말고 실행](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) · [확인작업 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md)
 - [★부트스트랩 revenue-review 누락 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md)
-- k사주 블로그: [파이프라인 2건 수리](project_ksaju_blog_publish_pipeline_hardened_2026-09-03.md) · [6건 복구 미완](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md)
+- k사주 블로그: [파이프라인 2건 수리](project_ksaju_blog_publish_pipeline_hardened_2026-09-03.md) · [6건 복구 미완](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — ★09-17 재확인: 라이브 누락은 딱 그 6편, 늘지 않음. 발행 자체는 매일 정상
 - 수익: [W36 무매출=게스트체크아웃 미병합](project_revenue_review_w36_2026-08-31.md) · [W35 GA4 미측정](project_w35_measurement_and_premise_failures_2026-08-24.md) · [주간리뷰 공백](project_revenue_review_lapsed_2026-08-12.md) · [재설계 3안](project_revenue_model_redesign_final_2026-08-12.md)
 - [codex config.toml은 전역](reference_codex_config_toml_global_scope_2026-08-30.md) · [승인권한 확대엔 범위부터](feedback_flag_scope_before_loosening_approval_2026-08-30.md)
 - [검색리포트 노출페이지≠색인수](reference_gsc_report_pagecount_is_not_indexed_2026-08-31.md) · [GA4 헤드리스 UA 제외](reference_ga4_excludes_headless_ua_2026-08-24.md)
