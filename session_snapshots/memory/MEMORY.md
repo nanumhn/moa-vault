@@ -1,4 +1,5 @@
-- [★최신 스냅샷 09-17 14:0x~](project_open_threads_2026-09-17_afternoon_snapshot.md) — 아투 하루 0건·형 DM 전채널 송신차단·결재 11건·게이트 괄호인용 사각지대
+- [★최신 스냅샷 09-18 04:06~14:0x](project_open_threads_2026-09-18_dawn_snapshot.md) — 아투 오전 결번(예고했으나 못 막음)·★브리지가 봇 글 전부 버림·형 무응답 사흘째·결재 5건
+- [지난 스냅샷 09-17 14:0x~](project_open_threads_2026-09-17_afternoon_snapshot.md) — 아투 하루 0건·형 DM 전채널 송신차단·결재 11건·게이트 괄호인용 사각지대
 - [지난 스냅샷 09-17 03:5x~04:4x](project_open_threads_2026-09-17_dawn_snapshot.md) — 결재 6건 무응답·MOC 6개 갱신 완료·nBlog 24시간 정지 발견·관문 150초 정정
 - [★★보고 전에 내 기록부터 펴볼 것](feedback_read_own_records_before_reporting_as_new_2026-09-17.md) — 09-17에 "또 터졌다"·"원인 찾았다" 오보 2건, 둘 다 이미 적혀 있던 것
 - [★★"커밋 0건" 말하기 전 git fetch](feedback_git_fetch_before_declaring_repo_idle_2026-09-17.md) — k-saju 블로그 '2주 정지'는 낡은 클론이 만든 오보였다
@@ -15,11 +16,14 @@
 - [지난 스냅샷 09-11~09-12 04:20](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자 3888 재부팅으로 복구·형방 송신 재개·덱스 결재카드·ComfyUI 꺼짐
 - [지난 스냅샷 09-10 오후](project_open_threads_2026-09-10_afternoon_snapshot.md) · [09-10 새벽](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건·덱스 멈춤·예약 유실
 - [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안 됨
+- [★09-18 아투 오전 결번 — 예고했는데 못 막았다](project_atz_20260918_am_zero_predicted_and_lost.md) — 04:12 예고→06:07 확정→결재 무응답→07:00 강제종료. 원인=관리자 5분 timeout이 ComfyUI 기동을 잘라 죽임
+- [★★클로는 브리지로 덱스·제나에게 말을 못 건다](reference_bridge_ignores_all_bot_messages_2026-09-18.md) — routing.mjs가 모든 봇을 verdict=ignore. '중간결재=덱스' 지시가 구조적으로 실행 불가
 - [★★아투 멈춤 원인 확정 = PS 출력캡처 파이프](project_atz_publish_hang_root_cause_powershell_output_capture_2026-09-17.md) — `$st = & powershell` 제거가 수리, chrome·shorts 줄도 동일
 - [★아투 06:00 발행 중 ComfyUI 기동 시 멈춤](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 발행 전 8188 확인 (09-17 3번째 재발, 원인은 위 메모리로)
 - [★아투 09-09 PM 결함 3건](project_atz_pm_20260909_gpt_ok_but_three_defects.md) · [GPT 실패=프로젝트 홈 경로](project_atz_gpt_project_home_broken_2026-09-09.md) — 제나 몫 / ea2b2ed
 - [★09-15pm 쇼츠 실패=qwen 폴백이 대본 0건](project_shorts_20260915_pm_qwen_fallback_produced_no_script.md) — 폴백 위험은 품질뿐 아니라 '산출물 0'도 있다
 - [★아투 qwen 폴백 보류가 오보 막음](project_atz_qwen_fallback_hold_blocked_blog_2026-09-09.md) · [GPT폴백=품질위험](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — 지명환각 검사 없음
+- [★게이트 인용대조 병기괄호 사각지대](reference_atz_gate_paren_gloss_quote_gap_2026-09-18.md) — `(EU)` 하나로 09-17 아투 하루 0건, 수리안 양방향 시험 완료 / 이중경로 2줄은 45e8120으로 **커밋됨**(낡은 '미커밋' 서술 폐기)
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
 - guard-report: [G4 백틱 안 근거 지움](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) · [G6 세션시작 오탐](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) · [G8 경로 인용 거부](reference_guard_report_g8_path_citation_bug_2026-09-05.md) — 근거 하나는 평문 괄호로
 - [★세션 유휴사망 재생성 루프](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정
@@ -52,6 +56,7 @@
 - [★형은 클로 CLI 직접 접근 가능](reference_hyung_has_direct_cli_access_2026-09-05.md)
 - [엔블005-01 스레드 ID](reference_enbl00501_thread_channel_id_2026-09-04.md) · [005-03 원인 td→dialog](project_enbl00503_deployed_2026-09-04.md)
 - 멘션: [덱스·제나 ID](reference_dex_jena_discord_ids_2026-09-02.md) · [실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) · [이슈방 수신대상 멘션](feedback_always_mention_target_in_shared_threads.md) · [직접 멘션에만 반응](feedback_respond_only_when_mentioned.md) · [형은 별칭](reference_calling_convention_nickname_vs_mention_2026-08-27.md)
+- [★n8n DB는 -wal까지 복사해야 한다](reference_n8n_sqlite_wal_must_be_copied_2026-09-18.md) — 본체만 복사하면 방금 끝난 실행이 status=new로 보임. 09-18 k-saju 블로그 오보 직전에 잡음
 - [★IG 토큰은 n8n export:credentials로 읽는다](reference_ig_token_readable_via_n8n_export_credentials_2026-09-17.md) — Graph 재조회 가능, timestamp는 UTC라 +9h 환산
 - [★IG캐러셀 원인=토큰무효화](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) · [토큰 만료까지 확인](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) · [인스타 성공1+실패2 정상](reference_ksaju_ig_daily_two_failed_execs_2026-09-10.md)
 - [로그인화면이면 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) · [n8n 캔버스 체크마크 낡음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md)
