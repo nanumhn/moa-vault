@@ -51,6 +51,7 @@
 - [★규칙 지적해놓고 어기지 말 것](feedback_dont_flag_rule_then_break_it_2026-09-05.md) · [예외 만들지 않기](feedback_no_self_declared_exceptions.md)
 - [★시각은 항상 KST](feedback_always_report_time_in_kst_2026-09-05.md) · [★Bash date는 이제 KST 정상(09-18 정정)](reference_bash_date_clock_offset_2026-08-16.md) — +9h 고정보정 박지 말 것, 그게 오차를 만들었다
 - 위임관문: [분류기 막히면 덱스에게](feedback_delegate_to_dex_when_classifier_blocks_2026-09-05.md) · [형 문구는 새 턴이어야](reference_delegation_gate_needs_fresh_turn_2026-09-05.md) · [Bash엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) · [매직문구 코칭 금지](feedback_dont_coach_magic_phrase_past_guard.md)
+- [★★등록된 cron이 아예 안 뜬다 09-19](project_session_cron_did_not_fire_2026-09-19.md) — 03:43·03:55 둘 다 미발화, CronList엔 살아 있었다. **걸었다고 끝이 아니라 떴는지 확인할 것**
 - [사전저장 cron 등록돼도 flag 누락 가능](reference_presave_cron_flag_missed_2026-09-05.md) · [일지+저장 cron 구조 수리](project_journal_gap_2026-08-05.md)
 - [★엔블 005-05 가격정책](project_enbl00505_pricing_policy_2026-09-05.md) — 천원단위 절삭·VAT포함
 - 헤더 양식: [결재 🟪×5+REQ](feedback_approval_request_format_purple_card.md) · [육안확인 ✅×5](feedback_visual_check_marker_format_2026-09-05.md) · [위임관문 🟥×5](feedback_delegation_gate_error_marker_format_2026-09-05.md) · [이슈종료 🟩🟧🟥](feedback_issue_closure_marker_format.md)
