@@ -1,14 +1,24 @@
 ---
 name: reference_bash_date_clock_offset_2026-08-16
-description: Bash 도구의 `date` 명령이 이 환경에서 실제 시각보다 9시간 느리게(UTC를 KST로 착각) 나옴 — PowerShell Get-Date가 정확함
+description: Bash `date`는 2026-09-18 실측 기준 KST 정상 — 08-16의 "9시간 느림"은 더는 재현되지 않는다. 시각을 쓰기 전 그 세션에서 한 번 대조할 것
 metadata:
   type: reference
   originSessionId: bf3fbb37-1ff7-4b12-a3c5-e0715af4a86e
-  modified: 2026-08-16T05:26:59.732Z
+  modified: 2026-09-18T05:07:49.795Z
 ---
 
-세션저장 flag 타임스탬프를 찍으려고 `TZ='Asia/Seoul' date '+%Y-%m-%d %H:%M:%S KST'`를 Bash 도구로 실행했더니 **"05:26 KST"**가 나왔는데, 실제로는(작업 스케줄러 cron이 13:55 KST에 막 발동한 직후였고, PowerShell `Get-Date`로 재확인하니 **"14:26:38"**) 9시간 차이가 났다. Bash 서브시스템의 시스템 클록/타임존 설정이 이 환경에서 실제 Windows 호스트와 어긋나 있는 것으로 보인다(정확히 9시간 = UTC/KST 오프셋과 같은 크기라, TZ 설정이 안 먹고 UTC를 그대로 찍었을 가능성).
+**★2026-09-18 정정 — 지금은 Bash `date`가 맞다.**
 
-**How to apply:** 이 환경에서 현재 시각이 필요하면(세션저장 flag, 로그 타임스탬프 등) **Bash `date`를 쓰지 말고 PowerShell `Get-Date`를 쓸 것.** Discord 메시지의 `ts`(UTC)를 KST로 환산할 때도 Bash `date` 계산에 기대지 말고 직접 +9 암산하거나 PowerShell로 검산할 것 — [[feedback_discord_formatting]]에 기록된 반복되는 UTC/KST 착각 사고의 한 원인이었을 수 있다.
+09-18 14:07 KST에 직접 재조회: `date` → `2026-09-18 14:07:27`, `date -u` → `2026-09-18 05:07:27`. **로컬시각(KST)을 정확히 찍는다.** 08-16에 적힌 "9시간 느림"은 이 세션에서 재현되지 않았다.
 
-관련: [[feedback_discord_formatting]]
+**어떻게 발견했나:** 이 메모리를 믿고 워치독 로그 자체시험 줄에 `date -d '+9 hours'`로 보정을 넣었더니 **실제 14:05인데 23:05로 찍혔다.** 보정이 필요 없는데 보정해서 9시간 틀린 것이다. 즉 **낡은 보정 지식이 그 자체로 오차를 만들었다.**
+
+**원래 관측(2026-08-16, 지금은 미재현):** `TZ='Asia/Seoul' date`가 `05:26`을 냈는데 PowerShell `Get-Date`는 `14:26:38`이었다. 정확히 9시간 = UTC/KST 오프셋이라 TZ가 안 먹고 UTC를 그대로 찍은 것으로 봤다. 그 사이 Bash 서브시스템이 바뀌었는지 설정이 고쳐졌는지는 **모른다 — 원인 미확인이다.**
+
+**How to apply:**
+- **고정 보정(+9h)을 코드나 명령에 박지 말 것.** 그게 09-18에 틀린 값을 만든 원인이다.
+- 시각이 중요한 자리(세션저장 flag, 로그 타임스탬프, 원장 대조)에는 **그 세션에서 `date`와 PowerShell `Get-Date`를 한 번 나란히 찍어 대조**한 뒤 쓴다. 비용이 몇 초다.
+- 대조가 귀찮거나 한 번만 쓰는 값이면 **PowerShell `Get-Date`를 쓰는 쪽이 여전히 안전**하다(윈도우 호스트 시계 그 자체).
+- Discord `ts`는 UTC다 — 이건 환경과 무관하게 항상 +9 환산이 필요하다.
+
+관련: [[feedback_always_report_time_in_kst_2026-09-05]] · [[feedback_discord_formatting]]

@@ -1,4 +1,6 @@
-- [★최신 스냅샷 09-18 04:06~14:0x](project_open_threads_2026-09-18_dawn_snapshot.md) — 아투 오전 결번(예고했으나 못 막음)·★브리지가 봇 글 전부 버림·형 무응답 사흘째·결재 5건
+- [★최신 스냅샷 09-19 02:07~](project_open_threads_2026-09-19_dawn_snapshot.md) — 새벽 세션 3회 사망·가드 4시간 BLIND·형 DM 차단 해제·cron8+Monitor 재무장·결재 5건
+- [지난 스냅샷 09-18 14:03~](project_open_threads_2026-09-18_afternoon_snapshot.md) — 저녁 블로그·쇼츠 둘 다 성공·★내 위험예측 빗나감·감시 2개 메모리압박 강제종료·형 DM 21:45~ 송신차단
+- [지난 스냅샷 09-18 04:06~14:0x](project_open_threads_2026-09-18_dawn_snapshot.md) — 아투 오전 결번(예고했으나 못 막음)·★브리지가 봇 글 전부 버림·형 무응답 사흘째·결재 5건
 - [지난 스냅샷 09-17 14:0x~](project_open_threads_2026-09-17_afternoon_snapshot.md) — 아투 하루 0건·형 DM 전채널 송신차단·결재 11건·게이트 괄호인용 사각지대
 - [지난 스냅샷 09-17 03:5x~04:4x](project_open_threads_2026-09-17_dawn_snapshot.md) — 결재 6건 무응답·MOC 6개 갱신 완료·nBlog 24시간 정지 발견·관문 150초 정정
 - [★★보고 전에 내 기록부터 펴볼 것](feedback_read_own_records_before_reporting_as_new_2026-09-17.md) — 09-17에 "또 터졌다"·"원인 찾았다" 오보 2건, 둘 다 이미 적혀 있던 것
@@ -26,7 +28,7 @@
 - [★게이트 인용대조 병기괄호 사각지대](reference_atz_gate_paren_gloss_quote_gap_2026-09-18.md) — `(EU)` 하나로 09-17 아투 하루 0건, 수리안 양방향 시험 완료 / 이중경로 2줄은 45e8120으로 **커밋됨**(낡은 '미커밋' 서술 폐기)
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
 - guard-report: [G4 백틱 안 근거 지움](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) · [G6 세션시작 오탐](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) · [G8 경로 인용 거부](reference_guard_report_g8_path_citation_bug_2026-09-05.md) — 근거 하나는 평문 괄호로
-- [★세션 유휴사망 재생성 루프](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정
+- [★세션 사망 재생성 루프 — 09-19 재발](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정. '유휴라서'는 09-19 표본으로 깨짐(11시간 생존 뒤 사망→재생성분 1분·3분). 가드 BLIND 4시간 구멍 별건
 - [Monitor 005-07 제외줄(09-11 원복)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md)
 - [★워커 첨부는 그 워커 턴에 저장](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 직후 부재를 고장으로 읽지 말 것
 - [★형 DM방 송신차단=형이 한 줄 보내면 복구](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — access.json 손대지 말 것
@@ -47,7 +49,7 @@
 - [★워커 멘션 무응답=보내는 쪽 allowedMentions](reference_worker_mention_needs_allowedmentions_2026-09-06.md) · [@모두 멘션 수리](project_dex_jena_all_mention_fixed_2026-09-05.md)
 - [★제나 무응답=다리 주입 차단](project_jena_bridge_injection_blocked_2026-09-06.md)
 - [★규칙 지적해놓고 어기지 말 것](feedback_dont_flag_rule_then_break_it_2026-09-05.md) · [예외 만들지 않기](feedback_no_self_declared_exceptions.md)
-- [★시각은 항상 KST](feedback_always_report_time_in_kst_2026-09-05.md) · [Bash date 9시간 오프셋](reference_bash_date_clock_offset_2026-08-16.md)
+- [★시각은 항상 KST](feedback_always_report_time_in_kst_2026-09-05.md) · [★Bash date는 이제 KST 정상(09-18 정정)](reference_bash_date_clock_offset_2026-08-16.md) — +9h 고정보정 박지 말 것, 그게 오차를 만들었다
 - 위임관문: [분류기 막히면 덱스에게](feedback_delegate_to_dex_when_classifier_blocks_2026-09-05.md) · [형 문구는 새 턴이어야](reference_delegation_gate_needs_fresh_turn_2026-09-05.md) · [Bash엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) · [매직문구 코칭 금지](feedback_dont_coach_magic_phrase_past_guard.md)
 - [사전저장 cron 등록돼도 flag 누락 가능](reference_presave_cron_flag_missed_2026-09-05.md) · [일지+저장 cron 구조 수리](project_journal_gap_2026-08-05.md)
 - [★엔블 005-05 가격정책](project_enbl00505_pricing_policy_2026-09-05.md) — 천원단위 절삭·VAT포함
