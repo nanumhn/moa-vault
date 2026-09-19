@@ -1,4 +1,5 @@
-- [★최신 스냅샷 09-19 02:07~/04:20~](project_open_threads_2026-09-19_dawn_snapshot.md) — 새벽 세션 3회 사망·가드 4시간 BLIND·재부팅 복구·cron8+Monitor 재무장·ComfyUI 1초차 통과·결재 5건
+- [★최신 스냅샷 09-19 14:2x~/09-20 04:2x](project_open_threads_2026-09-19_afternoon_snapshot.md) — 형DM 하루 2번 차단(8h01m+진행중)·아투 4슬롯 전부 발행·블로그 2편 길이기준 미달 자동공개·내 오보 3건·MOC 5건 미갱신
+- [지난 스냅샷 09-19 02:07~/04:20~](project_open_threads_2026-09-19_dawn_snapshot.md) — 새벽 세션 3회 사망·가드 4시간 BLIND·재부팅 복구·cron8+Monitor 재무장·ComfyUI 1초차 통과·결재 5건
 - [★재부팅 직후 ComfyUI는 4분 걸린다](reference_comfyui_needs_4min_after_boot_2026-09-19.md) — 5분 안 단발 측정으로 '죽었다' 판정 금지, 관리자 5분 타임아웃과 1초 차
 - [★★0건을 믿기 전에 분모부터 세라](feedback_count_window_before_trusting_zero_matches_2026-09-19.md) — awk `-F' \| '`가 정규식 OR로 먹혀 전부 걸러짐. 두 세션 연속 같은 자리에서 헛셈
 - [★★인스타 판정수단이 분류기에 막혔다 09-19](project_ig_verification_blocked_by_classifier_2026-09-19.md) — Graph 재조회가 유일 판정인데 거부. **막힌 걸 형께 넘기는 보고까지 거부** → 명령문 빼고 사실만 적을 것
