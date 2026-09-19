@@ -35,9 +35,9 @@
 - [★세션 사망 재생성 루프 — 09-19 재발](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정. '유휴라서'는 09-19 표본으로 깨짐(11시간 생존 뒤 사망→재생성분 1분·3분). 가드 BLIND 4시간 구멍 별건
 - [Monitor 005-07 제외줄(09-11 원복)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md)
 - [★워커 첨부는 그 워커 턴에 저장](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 직후 부재를 고장으로 읽지 말 것
-- [★형 DM방 송신차단=형이 한 줄 보내면 복구](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — access.json 손대지 말 것
+- [★★형 DM방 송신차단 — 세션 재시작만으로 풀린다(09-16·09-19 2회 확인)](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — 형 inbound는 유일 경로 아님. access.json 손대지 말 것. 09-19은 8시간 1분 차단·웹훅 48건 우회
 - [★reply chat_id는 형 방 번호로](feedback_reply_chatid_must_be_hyung_room_not_inbound_2026-09-07.md) — 형 방=1501858476362829834
-- [★Disabled 예약작업 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) · [관리자API로 브리지 관리](reference_moa_manager_api_2026-08-30.md) · [통합콘솔 이전 중](project_unified_console_monitor_migration_2026-08-30.md)
+- [★Disabled 예약작업 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) · [관리자API로 브리지 관리](reference_moa_manager_api_2026-08-30.md) · [★★감시 5종이 스케줄러에서 Disabled인 건 정상 — 관리자(3888)가 대신 돌린다, 로그가 늘면 살아있는 것](project_unified_console_monitor_migration_2026-08-30.md)
 - [★재부팅 후 덱스 브리지 중복 확인](project_dex_bridge_duplicate_recheck_after_reboot_2026-09-07.md) — 브리지는 2단(껍데기+node)
 - [끝난 서브에이전트는 바로 정리](feedback_stop_finished_subagents_2026-09-07.md)
 - ["대기해"를 하네스가 실행 불가하게 함](reference_harness_forces_speech_when_told_to_wait_2026-09-07.md) · [Stop훅은 멘션 무관 강제](reference_discord_reply_hook_forces_reply_per_spam_message_2026-08-29.md)
