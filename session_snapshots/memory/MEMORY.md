@@ -2,6 +2,7 @@
 - [★재부팅 직후 ComfyUI는 4분 걸린다](reference_comfyui_needs_4min_after_boot_2026-09-19.md) — 5분 안 단발 측정으로 '죽었다' 판정 금지, 관리자 5분 타임아웃과 1초 차
 - [★★0건을 믿기 전에 분모부터 세라](feedback_count_window_before_trusting_zero_matches_2026-09-19.md) — awk `-F' \| '`가 정규식 OR로 먹혀 전부 걸러짐. 두 세션 연속 같은 자리에서 헛셈
 - [★★인스타 판정수단이 분류기에 막혔다 09-19](project_ig_verification_blocked_by_classifier_2026-09-19.md) — Graph 재조회가 유일 판정인데 거부. **막힌 걸 형께 넘기는 보고까지 거부** → 명령문 빼고 사실만 적을 것
+- [★MOC LOOKUP-FAIL은 검사기 파싱 결함](reference_moc_staleness_lookupfail_is_parser_bug_2026-09-19.md) — `evidence_git: 경로 · 설명` 형식 때문. 경로부터 ls로 확인할 것, 내가 '경로가 낡았다'로 오판함
 - [지난 스냅샷 09-18 14:03~](project_open_threads_2026-09-18_afternoon_snapshot.md) — 저녁 블로그·쇼츠 둘 다 성공·★내 위험예측 빗나감·감시 2개 메모리압박 강제종료·형 DM 21:45~ 송신차단
 - [지난 스냅샷 09-18 04:06~14:0x](project_open_threads_2026-09-18_dawn_snapshot.md) — 아투 오전 결번(예고했으나 못 막음)·★브리지가 봇 글 전부 버림·형 무응답 사흘째·결재 5건
 - [지난 스냅샷 09-17 14:0x~](project_open_threads_2026-09-17_afternoon_snapshot.md) — 아투 하루 0건·형 DM 전채널 송신차단·결재 11건·게이트 괄호인용 사각지대
