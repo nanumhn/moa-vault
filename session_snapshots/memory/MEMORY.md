@@ -1,4 +1,8 @@
-- [★최신 스냅샷 09-20 04:12~14:00](project_open_threads_2026-09-20_dawn_snapshot.md) — 재부팅복구 성공·아투 정상·인스타 결번 원인확정·보류큐 신선도 수리(리셋에 사라짐, 재등록 필수)·덱스 9시간 멈춤·형방 차단 7시간·결재 5건·내 오류 9건
+- [★최신 스냅샷 09-20 14:18~야간](project_open_threads_2026-09-20_afternoon_snapshot.md) — 발행 4건 전부 성공·보류큐 신선도 검사 첫 발화로 묵은글 2건 차단·형방 차단 4번째·★내 점검기 3연속 오탐·결재 6건 무응답. ★리셋 직후 ⑤-B에 신선도 검사 다시 넣을 것
+- [지난 스냅샷 09-20 04:12~14:00](project_open_threads_2026-09-20_dawn_snapshot.md) — 재부팅복구 성공·아투 정상·인스타 결번 원인확정·보류큐 신선도 수리(리셋에 사라짐, 재등록 필수)·덱스 9시간 멈춤·형방 차단 7시간·결재 5건·내 오류 9건
+- [★★내가 급조한 점검기는 "문제 있다" 쪽으로 틀린다](feedback_my_own_checks_fail_toward_false_positives_2026-09-20.md) — 09-20 하루 3건(pgrep이 윈도우 프로세스 못 봄·시각 어림짐작·영문 원문에 한글 대조). 내 점검 결과는 결론이 아니라 단서
+- [★공통수칙 동기화 DRIFT — 감시기가 경보 낸 채 꺼져 있다](project_shared_rules_sync_drifted_watcher_disabled_2026-09-20.md) — 08-30부터 4파일 어긋남, 관리자에서 enabled:false. 별건으로 v202609009 패치 09-06부터 미적용(머리말은 v202608009가 맞음). `-Apply`는 형 결재 전 금지
+- [★★아투 고유관점 게이트는 고장이 아니라 계측 전용 설계](reference_atz_originality_gate_is_measure_only_by_design_2026-09-20.md) — D(매체 귀속)만 차단, A·B·C는 경고뿐. 승격 조건 "3회 연속 100%"가 도달 불가(108편 통과 0건). 09-20 아침 내가 고장으로 오진함
 - [★★인스타 결번 원인 확정 — daily-card 콜드 렌더](project_ksaju_ig_daily_card_cold_render_root_cause_2026-09-20.md) — 09-12·09-13·09-20 3건 전부 같은 원인, 42건 전수조사. execution_data는 flatted 역직렬화로 읽힌다(09-13 '못 읽는다' 기록은 틀림)
 - [지난 스냅샷 09-19 14:2x~/09-20 04:2x](project_open_threads_2026-09-19_afternoon_snapshot.md) — 형DM 하루 2번 차단(8h01m+진행중)·아투 4슬롯 전부 발행·블로그 2편 길이기준 미달 자동공개·내 오보 3건·MOC 5건 미갱신
 - [지난 스냅샷 09-19 02:07~/04:20~](project_open_threads_2026-09-19_dawn_snapshot.md) — 새벽 세션 3회 사망·가드 4시간 BLIND·재부팅 복구·cron8+Monitor 재무장·ComfyUI 1초차 통과·결재 5건
