@@ -1,4 +1,6 @@
-- [★최신 스냅샷 09-19 14:2x~/09-20 04:2x](project_open_threads_2026-09-19_afternoon_snapshot.md) — 형DM 하루 2번 차단(8h01m+진행중)·아투 4슬롯 전부 발행·블로그 2편 길이기준 미달 자동공개·내 오보 3건·MOC 5건 미갱신
+- [★최신 스냅샷 09-20 04:12~14:00](project_open_threads_2026-09-20_dawn_snapshot.md) — 재부팅복구 성공·아투 정상·인스타 결번 원인확정·보류큐 신선도 수리(리셋에 사라짐, 재등록 필수)·덱스 9시간 멈춤·형방 차단 7시간·결재 5건·내 오류 9건
+- [★★인스타 결번 원인 확정 — daily-card 콜드 렌더](project_ksaju_ig_daily_card_cold_render_root_cause_2026-09-20.md) — 09-12·09-13·09-20 3건 전부 같은 원인, 42건 전수조사. execution_data는 flatted 역직렬화로 읽힌다(09-13 '못 읽는다' 기록은 틀림)
+- [지난 스냅샷 09-19 14:2x~/09-20 04:2x](project_open_threads_2026-09-19_afternoon_snapshot.md) — 형DM 하루 2번 차단(8h01m+진행중)·아투 4슬롯 전부 발행·블로그 2편 길이기준 미달 자동공개·내 오보 3건·MOC 5건 미갱신
 - [지난 스냅샷 09-19 02:07~/04:20~](project_open_threads_2026-09-19_dawn_snapshot.md) — 새벽 세션 3회 사망·가드 4시간 BLIND·재부팅 복구·cron8+Monitor 재무장·ComfyUI 1초차 통과·결재 5건
 - [★재부팅 직후 ComfyUI는 4분 걸린다](reference_comfyui_needs_4min_after_boot_2026-09-19.md) — 5분 안 단발 측정으로 '죽었다' 판정 금지, 관리자 5분 타임아웃과 1초 차
 - [★★0건을 믿기 전에 분모부터 세라](feedback_count_window_before_trusting_zero_matches_2026-09-19.md) — awk `-F' \| '`가 정규식 OR로 먹혀 전부 걸러짐. 두 세션 연속 같은 자리에서 헛셈
