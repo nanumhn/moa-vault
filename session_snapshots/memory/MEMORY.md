@@ -42,6 +42,7 @@
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
 - guard-report: [G4 백틱 안 근거 지움](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) · [G6 세션시작 오탐](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) · [G8 경로 인용 거부](reference_guard_report_g8_path_citation_bug_2026-09-05.md) — 근거 하나는 평문 괄호로
 - [★세션 사망 재생성 루프 — 09-19 재발](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정. '유휴라서'는 09-19 표본으로 깨짐(11시간 생존 뒤 사망→재생성분 1분·3분). 가드 BLIND 4시간 구멍 별건
+- [★★Monitor 만료는 tail 을 안 치운다 — ⑧은 첫경보 종료 백그라운드로](reference_monitor_expiry_leaks_tail_use_background_exit_on_alert_2026-09-21.md) — 09-21 tail 45개 누적·재무장마다 형방 알림. scratchpad/watch8.sh 리셋마다 재작성
 - [★★Monitor 파이프에 tr 쓰면 줄이 안 올라온다](reference_monitor_tr_buffers_use_sed_u_for_nul_strip_2026-09-21.md) — NUL 제거는 `sed -u 's/\x00//g'` 로. 09-21 발행감시가 반쪽이던 걸 양방향 시험이 잡음
 - [Monitor 005-07 제외줄(09-11 원복)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md)
 - [★워커 첨부는 그 워커 턴에 저장](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 직후 부재를 고장으로 읽지 말 것
