@@ -1,3 +1,4 @@
+- [★최신 스냅샷 09-21 04:03~14:00](project_open_threads_2026-09-21_dawn_snapshot.md) — ★★**실고객 매출 생애 0건 확정**(판매 2건 다 형 계정)·**비로그인 결제창 0개**(도달 0/4)·아투 측정은 07-26부터 이미 돌고 있었음(W37·W38 전제 오류)·분량게이트는 결함 아님·쇼츠는 AI생성 아니라 스톡조립·W39 리포트 검수5회·내 오류 8건
 - [★최신 스냅샷 09-20 14:18~야간](project_open_threads_2026-09-20_afternoon_snapshot.md) — 발행 4건 전부 성공·보류큐 신선도 검사 첫 발화로 묵은글 2건 차단·형방 차단 4번째·★내 점검기 3연속 오탐·결재 6건 무응답. ★리셋 직후 ⑤-B에 신선도 검사 다시 넣을 것
 - [지난 스냅샷 09-20 04:12~14:00](project_open_threads_2026-09-20_dawn_snapshot.md) — 재부팅복구 성공·아투 정상·인스타 결번 원인확정·보류큐 신선도 수리(리셋에 사라짐, 재등록 필수)·덱스 9시간 멈춤·형방 차단 7시간·결재 5건·내 오류 9건
 - [★★내가 급조한 점검기는 "문제 있다" 쪽으로 틀린다](feedback_my_own_checks_fail_toward_false_positives_2026-09-20.md) — 09-20 하루 3건(pgrep이 윈도우 프로세스 못 봄·시각 어림짐작·영문 원문에 한글 대조). 내 점검 결과는 결론이 아니라 단서
@@ -29,6 +30,7 @@
 - [지난 스냅샷 09-11~09-12 04:20](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자 3888 재부팅으로 복구·형방 송신 재개·덱스 결재카드·ComfyUI 꺼짐
 - [지난 스냅샷 09-10 오후](project_open_threads_2026-09-10_afternoon_snapshot.md) · [09-10 새벽](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건·덱스 멈춤·예약 유실
 - [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안 됨
+- [★★덱스 업데이트창 재발 원인 확정 — dismissed_version이 null](reference_dex_codex_update_prompt_recurs_because_dismissed_version_null_2026-09-21.md) — 재부팅마다 되물음. 카드는 8초 만에 정상 발행, 막힌 건 클릭 한 번뿐. 결재 REQ-20260921-DEX-01
 - [★09-18 아투 오전 결번 — 예고했는데 못 막았다](project_atz_20260918_am_zero_predicted_and_lost.md) — 04:12 예고→06:07 확정→결재 무응답→07:00 강제종료. 원인=관리자 5분 timeout이 ComfyUI 기동을 잘라 죽임
 - [★★클로는 브리지로 덱스·제나에게 말을 못 건다](reference_bridge_ignores_all_bot_messages_2026-09-18.md) — routing.mjs가 모든 봇을 verdict=ignore. '중간결재=덱스' 지시가 구조적으로 실행 불가
 - [★★아투 멈춤 원인 확정 = PS 출력캡처 파이프](project_atz_publish_hang_root_cause_powershell_output_capture_2026-09-17.md) — `$st = & powershell` 제거가 수리, chrome·shorts 줄도 동일
@@ -40,6 +42,7 @@
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
 - guard-report: [G4 백틱 안 근거 지움](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) · [G6 세션시작 오탐](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) · [G8 경로 인용 거부](reference_guard_report_g8_path_citation_bug_2026-09-05.md) — 근거 하나는 평문 괄호로
 - [★세션 사망 재생성 루프 — 09-19 재발](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정. '유휴라서'는 09-19 표본으로 깨짐(11시간 생존 뒤 사망→재생성분 1분·3분). 가드 BLIND 4시간 구멍 별건
+- [★★Monitor 파이프에 tr 쓰면 줄이 안 올라온다](reference_monitor_tr_buffers_use_sed_u_for_nul_strip_2026-09-21.md) — NUL 제거는 `sed -u 's/\x00//g'` 로. 09-21 발행감시가 반쪽이던 걸 양방향 시험이 잡음
 - [Monitor 005-07 제외줄(09-11 원복)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md)
 - [★워커 첨부는 그 워커 턴에 저장](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 직후 부재를 고장으로 읽지 말 것
 - [★★형 DM방 송신차단 — 세션 재시작만으로 풀린다(09-16·09-19 2회 확인)](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — 형 inbound는 유일 경로 아님. access.json 손대지 말 것. 09-19은 8시간 1분 차단·웹훅 48건 우회
