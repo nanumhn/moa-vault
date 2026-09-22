@@ -34,3 +34,7 @@ docker exec n8n sh -c '
 - 2026-09-17 실측: `https://www.instagram.com/p/DdXaroRk_Ct/` (id `18165699475426009`), 09-16·09-15 것도 같이 나와 사흘 연속 정상.
 
 **같이 보는 것**: 하루 성공1+실패2가 정상 패턴 [[reference_ksaju_ig_daily_two_failed_execs_2026-09-10]]. 실패 2건은 카드가 나간 뒤의 중복 갈래이므로 **재발행하지 않는다.** 토큰 만료 관리는 [[feedback_check_token_lifetime_before_declaring_fixed_2026-09-02]].
+
+**★2026-09-22 함정 — 응답 원문을 그대로 찍으면 토큰이 샌다.** Graph 응답의 `paging.next` URL 안에 `access_token=` 이 통째로 들어 있다. 09-22 08:50 `console.log(x)` 로 원문을 찍었다가 토큰이 세션 출력(도구 결과)에 노출됐다(디스코드·로그·파일엔 안 나감). 
+→ 반드시 `JSON.parse(x).data.map(m=>[m.id,m.timestamp,m.permalink])` 처럼 **data 만** 골라 출력할 것. 에러면 `error.message` 만.
+또 컨테이너 node 에서 `require("sqlite3")` 가 09-22엔 `Cannot find module` — 09-17 "sqlite3 는 된다" 기록은 지금은 틀림.
