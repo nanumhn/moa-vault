@@ -31,3 +31,7 @@ REQ-20260923-ATZ-01(신규) · REQ-20260921-DEX-01 · REQ-20260920-BOOT-01 · RE
 
 ## 13:36 형 지시 — 아투 am 쇼츠 중단
 - MoaAtzShorts 06:30 트리거 disabled, 보류큐 cron 재등록 521d17aa(am 쇼츠 제외), bootstrap ⑤-B 주석. → [[project_atz_am_shorts_stopped_by_hyung_2026-09-23]]
+
+## 14:25 오전 일지·저장
+- 일지 70 Record/2026/09/2026-09-23.md 신규(🌅 오전), MOC 3개 갱신, 랩실 ae9d3bd push(origin 일치, MOC exit=0). 낡음검사 BEHIND는 MOC 커밋 시각 기준이라 커밋해야 풀린다.
+- 다음 세션: REQ-20260923-ATZ-01 형 답 확인(09-24 06:08 KST 넘으면 묵은 기사) · am 쇼츠 금지 유지 · ⑧ 꺼둔 채.
