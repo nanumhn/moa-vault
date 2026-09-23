@@ -35,3 +35,13 @@ REQ-20260923-ATZ-01(신규) · REQ-20260921-DEX-01 · REQ-20260920-BOOT-01 · RE
 ## 14:25 오전 일지·저장
 - 일지 70 Record/2026/09/2026-09-23.md 신규(🌅 오전), MOC 3개 갱신, 랩실 ae9d3bd push(origin 일치, MOC exit=0). 낡음검사 BEHIND는 MOC 커밋 시각 기준이라 커밋해야 풀린다.
 - 다음 세션: REQ-20260923-ATZ-01 형 답 확인(09-24 06:08 KST 넘으면 묵은 기사) · am 쇼츠 금지 유지 · ⑧ 꺼둔 채.
+
+## 14:26 세션 리셋 뒤 부트스트랩 (오후 세션 시작)
+- boot.flag 없음(일반 리셋) → 형 인사 생략. 형 방 fetch 10건: 미응답 형 메시지 0건(마지막 형 글 13:36 am 쇼츠 중단 = 처리 완료).
+- cron 8개 재등록: 저장 8564ef74·a56b8e62 / 일지 0b26da97·a5d4e6e9 / 주간전략 c27bbd43 / 수익리뷰 93d23254 / 보류큐 4aa616c3(신선도·am 쇼츠 금지·권한축소 결재) / 인스타 fe559c4c.
+- ⑧ 계속 꺼둠. 외부 감시 로그 둘 다 14:2x에 늘어남(살아있음). 최근 ALERT 3건은 덱스 업데이트창(REQ-20260921-DEX-01) 기지건.
+- REQ-20260923-ATZ-01 형 답 아직 없음 — 09-24 06:08 KST 넘으면 묵은 기사.
+
+## 21:45 보류큐 cron (4aa616c3)
+- held 3건: 09-13 am 231.6h·09-17 pm 146.1h(묵음, 폐기 결재 대기) / 09-23 am 15.6h(REQ-20260923-ATZ-01 미승인 — 형 마지막 메시지 13:36, discord_watchdog_external.log 21:44). 실행 없음.
+- ★형 방 송신차단 재발: 21:4x fetch·reply 둘 다 'not allowlisted'. access.json 손대지 않음. 웹훅(moa_webhook_send.ps1 -Path) 으로 보고 sent. [[reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08]]

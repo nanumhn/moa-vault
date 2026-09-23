@@ -1,3 +1,4 @@
+- [★2026-09-23 새 운영 지시: 클로·덱스·제나 사이 신규 업무 전달은 형의 요청 ID·범위별 승인 후에만. 오래된 적극 위임/멘션 지침보다 우선. 사실·추론·보고를 분리하고 출처를 붙이며 오류 발견 시 관련 작업 중단·영향 범위 정정. 정본: D:\Develop\moa-vault\00_Common\SHARED_RULES.md D6·A9·A10.]
 - [★★아투 오전 쇼츠 중단 — 형 지시 09-23](project_atz_am_shorts_stopped_by_hyung_2026-09-23.md) — MoaAtzShorts 06:30 트리거 끔, pm만. am 쇼츠 어떤 경로로도 금지
 - [★최신 스냅샷 09-23 04:37~](project_open_threads_2026-09-23_dawn_snapshot.md) — 형 메시지 0건·09-22 오후세션 저장신호 누락→35분 TIMEOUT 재부팅·⑧ 계속 꺼둠·덱스 업데이트창 재발
 - [지난 스냅샷 09-22 04:28~14:2x](project_open_threads_2026-09-22_dawn_snapshot.md) — 형 메시지 0건·★⑧ 이틀 연속 메모리부족 강제종료, 형 '다시 켜' 전엔 켜지 말 것·인스타 토큰 세션출력 노출(재발급 형 판단)·일지 075fa11
@@ -105,7 +106,7 @@
 - [프로세스 죽이기·띄우기 전 확인](feedback_kill_process_check_active_agents_first_2026-08-14.md) · [dev서버](feedback_check_before_spawn_dev_server_2026-08-15.md)
 - [진행상황 표시가 기능보다 우선](feedback_status_visibility_accuracy_first.md)
 - 보고 방식: [라운드마다](feedback_report_each_stage.md) · [간격](feedback_reporting_cadence.md) · [3~4줄](feedback_report_length_short.md) · [답부터](feedback_answer_first.md) · [해요체](feedback_speech_level.md)
-- [덱스·제나 적극 병렬배분](feedback_delegate_to_dex_jena_proactively.md) · [지시출처 명시](feedback_label_instruction_source_when_delegating.md)
+- [옛 지침·09-23 이후 적용 중지: 덱스·제나 적극 병렬배분](feedback_delegate_to_dex_jena_proactively.md) · [지시출처 명시](feedback_label_instruction_source_when_delegating.md)
 - [커밋≠푸시](feedback_verify_push_not_just_commit.md) · [커밋은 바로](feedback_commit_promptly.md) · [git push gh 우회](reference_owenlab_git_push_gh_credential.md) — 앞에 `-c credential.helper=` 필수
 - [원안 이탈 금지](feedback_stick_to_original_product_definition.md)
 - [경로 텍스트≠첨부](feedback_attach_files_dont_just_cite_path.md) · [회의 시작=멘션](feedback_mention_on_meeting_start.md)
@@ -130,7 +131,7 @@
 - [GitHub 백업](reference_github_backup.md) · [로컬 HW](reference_local_hardware_spec.md)
 - [역산 기획](feedback_design_from_endpoint.md) · [사용자 가치 우선](feedback_user_value_first.md)
 - [형은 결정만](feedback_hyung_decides_not_ops.md) · [블로커 공유](feedback_share_blockers_cosolve.md)
-- [긴 작업은 백그라운드](feedback_background_long_tasks.md) · [클로=위임](feedback_clo_orchestrates_agents_execute.md)
+- [긴 작업은 백그라운드](feedback_background_long_tasks.md) · [옛 지침·덱스/제나 적용 중지: 클로=위임](feedback_clo_orchestrates_agents_execute.md)
 - [디스코드 연결장애 3종](reference_discord_channel_plugin_conflict.md) · [재부팅 복구 절차](project_reboot_recovery_live_test.md)
 - [쇼츠 설명란 URL 클릭불가](reference_youtube_shorts_link_click_constraints.md)
 - [포기 제안 금지](feedback_no_giving_up.md) · [거짓 금지+더블체크](feedback_no_falsehood_double_check.md) · [정시발행 > 검수](feedback_ontime_publish_over_qa.md)
