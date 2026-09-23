@@ -1,4 +1,6 @@
-- [★최신 스냅샷 09-22 04:28~14:2x](project_open_threads_2026-09-22_dawn_snapshot.md) — 형 메시지 0건·★⑧ 이틀 연속 메모리부족 강제종료, 형 '다시 켜' 전엔 켜지 말 것·인스타 토큰 세션출력 노출(재발급 형 판단)·일지 075fa11
+- [★★아투 오전 쇼츠 중단 — 형 지시 09-23](project_atz_am_shorts_stopped_by_hyung_2026-09-23.md) — MoaAtzShorts 06:30 트리거 끔, pm만. am 쇼츠 어떤 경로로도 금지
+- [★최신 스냅샷 09-23 04:37~](project_open_threads_2026-09-23_dawn_snapshot.md) — 형 메시지 0건·09-22 오후세션 저장신호 누락→35분 TIMEOUT 재부팅·⑧ 계속 꺼둠·덱스 업데이트창 재발
+- [지난 스냅샷 09-22 04:28~14:2x](project_open_threads_2026-09-22_dawn_snapshot.md) — 형 메시지 0건·★⑧ 이틀 연속 메모리부족 강제종료, 형 '다시 켜' 전엔 켜지 말 것·인스타 토큰 세션출력 노출(재발급 형 판단)·일지 075fa11
 - [지난 스냅샷 09-21 14:08~09-22 04:2x](project_open_threads_2026-09-21_afternoon_snapshot.md) — 형 메시지 0건·쇼츠 2/2·★⑧ 배경감시 메모리부족 강제종료로 꺼둠(다음 세션 메모리 확인 후 재가동)·tail 45개 정리·랩실 push는 gh 헬퍼 긴 형태
 - [지난 스냅샷 09-21 04:03~14:00](project_open_threads_2026-09-21_dawn_snapshot.md) — ★★**실고객 매출 생애 0건 확정**(판매 2건 다 형 계정)·**비로그인 결제창 0개**(도달 0/4)·아투 측정은 07-26부터 이미 돌고 있었음(W37·W38 전제 오류)·분량게이트는 결함 아님·쇼츠는 AI생성 아니라 스톡조립·W39 리포트 검수5회·내 오류 8건
 - [★최신 스냅샷 09-20 14:18~야간](project_open_threads_2026-09-20_afternoon_snapshot.md) — 발행 4건 전부 성공·보류큐 신선도 검사 첫 발화로 묵은글 2건 차단·형방 차단 4번째·★내 점검기 3연속 오탐·결재 6건 무응답. ★리셋 직후 ⑤-B에 신선도 검사 다시 넣을 것
@@ -13,24 +15,11 @@
 - [★★0건을 믿기 전에 분모부터 세라](feedback_count_window_before_trusting_zero_matches_2026-09-19.md) — awk `-F' \| '`가 정규식 OR로 먹혀 전부 걸러짐. 두 세션 연속 같은 자리에서 헛셈
 - [★★인스타 판정수단이 분류기에 막혔다 09-19](project_ig_verification_blocked_by_classifier_2026-09-19.md) — Graph 재조회가 유일 판정인데 거부. **막힌 걸 형께 넘기는 보고까지 거부** → 명령문 빼고 사실만 적을 것
 - [★MOC LOOKUP-FAIL은 검사기 파싱 결함](reference_moc_staleness_lookupfail_is_parser_bug_2026-09-19.md) — `evidence_git: 경로 · 설명` 형식 때문. 경로부터 ls로 확인할 것, 내가 '경로가 낡았다'로 오판함
-- [지난 스냅샷 09-18 14:03~](project_open_threads_2026-09-18_afternoon_snapshot.md) — 저녁 블로그·쇼츠 둘 다 성공·★내 위험예측 빗나감·감시 2개 메모리압박 강제종료·형 DM 21:45~ 송신차단
-- [지난 스냅샷 09-18 04:06~14:0x](project_open_threads_2026-09-18_dawn_snapshot.md) — 아투 오전 결번(예고했으나 못 막음)·★브리지가 봇 글 전부 버림·형 무응답 사흘째·결재 5건
-- [지난 스냅샷 09-17 14:0x~](project_open_threads_2026-09-17_afternoon_snapshot.md) — 아투 하루 0건·형 DM 전채널 송신차단·결재 11건·게이트 괄호인용 사각지대
-- [지난 스냅샷 09-17 03:5x~04:4x](project_open_threads_2026-09-17_dawn_snapshot.md) — 결재 6건 무응답·MOC 6개 갱신 완료·nBlog 24시간 정지 발견·관문 150초 정정
+- 지난 스냅샷 09-10~09-18(14개): [2026-09-18pm](project_open_threads_2026-09-18_afternoon_snapshot.md) · [2026-09-18am](project_open_threads_2026-09-18_dawn_snapshot.md) · [2026-09-17pm](project_open_threads_2026-09-17_afternoon_snapshot.md) · [2026-09-17am](project_open_threads_2026-09-17_dawn_snapshot.md) · [2026-09-16pm](project_open_threads_2026-09-16_afternoon_snapshot.md) · [2026-09-16am](project_open_threads_2026-09-16_dawn_snapshot.md) · [2026-09-15pm](project_open_threads_2026-09-15_afternoon_snapshot.md) · [2026-09-15am](project_open_threads_2026-09-15_dawn_snapshot.md) · [2026-09-14pm](project_open_threads_2026-09-14_afternoon_snapshot.md) · [2026-09-14am](project_open_threads_2026-09-14_dawn_snapshot.md) · [2026-09-13pm](project_open_threads_2026-09-13_afternoon_snapshot.md) · [2026-09-13am](project_open_threads_2026-09-13_dawn_snapshot.md) · [2026-09-11am](project_open_threads_2026-09-11_dawn_snapshot.md) · [2026-09-10pm](project_open_threads_2026-09-10_afternoon_snapshot.md) · [2026-09-10am](project_open_threads_2026-09-10_dawn_snapshot.md) — 상세는 각 파일
 - [★★보고 전에 내 기록부터 펴볼 것](feedback_read_own_records_before_reporting_as_new_2026-09-17.md) — 09-17에 "또 터졌다"·"원인 찾았다" 오보 2건, 둘 다 이미 적혀 있던 것
 - [★★"커밋 0건" 말하기 전 git fetch](feedback_git_fetch_before_declaring_repo_idle_2026-09-17.md) — k-saju 블로그 '2주 정지'는 낡은 클론이 만든 오보였다
 - [★nBlog 스케줄러 24시간 무틱 재발](project_nblog_cron_tick_24h_outage_recurring_2026-09-17.md) — 09-11·09-13 두 번, 둘 다 사후 발견·원인 미규명
 - [★포럼 429/503은 재부팅 전후에 몰림](reference_issue_forum_http_errors_cluster_near_reboot_2026-09-17.md) — 감소 추세 아님, 세션마다 새로 조사하지 말 것
-- [지난 스냅샷 09-16 14:0x](project_open_threads_2026-09-16_afternoon_snapshot.md) — 형방 차단 07:1x~·아투 보류글 폐기 결재 REQ-20260916-ATZ-01·09-15 pm 쇼츠 미재시도
-- [지난 스냅샷 09-16 04:2x](project_open_threads_2026-09-16_dawn_snapshot.md) — 윈도우업데이트 재부팅·형방 답장차단 23:56~·09-15 pm 쇼츠 실패
-- [지난 스냅샷 09-15 14:0x](project_open_threads_2026-09-15_afternoon_snapshot.md) — 형 무응답 계속·Monitor 30분 상한→형방 반복보고·포럼 503 하루 6회
-- [지난 스냅샷 09-15 04:2x](project_open_threads_2026-09-15_dawn_snapshot.md) — 형 무응답 계속·아투 09-14am 보류(날짜 넘어감)·감시기 503 2회
-- [지난 스냅샷 09-14 14:2x](project_open_threads_2026-09-14_afternoon_snapshot.md) — STRW38-01 형답 기한 09-16·W38 산출물 임시폴더에만·아투am 보류
-- [지난 스냅샷 09-14 04:1x](project_open_threads_2026-09-14_dawn_snapshot.md) — 3888 무응답 계속·형DM 회신차단 20:17~·결재3건 무응답
-- [지난 스냅샷 09-13 14:2x](project_open_threads_2026-09-13_afternoon_snapshot.md) — 관리자락 재발·아투am/인스타 결번
-- [지난 스냅샷 09-13 04:20](project_open_threads_2026-09-13_dawn_snapshot.md) — 사흘간 제품 커밋 0건·IG토큰 10-22 만료·nblog 09-11 24시간 정지
-- [지난 스냅샷 09-11~09-12 04:20](project_open_threads_2026-09-11_dawn_snapshot.md) — 관리자 3888 재부팅으로 복구·형방 송신 재개·덱스 결재카드·ComfyUI 꺼짐
-- [지난 스냅샷 09-10 오후](project_open_threads_2026-09-10_afternoon_snapshot.md) · [09-10 새벽](project_open_threads_2026-09-10_dawn_snapshot.md) — 아투 결함3건·덱스 멈춤·예약 유실
 - [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안 됨
 - [★★덱스 업데이트창 재발 원인 확정 — dismissed_version이 null](reference_dex_codex_update_prompt_recurs_because_dismissed_version_null_2026-09-21.md) — 재부팅마다 되물음. 카드는 8초 만에 정상 발행, 막힌 건 클릭 한 번뿐. 결재 REQ-20260921-DEX-01
 - [★09-18 아투 오전 결번 — 예고했는데 못 막았다](project_atz_20260918_am_zero_predicted_and_lost.md) — 04:12 예고→06:07 확정→결재 무응답→07:00 강제종료. 원인=관리자 5분 timeout이 ComfyUI 기동을 잘라 죽임
