@@ -39,7 +39,7 @@
 - [★★Monitor 파이프에 tr 쓰면 줄이 안 올라온다](reference_monitor_tr_buffers_use_sed_u_for_nul_strip_2026-09-21.md) — NUL 제거는 `sed -u 's/\x00//g'` 로. 09-21 발행감시가 반쪽이던 걸 양방향 시험이 잡음
 - [Monitor 005-07 제외줄(09-11 원복)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md)
 - [★워커 첨부는 그 워커 턴에 저장](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 직후 부재를 고장으로 읽지 말 것
-- [★★형 DM방 송신차단 — 세션 재시작만으로 풀린다(09-16·09-19 2회 확인)](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — 형 inbound는 유일 경로 아님. access.json 손대지 말 것. 09-19은 8시간 1분 차단·웹훅 48건 우회
+- [★★형 DM방 송신차단 — 세션 재시작만으로 풀린다(09-16·09-19·09-24 3회 확인)](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — 형 inbound는 유일 경로 아님. access.json 손대지 말 것. 09-19은 8시간 1분 차단·웹훅 48건 우회
 - [★reply chat_id는 형 방 번호로](feedback_reply_chatid_must_be_hyung_room_not_inbound_2026-09-07.md) — 형 방=1501858476362829834
 - [★Disabled 예약작업 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) · [관리자API로 브리지 관리](reference_moa_manager_api_2026-08-30.md) · [★★감시 5종이 스케줄러에서 Disabled인 건 정상 — 관리자(3888)가 대신 돌린다, 로그가 늘면 살아있는 것](project_unified_console_monitor_migration_2026-08-30.md)
 - [★재부팅 후 덱스 브리지 중복 확인](project_dex_bridge_duplicate_recheck_after_reboot_2026-09-07.md) — 브리지는 2단(껍데기+node)
