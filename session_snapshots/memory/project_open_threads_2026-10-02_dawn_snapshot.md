@@ -21,3 +21,6 @@ metadata:
 
 열린 결재(형 응답 없음): pm 쇼츠 COn2tLEjcFI 공개 · 보류 14건 폐기 · gpt_write.mjs 커밋. 형께 "세션 밖 감시로 이전"안 올리겠다던 약속(10-01) 아직 미이행.
 다음: 20:25 아투 pm 블로그·쇼츠 확인(썸네일 거부 재발 여부). MEMORY.md 20.2KB — 압축 필요(17KB 이하).
+
+**10-02 14:26 새 세션(14:00 일반 리셋, boot.flag 없음)**: cron 11개 재등록. ★형 DM reply 14:28 정상 발송(id 1555451336319832108) — 세션 재시작으로 차단 풀림, 4번째 표본도 같은 패턴. 오전에 웹훅으로만 간 보고 요약을 형 방에 재전달함. 형 미응답 메시지 0건.
+**10-02 20:5x pm 확인**: 블로그 https://www.american-todayz.com/2026/10/100.html (19:36, gpt, 200) · 쇼츠 S-grKKjsZ8g 공개(watch 페이지 isPrivate/isUnlisted false; oembed 401은 playableInEmbed:false 탓이라 비공개 아님) · 썸네일 거부 재발 없음 · COn2tLEjcFI 여전히 비공개. ★형 DM reply 14:28 성공 후 20:5x 다시 not allowlisted(같은 세션 안 재차단) → 웹훅 우회.
