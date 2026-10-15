@@ -20,3 +20,5 @@ metadata:
 - 아투 쇼츠 10-12·10-13 오후 연속 실패 — edge_tts 나레이션 단계, 원인 미조사.
 
 관련: [[reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08]] [[reference_silence_gate_threshold_is_150s_2026-09-17]] [[project_open_threads_2026-10-02_afternoon_snapshot]]
+
+- 14:26 새 세션(14:00 리셋, 재부팅 아님): 형 방 reply 다시 성공(sent id 1560162191057879141) → 세션 재시작으로 풀림 재확인. cron 8개 재등록(ec9e8207 외), ⑧ 꺼둠 유지. 미전달 요약 재전달 완료.
