@@ -1,6 +1,7 @@
 - [★2026-09-23 새 운영 지시: 클로·덱스·제나 사이 신규 업무 전달은 형의 요청 ID·범위별 승인 후에만. 오래된 적극 위임/멘션 지침보다 우선. 사실·추론·보고를 분리하고 출처를 붙이며 오류 발견 시 관련 작업 중단·영향 범위 정정. 정본: D:\Develop\moa-vault\00_Common\SHARED_RULES.md D6·A9·A10.]
 - [★★아투 오전 쇼츠 중단 — 형 지시 09-23](project_atz_am_shorts_stopped_by_hyung_2026-09-23.md) — MoaAtzShorts 06:30 트리거 끔, pm만. am 쇼츠 어떤 경로로도 금지
-- [★★최신 스냅샷 10-15 14:26~10-16 04:2x](project_open_threads_2026-10-15_afternoon_snapshot.md) — reply 재개·보류큐 묵은글 18건·아투 pm 쇼츠 10-15도 실패(edge TTS 403)·MOC 7개 미갱신·일지 57860be·reply는 단독 턴으로(병렬이면 무응답관문이 막음)
+- [★★최신 스냅샷 10-16 04:26~14:2x](project_open_threads_2026-10-16_dawn_snapshot.md) — 재부팅 자동복구 정상·형 메시지 0건·보류큐 묵은글 18건·인스타 08:01 정상·MOC 3개 갱신/5개 미갱신·일지 33f9ad2·IG 토큰=httpQueryAuth value
+- [지난 스냅샷 10-15 14:26~10-16 04:2x](project_open_threads_2026-10-15_afternoon_snapshot.md) — reply 재개·보류큐 묵은글 18건·아투 pm 쇼츠 10-15도 실패(edge TTS 403)·MOC 7개 미갱신·일지 57860be·reply는 단독 턴으로(병렬이면 무응답관문이 막음)
 - [지난 스냅샷 10-15 10:53~14:2x](project_open_threads_2026-10-15_morning_snapshot.md) — 04:00 저장TIMEOUT·10:52 재부팅·★형 DM reply 13:4x 재차단→무응답관문이 Bash까지 막는 교착·일지 d39fe67·MOC 7개 미갱신·일지 10-03~14 공백
 - [지난 스냅샷 10-02 14:26~10-03 04:2x](project_open_threads_2026-10-02_afternoon_snapshot.md) — pm 블로그·쇼츠 공개·썸네일 정상·★형 DM 14:28 풀렸다 20:2x 재차단·일지 690147c·결재 3건 무응답
 - [지난 스냅샷 10-02 04:28~14:2x](project_open_threads_2026-10-02_dawn_snapshot.md) — 발행 3종 정상·★형 DM reply 07:45부터 차단(웹훅 우회, 다음 세션서 요약 재전달)·일지 577d4e6·결재 3건 무응답
