@@ -1,53 +1,37 @@
 - [★2026-09-23 새 운영 지시: 클로·덱스·제나 사이 신규 업무 전달은 형의 요청 ID·범위별 승인 후에만. 오래된 적극 위임/멘션 지침보다 우선. 사실·추론·보고를 분리하고 출처를 붙이며 오류 발견 시 관련 작업 중단·영향 범위 정정. 정본: D:\Develop\moa-vault\00_Common\SHARED_RULES.md D6·A9·A10.]
 - [★★아투 오전 쇼츠 중단 — 형 지시 09-23](project_atz_am_shorts_stopped_by_hyung_2026-09-23.md) — MoaAtzShorts 06:30 트리거 끔, pm만. am 쇼츠 어떤 경로로도 금지
-- [★★최신 스냅샷 10-17 04:27~14:2x](project_open_threads_2026-10-17_dawn_snapshot.md) — 재부팅복구 정상·형 메시지 0건·ATZ-01 무응답(19:40 만료)·인스타 08:01 정상·MOC 3개·일지 1a9db11
-- [지난 스냅샷 10-16 14:26~10-17 04:2x](project_open_threads_2026-10-16_afternoon_snapshot.md) — 형 메시지 0건·아투 pm 병기괄호 오탐 보류, 결재 REQ-20261016-ATZ-01 무응답(10-17 19:40 신선도 만료)·pm 쇼츠 skipped·무응답관문이 reply 못 셈·일지 9737aeb
-- [지난 스냅샷 10-16 04:26~14:2x](project_open_threads_2026-10-16_dawn_snapshot.md) — 재부팅 자동복구 정상·형 메시지 0건·보류큐 묵은글 18건·인스타 08:01 정상·MOC 3개 갱신/5개 미갱신·일지 33f9ad2·IG 토큰=httpQueryAuth value
-- [지난 스냅샷 10-15 14:26~10-16 04:2x](project_open_threads_2026-10-15_afternoon_snapshot.md) — reply 재개·보류큐 묵은글 18건·아투 pm 쇼츠 10-15도 실패(edge TTS 403)·MOC 7개 미갱신·일지 57860be·reply는 단독 턴으로(병렬이면 무응답관문이 막음)
-- [지난 스냅샷 10-15 10:53~14:2x](project_open_threads_2026-10-15_morning_snapshot.md) — 04:00 저장TIMEOUT·10:52 재부팅·★형 DM reply 13:4x 재차단→무응답관문이 Bash까지 막는 교착·일지 d39fe67·MOC 7개 미갱신·일지 10-03~14 공백
-- [지난 스냅샷 10-02 14:26~10-03 04:2x](project_open_threads_2026-10-02_afternoon_snapshot.md) — pm 블로그·쇼츠 공개·썸네일 정상·★형 DM 14:28 풀렸다 20:2x 재차단·일지 690147c·결재 3건 무응답
-- [지난 스냅샷 10-02 04:28~14:2x](project_open_threads_2026-10-02_dawn_snapshot.md) — 발행 3종 정상·★형 DM reply 07:45부터 차단(웹훅 우회, 다음 세션서 요약 재전달)·일지 577d4e6·결재 3건 무응답
-- [지난 스냅샷 10-01 13:40](project_open_threads_2026-10-01_afternoon_snapshot.md) — 7일 세션 무활동(로그인 만료 추정)·형 발행체크 지시·아투 09-26부터 0편(보류10)·k사주 4일 결번·nblog 09-29 무작업·원인조사+세션밖 감시 이전안 약속
-- [지난 스냅샷 09-23 14:26~09-24 04:1x](project_open_threads_2026-09-23_afternoon_snapshot.md) — pm 쇼츠 1/1·보류큐 무실행(ATZ-01 06:08 시한)·★형 방 송신차단 재발 21:4x~·09-23 운영 지시·일지 fa6dcc3
-- [지난 스냅샷 09-23 04:37~](project_open_threads_2026-09-23_dawn_snapshot.md) — 형 메시지 0건·09-22 오후세션 저장신호 누락→35분 TIMEOUT 재부팅·⑧ 계속 꺼둠·덱스 업데이트창 재발
-- [지난 스냅샷 09-22 04:28~14:2x](project_open_threads_2026-09-22_dawn_snapshot.md) — 형 메시지 0건·★⑧ 이틀 연속 메모리부족 강제종료, 형 '다시 켜' 전엔 켜지 말 것·인스타 토큰 세션출력 노출(재발급 형 판단)·일지 075fa11
-- [지난 스냅샷 09-21 14:08~09-22 04:2x](project_open_threads_2026-09-21_afternoon_snapshot.md) — 형 메시지 0건·쇼츠 2/2·★⑧ 배경감시 메모리부족 강제종료로 꺼둠(다음 세션 메모리 확인 후 재가동)·tail 45개 정리·랩실 push는 gh 헬퍼 긴 형태
-- [지난 스냅샷 09-21 04:03~14:00](project_open_threads_2026-09-21_dawn_snapshot.md) — ★★**실고객 매출 생애 0건 확정**(판매 2건 다 형 계정)·**비로그인 결제창 0개**(도달 0/4)·아투 측정은 07-26부터 이미 돌고 있었음(W37·W38 전제 오류)·분량게이트는 결함 아님·쇼츠는 AI생성 아니라 스톡조립·W39 리포트 검수5회·내 오류 8건
-- [★최신 스냅샷 09-20 14:18~야간](project_open_threads_2026-09-20_afternoon_snapshot.md) — 발행 4건 전부 성공·보류큐 신선도 검사 첫 발화로 묵은글 2건 차단·형방 차단 4번째·★내 점검기 3연속 오탐·결재 6건 무응답. ★리셋 직후 ⑤-B에 신선도 검사 다시 넣을 것
-- [지난 스냅샷 09-20 04:12~14:00](project_open_threads_2026-09-20_dawn_snapshot.md) — 재부팅복구 성공·아투 정상·인스타 결번 원인확정·보류큐 신선도 수리(리셋에 사라짐, 재등록 필수)·덱스 9시간 멈춤·형방 차단 7시간·결재 5건·내 오류 9건
-- [★★내가 급조한 점검기는 "문제 있다" 쪽으로 틀린다](feedback_my_own_checks_fail_toward_false_positives_2026-09-20.md) — 09-20 하루 3건(pgrep이 윈도우 프로세스 못 봄·시각 어림짐작·영문 원문에 한글 대조). 내 점검 결과는 결론이 아니라 단서
-- [★공통수칙 동기화 DRIFT — 감시기가 경보 낸 채 꺼져 있다](project_shared_rules_sync_drifted_watcher_disabled_2026-09-20.md) — 08-30부터 4파일 어긋남, 관리자에서 enabled:false. 별건으로 v202609009 패치 09-06부터 미적용(머리말은 v202608009가 맞음). `-Apply`는 형 결재 전 금지
-- [★★아투 고유관점 게이트는 고장이 아니라 계측 전용 설계](reference_atz_originality_gate_is_measure_only_by_design_2026-09-20.md) — D(매체 귀속)만 차단, A·B·C는 경고뿐. 승격 조건 "3회 연속 100%"가 도달 불가(108편 통과 0건). 09-20 아침 내가 고장으로 오진함
-- [★★인스타 결번 원인 확정 — daily-card 콜드 렌더](project_ksaju_ig_daily_card_cold_render_root_cause_2026-09-20.md) — 09-12·09-13·09-20 3건 전부 같은 원인, 42건 전수조사. execution_data는 flatted 역직렬화로 읽힌다(09-13 '못 읽는다' 기록은 틀림)
-- [지난 스냅샷 09-19 14:2x~/09-20 04:2x](project_open_threads_2026-09-19_afternoon_snapshot.md) — 형DM 하루 2번 차단(8h01m+진행중)·아투 4슬롯 전부 발행·블로그 2편 길이기준 미달 자동공개·내 오보 3건·MOC 5건 미갱신
-- [지난 스냅샷 09-19 02:07~/04:20~](project_open_threads_2026-09-19_dawn_snapshot.md) — 새벽 세션 3회 사망·가드 4시간 BLIND·재부팅 복구·cron8+Monitor 재무장·ComfyUI 1초차 통과·결재 5건
-- [★재부팅 직후 ComfyUI는 4분 걸린다](reference_comfyui_needs_4min_after_boot_2026-09-19.md) — 5분 안 단발 측정으로 '죽었다' 판정 금지, 관리자 5분 타임아웃과 1초 차
-- [★★0건을 믿기 전에 분모부터 세라](feedback_count_window_before_trusting_zero_matches_2026-09-19.md) — awk `-F' \| '`가 정규식 OR로 먹혀 전부 걸러짐. 두 세션 연속 같은 자리에서 헛셈
-- [★★인스타 판정수단이 분류기에 막혔다 09-19](project_ig_verification_blocked_by_classifier_2026-09-19.md) — Graph 재조회가 유일 판정인데 거부. **막힌 걸 형께 넘기는 보고까지 거부** → 명령문 빼고 사실만 적을 것
-- [★MOC LOOKUP-FAIL은 검사기 파싱 결함](reference_moc_staleness_lookupfail_is_parser_bug_2026-09-19.md) — `evidence_git: 경로 · 설명` 형식 때문. 경로부터 ls로 확인할 것, 내가 '경로가 낡았다'로 오판함
-- 지난 스냅샷 09-10~09-18(14개): [2026-09-18pm](project_open_threads_2026-09-18_afternoon_snapshot.md) · [2026-09-18am](project_open_threads_2026-09-18_dawn_snapshot.md) · [2026-09-17pm](project_open_threads_2026-09-17_afternoon_snapshot.md) · [2026-09-17am](project_open_threads_2026-09-17_dawn_snapshot.md) · [2026-09-16pm](project_open_threads_2026-09-16_afternoon_snapshot.md) · [2026-09-16am](project_open_threads_2026-09-16_dawn_snapshot.md) · [2026-09-15pm](project_open_threads_2026-09-15_afternoon_snapshot.md) · [2026-09-15am](project_open_threads_2026-09-15_dawn_snapshot.md) · [2026-09-14pm](project_open_threads_2026-09-14_afternoon_snapshot.md) · [2026-09-14am](project_open_threads_2026-09-14_dawn_snapshot.md) · [2026-09-13pm](project_open_threads_2026-09-13_afternoon_snapshot.md) · [2026-09-13am](project_open_threads_2026-09-13_dawn_snapshot.md) · [2026-09-11am](project_open_threads_2026-09-11_dawn_snapshot.md) · [2026-09-10pm](project_open_threads_2026-09-10_afternoon_snapshot.md) · [2026-09-10am](project_open_threads_2026-09-10_dawn_snapshot.md) — 상세는 각 파일
-- [★★보고 전에 내 기록부터 펴볼 것](feedback_read_own_records_before_reporting_as_new_2026-09-17.md) — 09-17에 "또 터졌다"·"원인 찾았다" 오보 2건, 둘 다 이미 적혀 있던 것
-- [★★"커밋 0건" 말하기 전 git fetch](feedback_git_fetch_before_declaring_repo_idle_2026-09-17.md) — k-saju 블로그 '2주 정지'는 낡은 클론이 만든 오보였다
-- [★nBlog 스케줄러 24시간 무틱 재발](project_nblog_cron_tick_24h_outage_recurring_2026-09-17.md) — 09-11·09-13 두 번, 둘 다 사후 발견·원인 미규명
+- [★★최신 스냅샷 10-17 14:26~](project_open_threads_2026-10-17_afternoon_snapshot.md) — 관리자 3888 낡은 lock으로 04:27부터 다운·결재 MGR-01 대기·cron 8개 재등록·ATZ-01 19:40 만료
+- [지난 세션 스냅샷 목록](reference_session_snapshot_archive_index.md) — 09-10~10-17 오전 스냅샷 링크 모음,…
+- [★★내가 급조한 점검기는 "문제 있다" 쪽으로 틀린다](feedback_my_own_checks_fail_toward_false_positives_2026-09-20.md) — 09-20 하루 3건(pgrep이 윈도우 프로세…
+- [★공통수칙 동기화 DRIFT — 감시기가 경보 낸 채 꺼져 있다](project_shared_rules_sync_drifted_watcher_disabled_2026-09-20.md) — 08-30부터 4파일 어긋남, 관리자에서 ena…
+- [★★아투 고유관점 게이트는 고장이 아니라 계측 전용 설계](reference_atz_originality_gate_is_measure_only_by_design_2026-09-20.md) — D(매체 귀속)만 차단, A·B·C는 경고뿐.…
+- [★★인스타 결번 원인 확정 — daily-card 콜드 렌더](project_ksaju_ig_daily_card_cold_render_root_cause_2026-09-20.md) — 09-12·09-13·09-20 3건 전부 같은…
+- [★재부팅 직후 ComfyUI는 4분 걸린다](reference_comfyui_needs_4min_after_boot_2026-09-19.md) — 5분 안 단발 측정으로 '죽었다' 판정 금지,…
+- [★★0건을 믿기 전에 분모부터 세라](feedback_count_window_before_trusting_zero_matches_2026-09-19.md) — awk `-F' \| '`가 정규식 OR로 먹혀…
+- [★★인스타 판정수단이 분류기에 막혔다 09-19](project_ig_verification_blocked_by_classifier_2026-09-19.md) — Graph 재조회가 유일 판정인데 거부. **막…
+- [★MOC LOOKUP-FAIL은 검사기 파싱 결함](reference_moc_staleness_lookupfail_is_parser_bug_2026-09-19.md) — `evidence_git: 경로 · 설명` 형식…
+- [★★보고 전에 내 기록부터 펴볼 것](feedback_read_own_records_before_reporting_as_new_2026-09-17.md) — 09-17에 "또 터졌다"·"원인 찾았다" 오보…
+- [★★"커밋 0건" 말하기 전 git fetch](feedback_git_fetch_before_declaring_repo_idle_2026-09-17.md) — k-saju 블로그 '2주 정지'는 낡은 클론이…
+- [★nBlog 스케줄러 24시간 무틱 재발](project_nblog_cron_tick_24h_outage_recurring_2026-09-17.md) — 09-11·09-13 두 번, 둘 다 사후 발견…
 - [★포럼 429/503은 재부팅 전후에 몰림](reference_issue_forum_http_errors_cluster_near_reboot_2026-09-17.md) — 감소 추세 아님, 세션마다 새로 조사하지 말 것
-- [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안 됨
-- [★★덱스 업데이트창 재발 원인 확정 — dismissed_version이 null](reference_dex_codex_update_prompt_recurs_because_dismissed_version_null_2026-09-21.md) — 재부팅마다 되물음. 카드는 8초 만에 정상 발행, 막힌 건 클릭 한 번뿐. 결재 REQ-20260921-DEX-01
-- [★09-18 아투 오전 결번 — 예고했는데 못 막았다](project_atz_20260918_am_zero_predicted_and_lost.md) — 04:12 예고→06:07 확정→결재 무응답→07:00 강제종료. 원인=관리자 5분 timeout이 ComfyUI 기동을 잘라 죽임
-- [★★클로는 브리지로 덱스·제나에게 말을 못 건다](reference_bridge_ignores_all_bot_messages_2026-09-18.md) — routing.mjs가 모든 봇을 verdict=ignore. '중간결재=덱스' 지시가 구조적으로 실행 불가
-- [★★아투 멈춤 원인 확정 = PS 출력캡처 파이프](project_atz_publish_hang_root_cause_powershell_output_capture_2026-09-17.md) — `$st = & powershell` 제거가 수리, chrome·shorts 줄도 동일
-- [★아투 06:00 발행 중 ComfyUI 기동 시 멈춤](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 발행 전 8188 확인 (09-17 3번째 재발, 원인은 위 메모리로)
+- [★관리자 3888 기동실패=낡은 lock PID 재활용](reference_moa_manager_stale_lock_pid_reuse_2026-09-11.md) — 09-12 재부팅으로 저절로 복구, 근본수리 안…
+- [★★덱스 업데이트창 재발 원인 확정 — dismissed_version이 null](reference_dex_codex_update_prompt_recurs_because_dismissed_version_null_2026-09-21.md) — 재부팅마다 되물음. 카드는 8초 만에 정상 발행…
+- [★09-18 아투 오전 결번 — 예고했는데 못 막았다](project_atz_20260918_am_zero_predicted_and_lost.md) — 04:12 예고→06:07 확정→결재 무응답→0…
+- [★★클로는 브리지로 덱스·제나에게 말을 못 건다](reference_bridge_ignores_all_bot_messages_2026-09-18.md) — routing.mjs가 모든 봇을 verdict…
+- [★★아투 멈춤 원인 확정 = PS 출력캡처 파이프](project_atz_publish_hang_root_cause_powershell_output_capture_2026-09-17.md) — `$st = & powershell` 제거가 수…
+- [★아투 06:00 발행 중 ComfyUI 기동 시 멈춤](project_atz_publish_hang_when_comfyui_started_inside_run_2026-09-11.md) — 발행 전 8188 확인 (09-17 3번째 재발…
 - [★아투 09-09 PM 결함 3건](project_atz_pm_20260909_gpt_ok_but_three_defects.md) · [GPT 실패=프로젝트 홈 경로](project_atz_gpt_project_home_broken_2026-09-09.md) — 제나 몫 / ea2b2ed
 - [★09-15pm 쇼츠 실패=qwen 폴백이 대본 0건](project_shorts_20260915_pm_qwen_fallback_produced_no_script.md) — 폴백 위험은 품질뿐 아니라 '산출물 0'도 있다
 - [★아투 qwen 폴백 보류가 오보 막음](project_atz_qwen_fallback_hold_blocked_blog_2026-09-09.md) · [GPT폴백=품질위험](reference_atz_gpt_fallback_quality_risk_2026-08-07.md) — 지명환각 검사 없음
-- [★게이트 인용대조 병기괄호 사각지대](reference_atz_gate_paren_gloss_quote_gap_2026-09-18.md) — `(EU)` 하나로 09-17 아투 하루 0건, 수리안 양방향 시험 완료 / 이중경로 2줄은 45e8120으로 **커밋됨**(낡은 '미커밋' 서술 폐기)
+- [★게이트 인용대조 병기괄호 사각지대](reference_atz_gate_paren_gloss_quote_gap_2026-09-18.md) — `(EU)` 하나로 09-17 아투 하루 0건,…
 - [★아투 게이트 이중경로·헛통과](project_atz_gate_dual_path_disparity_2026-09-06.md) · [한글음역 사각지대](reference_atz_gate_anchor_hangul_gap_2026-08-04.md) · [규칙역전 사각지대](reference_qa_gate_rule_inversion_blindspot_2026-08-07.md)
 - guard-report: [G4 백틱 안 근거 지움](reference_guard_report_g4_strips_inline_backticks_2026-09-09.md) · [G6 세션시작 오탐](reference_guard_report_g6_no_transcript_at_session_start_2026-09-06.md) · [G8 경로 인용 거부](reference_guard_report_g8_path_citation_bug_2026-09-05.md) — 근거 하나는 평문 괄호로
-- [★세션 사망 재생성 루프 — 09-19 재발](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정. '유휴라서'는 09-19 표본으로 깨짐(11시간 생존 뒤 사망→재생성분 1분·3분). 가드 BLIND 4시간 구멍 별건
-- [★★Monitor 만료는 tail 을 안 치운다 — ⑧은 첫경보 종료 백그라운드로](reference_monitor_expiry_leaks_tail_use_background_exit_on_alert_2026-09-21.md) — 09-21 tail 45개 누적·재무장마다 형방 알림. scratchpad/watch8.sh 리셋마다 재작성
-- [★★Monitor 파이프에 tr 쓰면 줄이 안 올라온다](reference_monitor_tr_buffers_use_sed_u_for_nul_strip_2026-09-21.md) — NUL 제거는 `sed -u 's/\x00//g'` 로. 09-21 발행감시가 반쪽이던 걸 양방향 시험이 잡음
+- [★세션 사망 재생성 루프 — 09-19 재발](project_session_dies_while_idle_respawn_loop_2026-09-09.md) — 원인 미확정. '유휴라서'는 09-19 표본으로…
+- [★★Monitor 만료는 tail 을 안 치운다 — ⑧은 첫경보 종료 백그라운드로](reference_monitor_expiry_leaks_tail_use_background_exit_on_alert_2026-09-21.md) — 09-21 tail 45개 누적·재무장마다 형방…
+- [★★Monitor 파이프에 tr 쓰면 줄이 안 올라온다](reference_monitor_tr_buffers_use_sed_u_for_nul_strip_2026-09-21.md) — NUL 제거는 `sed -u 's/\x00//g…
 - [Monitor 005-07 제외줄(09-11 원복)](reference_monitor_filter_excludes_enbl00507_2026-09-09.md)
 - [★워커 첨부는 그 워커 턴에 저장](reference_worker_attachment_saved_only_when_turn_runs_2026-09-08.md) — 직후 부재를 고장으로 읽지 말 것
-- [★★형 DM방 송신차단 — 세션 재시작만으로 풀린다(09-16·09-19·09-24 3회 확인)](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — 형 inbound는 유일 경로 아님. access.json 손대지 말 것. 09-19은 8시간 1분 차단·웹훅 48건 우회
+- [★★형 DM방 송신차단 — 세션 재시작만으로 풀린다(09-16·09-19·09-24 3회 확인)](reference_hyung_dm_send_blocked_needs_inbound_dm_2026-09-08.md) — 형 inbound는 유일 경로 아님. acces…
 - [★reply chat_id는 형 방 번호로](feedback_reply_chatid_must_be_hyung_room_not_inbound_2026-09-07.md) — 형 방=1501858476362829834
 - [★Disabled 예약작업 실행 금지](feedback_never_run_disabled_scheduler_tasks_2026-09-07.md) · [관리자API로 브리지 관리](reference_moa_manager_api_2026-08-30.md) · [★★감시 5종이 스케줄러에서 Disabled인 건 정상 — 관리자(3888)가 대신 돌린다, 로그가 늘면 살아있는 것](project_unified_console_monitor_migration_2026-08-30.md)
 - [★재부팅 후 덱스 브리지 중복 확인](project_dex_bridge_duplicate_recheck_after_reboot_2026-09-07.md) — 브리지는 2단(껍데기+node)
@@ -65,9 +49,9 @@
 - [★워커 멘션 무응답=보내는 쪽 allowedMentions](reference_worker_mention_needs_allowedmentions_2026-09-06.md) · [@모두 멘션 수리](project_dex_jena_all_mention_fixed_2026-09-05.md)
 - [★제나 무응답=다리 주입 차단](project_jena_bridge_injection_blocked_2026-09-06.md)
 - [★규칙 지적해놓고 어기지 말 것](feedback_dont_flag_rule_then_break_it_2026-09-05.md) · [예외 만들지 않기](feedback_no_self_declared_exceptions.md)
-- [★시각은 항상 KST](feedback_always_report_time_in_kst_2026-09-05.md) · [★Bash date는 이제 KST 정상(09-18 정정)](reference_bash_date_clock_offset_2026-08-16.md) — +9h 고정보정 박지 말 것, 그게 오차를 만들었다
+- [★시각은 항상 KST](feedback_always_report_time_in_kst_2026-09-05.md) · [★Bash date는 이제 KST 정상(09-18 정정)](reference_bash_date_clock_offset_2026-08-16.md) — +9h 고정보정 박지 말 것, 그게 오차를 만들…
 - 위임관문: [분류기 막히면 덱스에게](feedback_delegate_to_dex_when_classifier_blocks_2026-09-05.md) · [형 문구는 새 턴이어야](reference_delegation_gate_needs_fresh_turn_2026-09-05.md) · [Bash엔 안 걸림](reference_delegation_gate_bash_script_workaround_2026-09-01.md) · [매직문구 코칭 금지](feedback_dont_coach_magic_phrase_past_guard.md)
-- [★★세션 cron은 30분까지 늦게 뜬다 09-19](project_session_cron_did_not_fire_2026-09-19.md) — 03:43분은 04:13:54 지연발화(미발화 아님)·03:55분은 끝내 안 떠 손으로 대행. **예정+30분 전엔 미발화로 단정 말 것**
+- [★★세션 cron은 30분까지 늦게 뜬다 09-19](project_session_cron_did_not_fire_2026-09-19.md) — 03:43분은 04:13:54 지연발화(미발화…
 - [사전저장 cron 등록돼도 flag 누락 가능](reference_presave_cron_flag_missed_2026-09-05.md) · [일지+저장 cron 구조 수리](project_journal_gap_2026-08-05.md)
 - [★엔블 005-05 가격정책](project_enbl00505_pricing_policy_2026-09-05.md) — 천원단위 절삭·VAT포함
 - 헤더 양식: [결재 🟪×5+REQ](feedback_approval_request_format_purple_card.md) · [육안확인 ✅×5](feedback_visual_check_marker_format_2026-09-05.md) · [위임관문 🟥×5](feedback_delegation_gate_error_marker_format_2026-09-05.md) · [이슈종료 🟩🟧🟥](feedback_issue_closure_marker_format.md)
@@ -75,15 +59,15 @@
 - [★형은 클로 CLI 직접 접근 가능](reference_hyung_has_direct_cli_access_2026-09-05.md)
 - [엔블005-01 스레드 ID](reference_enbl00501_thread_channel_id_2026-09-04.md) · [005-03 원인 td→dialog](project_enbl00503_deployed_2026-09-04.md)
 - 멘션: [덱스·제나 ID](reference_dex_jena_discord_ids_2026-09-02.md) · [실제 @멘션](feedback_always_mention_worker_by_id_not_name_2026-09-02.md) · [이슈방 수신대상 멘션](feedback_always_mention_target_in_shared_threads.md) · [직접 멘션에만 반응](feedback_respond_only_when_mentioned.md) · [형은 별칭](reference_calling_convention_nickname_vs_mention_2026-08-27.md)
-- [★n8n DB는 -wal까지 복사해야 한다](reference_n8n_sqlite_wal_must_be_copied_2026-09-18.md) — 본체만 복사하면 방금 끝난 실행이 status=new로 보임. 09-18 k-saju 블로그 오보 직전에 잡음
-- [★IG 토큰은 n8n export:credentials로 읽는다](reference_ig_token_readable_via_n8n_export_credentials_2026-09-17.md) — Graph 재조회 가능, timestamp는 UTC라 +9h 환산
+- [★n8n DB는 -wal까지 복사해야 한다](reference_n8n_sqlite_wal_must_be_copied_2026-09-18.md) — 본체만 복사하면 방금 끝난 실행이 status=…
+- [★IG 토큰은 n8n export:credentials로 읽는다](reference_ig_token_readable_via_n8n_export_credentials_2026-09-17.md) — Graph 재조회 가능, timestamp는 U…
 - [★IG캐러셀 원인=토큰무효화](project_ksaju_ig_carousel_token_root_cause_2026-09-02.md) · [토큰 만료까지 확인](feedback_check_token_lifetime_before_declaring_fixed_2026-09-02.md) · [인스타 성공1+실패2 정상](reference_ksaju_ig_daily_two_failed_execs_2026-09-10.md)
 - [로그인화면이면 다른 호스트명 시도](feedback_try_browser_before_declaring_blocked_2026-09-02.md) · [n8n 캔버스 체크마크 낡음](reference_n8n_canvas_execution_status_can_be_stale_2026-09-01.md)
 - [무응답관문은 서브에이전트도 막음](reference_silence_gate_blocks_subagents_no_relief_2026-09-02.md)
-- [★무응답관문 기준=150초(30분 아님)](reference_silence_gate_threshold_is_150s_2026-09-17.md) — 도구 쓸 때마다 검사, 두 세션이 30분으로 오독
+- [★무응답관문 기준=150초(30분 아님)](reference_silence_gate_threshold_is_150s_2026-09-17.md) — 도구 쓸 때마다 검사, 두 세션이 30분으로 오…
 - [★명령어 넘기지 말고 실행](feedback_dont_hand_off_when_bash_workaround_exists_2026-09-01.md) · [확인작업 떠넘기지 말 것](feedback_dont_delegate_lookup_to_user_2026-08-15.md)
 - [★부트스트랩 revenue-review 누락 수리](reference_bootstrap_checklist_revenue_review_gap_fixed_2026-09-01.md)
-- k사주 블로그: [파이프라인 2건 수리](project_ksaju_blog_publish_pipeline_hardened_2026-09-03.md) · [6건 복구 미완](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — ★09-17 재확인: 라이브 누락은 딱 그 6편, 늘지 않음. 발행 자체는 매일 정상
+- k사주 블로그: [파이프라인 2건 수리](project_ksaju_blog_publish_pipeline_hardened_2026-09-03.md) · [6건 복구 미완](project_ksaju_blog_6posts_recovery_pending_2026-09-01.md) — ★09-17 재확인: 라이브 누락은 딱 그 6편…
 - 수익: [W36 무매출=게스트체크아웃 미병합](project_revenue_review_w36_2026-08-31.md) · [W35 GA4 미측정](project_w35_measurement_and_premise_failures_2026-08-24.md) · [주간리뷰 공백](project_revenue_review_lapsed_2026-08-12.md) · [재설계 3안](project_revenue_model_redesign_final_2026-08-12.md)
 - [codex config.toml은 전역](reference_codex_config_toml_global_scope_2026-08-30.md) · [승인권한 확대엔 범위부터](feedback_flag_scope_before_loosening_approval_2026-08-30.md)
 - [검색리포트 노출페이지≠색인수](reference_gsc_report_pagecount_is_not_indexed_2026-08-31.md) · [GA4 헤드리스 UA 제외](reference_ga4_excludes_headless_ua_2026-08-24.md)
@@ -116,7 +100,7 @@
 - [진행상황 표시가 기능보다 우선](feedback_status_visibility_accuracy_first.md)
 - 보고 방식: [라운드마다](feedback_report_each_stage.md) · [간격](feedback_reporting_cadence.md) · [3~4줄](feedback_report_length_short.md) · [답부터](feedback_answer_first.md) · [해요체](feedback_speech_level.md)
 - [옛 지침·09-23 이후 적용 중지: 덱스·제나 적극 병렬배분](feedback_delegate_to_dex_jena_proactively.md) · [지시출처 명시](feedback_label_instruction_source_when_delegating.md)
-- [커밋≠푸시](feedback_verify_push_not_just_commit.md) · [커밋은 바로](feedback_commit_promptly.md) · [git push gh 우회](reference_owenlab_git_push_gh_credential.md) — 앞에 `-c credential.helper=` 필수
+- [커밋≠푸시](feedback_verify_push_not_just_commit.md) · [커밋은 바로](feedback_commit_promptly.md) · [git push gh 우회](reference_owenlab_git_push_gh_credential.md) — 앞에 `-c credential.helper=`…
 - [원안 이탈 금지](feedback_stick_to_original_product_definition.md)
 - [경로 텍스트≠첨부](feedback_attach_files_dont_just_cite_path.md) · [회의 시작=멘션](feedback_mention_on_meeting_start.md)
 - [도구호출 묶어서](feedback_batch_tool_calls_per_turn.md)
@@ -126,11 +110,11 @@
 - [★안전망이 안전망을 끔](reference_ack_bot_silenced_watchdog_2026-08-27.md)
 - [되묻기 전에 비용부터 세라](feedback_dont_ask_when_the_task_is_small.md)
 - [실측이 전제를 깨면 무효선언](feedback_invalidate_own_premise_when_data_contradicts.md)
-- [★nblog는 Vercel이 아니라 로컬 서비스](reference_nblog_runs_local_not_vercel_2026-09-17.md) — 운영본=nblog-saas-dex-ops-baseline+3002, prod 브랜치는 무관
+- [★nblog는 Vercel이 아니라 로컬 서비스](reference_nblog_runs_local_not_vercel_2026-09-17.md) — 운영본=nblog-saas-dex-ops-bas…
 - [nblog 한PC=네이버계정 1개](reference_nblog_agent_single_naver_session_per_profile_2026-08-16.md)
 - [네이버블로그 품질기준](project_naver_blog_content_quality_bar_2026-08-09.md) · [덱스 워크스페이스](reference_dex_jena_workdir_scope_2026-08-08.md)
 - [형 예정요청: 시스템 전체설명 세션](project_full_system_review_pending_2026-08-08.md)
-- [보고채널 2개](reference_ksaju_daily_report_channel_2026-08-05.md) — k-saju 1516986557968420864 / 아투 1529814918658785350
+- [보고채널 2개](reference_ksaju_daily_report_channel_2026-08-05.md) — k-saju 1516986557968420864…
 - [이미지 도구 선택](reference_image_tool_by_korean_text.md) · [추천옵션 마킹](feedback_recommendation_marker.md)
 - [Node 런타임](reference_node_runtimes.md) · [구글계정 2개](reference_google_accounts_by_purpose.md)
 - [클로 vs 모아 네이밍](user_nickname_for_claude.md) · [형 호칭](user_calls_user_hyung.md)
