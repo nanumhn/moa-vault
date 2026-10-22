@@ -1,4 +1,6 @@
 - [★2026-09-23 새 운영 지시: 클로·덱스·제나 사이 신규 업무 전달은 형의 요청 ID·범위별 승인 후에만. 오래된 적극 위임/멘션 지침보다 우선. 사실·추론·보고를 분리하고 출처를 붙이며 오류 발견 시 관련 작업 중단·영향 범위 정정. 정본: D:\Develop\moa-vault\00_Common\SHARED_RULES.md D6·A9·A10.]
+- [★V2 작업 전·후 Sync 스크립트로 동기화](feedback_owenlab_v2_sync_workflow_2026-10-22.md) — lock 있으면 중복실행 금지, 8개 공유폴더 새 .md는 이제 자동 추가(16:45 개선), 로컬저장/GitHub반영 구분 보고
+- [★OwenLab V2 서버 경로·동기화 설정](reference_owenlab_v2_sync_setup_2026-10-22.md) — D:\Develop\Claude_Channels\Obsidian\OwenLab_V2, 5분 예약, 새 노트는 자동 동기화 안 됨
 - [★★디버그 크롬은 BlackHeart로 먼저 띄운다](feedback_debug_chrome_start_profile_must_be_blackheart_2026-10-22.md) — Profile 1 먼저면 GPT 탭이 info.nanumn에 열려 로그아웃 오진(10-22)
 - [★아투 GSC 10-22 후속: 남은 색인요청 5편 10-23](project_atz_gsc_audit_2026-10-22_followup.md) — 할당량 초과, lastmod 원인=내 일괄입력
 - [★아투 GSC 전수조사 10-21](project_atz_gsc_audit_2026-10-21.md) — 2-lng 수정 완료, 323편 검색설명 완료(10-21), 신규글 MoaAtzSearchDesc 자동
