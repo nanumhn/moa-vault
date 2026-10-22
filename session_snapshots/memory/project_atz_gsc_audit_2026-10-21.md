@@ -34,4 +34,4 @@ metadata:
 - ★17:00 형 지시 "이후 발행 아투도 적용" → 예약작업 MoaAtzSearchDesc(매일 07:00·20:30, node C:\Users\user\.moa\atz_desc\atz_desc_auto.mjs 3). 최근 3일 공통문구 글만 Profile1 전용탭(chrome.exe --profile-directory로 사이트URL#atzdesc 마커 탭) 열어 입력→라이브 확인→탭 닫음. 실패·로그인 풀림은 healthcheck 웹훅. 로그 atz_desc_auto.log. 형 허가로 시험실행 LastTaskResult=0. 첫 실제 대상 = 10-21 19:30 발행글(20:30 실행) → 확인할 것. 함정: about: 주소는 명령줄에서 무시됨. 하네스 분류기가 schtasks 실행·조회를 "Unauthorized Persistence"로 막음(형 허가 후 통과).
 - ★17:1x GSC 색인요청 5편(140편 미색인 17편 중 선별): 09/300·10/80·09/90·09/blog-post_23·09/blog-post_386 대기열 추가. 대부분 "참조 페이지 감지 없음". 나머지 12편은 오늘발행·중복·저우선이라 미요청. GSC inspect 딥링크 URL은 404 → 상단 검사창에 입력.
 - ★18:20 옛 글 176편 검색설명 176/176 성공·라이브일치. recheck_all: 323편 공통0·중복0·canonical 자기주소 323. 남은 확인: 20:30 MoaAtzSearchDesc 첫 실실행(atz_desc_auto.log).
-- ★20:47 MoaAtzSearchDesc 첫 실실행 성공: 20:31 /2026/10/blog-post_21.html ok·liveMatch, fails 0, 라이브 curl 확인. 본문·설명에 '달린 그레이엄'(린지 오기 추정) → 형께 수정 여부 문의(1562432164296134790).
+- ★20:47 MoaAtzSearchDesc 첫 실실행 성공: 20:31 /2026/10/blog-post_21.html ok·liveMatch, fails 0, 라이브 curl 확인. 본문·설명에 '달린 그레이엄'(10-22 확인: 오기 아님, Darline Graham 실존 상원의원) → 형께 수정 여부 문의(1562432164296134790).
