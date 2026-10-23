@@ -16,3 +16,7 @@ metadata:
 - 오전 일지·MOC 2개(하네스·덱스제나) 랩실 커밋 a135d47 원격 일치. 랩실 push는 gh 헬퍼 전체경로 `!'/c/Program Files/GitHub CLI/gh' auth git-credential`로 확인.
 - 덱스·제나 워커 MOC는 CRLF 파일 — LF 가정 삽입하면 frontmatter 깨짐(오늘 한 번 냈다가 복구).
 - 계속 대기: ToastDM 저장소 위치(형), V2 정리 REQ-20261022-V2-01, 인수인계서 §8 결정, pm 쇼츠 edge_tts 403·GSC no-result(10-22 스냅샷 참조 [[open-threads-2026-10-23-dawn-snapshot]]).
+- **14:26 새 세션 부트스트랩**: cron 8개 재등록(d6f7d12c·07f70b0d·972bf208·12911fcc·bb5b08ea·b16a43f2·24ceb041·3837e6e8). ⑧을 스냅샷 읽기 전에 걸었다가(bijgwm025) 1분 안에 TaskStop·내 tail 2개 kill, 형께 보고(1563061543812337776). **교훈: 부트스트랩 ⑧ 전에 최신 스냅샷부터 읽을 것.** 04:29발 잔여 tail 4개(pid 359·365·445·450) 정리 여부 형 답 대기.
+- **14:35 V2 정리 실행(REQ-20261022-V2-01, 형 A안 승인)**: 이동·이름변경 70·링크 75줄·.gitignore 70줄 → 커밋 c94884d 일반 push(origin 일치). 14:40 형 "V2 구조를 깨트리면 안 돼, 유지돼야 해" — push 중 도착. 90 보관 매핑표 추적성이 깨진 점 보고, ①전체 git revert(추천) ②90 보관만 원위치 ③다른 뜻 — 형 답 대기(1563064886366306346). **예약 동기화 'OwenLab V2 Git Sync' Disabled 상태 — 형 답 후 재가동.** 스크립트: scratchpad v2_reorg.py(세션 임시).
+- **14:50 V2 정리 완료**: 형 14:47 "폴더 구조(최상위) 유지면 괜찮아, 마저 진행" → 유지. 수동 sync OK 14:47·예약 재가동 Ready·14:50:30 자동 OK c94884d. 남음: 형 확인 필요 4건(01 수집함/형 확인 필요), 다른 PC remote deletion STOP 1회 예상.
+- **15:46 14:00 세션 재시작 중단(형 지시)**: MoaSessionRestartDay Disabled(백업 .moa/MoaSessionRestartDay.task.bak-20261023.xml), 04:00 MoaSessionReset 유지, 13:55 사전저장 cron 삭제(07f70b0d), bootstrap·CLAUDE.md 반영. 며칠간 메모리 경고·세션 이상 관찰해 일지 기록.
